@@ -1,14 +1,13 @@
-<template>
-    <the-header></the-header>
-</template>
-
 <script>
-import TheHeader from '../Components/TheHeader.vue';
+import NavBar from '../Components/NavBar.vue'
+import 'bootstrap/dist/css/bootstrap.css'
 
 export default {
-    components: { TheHeader },
-    data() {
-        return
-    }
+    name: 'Main Page',
+    components: { NavBar },
 }
 </script>
+
+<template>
+    <NavBar></NavBar>
+</template>
