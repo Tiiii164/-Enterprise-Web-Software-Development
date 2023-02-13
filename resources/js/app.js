@@ -1,10 +1,10 @@
 import './bootstrap';
-import '../css/app.css';
 
-import { createApp, h } from 'vue';
-import App from './Pages/Index.vue'
+import { createApp } from 'vue';
+import router from './Router'
+import App from './Layouts/App.vue'
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
-
-createApp(App).mount('#app');
+createApp(App)
+        .use(router)
+        .mount('#app');
 
