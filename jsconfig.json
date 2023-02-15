@@ -3,7 +3,8 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["resources/js/*"]
-        }
+        },
+        "lib": [ "es2015" , "DOM"]
     },
     "exclude": ["node_modules", "public"]
 }
