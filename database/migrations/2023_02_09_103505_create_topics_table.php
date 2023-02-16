@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->date('closure_date');
             $table->date('final_closure_date');
         });
