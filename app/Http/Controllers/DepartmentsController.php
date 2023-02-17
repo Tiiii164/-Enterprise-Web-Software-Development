@@ -10,9 +10,10 @@ class DepartmentsController extends Controller
     public function index()
     {
         $departments = Departments::all();
-        return view('departments.index', [
-            'departments' => $departments,
-        ]);
+        // return view('departments.index', [
+        //     'departments' => $departments,
+        // ]);
+        return view ('departments.index')->with('departments', $departments);
     }
 
 
@@ -32,7 +33,6 @@ class DepartmentsController extends Controller
         ]);
         $departments->save();
         return redirect('/departments');
-        // return redirect()->route('departments.index')->with('Alert', 'New Idea Have Been Added!');
     }
 
     public function show($id)
@@ -49,13 +49,12 @@ class DepartmentsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $departments = Departments::Where('id', '$id')
+        $departments = Departments::where('id', $id)
         ->update([
             'id' => $request->input('id'),
             'name' => $request->input('name'),
         ]);
         return redirect('/departments');
-        // return redirect()->route('departments.index')->with('Alert', 'Update new department successfully!');
     }
 
     public function destroy($id)
@@ -63,6 +62,5 @@ class DepartmentsController extends Controller
         $departments = Departments::find($id);
         $departments->delete();
         return redirect('/departments');
-        // return redirect()->route('departments.index')->with('Alert', 'Delete department successfully!');
     }
 }

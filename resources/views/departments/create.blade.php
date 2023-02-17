@@ -20,11 +20,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <strong>ID</strong>
-                                <input type="text" name="id" class="form-control" placeholder="Enter your ID">
+                                <input type="text" name="id" class="form-control" placeholder="Enter ID">
                             </div>
                             <div class="form-group">
                                 <strong>Name</strong>
-                                <input type="text" name="name" class="form-control" placeholder="Enter your name">
+                                <input type="text" name="name" class="form-control" placeholder="Enter your department name">
                             </div>
                     <button type="submit" class="btn btn-success mt-2">Save</button>
                 </form>
