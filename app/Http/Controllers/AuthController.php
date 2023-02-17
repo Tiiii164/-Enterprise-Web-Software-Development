@@ -18,39 +18,46 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4',
-        ]);
-
-        if($validation->fails()){
+        try {
+            $validation = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email',
+                'password' => 'required|confirmed',
+            ]);
+    
+            if($validation->fails()){
+                $response = [
+                    'status' => 400,
+                    'success' => false,
+                    'message' => $validation->errors(),
+                ];
+                return response()->json($response, 400);
+            }
+    
+            $user = User::create ([
+                'name' => $request-> name,
+                'email' => $request-> email, 
+                'password' => Hash::make($request-> password),
+            ]);
+    
             $response = [
-                'status' => 400,
-                'success' => false,
-                'message' => $validation->errors(),
+                'status' => 201,
+                'success' => true,
+                'message' => 'Successfully!',
+                'data' => [
+                    'token' => $user->createToken('MyIdea')->plainTextToken,
+                    'name' => $user->name,
+                    'email'=>$user->email,
+                ]
             ];
-            return response()->json($response, 400);
+                return response()->json($response,200);
+            } catch (\Throwable $e) {
+                return response()->json([
+                    'status' => false,
+                    'message' => $e->getMessage()
+                ], 500);
+            }
         }
-
-        $user = User::create ([
-            'name' => $request-> name,
-            'email' => $request-> email, 
-            'password' => Hash::make($request-> password),
-        ]);
-
-        $response = [
-            'status' => 201,
-            'success' => true,
-            'message' => 'Successfully!',
-            'data' => [
-                'token' => $user->createToken('MyIdea')->plainTextToken,
-                'name' => $user->name,
-                'email'=>$user->email,
-            ]
-        ];
-            return response()->json($response,200);
-    }
 
     public function showFormLogin()
     {
@@ -59,25 +66,32 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $validator = Validator::make($request->json()->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4',
-        ]);
-
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+        $validateUser = Validator::make($request->all(),
+            [
+                'email' => 'required',
+                'password' => 'required'
+            ]);
+            
+        if($validateUser->fails()){
+            $response = [
+                'status' => 401,
+                'success' => false,
+                'message' => $validateUser->errors(),
+            ];
+            return response()->json($response, 401);
         }
-
-        $user = User::create([
-            'name' => $request->json()->get('name'),
-            'email' => $request->json()->get('email'),
-            'password' => Hash::make($request->json()->get('password')),
-        ]);
-
-        $token = JWTAuth::fromUser($user);
-
-        return response()->json(compact('user','token'), 201);
+        if(!Auth::attempt($request->only(['email', 'password']))){
+            return response()->json([
+                'status' => false,
+                'message' => 'Email & Password does not exist.',
+            ], 401);
+        }
+        $user = User::where('email', $request->email)->first();
+        return response()->json([
+            'status' => true,
+            'message' => 'Logged In Successfully',
+            'token' => $user->createToken("API_TOKEN")->plainTextToken
+        ], 200);
     }
 
     public function showProfile()
@@ -93,13 +107,6 @@ class AuthController extends Controller
         }catch (JWTException $e){
             return response()->json(['token_absent'], $e->getStatusCode());
         }
-
         return response()->json(compact('user'));
-    }
-
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('show-form-login');
     }
 }
