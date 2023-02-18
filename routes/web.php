@@ -2,14 +2,16 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\IdeasController;
+use App\Http\Controllers\TopicsController;
+
 use App\Models\Categories;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +35,8 @@ Route::get('/create', [IdeasController::class, 'create']);
 Route::get('/categoryindex', [CategoriesController::class, 'index']);
 
 Route::resource('/departments', DepartmentsController::class);
+Route::resource('/topics', TopicsController::class);
+
 
 Route::get('register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
 Route::post('register', [AuthController::class, 'register'])->name('register');
@@ -44,4 +48,3 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('profile', [AuthController::class, 'showProfile'])->name('show-profile');
 Route::put('profile', [AuthController::class, 'profile'])->name('profile');
-

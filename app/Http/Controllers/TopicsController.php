@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\models\Topics;
+use App\models\Topics;
 use App\Http\Requests\TopicsValidationRequest;
 
 class TopicsController extends Controller
@@ -40,13 +40,14 @@ class TopicsController extends Controller
     {
 
         $request->validate([
+            'id' => 'required',
             'name' => 'required',
-
             'closure_date' => 'required',
             'final_closure_date' => 'required'
         ]);
 
         $topisc = Topics::create([
+            'id' => $request->input('id'),
             'name' => $request->input('name'),
             'closure_date' => $request->input('closure_date'),
             'final_closure_date' => $request->input('final_closure_date')
@@ -100,6 +101,7 @@ class TopicsController extends Controller
         $request->validated();
         $topics = Topics::where('id', $id)
             ->update([
+                'id' => $request->input('id'),
                 'name' => $request->input('name'),
                 'closure_date' => $request->input('closure_date'),
                 'final_closure_date' => $request->input('final_closure_date'),
