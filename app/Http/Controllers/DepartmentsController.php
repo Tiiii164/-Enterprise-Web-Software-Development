@@ -17,13 +17,13 @@ class DepartmentsController extends Controller
 
 
     public function create()
-        {
-            $departments = Departments::all();
-            return view('departments.create', [
-                'departments' => $departments,
-            ]);
-        }
-    
+    {
+        $departments = Departments::all();
+        return view('departments.create', [
+            'departments' => $departments,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $departments = Departments::create([
@@ -49,11 +49,11 @@ class DepartmentsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $departments = Departments::Where('id', '$id')
-        ->update([
-            'id' => $request->input('id'),
-            'name' => $request->input('name'),
-        ]);
+        $departments = Departments::Where('id', $id)
+            ->update([
+                'id' => $request->input('id'),
+                'name' => $request->input('name'),
+            ]);
         return redirect('/departments');
         // return redirect()->route('departments.index')->with('Alert', 'Update new department successfully!');
     }
