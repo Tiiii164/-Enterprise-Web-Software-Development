@@ -63,7 +63,6 @@ class AuthController extends Controller
                 ], 500);
             }
         }
-
     public function showFormLogin()
     {
         return Inertia::render('Login');

@@ -18,13 +18,13 @@ class DepartmentsController extends Controller
 
 
     public function create()
-        {
-            $departments = Departments::all();
-            return view('departments.create', [
-                'departments' => $departments,
-            ]);
-        }
-    
+    {
+        $departments = Departments::all();
+        return view('departments.create', [
+            'departments' => $departments,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $departments = Departments::create([
