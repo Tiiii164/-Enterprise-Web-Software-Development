@@ -16,7 +16,7 @@ import { useRouter } from "vue-router"
       }
     }
     const handleLogout = () => {
-        localStorage.removeItem('APP_DEMO_USER_TOKEN')
+        localStorage.removeItem('token')
         router.push('/')
     }
 export default {}
