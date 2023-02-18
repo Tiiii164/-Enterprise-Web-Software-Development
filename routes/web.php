@@ -1,35 +1,34 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+<<<<<<< HEAD
 use App\Http\Controllers\IdeasController;
 use App\Http\Controllers\CategoriesController;
+=======
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\IdeasController;
+use App\Models\Categories;
+>>>>>>> CompleteLogin
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\DepartmentsController;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+=======
+Auth::routes();
+>>>>>>> CompleteLogin
 
 // Route::get('/create', [IdeasController::class, 'create']);
 Route::get('/index', [CategoriesController::class, 'index']);
@@ -43,3 +42,23 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/create', [IdeasController::class, 'create']);
+Route::get('/categoryindex', [CategoriesController::class, 'index']);
+
+Route::resource('/departments', DepartmentsController::class);
+
+Route::get('register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+
+Route::get('login', [AuthController::class, 'showFormLogin'])->name('show-form-login');
+Route::post('login', [AuthController::class, 'login'])->name('login');
+
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('profile', [AuthController::class, 'showProfile'])->name('show-profile');
+Route::put('profile', [AuthController::class, 'profile'])->name('profile');
+
+Route::get('admin', [AdminController::class, 'adminPage'])->name('showAdminPage');
+
+Route::resource('roles', RolesController::class);

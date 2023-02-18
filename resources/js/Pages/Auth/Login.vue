@@ -1,90 +1,62 @@
-<script setup>
-import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-
-defineProps({
-    canResetPassword: Boolean,
-    status: String,
-});
-
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
-});
-
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
-};
+<script>
+import { ref, reactive } from "vue";
+import { useRouter } from "vue-router"
+export default {
+    setup() {
+        const errors = ref()
+        const router = useRouter();
+        const form = reactive({
+            email: '',
+            password: '',
+        })
+        const handleLogin = async () => {
+            try {
+                const result = await axios.post('/api/auth/Login', form)
+                if (result.status === 200 && result.data && result.data.token) {
+                    localStorage.setItem('token', result.data.token)
+                    await router.push('/StaffSubmission')
+                }
+            } catch (e) {
+                if(e && e.response.data && e.response.data.errors) {
+                    errors.value = Object.values(e.response.data.errors)
+                } else {
+                    errors.value = "Login Failed"
+                }
+            }
+        }
+        return {
+            form,
+            errors,
+            handleLogin,
+        }
+    }
+}
 </script>
-
 <template>
-    <GuestLayout>
-        <Head title="Log in" />
-
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 m-auto">
+                <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Login Form</h4>
+                    <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{errors}}</p>
+                    <form method="post" @submit.prevent="handleLogin">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email: </label>
+                            <input type="text" name="email" v-model="form.email" id="email" class="form-control" placeholder="Enter Email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password: </label>
+                            <input type="password" name="password" v-model="form.password" id="password" class="form-control" placeholder="Enter Password">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <router-link class="btn btn-danger" to="/Register"> Register </router-link>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>      
+                </div>                
+                </div>
+            </div>
         </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link
-                    v-if="canResetPassword"
-                    :href="route('password.request')"
-                    class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                >
-                    Forgot your password?
-                </Link>
-
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
+    </div>
 </template>
