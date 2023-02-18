@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@types/es6-promise": "^3.3.0",
+        "boostrap": "^2.0.0",
         "bootstrap-vue": "^2.23.1",
         "node": "^19.6.0",
         "nuxt": "^3.1.2",
