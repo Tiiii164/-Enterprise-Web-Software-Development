@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('ideas', function (Blueprint $table) {
             $table->id();
             $table->string('text');
-            //$table->varchar('file_path');
+            $table->string('file_path');
             $table->timestamps();
         });
         //foreign keys 
