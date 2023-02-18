@@ -14,20 +14,20 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{route('departments.update', $departments->id)}}" method="POST">
+                <form action="{{route('departments.update', $departments->id)}}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <strong>ID</strong>
-                                <input type="text" name="id" value="{{$departments->id}}" class="form-control" placeholder="Enter your ID">
+                                <input type="text" name="id" value="{{$departments->id}}" class="form-control" placeholder="Enter ID">
                             </div>
                             <div class="form-group">
                                 <strong>Name</strong>
-                                <input type="text" name="name" value="{{$departments->name}}" class="form-control" placeholder="Enter your name">
+                                <input type="text" name="name" value="{{$departments->name}}" class="form-control" placeholder="Enter your department name">
                             </div>
-                    <button type="submit" class="btn btn-success mt-2">Update</button>
+                    <button class="btn btn-success mt-2" type="submit">Update</button>
                 </form>
             </div>
         </div>

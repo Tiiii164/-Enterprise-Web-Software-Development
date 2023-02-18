@@ -10,6 +10,9 @@ class Categories extends Model
     use HasFactory;
     protected $table = 'categories';
     protected $primaryKey = 'id';
+    protected $fillable = ['name'];
+    const CREATED_AT = 'day_time';
+    const UPDATED_AT = null;
     //one Category has many Foods
     public function ideas()
     {

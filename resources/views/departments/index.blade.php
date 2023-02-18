@@ -9,16 +9,11 @@
                         <h3>Manage Departments</h3>
                     </div>
                     <div class="col-md-6">
-                        <a href="{{route('departments.create')}}" class="btn btn-primary float-end">Add new content</a>
+                        <a href="{{route('departments.create')}}" class="btn btn-primary float-end">Add new department</a>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                @if (Session::has('Alert'))
-                    <div class="alert alert-success">
-                        {{Session::get('Alert')}}
-                    </div>
-                @endif
                <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -29,7 +24,6 @@
                     <tbody>
                         @foreach ($departments as $dp)
                             <tr>
-                                <td>{{++$i}}</td>
                                 <td>{{$dp->id}}</td>
                                 <td>{{$dp->name}}</td>
                                 <td>
