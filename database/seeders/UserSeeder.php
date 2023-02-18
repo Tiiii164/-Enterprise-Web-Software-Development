@@ -16,27 +16,27 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $role_Staff = Roles::where('name', 'Staff')->first();
-        $role_Manager = Roles::where('name', 'Manager')->first();
-        $role_Admin = Roles::where('name', 'Manager')->first();
+        // $role_Staff = Roles::where('name', 'Staff')->first();
+        // $role_Manager = Roles::where('name', 'Manager')->first();
+        // $role_Admin = Roles::where('name', 'Manager')->first();
 
-        $Admin = new User();
-        $Admin->name = 'Admin';
-        $Admin->email = 'admin@gmail.com';
-        $Admin->password = bcrypt('123');
-        $Admin->role_id = '3';
-        $Admin->department_id = '3'; 
-        $Admin->save();
-        $Admin->roles()->attach($role_Admin);
+        // $Admin = new User();
+        // $Admin->name = 'Admin';
+        // $Admin->email = 'admin@gmail.com';
+        // $Admin->password = bcrypt('123');
+        // $Admin->role_id = '3';
+        // $Admin->department_id = '3'; 
+        // $Admin->save();
+        // $Admin->roles()->attach($role_Admin);
 
-        $Manager = new User();
-        $Manager->name = 'Manager';
-        $Manager->email = 'manager@gmail.com';
-        $Manager->password = bcrypt('123');
-        $Manager->role_id = '2';
-        $Manager->department_id = '2'; 
-        $Manager->save();
-        $Manager->roles()->attach($role_Manager);
+        // $Manager = new User();
+        // $Manager->name = 'Manager';
+        // $Manager->email = 'manager@gmail.com';
+        // $Manager->password = bcrypt('123');
+        // $Manager->role_id = '2';
+        // $Manager->department_id = '2'; 
+        // $Manager->save();
+        // $Manager->roles()->attach($role_Manager);
            
         // User::create([
         //     'name' => 'Admin',
