@@ -14,19 +14,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id()->default(1);
+            $table->id();
 
-            $table->string('name')->default('Admin');
-            $table->string('email')->unique()->default('admin@gmail.com');
+            $table->string('name');
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->default('123');
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
         Schema::table('users', function (Blueprint $table) {
 
-            $table->foreignId('role_id')->constrained('roles')->default('1');
-            $table->foreignId('department_id')->constrained('departments')->default('1');
+            $table->foreignId('role_id')->constrained('roles');
+            $table->foreignId('department_id')->constrained('departments');
             // $table->foreign('role_id')
             //     ->references('id')
             //     ->on('roles')

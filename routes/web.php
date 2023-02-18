@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RolesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -26,7 +29,11 @@ Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::get('login', [AuthController::class, 'showFormLogin'])->name('show-form-login');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('profile', [AuthController::class, 'showProfile'])->name('show-profile');
 Route::put('profile', [AuthController::class, 'profile'])->name('profile');
+
+Route::get('admin', [AdminController::class, 'adminPage'])->name('showAdminPage');
+
+Route::resource('roles', RolesController::class);

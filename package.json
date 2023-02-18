@@ -25,6 +25,7 @@
         "@types/es6-promise": "^3.3.0",
         "@websanova/vue-auth": "^4.2.1",
         "bootstrap-vue": "^2.23.1",
+        "jsonwebtoken": "^9.0.0",
         "node": "^19.6.0",
         "nuxt": "^3.1.2",
         "vform": "^2.1.2",

@@ -155,7 +155,6 @@ return [
     */
 
     'providers' => [
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -209,7 +208,6 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        // 'ExampleClass' => App\Example\ExampleClass::class,    
     ])->toArray(),
-
 ];
