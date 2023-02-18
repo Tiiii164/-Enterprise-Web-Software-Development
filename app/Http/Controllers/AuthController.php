@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Roles;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
 use JWTAuthException;
+use \Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
@@ -20,12 +22,15 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        try {
-            $validation = Validator::make($request->all(), [
+        try 
+        {
+            $validation = Validator::make($request->all(), 
+            [
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email',
                 'password' => 'required|confirmed',
             ]);
+
 
             if ($validation->fails()) {
                 $response = [
@@ -58,6 +63,40 @@ class AuthController extends Controller
                 'status' => false,
                 'message' => $e->getMessage()
             ], 500);
+            
+            if($validation->fails())
+            {
+                return response() -> json(
+                [
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validation->errors(),
+                ], 401);
+            }
+            
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->role_id = '1';
+            $user->department_id = '1';
+            $user->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Sign Up Successfully',
+                'token' => $user->createToken("Idea")->plainTextToken
+            ], 200);
+                return response()->json($response,200);
+
+        }   catch (\Throwable $e) 
+            {
+                return response()->json(
+                [
+                    'status' => false,
+                    'message' => $e->getMessage()
+                ], 500);
+            }
         }
     }
 
@@ -89,13 +128,51 @@ class AuthController extends Controller
                 'status' => false,
                 'message' => 'Email & Password does not exist.',
             ], 401);
+        try 
+        {
+            $validation = Validator::make($request->all(),
+            [
+                'email' => 'required|string|max:255',
+                'password' => 'required',
+            ]);
+            
+            if($validation->fails())
+            {
+                return response()->json
+                ([
+                    'status' => false,
+                    'message' => 'Validation error',
+                    'errors' => $validation->errors()
+                ], 401);
+            }
+
+            if(!Auth::attempt($request->only(['email','password'])))
+            {
+                return response()->json(
+                [
+                    'status' => false,
+                    'message' => 'Email & Password does not exist.',
+                ], 401);
+            }
+        
+            $user = User::where('email', $request->email)->first();
+
+            return response()->json(
+                [
+                    'status' => true,
+                    'message' => 'Logged In Successfully',
+                    'token' => $user->createToken("Idea")->plainTextToken
+                ], 200);
+
+        }   
+            catch (\Throwable $e) 
+        {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => $e->getMessage()
+                ], 500);
         }
-        $user = User::where('email', $request->email)->first();
-        return response()->json([
-            'status' => true,
-            'message' => 'Logged In Successfully',
-            'token' => $user->createToken("API_TOKEN")->plainTextToken
-        ], 200);
     }
 
     public function showProfile()

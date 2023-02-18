@@ -13,8 +13,8 @@ export default {
             try {
                 const result = await axios.post('/api/auth/Login', form)
                 if (result.status === 200 && result.data && result.data.token) {
-                    localStorage.setItem('APP_DEMO_USER_TOKEN', result.data.token)
-                    await router.push({name:'Home'})
+                    localStorage.setItem('token', result.data.token)
+                    await router.push('/StaffSubmission')
                 }
             } catch (e) {
                 if(e && e.response.data && e.response.data.errors) {
@@ -39,9 +39,6 @@ export default {
                 <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Login Form</h4>
-                    <ul class="list-disc text-red-400" v-for="(value, index) in errors" :key="index" v-if="typeof errors === 'object'">
-                        <li>{{value[0]}}</li>
-                    </ul>
                     <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{errors}}</p>
                     <form method="post" @submit.prevent="handleLogin">
                         <div class="mb-3">

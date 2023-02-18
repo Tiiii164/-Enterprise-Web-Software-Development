@@ -14,12 +14,11 @@ import { useRouter } from "vue-router"
         const handleRegister = async () => {
             const response = await axios.post('/api/auth/Register', form)
             .then((res) => {
-                localStorage.setItem('token', res.data.data.token);
-                localStorage.setItem('username', res.data.data.name);
-                router.push({name: 'Login'})
+                console.log(res)
+                router.push('/Login')
             })
             .catch((e) => {
-                    errors.value = "Registration failed"
+                errors.value = "Registration failed"
             })
         }
         return {
@@ -53,7 +52,7 @@ import { useRouter } from "vue-router"
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Confirm Password: </label>
-                            <input type="password" name="password_confirm" v-model="form.password_confirmation" id="password" class="form-control" placeholder="Confirm Password">
+                            <input type="password" name="password_confirm" v-model="form.password_confirmation" id="password_confirm" class="form-control" placeholder="Confirm Password">
                         </div>
                         <div class="d-flex justify-content-between">
                             <router-link class="btn btn-danger" to="/Login"> Sign In </router-link>
