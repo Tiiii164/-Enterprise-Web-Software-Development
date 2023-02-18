@@ -2,9 +2,14 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\IdeasController;
+use App\Models\Categories;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\DepartmentsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +24,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/create', [IdeasController::class, 'create']);
+Route::get('/categoryindex', [CategoriesController::class, 'index']);
+
+Route::resource('/departments', DepartmentsController::class);
 
 Route::get('register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
 Route::post('register', [AuthController::class, 'register'])->name('register');
