@@ -9,6 +9,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use JWTAuth;
+use JWTAuthException;
 use \Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
@@ -29,6 +31,39 @@ class AuthController extends Controller
                 'password' => 'required|confirmed',
             ]);
 
+
+            if ($validation->fails()) {
+                $response = [
+                    'status' => 400,
+                    'success' => false,
+                    'message' => $validation->errors(),
+                ];
+                return response()->json($response, 400);
+            }
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+
+            $response = [
+                'status' => 201,
+                'success' => true,
+                'message' => 'Successfully!',
+                'data' => [
+                    'token' => $user->createToken('MyIdea')->plainTextToken,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ]
+            ];
+            return response()->json($response, 200);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ], 500);
+            
             if($validation->fails())
             {
                 return response() -> json(
@@ -63,6 +98,7 @@ class AuthController extends Controller
                 ], 500);
             }
         }
+    }
 
     public function showFormLogin()
     {
@@ -71,6 +107,27 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $validateUser = Validator::make(
+            $request->all(),
+            [
+                'email' => 'required',
+                'password' => 'required'
+            ]
+        );
+
+        if ($validateUser->fails()) {
+            $response = [
+                'status' => 401,
+                'success' => false,
+                'message' => $validateUser->errors(),
+            ];
+            return response()->json($response, 401);
+        }
+        if (!Auth::attempt($request->only(['email', 'password']))) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Email & Password does not exist.',
+            ], 401);
         try 
         {
             $validation = Validator::make($request->all(),
@@ -120,17 +177,23 @@ class AuthController extends Controller
 
     public function showProfile()
     {
-        try{
-            if(!$user = JWTAuth::parseToken()->authenticate()){
+        try {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 400);
             }
-        }catch (TokenExpiredException $e){
+        } catch (TokenExpiredException $e) {
             return response()->json(['token_expired'], $e->getStatusCode());
-        }catch (TokenInvalidException $e){
+        } catch (TokenInvalidException $e) {
             return response()->json(['token_invalid'], $e->getStatusCode());
-        }catch (JWTException $e){
+        } catch (JWTException $e) {
             return response()->json(['token_absent'], $e->getStatusCode());
         }
         return response()->json(compact('user'));
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('show-form-login');
     }
 }
