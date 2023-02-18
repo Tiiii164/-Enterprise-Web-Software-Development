@@ -1,5 +1,4 @@
 import '../css/app.css';
-import { createApp, h } from 'vue';
 import './bootstrap';
 import { createApp } from 'vue';
 import router from '../js/Router/router'

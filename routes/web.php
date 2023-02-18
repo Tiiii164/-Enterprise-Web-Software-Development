@@ -2,16 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
-<<<<<<< HEAD
-use App\Http\Controllers\IdeasController;
-use App\Http\Controllers\CategoriesController;
-=======
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\IdeasController;
 use App\Models\Categories;
->>>>>>> CompleteLogin
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -22,13 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-=======
 Auth::routes();
->>>>>>> CompleteLogin
 
 // Route::get('/create', [IdeasController::class, 'create']);
 Route::get('/index', [CategoriesController::class, 'index']);
