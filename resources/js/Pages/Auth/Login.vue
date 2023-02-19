@@ -51,7 +51,7 @@ export default {
                         </div>
                         <div class="d-flex justify-content-between">
                             <router-link class="btn btn-danger" to="/Register"> Register </router-link>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                     </form>      
                 </div>                

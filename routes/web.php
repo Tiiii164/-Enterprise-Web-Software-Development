@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesController;
@@ -39,6 +40,8 @@ Route::resource('/departments', DepartmentsController::class);
 
 Route::resource('/topics', TopicsController::class);
 
+// Route::resource('/roles', RolesController::class);
+
 Route::get('register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 
@@ -51,5 +54,3 @@ Route::get('profile', [AuthController::class, 'showProfile'])->name('show-profil
 Route::put('profile', [AuthController::class, 'profile'])->name('profile');
 
 Route::get('admin', [AdminController::class, 'adminPage'])->name('showAdminPage');
-
-Route::resource('roles', RolesController::class);

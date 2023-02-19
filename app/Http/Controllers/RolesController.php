@@ -15,7 +15,7 @@ class RolesController extends Controller
     public function index()
     {
         $roles = Roles::all();
-        return view('Roles.index')->with('roles', $roles);
+        return response()->json($roles);
     }
 
     /**
@@ -25,7 +25,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('Roles.create');
+        //
     }
 
     /**
@@ -36,10 +36,10 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $roles = new Roles();
-        $roles->name = $request->input('name');
-        $roles->save();
-        return redirect('roles');
+        $role = new Roles();
+        $role->name = $request->input('name');
+        $role->save();
+        return response()->json($role);
     }
 
     /**
@@ -50,7 +50,8 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        //
+        // $role = Roles::find($id);
+        // return response()->json($role);
     }
 
     /**
@@ -61,8 +62,8 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        $roles = Roles::find($id);
-        return view('Roles.update')->with('roles', $roles);
+        // $roles = Roles::find($id);
+        // return view('Roles.update')->with('roles', $roles);
     }
 
     /**
@@ -74,8 +75,8 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $roles = Roles::where('id', $id)->update(['name' => $request->input('name')]);
-        return redirect('roles');
+        $role = Roles::where('id', $id)->update(['name' => $request->input('name')]);
+        return response()->json($role);
     }
 
     /**
@@ -88,6 +89,6 @@ class RolesController extends Controller
     {
         $roles = Roles::find($id);
         $roles->delete();
-        return redirect('roles');
+        return response()->json(['message' => 'Role deleted']);
     }
 }

@@ -43,11 +43,14 @@ export default {}
         <li class="nav-item">
           <router-link class="nav-link active" aria-current="page" to="/Register">Register</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link active" aria-current="page" to="/Admin">Admin</router-link>
+        </li>
       </ul>
       <form class="d-flex">
         <span class="capitalize">Welcome {{ user && user.name }} 
             <a type="button" class="" @click="handleLogout">Logout</a>
-          </span>
+        </span>
       </form>
     </div>
   </div>

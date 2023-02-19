@@ -55,8 +55,8 @@ import { useRouter } from "vue-router"
                             <input type="password" name="password_confirm" v-model="form.password_confirmation" id="password_confirm" class="form-control" placeholder="Confirm Password">
                         </div>
                         <div class="d-flex justify-content-between">
-                            <router-link class="btn btn-danger" to="/Login"> Sign In </router-link>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <router-link class="btn btn-danger" to="/Login"> Login </router-link>
+                            <button type="submit" class="btn btn-primary">Register</button>
                         </div>
                     </form>      
                 </div>                
