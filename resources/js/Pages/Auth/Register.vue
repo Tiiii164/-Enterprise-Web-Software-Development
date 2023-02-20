@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router"
     export default {
@@ -11,26 +12,30 @@ import { useRouter } from "vue-router"
             password: '',
             password_confirmation: '',
         })
-        const handleRegister = async () => {
-            const response = await axios.post('/api/auth/Register', form)
-            .then((res) => {
-                console.log(res)
-                router.push('/Login')
-            })
-            .catch((e) => {
-                errors.value = "Registration failed"
-            })
+        const handleRegister = async (evt) => {
+            evt.preventDefault()
+            try {
+                const result = await axios.post('/api/auth/Register', form)
+                if (result.status === 200 && result.data && result.data.token) {
+                localStorage.setItem('Idea_token', result.data.token)
+                await router.push('/Login')
+                }
+            }catch(e) {
+                if(e.response.data && e.response.data.errors) {
+                    errors.value = Object.values(e.response.data.errors)
+                }
+            }
         }
         return {
             form,
             errors,
             handleRegister,
-        }
+            }
     }
 }
 </script>
 <template>
-    <div class="container">
+    <div class="container position-absolute top-50 start-50 translate-middle">
         <div class="row">
             <div class="col-md-8 m-auto">
                 <div class="card">

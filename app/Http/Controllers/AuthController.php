@@ -17,7 +17,6 @@ class AuthController extends Controller
     {
         return Inertia::render('Register');
     }
-
     public function register(Request $request)
     {
         try 
@@ -50,7 +49,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Sign Up Successfully',
-                'token' => $user->createToken("Idea")->plainTextToken
+                'token' => $user->createToken("Idea_token")->plainTextToken
             ], 200);
                 return response()->json($response,200);
 
@@ -67,7 +66,6 @@ class AuthController extends Controller
     {
         return Inertia::render('Login');
     }
-
     public function login(Request $request)
     {
         try 
@@ -103,7 +101,7 @@ class AuthController extends Controller
                 [
                     'status' => true,
                     'message' => 'Logged In Successfully',
-                    'token' => $user->createToken("Idea")->plainTextToken
+                    'token' => $user->createToken("Idea_token")->plainTextToken
                 ], 200);
 
         }   
@@ -115,6 +113,18 @@ class AuthController extends Controller
                     'message' => $e->getMessage()
                 ], 500);
         }
+    }
+
+    public function logout()
+    {
+        $accessToken = auth()->user()->token();
+        $refreshToken = DB::table('oauth_refresh_tokens')
+        ->where('access_token_id', $accessToken->id)
+        ->update([
+                'revoked' => true
+        ]);
+        $accessToken->revoke();
+        return response()->json(['status' => 200]);
     }
 
     public function showProfile()
