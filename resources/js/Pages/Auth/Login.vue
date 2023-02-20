@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router"
 export default {
@@ -13,8 +14,8 @@ export default {
             try {
                 const result = await axios.post('/api/auth/Login', form)
                 if (result.status === 200 && result.data && result.data.token) {
-                    localStorage.setItem('token', result.data.token)
-                    await router.push('/StaffSubmission')
+                    localStorage.setItem('Idea_token', result.data.token)
+                    await router.push('/')
                 }
             } catch (e) {
                 if(e && e.response.data && e.response.data.errors) {
@@ -33,7 +34,7 @@ export default {
 }
 </script>
 <template>
-    <div class="container">
+    <div class="container position-absolute top-50 start-50 translate-middle">
         <div class="row">
             <div class="col-md-8 m-auto">
                 <div class="card">

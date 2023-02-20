@@ -12,6 +12,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\DepartmentsController;
 
 Route::get('/', function () {
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
+Route::get('/Home', [Controller::class, 'showHome']);
+
 Route::get('/create', [IdeasController::class, 'create']);
 Route::get('/categoryindex', [CategoriesController::class, 'index']);
 
@@ -40,13 +43,12 @@ Route::resource('/departments', DepartmentsController::class);
 
 Route::resource('/topics', TopicsController::class);
 
-// Route::resource('/roles', RolesController::class);
-//Route::get('roles', [RolesController::class, 'index'])->name('showRoles');
+Route::resource('roles', RolesController::class);
 
-Route::get('register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
+Route::get('/Register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 
-Route::get('login', [AuthController::class, 'showFormLogin'])->name('show-form-login');
+Route::get('/Login', [AuthController::class, 'showFormLogin'])->name('show-form-login');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
@@ -54,4 +56,4 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('profile', [AuthController::class, 'showProfile'])->name('show-profile');
 Route::put('profile', [AuthController::class, 'profile'])->name('profile');
 
-Route::get('admin', [AdminController::class, 'adminPage'])->name('showAdminPage');
+Route::get('/admin', [AdminController::class, 'adminPage'])->name('showAdminPage');

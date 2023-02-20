@@ -1,5 +1,5 @@
 import {createWebHistory, createRouter } from "vue-router"
-import Home from '../Components/Home.vue'
+import Home from '../Pages/Home.vue'
 import StaffSub from "../Pages/Staff/StaffSubmission.vue"
 import StaffProfile from "../Pages/Staff/StaffProfile.vue"
 import Login from "../Pages/Auth/Login.vue"
@@ -9,11 +9,13 @@ import RolesCreate from "../Pages/Roles/RolesCreate.vue"
 import RolesIndex from "../Pages/Roles/RolesIndex.vue"
 import RolesUpdate from "../Pages/Roles/RolesUpdate.vue"
 
-const routes = [
+const router = createRouter ({
+    history: createWebHistory(),
+    routes: [
     {
-        path: '/',
-        name: 'Home',
-        component: Home
+        path: '/Register',
+        name: 'Register',
+        component: Register
       },
     {
         path: '/StaffSubmission',
@@ -26,9 +28,9 @@ const routes = [
         component: Login,
     },
     {
-        path: '/Register',
-        name: 'Register',
-        component: Register,
+        path: '/',
+        name: 'Home',
+        component: Home,
     },
     {
         path: '/StaffProfile',
@@ -56,11 +58,18 @@ const routes = [
         component: RolesUpdate,
     },
 
-];
+]
+})
 
-const router = createRouter ({
-    history: createWebHistory(),
-    routes
-});
+router.beforeEach((to, from, next) => {
+    if (to.path !== '/Register' && to.path !== '/Login' && !isAuthenticated()) {
+        return next({path: '/Register'})
+    }
+    return next()
+})
+
+function isAuthenticated() {
+    return Boolean(localStorage.getItem('Idea_token'))
+}
 
 export default router;
