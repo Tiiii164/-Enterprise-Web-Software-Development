@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RolesController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -15,5 +16,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::get('StaffProfile','showProfile');
 
-Route::post('/auth/Register',[AuthController::class, 'register']);
-Route::post('/auth/Login',[AuthController::class, 'login']);
+Route::post('/auth/Register', [AuthController::class, 'register']);
+Route::post('/auth/Login', [AuthController::class, 'login']);
+
+Route::get('/roles/RolesIndex', [RolesController::class, 'index']);
+Route::get('/roles/edit/{id}', [RolesController::class, 'edit']);
+Route::post('/roles/RolesCreate', [RolesController::class, 'store']);
+Route::patch('/roles/RolesUpdate/{id}', [RolesController::class, 'update']);
+Route::delete('/roles/delete/{id}', [RolesController::class, 'destroy']);

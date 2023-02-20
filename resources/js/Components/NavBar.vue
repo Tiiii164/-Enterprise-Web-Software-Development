@@ -46,6 +46,9 @@ export default {
         <li class="nav-item">
           <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link active" aria-current="page" to="/Admin">Admin</router-link>
+        </li>
       </ul>
       <div class="d-flex">
         <span class="capitalize">Hello, {{ user && user.name }} 

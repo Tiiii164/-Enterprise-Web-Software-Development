@@ -13,7 +13,7 @@ class DepartmentsController extends Controller
         // return view('departments.index', [
         //     'departments' => $departments,
         // ]);
-        return view ('departments.index')->with('departments', $departments);
+        return view('departments.index')->with('departments', $departments);
     }
 
 
@@ -27,10 +27,7 @@ class DepartmentsController extends Controller
 
     public function store(Request $request)
     {
-        $departments = Departments::create([
-            'id' => $request->input('id'),
-            'name' => $request->input('name'),
-        ]);
+        $departments = Departments::create(['name' => $request->input('name')]);
         $departments->save();
         return redirect('/departments');
     }
@@ -50,10 +47,10 @@ class DepartmentsController extends Controller
     public function update(Request $request, $id)
     {
         $departments = Departments::where('id', $id)
-        ->update([
-            'id' => $request->input('id'),
-            'name' => $request->input('name'),
-        ]);
+            ->update([
+                'id' => $request->input('id'),
+                'name' => $request->input('name'),
+            ]);
         return redirect('/departments');
     }
 

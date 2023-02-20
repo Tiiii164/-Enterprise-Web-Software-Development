@@ -19,10 +19,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <strong>ID</strong>
-                                <input type="text" name="id" class="form-control" placeholder="Enter ID">
-                            </div>
-                            <div class="form-group">
                                 <strong>Name</strong>
                                 <input type="text" name="name" class="form-control" placeholder="Enter your department name">
                             </div>
