@@ -41,7 +41,7 @@ export default {
     <div class="collapse navbar-collapse justify-between" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/Home">Home</router-link>
+          <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>

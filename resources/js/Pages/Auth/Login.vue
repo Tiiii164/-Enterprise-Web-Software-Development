@@ -15,7 +15,7 @@ export default {
                 const result = await axios.post('/api/auth/Login', form)
                 if (result.status === 200 && result.data && result.data.token) {
                     localStorage.setItem('Idea_token', result.data.token)
-                    await router.push('/Home')
+                    await router.push('/')
                 }
             } catch (e) {
                 if(e && e.response.data && e.response.data.errors) {
