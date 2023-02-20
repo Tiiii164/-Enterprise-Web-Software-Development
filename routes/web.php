@@ -41,6 +41,7 @@ Route::resource('/departments', DepartmentsController::class);
 Route::resource('/topics', TopicsController::class);
 
 // Route::resource('/roles', RolesController::class);
+//Route::get('roles', [RolesController::class, 'index'])->name('showRoles');
 
 Route::get('register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
 Route::post('register', [AuthController::class, 'register'])->name('register');

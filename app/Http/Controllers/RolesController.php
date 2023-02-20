@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Roles;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class RolesController extends Controller
 {
@@ -16,6 +17,7 @@ class RolesController extends Controller
     {
         $roles = Roles::all();
         return response()->json($roles);
+        //return Inertia::render('RolesIndex')->with('roles', $roles);
     }
 
     /**
@@ -75,7 +77,11 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $role = Roles::where('id', $id)->update(['name' => $request->input('name')]);
+        // $role = Roles::where($id, 'id')
+        //     ->update(['name' => $request->input('name')]);
+        // return Inertia::render('RolesUpdate')
+        $role = Roles::find($id);
+        $role->update($request->all());
         return response()->json($role);
     }
 

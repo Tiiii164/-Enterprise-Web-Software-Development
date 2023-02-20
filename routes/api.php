@@ -21,6 +21,6 @@ Route::post('/auth/Login', [AuthController::class, 'login']);
 
 Route::get('/roles/RolesIndex', [RolesController::class, 'index']);
 Route::get('/roles/edit/{id}', [RolesController::class, 'edit']);
-Route::post('roles/RolesCreate', [RolesController::class, 'store']);
-Route::put('roles/RolesUpdate/{id}', [RolesController::class, 'update']);
-Route::delete('roles/delete/{id}', [RolesController::class, 'destroy']);
+Route::post('/roles/RolesCreate', [RolesController::class, 'store']);
+Route::patch('/roles/RolesUpdate/{id}', [RolesController::class, 'update']);
+Route::delete('/roles/delete/{id}', [RolesController::class, 'destroy']);
