@@ -38,6 +38,7 @@ export default {
         <div class="row">
             <div class="col-md-8 m-auto">
                 <div class="card">
+
                 <div class="card-body">
                     <h4 class="card-title">Login Form</h4>
                     <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{ errors }}</p>
@@ -56,6 +57,7 @@ export default {
                         </div>
                     </form>      
                 </div>                
+
                 </div>
             </div>
         </div>

@@ -1,17 +1,40 @@
-import {createWebHistory, createRouter } from "vue-router"
+import { createWebHistory, createRouter } from "vue-router"
 import Home from '../Pages/Home.vue'
 import StaffSub from "../Pages/Staff/StaffSubmission.vue"
 import StaffProfile from "../Pages/Staff/StaffProfile.vue"
 import Login from "../Pages/Auth/Login.vue"
 import Register from "../Pages/Auth/Register.vue"
 import Admin from "../Pages/Admin/Admin.vue"
+//roles
 import RolesCreate from "../Pages/Roles/RolesCreate.vue"
 import RolesIndex from "../Pages/Roles/RolesIndex.vue"
 import RolesUpdate from "../Pages/Roles/RolesUpdate.vue"
+//topics
+import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
+import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
+import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
 
-const router = createRouter ({
+
+const router = createRouter({
     history: createWebHistory(),
     routes: [
+        //topics
+        {
+            path: '/topicsCreate',
+            name: 'TopicsCreate',
+            component: TopicsCreate,
+        },
+        {
+            path: '/topicsIndex',
+            name: 'TopicsIndex',
+            component: TopicsIndex,
+        },
+        {
+            path: '/topicsUpdate/:id',
+            name: 'TopicsUpdate',
+            component: TopicsUpdate,
+        },
+
     {
         path: '/register',
         name: 'Register',
@@ -58,12 +81,15 @@ const router = createRouter ({
         component: RolesUpdate,
     },
 
-]
+
+    ]
 })
 
 router.beforeEach((to, from, next) => {
+
     if (to.path !== '/register' && to.path !== '/login' && !isAuthenticated()) {
         return next({path: '/register'})
+
     }
     return next()
 })
