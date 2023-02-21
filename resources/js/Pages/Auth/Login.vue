@@ -12,7 +12,7 @@ export default {
         })
         const handleLogin = async () => {
             try {
-                const result = await axios.post('/api/auth/Login', form)
+                const result = await axios.post('/api/auth/login', form)
                 if (result.status === 200 && result.data && result.data.token) {
                     localStorage.setItem('Idea_token', result.data.token)
                     await router.push('/')
@@ -38,26 +38,26 @@ export default {
         <div class="row">
             <div class="col-md-8 m-auto">
                 <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Login Form</h4>
-                        <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{ errors }}</p>
-                        <form method="post" @submit.prevent="handleLogin">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email: </label>
-                                <input type="text" name="email" v-model="form.email" id="email" class="form-control"
-                                    placeholder="Enter Email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password: </label>
-                                <input type="password" name="password" v-model="form.password" id="password"
-                                    class="form-control" placeholder="Enter Password">
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <router-link class="btn btn-danger" to="/Register"> Register </router-link>
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </div>
-                        </form>
-                    </div>
+
+                <div class="card-body">
+                    <h4 class="card-title">Login Form</h4>
+                    <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{ errors }}</p>
+                    <form method="post" @submit.prevent="handleLogin">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email: </label>
+                            <input type="text" name="email" v-model="form.email" id="email" class="form-control" placeholder="Enter Email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password: </label>
+                            <input type="password" name="password" v-model="form.password" id="password" class="form-control" placeholder="Enter Password">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <router-link class="btn btn-danger" to="/register"> Register </router-link>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>      
+                </div>                
+
                 </div>
             </div>
         </div>

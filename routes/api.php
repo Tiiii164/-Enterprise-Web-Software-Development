@@ -9,9 +9,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
-    Route::post('Register', 'register');
-    Route::post('Login', 'login');
+Route::controller(AuthController::class)->prefix('/auth/')->group( function(){
+    Route::post('register','register');
+    Route::post('login','login');
+
 });
 
 Route::controller(TopicsController::class)->group(function () {
@@ -27,5 +28,6 @@ Route::controller(RolesController::class)->group(function () {
     Route::post('/roles/RolesCreate', 'store');
     Route::patch('/roles/RolesUpdate/{id}', 'update');
     Route::delete('/roles/delete/{id}', 'destroy');
+
 });
-// Route::get('StaffProfile','showProfile');
+

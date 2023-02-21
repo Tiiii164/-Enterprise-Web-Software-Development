@@ -1,32 +1,37 @@
 <script>
-import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router"
-import { request } from "../helper";
 export default {
-  setup() {
-    const user = ref()
-    const isLoading = ref()
-    const router = useRouter();
-    onMounted(() => {
-      authentication()
-    });
-    const authentication = async () => {
-        isLoading.value = true
-        try {
-            const req = await request('get', '/api/user')
-            user.value = req.data
-        } catch (e) {
-            router.push('/Login')
-        }
+  data() {
+    return {
+      currentUser: {},
+      roles: new Set(),
+      permissions: new Set(),
     }
+  },
+  created() {
+      console.log(window.user);
+      console.log(window.userRoles);
+      console.log(window.userPermissions);     
+      
+      this.currentUser = window.user
+
+      window.userRoles.forEach(r => {
+        this.roles.add(r.name);
+      });
+
+      window.userPermissions.forEach(p => {
+        this.permissions.add(p.name);
+      });
+    },
+  setup() {
+    const router = useRouter();
     const handleLogout = () => {
         localStorage.removeItem('Idea_token')
-        router.push('/Login')
+        router.push('/login')
     }
     return {
-            user,
-            handleLogout,
-        }
+      handleLogout,
+    }
   }
 }
 </script>
@@ -43,15 +48,15 @@ export default {
         <li class="nav-item">
           <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if="roles.has('Staff')">
           <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
-        <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/Admin">Admin</router-link>
+        <li class="nav-item" v-if="roles.has('Admin')">
+          <router-link class="nav-link active" aria-current="page" to="/RolesIndex">Roles</router-link>
         </li>
       </ul>
       <div class="d-flex">
-        <span class="capitalize">Hello, {{ user && user.name }} 
+        <span class="capitalize">Hello, {{ currentUser.name ?? 'None' }} 
             <button type="button" class="btn btn-outline-primary btn-sm" @click="handleLogout">Logout</button>
         </span>
       </div>

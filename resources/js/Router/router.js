@@ -18,76 +18,78 @@ import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {
-            path: '/Register',
-            name: 'Register',
-            component: Register
-        },
-        {
-            path: '/StaffSubmission',
-            name: 'Staff Submission',
-            component: StaffSub,
-        },
-        {
-            path: '/Login',
-            name: 'Login',
-            component: Login,
-        },
-        {
-            path: '/',
-            name: 'Home',
-            component: Home,
-        },
-        {
-            path: '/StaffProfile',
-            name: 'Staff Profile',
-            component: StaffProfile,
-        },
-        {
-            path: '/Admin',
-            name: 'Admin',
-            component: Admin,
-        },
-        //roles
-        {
-            path: '/RolesCreate',
-            name: 'RolesCreate',
-            component: RolesCreate,
-        },
-        {
-            path: '/RolesIndex',
-            name: 'RolesIndex',
-            component: RolesIndex,
-        },
-        {
-            path: '/RolesUpdate/:id',
-            name: 'RolesUpdate',
-            component: RolesUpdate,
-        },
-
         //topics
         {
-            path: '/TopicsCreate',
+            path: '/topicsCreate',
             name: 'TopicsCreate',
             component: TopicsCreate,
         },
         {
-            path: '/TopicsIndex',
+            path: '/topicsIndex',
             name: 'TopicsIndex',
             component: TopicsIndex,
         },
         {
-            path: '/TopicsUpdate/:id',
+            path: '/topicsUpdate/:id',
             name: 'TopicsUpdate',
             component: TopicsUpdate,
         },
+
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register
+      },
+    {
+        path: '/StaffSubmission',
+        name: 'Staff Submission',
+        component: StaffSub,
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+    },
+    {
+        path: '/',
+        name: 'Home',
+        component: Home,
+    },
+    {
+        path: '/StaffProfile',
+        name: 'Staff Profile',
+        component: StaffProfile,
+    },
+    {
+        path: '/Admin',
+        name: 'Admin',
+        component: Admin,
+    },
+    {
+        path: '/RolesCreate',
+        name: 'RolesCreate',
+        component: RolesCreate,
+    },
+    {
+        path: '/RolesIndex',
+        name: 'RolesIndex',
+        component: RolesIndex,
+    },
+    {
+        path: '/RolesUpdate/:id',
+        name: 'RolesUpdate',
+        component: RolesUpdate,
+    },
+
 
     ]
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.path !== '/Register' && to.path !== '/Login' && !isAuthenticated()) {
-        return next({ path: '/Register' })
+
+    if (to.path !== '/register' && to.path !== '/login' && !isAuthenticated()) {
+        return next({path: '/register'})
+
     }
     return next()
 })

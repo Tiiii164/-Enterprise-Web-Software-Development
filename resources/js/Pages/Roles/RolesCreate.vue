@@ -48,7 +48,7 @@ export default {
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{route('departments.store')}}" method="POST">
+                <form method="POST">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

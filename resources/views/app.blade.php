@@ -11,11 +11,20 @@
 
         <!-- Scripts -->
         @routes
-        @vite(['resources/js/app.js',
-               'resources/css/app.css'])
+
+        @vite(['resources/js/app.js', 
+        "resources/css/app.css"])
+
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
         @inertia
+
+        <script>
+            window.user = @json(auth()->user());
+            window.userRoles = @json(auth()->user()->roles);
+            window.userPermissions = @json(auth()->user()->permissions);
+        </script>
+        
     </body>
 </html>
