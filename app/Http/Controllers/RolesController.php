@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Roles;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,7 +15,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Roles::all();
+        $roles = Role::all();
         return response()->json($roles);
         //return Inertia::render('RolesIndex')->with('roles', $roles);
     }
@@ -27,7 +27,7 @@ class RolesController extends Controller
      */
     public function showRolesCreate()
     {
-        return Inertia::render('RolesCreate');
+        return Inertia::render('RoleCreate');
     }
 
     /**
@@ -38,7 +38,7 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $role = new Roles();
+        $role = new Role();
         $role->name = $request->input('name');
         $role->save();
         return response()->json($role);
@@ -78,7 +78,7 @@ class RolesController extends Controller
         // $role = Roles::where($id, 'id')
         //     ->update(['name' => $request->input('name')]);
         // return Inertia::render('RolesUpdate')
-        $role = Roles::find($id);
+        $role = Role::find($id);
         $role->update($request->all());
         return response()->json($role);
     }
@@ -91,7 +91,7 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        $roles = Roles::find($id);
+        $roles = Role::find($id);
         $roles->delete();
         return response()->json(['message' => 'Role deleted']);
     }

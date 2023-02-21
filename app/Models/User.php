@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Laratrust\Traits\LaratrustUserTrait;
 
 //model
 class Users extends Model
@@ -33,21 +33,13 @@ class Users extends Model
     {
         return $this->hasMany(Reacts::class);
     }
-    //user belongs to department and role
-    public function roles()
-    {
-        return $this->belongsTo(Roles::class);
-    }
-    public function departments()
-    {
-        return $this->belongsTo(Departments::class);
-    }
 }
 
 
 //authentication
 class User extends Authenticatable
 {
+    use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -59,8 +51,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id',
-        'department_id',
     ];
 
     /**

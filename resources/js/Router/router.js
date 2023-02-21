@@ -13,7 +13,7 @@ const router = createRouter ({
     history: createWebHistory(),
     routes: [
     {
-        path: '/Register',
+        path: '/register',
         name: 'Register',
         component: Register
       },
@@ -23,7 +23,7 @@ const router = createRouter ({
         component: StaffSub,
     },
     {
-        path: '/Login',
+        path: '/login',
         name: 'Login',
         component: Login,
     },
@@ -62,8 +62,8 @@ const router = createRouter ({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.path !== '/Register' && to.path !== '/Login' && !isAuthenticated()) {
-        return next({path: '/Register'})
+    if (to.path !== '/register' && to.path !== '/login' && !isAuthenticated()) {
+        return next({path: '/register'})
     }
     return next()
 })
