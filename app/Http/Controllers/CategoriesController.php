@@ -33,7 +33,7 @@ class CategoriesController extends Controller
         ]);
     
         $categories->save();
-        return redirect('/index');
+        return redirect('/categoryindex');
     }
 
     public function edit($id)
@@ -48,13 +48,13 @@ class CategoriesController extends Controller
                     'name' => $request->input('name'),
                 ]);
         
-        return redirect('/index');
+        return redirect('/categoryindex');
     }
 
     public function destroy($id)
     {
         $categories = Categories::find($id);
         $categories->delete();
-        return redirect('/index');
+        return redirect('/categoryindex');
     }
 }

@@ -37,8 +37,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/IdeasCreate', [IdeasController::class, 'create']);
 
-Route::get('/CategoryIndex', [CategoriesController::class, 'index']);
-Route::get('/CategoryCreate', [CategoriesController::class, 'create']);
+Route::get('/categoryindex', [CategoriesController::class, 'index']);
+Route::get('/categorycreate', [CategoriesController::class, 'create']);
+Route::resource('/categories', CategoriesController::class);
 
 Route::resource('/Departments', DepartmentsController::class);
 
