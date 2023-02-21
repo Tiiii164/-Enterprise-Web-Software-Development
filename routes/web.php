@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('{any?}', function() {
+    return view('welcome');
+})->where('any', '.*')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/', [Controller::class, 'showHome']);

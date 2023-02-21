@@ -3,23 +3,23 @@ import { useRouter } from "vue-router"
 export default {
   data() {
     return {
-      current_user: {},
+      currentUser: {},
       roles: new Set(),
       permissions: new Set(),
     }
   },
   created() {
       console.log(window.user);
-      console.log(window.user_roles);
-      console.log(window.user_permissions);     
+      console.log(window.userRoles);
+      console.log(window.userPermissions);     
       
-      this.current_user = window.user
+      this.currentUser = window.user
 
-      window.user_roles.forEach(r => {
+      window.userRoles.forEach(r => {
         this.roles.add(r.name);
       });
 
-      window.user_permissions.forEach(p => {
+      window.userPermissions.forEach(p => {
         this.permissions.add(p.name);
       });
     },
@@ -56,7 +56,7 @@ export default {
         </li>
       </ul>
       <div class="d-flex">
-        <span class="capitalize">Hello, {{ current_user.name }} 
+        <span class="capitalize">Hello, {{ currentUser.name ?? 'None' }} 
             <button type="button" class="btn btn-outline-primary btn-sm" @click="handleLogout">Logout</button>
         </span>
       </div>

@@ -17,10 +17,12 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
+
         <script>
             window.user = @json(auth()->user());
-            window.user_roles = @json(auth()->user()->roles);
-            window.user_permissions = @json(auth()->user()->permissions);
+            window.userRoles = @json(auth()->user()->roles);
+            window.userPermissions = @json(auth()->user()->permissions);
         </script>
+        
     </body>
 </html>
