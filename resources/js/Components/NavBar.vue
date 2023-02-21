@@ -39,19 +39,19 @@ export default {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-between" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
         <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
+          <router-link class="nav-link active nav-item1" aria-current="page" to="/">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
+          <router-link class="nav-link active nav-item1" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/Admin">Admin</router-link>
+          <router-link class="nav-link active nav-item1" aria-current="page" to="/Admin">Admin</router-link>
         </li>
       </ul>
       <div class="d-flex">
-        <span class="capitalize">Hello, {{ user && user.name }} 
+        <span class="capitalize nav-item1">Hello, {{ user && user.name }} 
             <button type="button" class="btn btn-outline-primary btn-sm" @click="handleLogout">Logout</button>
         </span>
       </div>

@@ -84,6 +84,13 @@ html{
   color: white !important;
     
 }
+.nav-item1{
+    color: grey !important;
+    font-family: cursive;
+}
+.nav-item1:hover{
+    color: black !important;
+}
 input{
     border: none !important;
     outline: none !important;
