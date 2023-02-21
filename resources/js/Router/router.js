@@ -8,6 +8,8 @@ import Admin from "../Pages/Admin/Admin.vue"
 import RolesCreate from "../Pages/Roles/RolesCreate.vue"
 import RolesIndex from "../Pages/Roles/RolesIndex.vue"
 import RolesUpdate from "../Pages/Roles/RolesUpdate.vue"
+import ShowProfile from "../Pages/Auth/ShowProfile.vue"
+import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
 
 const router = createRouter ({
     history: createWebHistory(),
@@ -57,7 +59,16 @@ const router = createRouter ({
         name: 'RolesUpdate',
         component: RolesUpdate,
     },
-
+    {
+        path: '/ShowProfile',
+        name: 'ShowProfile',
+        component: ShowProfile,
+    },
+    {
+        path: '/UpdateProfile/:id',
+        name: 'UpdateProfile',
+        component: UpdateProfile,
+    },
 ]
 })
 

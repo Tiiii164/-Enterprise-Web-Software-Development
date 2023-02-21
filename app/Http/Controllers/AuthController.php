@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\JsonResponse;
-use JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class AuthController extends Controller
 {
@@ -105,11 +107,10 @@ class AuthController extends Controller
                     'status' => true,
                     'message' => 'Logged In Successfully',
                     'token' => $user->createToken("Idea_token")->plainTextToken
-                ], 200);
-
-        }   
-            catch (\Throwable $e) 
-        {
+                ],
+                200
+            );
+        } catch (\Throwable $e) {
             return response()->json(
                 [
                     'status' => false,
@@ -124,27 +125,59 @@ class AuthController extends Controller
     {
         $accessToken = auth()->user()->token();
         $refreshToken = DB::table('oauth_refresh_tokens')
-        ->where('access_token_id', $accessToken->id)
-        ->update([
+            ->where('access_token_id', $accessToken->id)
+            ->update([
                 'revoked' => true
-        ]);
+            ]);
         $accessToken->revoke();
         return response()->json(['status' => 200]);
     }
 
     public function showProfile()
     {
+        return Inertia::render('ShowProfile');
+    }
+
+    public function Profile()
+    {
         try {
-            if (!$user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 400);
+            if (!$token = JWTAuth::parseToken()) {
+                return response()->json(['error' => 'Token not provided.'], 401);
+            }
+            $user = $token->authenticate();
+            if (!$user) {
+                return response()->json(['error' => 'User not found.'], 404);
             }
         } catch (TokenExpiredException $e) {
-            return response()->json(['token_expired'], $e->getStatusCode());
+            return response()->json(['error' => 'Token expired.'], 401);
         } catch (TokenInvalidException $e) {
-            return response()->json(['token_invalid'], $e->getStatusCode());
+            return response()->json(['error' => 'Token invalid.'], 401);
         } catch (JWTException $e) {
-            return response()->json(['token_absent'], $e->getStatusCode());
+            return response()->json(['error' => 'Token absent.'], 401);
         }
+        return response()->json(compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        try {
+            if (!$token = JWTAuth::parseToken()) {
+                return response()->json(['error' => 'Token not provided.'], 401);
+            }
+            $user = $token->authenticate();
+            if (!$user) {
+                return response()->json(['error' => 'User not found.'], 404);
+            }
+        } catch (TokenExpiredException $e) {
+            return response()->json(['error' => 'Token expired.'], 401);
+        } catch (TokenInvalidException $e) {
+            return response()->json(['error' => 'Token invalid.'], 401);
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'Token absent.'], 401);
+        }
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
         return response()->json(compact('user'));
     }
 }

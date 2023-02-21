@@ -51,9 +51,10 @@ export default {
         </li>
       </ul>
       <div class="d-flex">
-        <span class="capitalize">Hello, {{ user && user.name }} 
+        <router-link to="/ShowProfile"> <span class="capitalize">Hello, {{ user && user.name }}
             <button type="button" class="btn btn-outline-primary btn-sm" @click="handleLogout">Logout</button>
         </span>
+      </router-link>
       </div>
     </div>
   </div>

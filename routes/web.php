@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login'])->name('login');
 
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/ShowProfile', [AuthController::class, 'showProfile'])->name('show-profile');
+    // Route::put('/UpdateProfile', [AuthController::class, 'updateProfile'])->name('update-profile');
 });
 
 Route::get('/IdeasCreate', [IdeasController::class, 'create']);
@@ -47,8 +50,5 @@ Route::resource('/Topics', TopicsController::class);
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);
 Route::get('/RolesUpdate/{id}', [RolesController::class, 'showRolesUpdate']);
-
-Route::get('profile', [AuthController::class, 'showProfile'])->name('show-profile');
-Route::put('profile', [AuthController::class, 'profile'])->name('profile');
 
 Route::get('/admin', [AdminController::class, 'adminPage'])->name('showAdminPage');
