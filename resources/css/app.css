@@ -14,7 +14,9 @@ html{
    justify-content: center;
 }
 .footer1 .img1{
-    padding: 20px;
+    margin: 10px;
+    padding: 5px;
+    margin-top: 20px;
 }
 .footer2{
     display: flex;
@@ -37,6 +39,26 @@ html{
     width: 100%;
     background-color: #DCDCDC;
 }
+.img1 {
+    position: relative;
+  }
+  
+  .img1::before {
+    background: #C0C0C0;
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease-in-out;
+    z-index: -1;
+  }
+  
+  .img1:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+    border-radius: 10px 10px;
+  }
 .kimetsu{
     width: 100%;
 }
