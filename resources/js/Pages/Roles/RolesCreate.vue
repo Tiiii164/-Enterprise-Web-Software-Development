@@ -1,7 +1,13 @@
 <script>
+import NavBar from '@/Components/NavBar.vue';
+import TheFooter from '@/Components/TheFooter.vue';
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 export default {
+    components: {
+      NavBar,
+      TheFooter,
+    },
     setup() {
         const router = useRouter();
         const form = reactive({
@@ -13,10 +19,8 @@ export default {
         .then((res) => {
                 router.push('/RolesIndex')
             })
-        // handle success
         console.log(response.data);
       } catch (error) {
-        // handle error
         console.error(error);
       }
     }
@@ -29,11 +33,35 @@ export default {
 </script>
 
 <template>
+  <NavBar></NavBar>
     <form @submit.prevent="handlecreateRole" method="post">
-      <div>
-        <label>Name:</label>
-        <input type="text" v-model="form.name">
+      <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Create new Roles</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <router-link to="/RolesIndex" class="btn btn-primary float-end">Back to list</router-link>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="{{route('departments.store')}}" method="POST">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <strong>Name</strong>
+                                <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter role name">
+                            </div>
+                            <button type="submit" class="btn btn-primary"  @click.prevent="handlecreateRole">Create</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Create</button>
     </form>
+    <TheFooter></TheFooter>
 </template>

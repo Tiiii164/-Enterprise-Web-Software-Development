@@ -1,5 +1,11 @@
 <script>
+import NavBar from '@/Components/NavBar.vue';
+import TheFooter from '@/Components/TheFooter.vue';
 export default {
+  components: {
+    NavBar,
+    TheFooter
+  },
   data() {
     return {
       roles: []
@@ -34,13 +40,43 @@ export default {
 </script>
 
 <template>
-  <div>
-    <router-link to="/RolesCreate">Create Role</router-link>
-    <div v-for="(role, index) in roles" :key="index">
-      {{ role.id }}
-      {{ role.name }}
-      <router-link :to="'/RolesUpdate/' + role.id" class="btn btn-primary">Edit</router-link>
-      <button class="btn btn-danger" @click.prevent="deleteRole(role.id)">Delete</button>
+  <NavBar></NavBar>
+  <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Manage Roles</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <router-link to="/RolesCreate" class="btn btn-primary float-end">Add new roles</router-link>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+               <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr v-for="(role, index) in roles" :key="index">
+                                <td>{{ index + 1 }}</td>
+                                <td>{{ role.name }}</td>
+                                <td>
+                                    <div>
+                                      <router-link :to="'/RolesUpdate/' + role.id" class="btn btn-primary">Edit</router-link>
+                                      <button class="btn btn-danger" @click.prevent="deleteRole(role.id)">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table> 
+            </div> 
+        </div>
     </div>
-  </div>
+  <TheFooter></TheFooter>
 </template>

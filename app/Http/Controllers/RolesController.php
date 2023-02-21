@@ -25,9 +25,9 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function showRolesCreate()
     {
-        //
+        return Inertia::render('RolesCreate');
     }
 
     /**
@@ -50,10 +50,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showRoles()
     {
-        // $role = Roles::find($id);
-        // return response()->json($role);
+        return Inertia::render('RolesIndex');
     }
 
     /**
@@ -62,10 +61,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function showRolesUpdate($id)
     {
-        // $roles = Roles::find($id);
-        // return view('Roles.update')->with('roles', $roles);
+        return Inertia::render('RolesUpdate');
     }
 
     /**

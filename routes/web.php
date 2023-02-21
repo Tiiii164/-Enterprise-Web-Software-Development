@@ -15,43 +15,38 @@ use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DepartmentsController;
 
+require __DIR__ . '/auth.php';
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-// Route::get('/create', [IdeasController::class, 'create']);
-Route::get('/index', [CategoriesController::class, 'index']);
-Route::get('/create', [CategoriesController::class, 'create']);
-Route::resource('categories', CategoriesController::class);
+Route::get('/', [Controller::class, 'showHome']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/Register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
+    Route::post('register', [AuthController::class, 'register'])->name('register');
+
+    Route::get('/Login', [AuthController::class, 'showFormLogin'])->name('show-form-login');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-require __DIR__ . '/auth.php';
+Route::get('/IdeasCreate', [IdeasController::class, 'create']);
 
-Route::get('/Home', [Controller::class, 'showHome']);
+Route::get('/CategoryIndex', [CategoriesController::class, 'index']);
+Route::get('/CategoryCreate', [CategoriesController::class, 'create']);
 
-Route::get('/create', [IdeasController::class, 'create']);
-Route::get('/categoryindex', [CategoriesController::class, 'index']);
+Route::resource('/Departments', DepartmentsController::class);
 
-Route::resource('/departments', DepartmentsController::class);
+Route::resource('/Topics', TopicsController::class);
 
-Route::resource('/topics', TopicsController::class);
-
-Route::resource('roles', RolesController::class);
-
-Route::get('/Register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
-Route::post('register', [AuthController::class, 'register'])->name('register');
-
-Route::get('/Login', [AuthController::class, 'showFormLogin'])->name('show-form-login');
-Route::post('login', [AuthController::class, 'login'])->name('login');
-
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
+Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);
+Route::get('/RolesUpdate/{id}', [RolesController::class, 'showRolesUpdate']);
 
 Route::get('profile', [AuthController::class, 'showProfile'])->name('show-profile');
 Route::put('profile', [AuthController::class, 'profile'])->name('profile');

@@ -9,18 +9,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::controller(AuthController::class)->prefix('/auth/')->group( function(){
-//     Route::post('Register','register');
-//     Route::post('Login','login');
-// });
+Route::controller(AuthController::class)->prefix('/auth/')->group( function(){
+    Route::post('Register','register');
+    Route::post('Login','login');
+});
+
+Route::controller(RolesController::class)->group( function(){
+    Route::get('/roles/RolesIndex', 'index');
+    Route::get('/roles/edit/{id}', 'edit');
+    Route::post('/roles/RolesCreate', 'store');
+    Route::patch('/roles/RolesUpdate/{id}','update');
+    Route::delete('/roles/delete/{id}', 'destroy');
+});
 
 // Route::get('StaffProfile','showProfile');
-
-Route::post('/auth/Register', [AuthController::class, 'register']);
-Route::post('/auth/Login', [AuthController::class, 'login']);
-
-Route::get('/roles/RolesIndex', [RolesController::class, 'index']);
-Route::get('/roles/edit/{id}', [RolesController::class, 'edit']);
-Route::post('/roles/RolesCreate', [RolesController::class, 'store']);
-Route::patch('/roles/RolesUpdate/{id}', [RolesController::class, 'update']);
-Route::delete('/roles/delete/{id}', [RolesController::class, 'destroy']);
