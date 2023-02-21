@@ -4,57 +4,50 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categories;
-use App\Http\Requests\CreateValidationRequest;
+use Inertia\Inertia;
 
 class CategoriesController extends Controller
 {
     public function index()
     {
         $categories = Categories::all();
-        return view('categories.index', [
-            'categories' => $categories,
-        ]);
+        return response()->json($categories);
     }
-    public function create()
+    public function showCategoriesCreate()
     {
-        $categories = Categories::all();
-        return view('categories.create', [
-            'categories' => $categories,
-        ]);
+        return Inertia::render('CategoriesCreate');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-        'name' => 'required'
-        ]);
-        $categories = Categories::create([
-            'name' => $request->input('name')
-        ]);
-    
+        $categories = new Categories();
+        $categories->name = $request->input('name');
         $categories->save();
-        return redirect('/categoryindex');
+        return response()->json($categories);
     }
 
-    public function edit($id)
+    public function showCategories()
     {
-        $categories = Categories::find($id);
-        return view('categories.edit')->with('categories', $categories);
+        return Inertia::render('CategoriesIndex');
     }
+
+    public function showCategoriesUpdate($id)
+    {
+        return Inertia::render('CategoriesUpdate');
+    }
+
 
     public function update(Request $request, $id)
     {
-        $categories = Categories::where('id', $id)->update([
-                    'name' => $request->input('name'),
-                ]);
-        
-        return redirect('/categoryindex');
+        $category = Categories::find($id);
+        $category->update($request->all());
+        return response()->json($category);
     }
 
     public function destroy($id)
     {
-        $categories = Categories::find($id);
-        $categories->delete();
-        return redirect('/categoryindex');
+        $category = Categories::find($id);
+        $category->delete();
+        return response()->json(['message' => 'Category has been deleted']);
     }
 }

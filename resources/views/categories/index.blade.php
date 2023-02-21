@@ -1,6 +1,4 @@
-@extends('layouts.layout')
 
-@section('content')
     <a href="/categorycreate" 
     class="btn btn-primary"
     role="button">
@@ -32,4 +30,3 @@
     </form>
   </li>          
   @endforeach
-@endsection
