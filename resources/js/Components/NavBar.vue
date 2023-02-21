@@ -52,7 +52,7 @@ export default {
       </ul>
       <div class="d-flex">
         <span class="capitalize">Hello, {{ user && user.name }} 
-            <button type="button" class="btn btn-outline-primary btn-sm" @click="handleLogout">Logout</button>
+            <button type="button" class=" btn btn-danger" @click="handleLogout">Logout</button>
         </span>
       </div>
     </div>

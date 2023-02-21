@@ -13,11 +13,11 @@ export default {
         const form = reactive({
             name: '',
         })
-    const handlecreateRole = async() => {
+    const handlecreateDepartments = async() => {
       try {
-        const response = await axios.post('/api/roles/RolesCreate', form)
+        const response = await axios.post('/api/departments/DepartmentsCreate', form)
         .then((res) => {
-                router.push('/RolesIndex')
+                router.push('/DepartmentsIndex')
             })
         console.log(response.data);
       } catch (error) {
@@ -26,7 +26,7 @@ export default {
     }
     return {
         form,
-        handlecreateRole,
+        handlecreateDepartments,
     }
   }
 }
@@ -34,16 +34,16 @@ export default {
 
 <template>
   <NavBar></NavBar>
-    <form @submit.prevent="handlecreateRole" method="post">
+    <form @submit.prevent="handlecreateDepartments" method="post">
       <div class="container">
         <div class="card">
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        <h3>Create new Roles</h3>
+                        <h3>Create new Departments</h3>
                     </div>
                     <div class="col-md-6">
-                        <router-link to="/RolesIndex" class="btn btn-primary float-end">Back to list</router-link>
+                        <router-link to="/DepartmentsIndex" class="btn btn-primary float-end">Back to list</router-link>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@ export default {
                                 <strong>Name</strong>
                                 <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter role name">
                             </div>
-                            <button type="submit" class="btn btn-primary"  @click.prevent="handlecreateRole">Create</button>
+                            <button type="submit" class="btn btn-primary"  @click.prevent="handlecreateDepartments">Create</button>
                         </div>
                     </div>
                 </form>

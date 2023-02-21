@@ -1,3 +1,4 @@
+@extends('layouts.layout')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,7 @@
     role="button">
       Create a new category
   </a>
+
   
   @foreach ($categories as $category)
   <li class="list-group-item d-flex justify-content-between align-items-start">

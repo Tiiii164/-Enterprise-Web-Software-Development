@@ -35,14 +35,15 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::get('/IdeasCreate', [IdeasController::class, 'create']);
+Route::get('/index', [CategoriesController::class, 'index']);
+Route::get('/create', [CategoriesController::class, 'create']);
+Route::resource('categories', CategoriesController::class);
 
-Route::get('/CategoryIndex', [CategoriesController::class, 'index']);
-Route::get('/CategoryCreate', [CategoriesController::class, 'create']);
+Route::get('/DepartmentsIndex', [DepartmentsController::class, 'showDepartments']);
+Route::get('/DepartmentsCreate', [DepartmentsController::class, 'showDepartmentsCreate']);
+Route::get('/DepartmentsUpdate/{id}', [DepartmentsController::class, 'showDepartmentUpdate']);
 
-Route::resource('/Departments', DepartmentsController::class);
-
-Route::resource('/Topics', TopicsController::class);
+Route::resource('/topics', TopicsController::class);
 
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);
