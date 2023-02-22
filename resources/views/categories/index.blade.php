@@ -1,3 +1,4 @@
+
 @extends('layouts.layout')
 <!DOCTYPE html>
 <html lang="en">
@@ -17,16 +18,17 @@
   
   @foreach ($categories as $category)
   <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-    <div class="fw-bold">
-      <a href="/categories">
+    {{-- <div class="ms-2 me-auto"> --}}
+    <div class="h5">
+      <a href="/categoryindex">
         {{ $category->id }}
         {{--show details--}}
         {{ $category->name }}
-      </a> 
+      </a>
+      <br>
       <a href="categories/{{ $category->id }}/edit">
         Edit
-    </a>
+      </a>
     {{-- Delete --}}
     <form action="/categories/{{ $category->id }}" method="post">
       @csrf
@@ -39,6 +41,3 @@
     </form>
   </li>          
   @endforeach
-    
-</body>
-</html>

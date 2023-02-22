@@ -15,14 +15,16 @@ import { useRouter } from "vue-router"
         const handleRegister = async (evt) => {
             evt.preventDefault()
             try {
-                const result = await axios.post('/api/auth/Register', form)
+                const result = await axios.post('/api/auth/register', form)
                 if (result.status === 200 && result.data && result.data.token) {
-                localStorage.setItem('Idea_token', result.data.token)
-                await router.push('/Login')
+                    localStorage.setItem('Idea_token', result.data.token)
+                    await router.push('/login')
                 }
-            }catch(e) {
+            } catch(e) {
                 if(e.response.data && e.response.data.errors) {
                     errors.value = Object.values(e.response.data.errors)
+                } else {
+                    errors.value = "Register Failed"
                 }
             }
         }
@@ -30,7 +32,7 @@ import { useRouter } from "vue-router"
             form,
             errors,
             handleRegister,
-            }
+        }
     }
 }
 </script>
@@ -60,7 +62,7 @@ import { useRouter } from "vue-router"
                             <input type="password" name="password_confirm" v-model="form.password_confirmation" id="password_confirm" class="form-control" placeholder="Confirm Password">
                         </div>
                         <div class="d-flex justify-content-between">
-                            <router-link class="btn btn-danger" to="/Login"> Login </router-link>
+                            <router-link class="btn btn-danger" to="/login"> Login </router-link>
                             <button type="submit" class="btn btn-primary">Register</button>
                         </div>
                     </form>      
