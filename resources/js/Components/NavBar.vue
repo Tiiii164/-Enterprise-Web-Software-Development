@@ -9,20 +9,20 @@ export default {
     }
   },
   created() {
-      console.log(window.user);
-      console.log(window.userRoles);
-      console.log(window.userPermissions);     
-      
-      this.currentUser = window.user
+    console.log(window.user)
+    console.log(window.userRoles)
+    console.log(window.userPermissions)
 
-      window.userRoles.forEach(r => {
-        this.roles.add(r.name);
-      });
+    this.currentUser = window.user
 
-      window.userPermissions.forEach(p => {
-        this.permissions.add(p.name);
-      });
-    },
+    window.userRoles.forEach(r => {
+      this.roles.add(r.name);
+    });
+
+    window.userPermissions.forEach(p => {
+      this.permissions.add(p.name);
+    });
+  },
   setup() {
     const router = useRouter();
     const handleLogout = () => {
@@ -31,9 +31,9 @@ export default {
     }
     return {
       handleLogout,
-    }
+    } 
   }
-}
+};
 </script>
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,7 +48,7 @@ export default {
         <li class="nav-item">
           <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
         </li>
-        <li class="nav-item" v-if="roles.has('Staff')">
+        <li class="nav-item" v-if="roles.has('Admin') || roles.has('Staff')">
           <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
         <li class="nav-item" v-if="roles.has('Admin')">
@@ -56,7 +56,7 @@ export default {
         </li>
       </ul>
       <div class="d-flex">
-        <span class="capitalize">Hello, {{ currentUser.name ?? 'None' }} 
+        <span class="capitalize">Hello, {{ currentUser.name }}
             <button type="button" class="btn btn-outline-primary btn-sm" @click="handleLogout">Logout</button>
         </span>
       </div>
