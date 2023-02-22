@@ -15,11 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('departments')->insert([
-        //     'name' => 'IT',
-        // ]);
-
-        // $this->call(RoleSeeder::class);
-        $this->call(UserSeeder::class);
+        $this->call(LaratrustSeeder::class);
     }
 }

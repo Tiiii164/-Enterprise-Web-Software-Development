@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Roles;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -45,10 +45,9 @@ class AuthController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
-            $user->role_id = '1';
-            $user->department_id = '1';
             $user->save();
-
+            $user->roles()->attach(Role::where('name', 'Staff')->first());
+            
             return response()->json([
                 'status' => true,
                 'message' => 'Sign Up Successfully',

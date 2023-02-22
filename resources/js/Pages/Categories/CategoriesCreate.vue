@@ -13,11 +13,11 @@ export default {
         const form = reactive({
             name: '',
         })
-    const handlecreateRole = async() => {
+    const handlecreateCategory = async() => {
       try {
-        const response = await axios.post('/api/roles/RolesCreate', form)
+        const response = await axios.post('/api/categories/CategoriesCreate', form)
         .then((res) => {
-                router.push('/RolesIndex')
+                router.push('/CategoriesIndex')
             })
         console.log(response.data);
       } catch (error) {
@@ -26,7 +26,7 @@ export default {
     }
     return {
         form,
-        handlecreateRole,
+        handlecreateCategory,
     }
   }
 }
@@ -34,28 +34,28 @@ export default {
 
 <template>
   <NavBar></NavBar>
-    <form @submit.prevent="handlecreateRole" method="post">
+    <form @submit.prevent="handlecreateCategory" method="post">
       <div class="container">
         <div class="card">
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        <h3>Create new Roles</h3>
+                        <h3>Create new Category</h3>
                     </div>
                     <div class="col-md-6">
-                        <router-link to="/RolesIndex" class="btn btn-primary float-end">Back to list</router-link>
+                        <router-link to="/CategoriesIndex" class="btn btn-primary float-end">Back to list</router-link>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                <form method="POST">
+                <form action="{{route('categories.store')}}" method="POST">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <strong>Name</strong>
                                 <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter role name">
                             </div>
-                            <button type="submit" class="btn btn-primary"  @click.prevent="handlecreateRole">Create</button>
+                            <button type="submit" class="btn btn-primary"  @click.prevent="handlecreateCategory">Create</button>
                         </div>
                     </div>
                 </form>
