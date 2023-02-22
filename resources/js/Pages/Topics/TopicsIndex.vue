@@ -12,7 +12,6 @@ export default {
     }
   },
   setup() {
-    const router = useRouter();
     const form = reactive({
       name: '',
       closure_date: '',

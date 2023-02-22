@@ -25,7 +25,6 @@ Auth::routes();
 
 Route::get('/', [Controller::class, 'showHome']);
 
-
 Route::get('/register', [AuthController::class, 'showFormRegister']);
 Route::post('register', [AuthController::class, 'register']);
 
@@ -34,20 +33,15 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::post('logout', [AuthController::class, 'logout']);
 
-
-Route::get('/index', [CategoriesController::class, 'index']);
-Route::get('/create', [CategoriesController::class, 'create']);
-Route::resource('categories', CategoriesController::class);
-
+//Route::resource('/Departments', DepartmentsController::class);
 Route::get('/DepartmentsIndex', [DepartmentsController::class, 'showDepartments']);
 Route::get('/DepartmentsCreate', [DepartmentsController::class, 'showDepartmentsCreate']);
-Route::get('/DepartmentsUpdate/{id}', [DepartmentsController::class, 'showDepartmentUpdate']);
+Route::get('/DepartmentsUpdate/{id}', [DepartmentsController::class, 'showDepartmentsUpdate']);
 
+//Route::resource('categories', CategoriesController::class);
 Route::get('/CategoriesIndex', [CategoriesController::class, 'showCategories']);
 Route::get('/CategoriesCreate', [CategoriesController::class, 'showCategoriesCreate']);
 Route::get('/CategoriesUpdate/{id}', [CategoriesController::class, 'showCategoriesUpdate']);
-
-Route::resource('/Departments', DepartmentsController::class);
 
 //Route::resource('/Topics', TopicsController::class);
 
