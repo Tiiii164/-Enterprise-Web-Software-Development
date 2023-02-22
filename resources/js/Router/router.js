@@ -1,17 +1,48 @@
-import {createWebHistory, createRouter } from "vue-router"
+import { createWebHistory, createRouter } from "vue-router"
 import Home from '../Pages/Home.vue'
 import StaffSub from "../Pages/Staff/StaffSubmission.vue"
 import StaffProfile from "../Pages/Staff/StaffProfile.vue"
 import Login from "../Pages/Auth/Login.vue"
 import Register from "../Pages/Auth/Register.vue"
 import Admin from "../Pages/Admin/Admin.vue"
+//roles
 import RolesCreate from "../Pages/Roles/RolesCreate.vue"
 import RolesIndex from "../Pages/Roles/RolesIndex.vue"
 import RolesUpdate from "../Pages/Roles/RolesUpdate.vue"
+import DepartmentsCreate from "../Pages/Departments/DepartmentsCreate.vue"
+import DepartmentsIndex from "../Pages/Departments/DepartmentsIndex.vue"
+import DepartmentsUpdate from "../Pages/Departments/DepartmentsUpdate.vue"
 
-const router = createRouter ({
+
+import CategoriesCreate from "../Pages/Categories/CategoriesCreate.vue"
+import CategoriesIndex from "../Pages/Categories/CategoriesIndex.vue"
+import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
+
+//topics
+import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
+import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
+import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
+
+const router = createRouter({
     history: createWebHistory(),
     routes: [
+        //topics
+        {
+            path: '/topicsCreate',
+            name: 'TopicsCreate',
+            component: TopicsCreate,
+        },
+        {
+            path: '/topicsIndex',
+            name: 'TopicsIndex',
+            component: TopicsIndex,
+        },
+        {
+            path: '/topicsUpdate/:id',
+            name: 'TopicsUpdate',
+            component: TopicsUpdate,
+        },
+
     {
         path: '/register',
         name: 'Register',
@@ -57,13 +88,43 @@ const router = createRouter ({
         name: 'RolesUpdate',
         component: RolesUpdate,
     },
+    {
+        path: '/DepartmentsCreate',
+        name: 'DepartmentsCreate',
+        component: DepartmentsCreate,
+    },
+    {
+        path: '/DepartmentsIndex',
+        name: 'DepartmentsIndex',
+        component: DepartmentsIndex,
+    },
+    {
+        path: '/DepartmentsUpdate/:id',
+        name: 'DepartmentsUpdate',
+        component: DepartmentsUpdate,
 
-]
+        path: '/CategoriesCreate',
+        name: 'CategoriesCreate',
+        component: CategoriesCreate,
+    },
+    {
+        path: '/CategoriesIndex',
+        name: 'CategoriesIndex',
+        component: CategoriesIndex,
+    },
+    {
+        path: '/CategoriesUpdate/:id',
+        name: 'CategoriesUpdate',
+        component: CategoriesUpdate,
+    },
+    ]
 })
 
 router.beforeEach((to, from, next) => {
+
     if (to.path !== '/register' && to.path !== '/login' && !isAuthenticated()) {
         return next({path: '/register'})
+
     }
     return next()
 })

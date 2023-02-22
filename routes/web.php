@@ -25,6 +25,7 @@ Auth::routes();
 
 Route::get('/', [Controller::class, 'showHome']);
 
+
 Route::get('/register', [AuthController::class, 'showFormRegister']);
 Route::post('register', [AuthController::class, 'register']);
 
@@ -33,18 +34,31 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::post('logout', [AuthController::class, 'logout']);
 
-Route::get('/IdeasCreate', [IdeasController::class, 'create']);
 
-Route::get('/CategoryIndex', [CategoriesController::class, 'index']);
-Route::get('/CategoryCreate', [CategoriesController::class, 'create']);
+Route::get('/index', [CategoriesController::class, 'index']);
+Route::get('/create', [CategoriesController::class, 'create']);
+Route::resource('categories', CategoriesController::class);
+
+Route::get('/DepartmentsIndex', [DepartmentsController::class, 'showDepartments']);
+Route::get('/DepartmentsCreate', [DepartmentsController::class, 'showDepartmentsCreate']);
+Route::get('/DepartmentsUpdate/{id}', [DepartmentsController::class, 'showDepartmentUpdate']);
+
+Route::get('/CategoriesIndex', [CategoriesController::class, 'showCategories']);
+Route::get('/CategoriesCreate', [CategoriesController::class, 'showCategoriesCreate']);
+Route::get('/CategoriesUpdate/{id}', [CategoriesController::class, 'showCategoriesUpdate']);
 
 Route::resource('/Departments', DepartmentsController::class);
 
-Route::resource('/Topics', TopicsController::class);
+//Route::resource('/Topics', TopicsController::class);
+
+Route::get('/TopicsIndex', [TopicsController::class, 'showTopics']);
+Route::get('/TopicsCreate', [TopicsController::class, 'showTopicsCreate']);
+Route::get('/TopicsUpdate/{id}', [TopicsController::class, 'showTopicsUpdate']);
 
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);
 Route::get('/RolesUpdate/{id}', [RolesController::class, 'showRolesUpdate']);
+
 
 Route::get('profile', [AuthController::class, 'showProfile'])->name('show-profile');
 Route::put('profile', [AuthController::class, 'profile'])->name('profile');
