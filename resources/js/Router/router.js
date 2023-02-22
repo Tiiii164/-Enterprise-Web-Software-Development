@@ -102,7 +102,8 @@ const router = createRouter({
         path: '/DepartmentsUpdate/:id',
         name: 'DepartmentsUpdate',
         component: DepartmentsUpdate,
-
+    },
+    {
         path: '/CategoriesCreate',
         name: 'CategoriesCreate',
         component: CategoriesCreate,

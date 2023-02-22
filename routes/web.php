@@ -41,13 +41,13 @@ Route::resource('categories', CategoriesController::class);
 
 Route::get('/DepartmentsIndex', [DepartmentsController::class, 'showDepartments']);
 Route::get('/DepartmentsCreate', [DepartmentsController::class, 'showDepartmentsCreate']);
-Route::get('/DepartmentsUpdate/{id}', [DepartmentsController::class, 'showDepartmentUpdate']);
+Route::get('/DepartmentsUpdate/{id}', [DepartmentsController::class, 'showDepartmentsUpdate']);
 
 Route::get('/CategoriesIndex', [CategoriesController::class, 'showCategories']);
 Route::get('/CategoriesCreate', [CategoriesController::class, 'showCategoriesCreate']);
 Route::get('/CategoriesUpdate/{id}', [CategoriesController::class, 'showCategoriesUpdate']);
 
-Route::resource('/Departments', DepartmentsController::class);
+// Route::resource('/Departments', DepartmentsController::class);
 
 //Route::resource('/Topics', TopicsController::class);
 
