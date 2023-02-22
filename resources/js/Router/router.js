@@ -9,6 +9,10 @@ import Admin from "../Pages/Admin/Admin.vue"
 import RolesCreate from "../Pages/Roles/RolesCreate.vue"
 import RolesIndex from "../Pages/Roles/RolesIndex.vue"
 import RolesUpdate from "../Pages/Roles/RolesUpdate.vue"
+import DepartmentsCreate from "../Pages/Departments/DepartmentsCreate.vue"
+import DepartmentsIndex from "../Pages/Departments/DepartmentsIndex.vue"
+import DepartmentsUpdate from "../Pages/Departments/DepartmentsUpdate.vue"
+
 
 import CategoriesCreate from "../Pages/Categories/CategoriesCreate.vue"
 import CategoriesIndex from "../Pages/Categories/CategoriesIndex.vue"
@@ -85,6 +89,20 @@ const router = createRouter({
         component: RolesUpdate,
     },
     {
+        path: '/DepartmentsCreate',
+        name: 'DepartmentsCreate',
+        component: DepartmentsCreate,
+    },
+    {
+        path: '/DepartmentsIndex',
+        name: 'DepartmentsIndex',
+        component: DepartmentsIndex,
+    },
+    {
+        path: '/DepartmentsUpdate/:id',
+        name: 'DepartmentsUpdate',
+        component: DepartmentsUpdate,
+
         path: '/CategoriesCreate',
         name: 'CategoriesCreate',
         component: CategoriesCreate,
@@ -99,8 +117,6 @@ const router = createRouter({
         name: 'CategoriesUpdate',
         component: CategoriesUpdate,
     },
-
-
     ]
 })
 

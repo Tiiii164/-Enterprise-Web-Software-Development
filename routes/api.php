@@ -4,9 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\topicsController;
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -31,7 +31,14 @@ Route::controller(RolesController::class)->group(function () {
     Route::post('/roles/RolesCreate', 'store');
     Route::patch('/roles/RolesUpdate/{id}', 'update');
     Route::delete('/roles/delete/{id}', 'destroy');
+});
 
+Route::controller(departmentsController::class)->group( function(){
+    Route::get('/departments/DepartmentsIndex', 'index');
+    Route::get('/departments/edit/{id}', 'edit');
+    Route::post('/departments/DepartmentsCreate', 'store');
+    Route::patch('/departments/DepartmentsUpdate/{id}','update');
+    Route::delete('/departments/delete/{id}', 'destroy');
 });
 
 Route::controller(CategoriesController::class)->group( function(){

@@ -1,9 +1,20 @@
 
-    <a href="/categorycreate" 
+@extends('layouts.layout')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="categories/create" 
     class="btn btn-primary"
     role="button">
       Create a new category
   </a>
+
   
   @foreach ($categories as $category)
   <li class="list-group-item d-flex justify-content-between align-items-start">
