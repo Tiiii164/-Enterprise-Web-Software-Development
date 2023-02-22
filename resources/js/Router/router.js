@@ -49,7 +49,7 @@ const router = createRouter({
         component: Register
       },
     {
-        path: '/StaffSubmission',
+        path: '/staffSubmission',
         name: 'Staff Submission',
         component: StaffSub,
     },
@@ -64,27 +64,27 @@ const router = createRouter({
         component: Home,
     },
     {
-        path: '/StaffProfile',
+        path: '/staffProfile',
         name: 'Staff Profile',
         component: StaffProfile,
     },
     {
-        path: '/Admin',
+        path: '/admin',
         name: 'Admin',
         component: Admin,
     },
     {
-        path: '/RolesCreate',
+        path: '/rolesCreate',
         name: 'RolesCreate',
         component: RolesCreate,
     },
     {
-        path: '/RolesIndex',
+        path: '/rolesIndex',
         name: 'RolesIndex',
         component: RolesIndex,
     },
     {
-        path: '/RolesUpdate/:id',
+        path: '/rolesUpdate/:id',
         name: 'RolesUpdate',
         component: RolesUpdate,
     },

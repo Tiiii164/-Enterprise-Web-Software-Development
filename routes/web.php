@@ -18,12 +18,8 @@ use App\Http\Controllers\DepartmentsController;
 require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-
-Route::get('{any?}', function() {
-    return view('welcome');
-})->where('any', '.*')->middleware('auth');
 
 Auth::routes();
 
