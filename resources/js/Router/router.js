@@ -9,15 +9,14 @@ import Admin from "../Pages/Admin/Admin.vue"
 import RolesCreate from "../Pages/Roles/RolesCreate.vue"
 import RolesIndex from "../Pages/Roles/RolesIndex.vue"
 import RolesUpdate from "../Pages/Roles/RolesUpdate.vue"
+//departments
 import DepartmentsCreate from "../Pages/Departments/DepartmentsCreate.vue"
 import DepartmentsIndex from "../Pages/Departments/DepartmentsIndex.vue"
 import DepartmentsUpdate from "../Pages/Departments/DepartmentsUpdate.vue"
-
-
+//categories
 import CategoriesCreate from "../Pages/Categories/CategoriesCreate.vue"
 import CategoriesIndex from "../Pages/Categories/CategoriesIndex.vue"
 import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
-
 //topics
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
@@ -26,23 +25,22 @@ import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        //topics
-        {
-            path: '/topicsCreate',
-            name: 'TopicsCreate',
-            component: TopicsCreate,
-        },
-        {
-            path: '/topicsIndex',
-            name: 'TopicsIndex',
-            component: TopicsIndex,
-        },
-        {
-            path: '/topicsUpdate/:id',
-            name: 'TopicsUpdate',
-            component: TopicsUpdate,
-        },
-
+    //topics
+    {
+        path: '/topicsCreate',
+        name: 'TopicsCreate',
+        component: TopicsCreate,
+    },
+    {
+        path: '/topicsIndex',
+        name: 'TopicsIndex',
+        component: TopicsIndex,
+    },
+    {
+        path: '/topicsUpdate/:id',
+        name: 'TopicsUpdate',
+        component: TopicsUpdate,
+    },
     {
         path: '/register',
         name: 'Register',
