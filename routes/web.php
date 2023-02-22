@@ -43,6 +43,8 @@ Route::get('/CategoriesIndex', [CategoriesController::class, 'showCategories']);
 Route::get('/CategoriesCreate', [CategoriesController::class, 'showCategoriesCreate']);
 Route::get('/CategoriesUpdate/{id}', [CategoriesController::class, 'showCategoriesUpdate']);
 
+// Route::resource('/Departments', DepartmentsController::class);
+
 //Route::resource('/Topics', TopicsController::class);
 
 Route::get('/TopicsIndex', [TopicsController::class, 'showTopics']);
