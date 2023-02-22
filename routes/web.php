@@ -41,8 +41,9 @@ Route::post('logout', [AuthController::class, 'logout']);
 
 Route::get('/IdeasCreate', [IdeasController::class, 'create']);
 
-Route::get('/CategoryIndex', [CategoriesController::class, 'index']);
-Route::get('/CategoryCreate', [CategoriesController::class, 'create']);
+Route::get('/CategoriesIndex', [CategoriesController::class, 'showCategories']);
+Route::get('/CategoriesCreate', [CategoriesController::class, 'showCategoriesCreate']);
+Route::get('/CategoriesUpdate/{id}', [CategoriesController::class, 'showCategoriesUpdate']);
 
 Route::resource('/Departments', DepartmentsController::class);
 
