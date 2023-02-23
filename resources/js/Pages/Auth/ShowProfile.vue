@@ -1,30 +1,38 @@
 <script>
 import NavBar from '@/Components/NavBar.vue';
 import TheFooter from '@/Components/TheFooter.vue';
+import { onMounted } from 'vue';
 export default {
   components: {
     NavBar,
     TheFooter
   },
-  data() {
+  data(){
     return {
-      user: {}
+      user: {
+        name: '',
+        email: ''
+      }
     }
   },
-  created() {
-    axios.get('/api/auth/ShowProfile', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      .then(response => {
-        this.user = response.data.user;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  methods: {
+    async showProfile() {
+    try {
+        const req = await axios.get('/api/auth/ShowProfile', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('Idea_token')}`
+          }
+        })
+        this.value = req.data
+    } catch (e) {
+      console.log(e);
+    }
+  }
   },
-};
+  mounted() {
+    this.showProfile()
+  },
+}
 </script>
 
 <template>

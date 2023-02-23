@@ -73,6 +73,16 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
     /**
      * The attributes that should be cast.
      *
@@ -84,10 +94,10 @@ class User extends Authenticatable
     public function authorizeRoles($roles)
     {
         if (is_array($roles)) {
-            return $this->hasAnyRole($roles) || 
+            return $this->hasAnyRole($roles) ||
                 abort(401, 'This action is unauthorized.');
-    }
-        return $this->hasRole($roles) || 
+        }
+        return $this->hasRole($roles) ||
             abort(401, 'This action is unauthorized.');
     }
     public function hasRole($role)

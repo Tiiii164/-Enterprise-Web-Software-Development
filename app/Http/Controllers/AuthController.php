@@ -102,14 +102,11 @@ class AuthController extends Controller
 
             $user = User::where('email', $request->email)->first();
 
-            return response()->json(
-                [
-                    'status' => true,
-                    'message' => 'Logged In Successfully',
-                    'token' => $user->createToken("Idea_token")->plainTextToken
-                ],
-                200
-            );
+            return response()->json([
+                'status' => true,
+                'message' => 'Logged In Successfully',
+                'token' => $user->createToken("Idea_token")->plainTextToken
+            ], 200);
         } catch (\Throwable $e) {
             return response()->json(
                 [
@@ -136,6 +133,17 @@ class AuthController extends Controller
     public function showProfile()
     {
         return Inertia::render('ShowProfile');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->input('user');
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = bcrypt('password');
+        $user->save();
+        return response('success');
     }
 
     public function Profile()

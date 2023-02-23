@@ -11,11 +11,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('jwt.auth')->get('/profile', 'AuthController@profile');
 
+Route::middleware('auth:api')->get('/auth/ShowProfile', function (Request $request) {
+    return $request->user();
+});
 
 Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
     Route::post('Register', 'register');
     Route::post('Login', 'login');
-    Route::get('ShowProfile', 'profile')->name('show-profile');
+    Route::get('ShowProfile', 'profile');
     Route::put('UpdateProfile', 'updateProfile')->name('update-profile');
 });
 
@@ -26,5 +29,3 @@ Route::controller(RolesController::class)->group(function () {
     Route::patch('/roles/RolesUpdate/{id}', 'update');
     Route::delete('/roles/delete/{id}', 'destroy');
 });
-
-// Route::get('StaffProfile','showProfile');

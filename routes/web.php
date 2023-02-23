@@ -25,18 +25,17 @@ Auth::routes();
 
 Route::get('/', [Controller::class, 'showHome']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/Register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
-    Route::post('register', [AuthController::class, 'register'])->name('register');
 
-    Route::get('/Login', [AuthController::class, 'showFormLogin'])->name('show-form-login');
-    Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::get('/Register', [AuthController::class, 'showFormRegister'])->name('show-form-register');
+Route::post('register', [AuthController::class, 'register'])->name('register');
 
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/Login', [AuthController::class, 'showFormLogin'])->name('show-form-login');
+Route::post('login', [AuthController::class, 'login'])->name('login');
 
-    Route::get('/ShowProfile', [AuthController::class, 'showProfile'])->name('show-profile');
-    // Route::put('/UpdateProfile', [AuthController::class, 'updateProfile'])->name('update-profile');
-});
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/ShowProfile', [AuthController::class, 'showProfile'])->name('show-profile');
+// Route::put('/UpdateProfile', [AuthController::class, 'updateProfile'])->name('update-profile');
 
 Route::get('/IdeasCreate', [IdeasController::class, 'create']);
 
