@@ -2,8 +2,8 @@ import { createWebHistory, createRouter } from "vue-router"
 import Home from '../Pages/Home.vue'
 import StaffSub from "../Pages/Staff/StaffSubmission.vue"
 import StaffProfile from "../Pages/Staff/StaffProfile.vue"
-import Login from "../Pages/Auth/Login.vue"
-import Register from "../Pages/Auth/Register.vue"
+import SignIn from "../Pages/Auth/SignIn.vue"
+import SignUp from "../Pages/Auth/SignUp.vue"
 import Admin from "../Pages/Admin/Admin.vue"
 //roles
 import RolesCreate from "../Pages/Roles/RolesCreate.vue"
@@ -42,9 +42,9 @@ const router = createRouter({
         component: TopicsUpdate,
     },
     {
-        path: '/register',
-        name: 'Register',
-        component: Register
+        path: '/signup',
+        name: 'Sign Up',
+        component: SignUp
       },
     {
         path: '/staffSubmission',
@@ -52,9 +52,9 @@ const router = createRouter({
         component: StaffSub,
     },
     {
-        path: '/login',
-        name: 'Login',
-        component: Login,
+        path: '/signin',
+        name: 'Sign In',
+        component: SignIn,
     },
     {
         path: '/',
@@ -119,17 +119,17 @@ const router = createRouter({
     ]
 })
 
+function isAuthenticated() {
+    return Boolean(localStorage.getItem('Idea_token'))
+}
+
 router.beforeEach((to, from, next) => {
 
-    if (to.path !== '/register' && to.path !== '/login' && !isAuthenticated()) {
-        return next({path: '/register'})
+    if (to.path !== '/signup' && to.path !== '/signin' && !isAuthenticated()) {
+        return next({path: '/signup'})
 
     }
     return next()
 })
-
-function isAuthenticated() {
-    return Boolean(localStorage.getItem('Idea_token'))
-}
 
 export default router;

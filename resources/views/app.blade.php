@@ -18,11 +18,5 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
-
-        <script>
-            window.user = @json(auth()->user());
-            window.userRoles = @json(auth()->user()->roles);
-            window.userPermissions = @json(auth()->user()->permissions);
-        </script>
     </body>
 </html>

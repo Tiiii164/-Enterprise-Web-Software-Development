@@ -15,7 +15,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DepartmentsController;
 
-require __DIR__ . '/auth.php';
+// require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('home');
@@ -23,15 +23,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', [Controller::class, 'showHome']);
+Route::get('/home', [Controller::class, 'showHome'])->name('home');
 
-Route::get('/register', [AuthController::class, 'showFormRegister']);
-Route::post('register', [AuthController::class, 'register']);
+Route::get('/getCurrentUser', function() {
+    return Auth::user()->load('roles');
+ });
 
-Route::get('/login', [AuthController::class, 'showFormLogin']);
-Route::post('login', [AuthController::class, 'login']);
+Route::get('/signup', [AuthController::class, 'showFormSignUp']);
+Route::post('signup', [AuthController::class, 'signup'])->name('signup');
 
-Route::post('logout', [AuthController::class, 'logout']);
+Route::get('/signin', [AuthController::class, 'showFormSignIn']);
+Route::post('signin', [ AuthController::class, 'signin'])->name('signin');
+
+Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Route::resource('/Departments', DepartmentsController::class);
 Route::get('/DepartmentsIndex', [DepartmentsController::class, 'showDepartments']);

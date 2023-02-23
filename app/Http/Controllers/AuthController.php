@@ -14,11 +14,11 @@ use JWTAuth;
 
 class AuthController extends Controller
 {
-    public function showFormRegister()
+    public function showFormSignUp()
     {
-        return Inertia::render('Register');
+        return Inertia::render('SignUp');
     }
-    public function register(Request $request)
+    public function signup(Request $request)
     {
         try {
             $validation = Validator::make(
@@ -64,11 +64,11 @@ class AuthController extends Controller
             );
         }
     }
-    public function showFormLogin()
+    public function showFormSignIn()
     {
-        return Inertia::render('Login');
+        return Inertia::render('SignIn');
     }
-    public function login(Request $request)
+    public function signin(Request $request)
     {
         try {
             $validation = Validator::make(
