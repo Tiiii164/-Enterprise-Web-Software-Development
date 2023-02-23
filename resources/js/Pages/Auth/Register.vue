@@ -70,7 +70,7 @@ import { useRouter } from "vue-router"
             </div>
         </div>
         <div>
-            <img src="../../../css/kimetsu.png" alt="" class="kimetsu-img">
+            <img src="../../../css/2.jpg" alt="" class="kimetsu-img">
         </div>
     </div>
 </template>
