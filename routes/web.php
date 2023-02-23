@@ -37,6 +37,10 @@ Route::post('signin', [ AuthController::class, 'signin'])->name('signin');
 
 Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/ShowProfile', [AuthController::class, 'showProfile'])->name('show-profile');
+// Route::put('/UpdateProfile', [AuthController::class, 'updateProfile'])->name('update-profile');
+
+
 //Route::resource('/Departments', DepartmentsController::class);
 Route::get('/DepartmentsIndex', [DepartmentsController::class, 'showDepartments']);
 Route::get('/DepartmentsCreate', [DepartmentsController::class, 'showDepartmentsCreate']);
@@ -59,8 +63,8 @@ Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);
 Route::get('/RolesUpdate/{id}', [RolesController::class, 'showRolesUpdate']);
 
-
 Route::get('profile', [AuthController::class, 'showProfile'])->name('show-profile');
 Route::put('profile', [AuthController::class, 'profile'])->name('profile');
 
 Route::get('/admin', [AdminController::class, 'adminPage'])->name('showAdminPage');
+

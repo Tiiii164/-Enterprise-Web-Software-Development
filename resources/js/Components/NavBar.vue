@@ -61,6 +61,7 @@ export default {
         <span class="capitalize">Hello <span class="text-primary">{{ currentUser.name }} </span>
             <button type="button" class="btn btn-danger" @click="handleLogout">Logout</button>
         </span>
+      </router-link>
       </div>
     </div>
   </div>

@@ -24,6 +24,18 @@ Route::controller(TopicsController::class)->group(function () {
     Route::patch('/topics/TopicsUpdate/{id}', 'update');
     Route::delete('/topics/delete/{id}', 'destroy');
 });
+
+Route::middleware('jwt.auth')->get('/profile', 'AuthController@profile');
+
+Route::middleware('auth:api')->get('/auth/ShowProfile', function (Request $request) {
+    return $request->user();
+});
+
+Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
+    Route::get('ShowProfile', 'profile');
+    Route::put('UpdateProfile', 'updateProfile')->name('update-profile');
+});
+
 Route::controller(RolesController::class)->group(function () {
     Route::get('/roles/RolesIndex', 'index');
     Route::get('/roles/edit/{id}', 'edit');
