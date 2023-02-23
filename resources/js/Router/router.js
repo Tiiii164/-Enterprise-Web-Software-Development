@@ -1,33 +1,62 @@
-import {createWebHistory, createRouter } from "vue-router"
+import { createWebHistory, createRouter } from "vue-router"
 import Home from '../Pages/Home.vue'
 import StaffSub from "../Pages/Staff/StaffSubmission.vue"
 import StaffProfile from "../Pages/Staff/StaffProfile.vue"
-import Login from "../Pages/Auth/Login.vue"
-import Register from "../Pages/Auth/Register.vue"
+import SignIn from "../Pages/Auth/SignIn.vue"
+import SignUp from "../Pages/Auth/SignUp.vue"
 import Admin from "../Pages/Admin/Admin.vue"
+//roles
 import RolesCreate from "../Pages/Roles/RolesCreate.vue"
 import RolesIndex from "../Pages/Roles/RolesIndex.vue"
 import RolesUpdate from "../Pages/Roles/RolesUpdate.vue"
+//departments
+import DepartmentsCreate from "../Pages/Departments/DepartmentsCreate.vue"
+import DepartmentsIndex from "../Pages/Departments/DepartmentsIndex.vue"
+import DepartmentsUpdate from "../Pages/Departments/DepartmentsUpdate.vue"
+//categories
+import CategoriesCreate from "../Pages/Categories/CategoriesCreate.vue"
+import CategoriesIndex from "../Pages/Categories/CategoriesIndex.vue"
+import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
+//topics
+import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
+import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
+import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
 
-const router = createRouter ({
+const router = createRouter({
     history: createWebHistory(),
     routes: [
+    //topics
     {
-        path: '/Register',
-        name: 'Register',
-        component: Register
+        path: '/topicsCreate',
+        name: 'TopicsCreate',
+        component: TopicsCreate,
+    },
+    {
+        path: '/topicsIndex',
+        name: 'TopicsIndex',
+        component: TopicsIndex,
+    },
+    {
+        path: '/topicsUpdate/:id',
+        name: 'TopicsUpdate',
+        component: TopicsUpdate,
+    },
+    {
+        path: '/signup',
+        name: 'Sign Up',
+        component: SignUp
       },
     {
-        path: '/StaffSubmission',
+        path: '/staffSubmission',
         name: 'Staff Submission',
         component: StaffSub,
     },
     {
-        path: '/Login',
-        name: 'Login',
-        component: Login,
+        path: '/signin',
+        name: 'Sign In',
+        component: SignIn,
     },
     {
         path: '/',
@@ -35,31 +64,61 @@ const router = createRouter ({
         component: Home,
     },
     {
-        path: '/StaffProfile',
+        path: '/staffProfile',
         name: 'Staff Profile',
         component: StaffProfile,
     },
     {
-        path: '/Admin',
+        path: '/admin',
         name: 'Admin',
         component: Admin,
     },
     {
-        path: '/RolesCreate',
+        path: '/rolesCreate',
         name: 'RolesCreate',
         component: RolesCreate,
     },
     {
-        path: '/RolesIndex',
+        path: '/rolesIndex',
         name: 'RolesIndex',
         component: RolesIndex,
     },
     {
-        path: '/RolesUpdate/:id',
+        path: '/rolesUpdate/:id',
         name: 'RolesUpdate',
         component: RolesUpdate,
     },
     {
+        path: '/DepartmentsCreate',
+        name: 'DepartmentsCreate',
+        component: DepartmentsCreate,
+    },
+    {
+        path: '/DepartmentsIndex',
+        name: 'DepartmentsIndex',
+        component: DepartmentsIndex,
+    },
+    {
+        path: '/DepartmentsUpdate/:id',
+        name: 'DepartmentsUpdate',
+        component: DepartmentsUpdate,
+    },
+    {
+        path: '/CategoriesCreate',
+        name: 'CategoriesCreate',
+        component: CategoriesCreate,
+    },
+    {
+        path: '/CategoriesIndex',
+        name: 'CategoriesIndex',
+        component: CategoriesIndex,
+    },
+    {
+        path: '/CategoriesUpdate/:id',
+        name: 'CategoriesUpdate',
+        component: CategoriesUpdate,
+    },
+    ]
         path: '/ShowProfile',
         name: 'ShowProfile',
         component: ShowProfile,
@@ -72,15 +131,17 @@ const router = createRouter ({
 ]
 })
 
-router.beforeEach((to, from, next) => {
-    if (to.path !== '/Register' && to.path !== '/Login' && !isAuthenticated()) {
-        return next({path: '/Register'})
-    }
-    return next()
-})
-
 function isAuthenticated() {
     return Boolean(localStorage.getItem('Idea_token'))
 }
+
+router.beforeEach((to, from, next) => {
+
+    if (to.path !== '/signup' && to.path !== '/signin' && !isAuthenticated()) {
+        return next({path: '/signup'})
+
+    }
+    return next()
+})
 
 export default router;

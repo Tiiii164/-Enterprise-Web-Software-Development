@@ -1,34 +1,41 @@
 <script>
-import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router"
-import { request } from "../helper";
 export default {
-  setup() {
-    const user = ref()
-    const isLoading = ref()
-    const router = useRouter();
-    onMounted(() => {
-      authentication()
-    });
-    const authentication = async () => {
-        isLoading.value = true
-        try {
-            const req = await request('get', '/api/user')
-            user.value = req.data
-        } catch (e) {
-            router.push('/Login')
-        }
+  data() {
+    return {
+      currentUser: {},
+      roles: new Set(),
     }
+},
+  created() {
+      this.getCurrentUser()
+},
+  methods: {
+    getCurrentUser() {
+      axios.get('/getCurrentUser')
+        .then(response => { 
+          this.currentUser = response.data
+          console.log(this.currentUser)
+          this.currentUser.roles.forEach(r => {
+            this.roles.add(r.name);
+          })
+        }
+      )
+      .catch(error => { console.log(error) }
+      )
+  },
+},
+  setup() {
+    const router = useRouter();
     const handleLogout = () => {
         localStorage.removeItem('Idea_token')
-        router.push('/Login')
+        router.push('/signin')
     }
     return {
-            user,
-            handleLogout,
-        }
+      handleLogout,
+    } 
   }
-}
+};
 </script>
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -43,16 +50,16 @@ export default {
         <li class="nav-item">
           <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
         </li>
-        <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
+        <li class="nav-item" v-if="roles.has('Admin') || roles.has('Staff')">
+            <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
-        <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/Admin">Admin</router-link>
+        <li class="nav-item" v-if="roles.has('Admin')">
+          <router-link class="nav-link active" aria-current="page" to="/RolesIndex">Roles</router-link>
         </li>
       </ul>
       <div class="d-flex">
-        <router-link to="/ShowProfile"> <span class="capitalize">Hello, {{ user && user.name }}
-            <button type="button" class="btn btn-outline-primary btn-sm" @click="handleLogout">Logout</button>
+        <span class="capitalize">Hello <span class="text-primary">{{ currentUser.name }} </span>
+            <button type="button" class="btn btn-danger" @click="handleLogout">Logout</button>
         </span>
       </router-link>
       </div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Roles;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -16,11 +16,11 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 
 class AuthController extends Controller
 {
-    public function showFormRegister()
+    public function showFormSignUp()
     {
-        return Inertia::render('Register');
+        return Inertia::render('SignUp');
     }
-    public function register(Request $request)
+    public function signup(Request $request)
     {
         try {
             $validation = Validator::make(
@@ -28,7 +28,7 @@ class AuthController extends Controller
                 [
                     'name' => 'required|string|max:255',
                     'email' => 'required|string|email|max:255|unique:users,email',
-                    'password' => 'required|confirmed',
+                    'password' => 'required|confirmed|min:4',
                 ]
             );
 
@@ -47,10 +47,9 @@ class AuthController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
-            $user->role_id = '1';
-            $user->department_id = '1';
             $user->save();
-
+            $user->roles()->attach(Role::where('name', 'Staff')->first());
+            
             return response()->json([
                 'status' => true,
                 'message' => 'Sign Up Successfully',
@@ -67,11 +66,11 @@ class AuthController extends Controller
             );
         }
     }
-    public function showFormLogin()
+    public function showFormSignIn()
     {
-        return Inertia::render('Login');
+        return Inertia::render('SignIn');
     }
-    public function login(Request $request)
+    public function signin(Request $request)
     {
         try {
             $validation = Validator::make(

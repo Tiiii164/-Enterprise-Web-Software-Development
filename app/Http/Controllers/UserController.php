@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
+use App\User;
+use App\Role;
 
-class RolesController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        return response()->json($roles);
-        //return Inertia::render('RolesIndex')->with('roles', $roles);
+        $users = User::get()->load('roles');
+        return $users;
     }
 
     /**
@@ -25,9 +24,9 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showRolesCreate()
+    public function create()
     {
-        return Inertia::render('RoleCreate');
+        //
     }
 
     /**
@@ -38,10 +37,17 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $role = new Role();
-        $role->name = $request->input('name');
-        $role->save();
-        return response()->json($role);
+        $data = $request->input('user');
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = bcrypt('123456');
+        $role  = Role::where('name', $data['role'])->first();
+        
+        $user->save();
+
+        $user->roles()->attach($role);
+        return response('success');
     }
 
     /**
@@ -50,9 +56,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showRoles()
+    public function show($id)
     {
-        return Inertia::render('RolesIndex');
+        //
     }
 
     /**
@@ -61,9 +67,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showRolesUpdate($id)
+    public function edit($id)
     {
-        return Inertia::render('RolesUpdate');
+        //
     }
 
     /**
@@ -75,12 +81,7 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $role = Roles::where($id, 'id')
-        //     ->update(['name' => $request->input('name')]);
-        // return Inertia::render('RolesUpdate')
-        $role = Role::find($id);
-        $role->update($request->all());
-        return response()->json($role);
+        //
     }
 
     /**
@@ -91,8 +92,6 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        $roles = Role::find($id);
-        $roles->delete();
-        return response()->json(['message' => 'Role deleted']);
+        //
     }
 }

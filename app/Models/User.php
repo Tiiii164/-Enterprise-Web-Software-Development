@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Laratrust\Traits\LaratrustUserTrait;
 
 //model
 class Users extends Model
@@ -33,14 +33,13 @@ class Users extends Model
     {
         return $this->hasMany(Reacts::class);
     }
-    //user belongs to department and role
     public function roles()
     {
-        return $this->belongsTo(Roles::class);
+        return $this->belongsToMany(Role::class);
     }
-    public function departments()
+    public function permissions()
     {
-        return $this->belongsTo(Departments::class);
+        return $this->belongsToMany(Permission::class);
     }
 }
 
@@ -48,6 +47,7 @@ class Users extends Model
 //authentication
 class User extends Authenticatable
 {
+    use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -59,8 +59,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id',
-        'department_id',
     ];
 
     /**
@@ -91,6 +89,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+* @param string|array $roles
+    */
     public function authorizeRoles($roles)
     {
         if (is_array($roles)) {
@@ -100,6 +101,18 @@ class User extends Authenticatable
         return $this->hasRole($roles) ||
             abort(401, 'This action is unauthorized.');
     }
+    /**
+    * Check multiple roles
+    * @param array $roles
+    */
+    public function hasAnyRole($roles)
+    {
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
+    /**
+    * Check one role
+    * @param string $role
+    */
     public function hasRole($role)
     {
         return null !== $this->roles()->where('name', $role)->first();

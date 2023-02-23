@@ -12,25 +12,27 @@ import { useRouter } from "vue-router"
             password: '',
             password_confirmation: '',
         })
-        const handleRegister = async (evt) => {
+        const handleSignUp = async (evt) => {
             evt.preventDefault()
             try {
-                const result = await axios.post('/api/auth/Register', form)
+                const result = await axios.post('/api/auth/signup', form)
                 if (result.status === 200 && result.data && result.data.token) {
-                localStorage.setItem('Idea_token', result.data.token)
-                await router.push('/Login')
+                    localStorage.setItem('Idea_token', result.data.token)
+                    await router.push('/signin')
                 }
-            }catch(e) {
+            } catch(e) {
                 if(e.response.data && e.response.data.errors) {
                     errors.value = Object.values(e.response.data.errors)
+                } else {
+                    errors.value = "Sign Up Failed"
                 }
             }
         }
         return {
             form,
             errors,
-            handleRegister,
-            }
+            handleSignUp,
+        }
     }
 }
 </script>
@@ -40,9 +42,9 @@ import { useRouter } from "vue-router"
             <div class="col-md-8 m-auto">
                 <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Register Form</h4>
+                    <h4 class="card-title">Sign Up Form</h4>
                     <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{errors}}</p>
-                    <form method="post" @submit.prevent="handleRegister">
+                    <form method="post" @submit.prevent="handleSignUp">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name: </label>
                             <input type="text" name="name" v-model="form.name" id="username" class="form-control" placeholder="Enter Name">
@@ -60,8 +62,8 @@ import { useRouter } from "vue-router"
                             <input type="password" name="password_confirm" v-model="form.password_confirmation" id="password_confirm" class="form-control" placeholder="Confirm Password">
                         </div>
                         <div class="d-flex justify-content-between">
-                            <router-link class="btn btn-danger" to="/Login"> Login </router-link>
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <router-link class="btn btn-danger" to="/signin"> Sign In </router-link>
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
                         </div>
                     </form>      
                 </div>                
