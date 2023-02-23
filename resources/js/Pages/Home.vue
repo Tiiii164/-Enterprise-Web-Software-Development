@@ -10,11 +10,21 @@ export default {
     return {
       currentUser: {},
     }
+},
+  created() {
+      this.getCurrentUser()
+},
+  methods: {
+    getCurrentUser() {
+      axios.get('/getCurrentUser')
+        .then(response => { 
+          this.currentUser = response.data
+        }
+      )
+      .catch(error => { console.log(error) }
+      )
   },
-  create() {
-    console.log(window.user)
-    this.currentUser = window.user
-  },
+},
 } 
 </script>
 <template>
@@ -22,7 +32,7 @@ export default {
     <div class="container">
       <div class="jumbotron mt-5">
           <div class="col-sm-8 mx-auto">
-            <h1 class="text-center"> Welcome {{ currentUser.name ?? "None" }} <span class="text-success"></span></h1>
+            <h1 class="text-center"> Welcome <span class="text-success">{{ currentUser.name }}</span> <span class="text-success"></span></h1>
           </div>
         </div>
     </div>
