@@ -1,29 +1,42 @@
 <script>
 import NavBar from '@/Components/NavBar.vue';
 import TheFooter from '@/Components/TheFooter.vue';
+import axios from 'axios';
 export default {
   components: {
     NavBar,
     TheFooter,
-},
+  },
   data() {
     return {
-      department: {}
-    }
-  },
-  methods: {
-    async updateDepartments() {
-      try {
-        const response = await axios.patch(`/api/departments/DepartmentsUpdate/${this.$route.params.id}`, this.department)
-        .then((res) => {
-          this.$router.push('/DepartmentsIndex')
-            });
-        console.log(response.data)
-      } catch (error) {
-        console.log(error);
+      department:{
+        name: "",
+        _method: "patch",
       }
     }
-  }
+  },
+  mounted() {
+        this.showDepartments()
+      },
+  methods: {
+    async showDepartments(){
+            await axios.patch(`/api/departments/DepartmentsUpdate/${this.$route.params.id}`)
+            .then((res)=>{
+              const { name } = res.data
+              this.department.name = name
+            }).catch(error=>{
+                console.log(error)
+            })
+        },
+    async updateDepartments() {
+        await axios.patch(`/api/departments/DepartmentsUpdate/${this.$route.params.id}`, this.department)
+        .then((res) => {
+          this.$router.push('/DepartmentsIndex')
+        }).catch (error => {
+          console.log(error);
+      })
+    }
+  },
 }
 </script>
 <template>
@@ -47,7 +60,7 @@ export default {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <strong>Department Name</strong>
-                                <input type="text" name="name" v-model="department.name" class="form-control" placeholder="Enter Department">
+                                <input type="text" class="form-control" v-model="department.name">
                             </div>
                             <div class="form-group">
                               <button class="btn btn-primary" type="submit">Update</button>

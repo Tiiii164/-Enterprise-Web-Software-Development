@@ -41,7 +41,7 @@ class UserController extends Controller
         $user = new User();
         $user->name = $data['name'];
         $user->email = $data['email'];
-        $user->password = bcrypt('123456');
+        $user->password = bcrypt('password');
         $role  = Role::where('name', $data['role'])->first();
         
         $user->save();

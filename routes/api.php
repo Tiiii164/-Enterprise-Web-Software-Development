@@ -24,6 +24,7 @@ Route::controller(TopicsController::class)->group(function () {
     Route::patch('/topics/TopicsUpdate/{id}', 'update');
     Route::delete('/topics/delete/{id}', 'destroy');
 });
+
 Route::controller(RolesController::class)->group(function () {
     Route::get('/roles/RolesIndex', 'index');
     Route::get('/roles/edit/{id}', 'edit');
