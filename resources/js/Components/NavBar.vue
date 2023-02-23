@@ -53,6 +53,12 @@ export default {
         <li class="nav-item" v-if="roles.has('Admin') || roles.has('Staff')">
             <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
+        <li class="nav-item" v-if="roles.has('Admin') || roles.has('Manager')">
+            <router-link class="nav-link active" aria-current="page" to="/DepartmentsIndex">Departments</router-link>
+        </li>
+        <li class="nav-item" v-if="roles.has('Admin') || roles.has('Manager')">
+            <router-link class="nav-link active" aria-current="page" to="/CategoriesIndex">Category</router-link>
+        </li>
         <li class="nav-item" v-if="roles.has('Admin')">
           <router-link class="nav-link active" aria-current="page" to="/RolesIndex">Roles</router-link>
         </li>

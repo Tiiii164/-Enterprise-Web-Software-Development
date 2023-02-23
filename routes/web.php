@@ -15,7 +15,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DepartmentsController;
 
-// require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('home');
