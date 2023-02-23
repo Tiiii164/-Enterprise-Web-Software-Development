@@ -21,6 +21,8 @@ import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
 import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
+import ShowProfile from "../Pages/Auth/ShowProfile.vue"
+import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -117,6 +119,16 @@ const router = createRouter({
         component: CategoriesUpdate,
     },
     ]
+        path: '/ShowProfile',
+        name: 'ShowProfile',
+        component: ShowProfile,
+    },
+    {
+        path: '/UpdateProfile/:id',
+        name: 'UpdateProfile',
+        component: UpdateProfile,
+    },
+]
 })
 
 function isAuthenticated() {
