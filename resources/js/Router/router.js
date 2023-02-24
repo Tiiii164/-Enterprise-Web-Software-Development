@@ -118,7 +118,7 @@ const router = createRouter({
         name: 'CategoriesUpdate',
         component: CategoriesUpdate,
     },
-    ]
+    {
         path: '/ShowProfile',
         name: 'ShowProfile',
         component: ShowProfile,

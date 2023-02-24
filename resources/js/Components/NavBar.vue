@@ -58,10 +58,12 @@ export default {
         </li>
       </ul>
       <div class="d-flex">
-        <span class="capitalize">Hello <span class="text-primary">{{ currentUser.name }} </span>
+        <span class="capitalize">Hello 
+          <router-link 
+          class="text-primary user_link me-2" to="/ShowProFile">{{ currentUser.name }} 
+        </router-link>
             <button type="button" class="btn btn-danger" @click="handleLogout">Logout</button>
         </span>
-      </router-link>
       </div>
     </div>
   </div>
