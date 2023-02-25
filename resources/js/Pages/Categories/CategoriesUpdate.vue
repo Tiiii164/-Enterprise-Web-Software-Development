@@ -8,10 +8,29 @@ export default {
 },
   data() {
     return {
-      category: {}
+      category: {
+        name: "",
+        _method: "patch",
+      }
     }
   },
+  created() {
+    this.showCategory()
+  },
   methods: {
+    async showCategory() {
+      try {
+        const response = await axios.patch(`/api/categories/CategoriesUpdate/${this.$route.params.id}`)
+        .then((res) => {
+          const { name } = res.data
+          this.category.name = name
+        });
+        console.log(response.data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  },
     async updateCategory() {
       try {
         const response = await axios.patch(`/api/categories/CategoriesUpdate/${this.$route.params.id}`, this.category)
@@ -24,7 +43,6 @@ export default {
       }
     }
   }
-}
 </script>
 <template>
   <NavBar></NavBar>
@@ -47,10 +65,10 @@ export default {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <strong>Category Name</strong>
-                                <input type="text" name="name" v-model="category.name"  class="form-control"  placeholder="Enter category">
+                                <input type="text" name="name" v-model="category.name"  class="form-control">
                             </div>
                             <div class="form-group">
-                              <button class="btn btn-primary" type="submit">Update</button>
+                              <button class="btn btn-primary mt-2" type="submit">Update</button>
                             </div>
                           </div>
                       </div>

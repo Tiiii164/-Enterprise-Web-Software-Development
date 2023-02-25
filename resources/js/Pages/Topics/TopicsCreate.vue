@@ -38,7 +38,6 @@ export default {
   }
 }
 </script>
-
 <template>
   <NavBar></NavBar>
   <form @submit.prevent="handlecreateTopics" method="post">
@@ -62,7 +61,15 @@ export default {
                   <strong>Name</strong>
                   <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter Topic">
                 </div>
-                <button type="submit" class="btn btn-primary" @click.prevent="handlecreateTopics">Create</button>
+                <div class="form-group">
+                  <strong>Closure Date</strong>
+                  <input type="text" name="name" class="form-control" v-model="form.closure_date" placeholder="Enter Closure Date">
+                </div>
+                <div class="form-group">
+                  <strong>Final Closure Date</strong>
+                  <input type="text" name="name" class="form-control" v-model="form.final_closure_date" placeholder="Enter Final Closure Date">
+                </div>
+                <button type="submit" class="btn btn-primary mt-2" @click.prevent="handlecreateTopics">Create</button>
               </div>
             </div>
           </form>

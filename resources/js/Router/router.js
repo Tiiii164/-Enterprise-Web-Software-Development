@@ -21,6 +21,7 @@ import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
 import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
+//profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
 

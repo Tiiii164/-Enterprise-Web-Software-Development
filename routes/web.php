@@ -25,46 +25,36 @@ Auth::routes();
 
 Route::get('/home', [Controller::class, 'showHome'])->name('home');
 
+//User
 Route::get('/getCurrentUser', function() {
     return Auth::user()->load('roles');
  });
-
 Route::get('/signup', [AuthController::class, 'showFormSignUp']);
 Route::post('signup', [AuthController::class, 'signup'])->name('signup');
-
 Route::get('/signin', [AuthController::class, 'showFormSignIn']);
 Route::post('signin', [ AuthController::class, 'signin'])->name('signin');
-
 Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->name('logout');
 
+//Profile
 Route::get('/ShowProfile', [AuthController::class, 'showProfile'])->name('show-profile');
-// Route::put('/UpdateProfile', [AuthController::class, 'updateProfile'])->name('update-profile');
 
 
-//Route::resource('/Departments', DepartmentsController::class);
+//Department
 Route::get('/DepartmentsIndex', [DepartmentsController::class, 'showDepartments']);
 Route::get('/DepartmentsCreate', [DepartmentsController::class, 'showDepartmentsCreate']);
 Route::get('/DepartmentsUpdate/{id}', [DepartmentsController::class, 'showDepartmentsUpdate']);
 
-//Route::resource('categories', CategoriesController::class);
+//Category
 Route::get('/CategoriesIndex', [CategoriesController::class, 'showCategories']);
 Route::get('/CategoriesCreate', [CategoriesController::class, 'showCategoriesCreate']);
 Route::get('/CategoriesUpdate/{id}', [CategoriesController::class, 'showCategoriesUpdate']);
 
-// Route::resource('/Departments', DepartmentsController::class);
-
-//Route::resource('/Topics', TopicsController::class);
-
+//Topic
 Route::get('/TopicsIndex', [TopicsController::class, 'showTopics']);
 Route::get('/TopicsCreate', [TopicsController::class, 'showTopicsCreate']);
 Route::get('/TopicsUpdate/{id}', [TopicsController::class, 'showTopicsUpdate']);
 
+//Role
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);
 Route::get('/RolesUpdate/{id}', [RolesController::class, 'showRolesUpdate']);
-
-Route::get('profile', [AuthController::class, 'showProfile'])->name('show-profile');
-Route::put('profile', [AuthController::class, 'profile'])->name('profile');
-
-Route::get('/admin', [AdminController::class, 'adminPage'])->name('showAdminPage');
-

@@ -8,33 +8,40 @@ export default {
   },
   data() {
     return {
-      topics: []
-    }
-  },
-  setup() {
-    const router = useRouter();
-    const form = reactive({
-      name: '',
-      closure_date: '',
-      final_closure_date: '',
-    })
-
-    const updateTopics = async () => {
-      try {
-        const response = await axios.patch(`/api/topics/TopicsUpdate/${this.$route.params.id}`, form.topics)
-          .then((res) => {
-            this.$router.push('/TopicsIndex')
-          });
-        console.log(response.data)
-      } catch (error) {
-        console.log(error);
+      topics: {
+        name: "",
+        closure_date: "",
+        final_closure_date: "",
+        _method: "patch",
       }
     }
+  },
+  created() {
+    this.showTopics()
+  },
+  methods: {
+    async showTopics(){
+        const response = await axios.patch(`/api/topics/TopicsUpdate/${this.$route.params.id}`)
+          .then((res) => {
+            const { name , closure_date, final_closure_date } = res.data
+            this.topics.name = name
+            this.topics.closure_date = closure_date
+            this.topics.final_closure_date = final_closure_date
+          }).catch (error => {
+              console.log(error);
+          })
+    },
+    async updateTopics(){
+        const response = await axios.patch(`/api/topics/TopicsUpdate/${this.$route.params.id}`, this.topics)
+          .then((res) => {
+            this.$router.push('/TopicsIndex')
+        })
+          .catch (error => {
+            console.log(error);
+        })      
+    }
   }
-
-
 }
-
 </script>
 <template>
   <NavBar></NavBar>
@@ -57,10 +64,10 @@ export default {
               <div class="col-md-6">
                 <div class="form-group">
                   <strong>Topic Name</strong>
-                  <input type="text" name="name" v-model="topics.name" class="form-control" placeholder="Enter Topic">
+                  <input type="text" name="name" v-model="topics.name" class="form-control">
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-primary" type="submit">Update</button>
+                  <button class="btn btn-primary mt-2" type="submit">Update</button>
                 </div>
               </div>
             </div>

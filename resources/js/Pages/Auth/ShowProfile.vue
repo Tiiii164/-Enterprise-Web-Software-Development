@@ -28,7 +28,6 @@ export default {
   }
 };
 </script>
-
 <template>
   <NavBar></NavBar>
   <div class="container">
@@ -48,7 +47,7 @@ export default {
                   <div v-for="role in roles" :key="role">Role Name: {{ role }}</div>
                 </div>
                     <div>
-                        <router-link :to="'/UpdateProfile/' + CurrentUser.id" class="btn btn-primary">Edit</router-link>
+                        <router-link :to="'/UpdateProfile/' + CurrentUser.id" class="btn btn-primary mt-2">Edit</router-link>
                     </div>
                 </table> 
             </div> 

@@ -8,10 +8,28 @@ export default {
 },
   data() {
     return {
-      department: {}
+      department: {
+        name:"",
+        _method: "patch",
+      }
     }
   },
+  mounted() {
+    this.showDepartments()
+  },
   methods: {
+    async showDepartments() {
+      try {
+        const response = await axios.patch(`/api/departments/DepartmentsUpdate/${this.$route.params.id}`)
+        .then((res) => {
+          const {name} = res.data
+          this.department.name = name
+        });
+        console.log(response.data)
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async updateDepartments() {
       try {
         const response = await axios.patch(`/api/departments/DepartmentsUpdate/${this.$route.params.id}`, this.department)
@@ -47,10 +65,10 @@ export default {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <strong>Department Name</strong>
-                                <input type="text" name="name" v-model="department.name" class="form-control" placeholder="Enter Department">
+                                <input type="text" name="name" v-model="department.name" class="form-control">
                             </div>
                             <div class="form-group">
-                              <button class="btn btn-primary" type="submit">Update</button>
+                              <button class="btn btn-primary mt-2" type="submit">Update</button>
                             </div>
                           </div>
                       </div>

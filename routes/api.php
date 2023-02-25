@@ -11,25 +11,10 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-// Route::middleware('auth:api')->get('/auth/ShowProfile', function (Request $request) {
-//     return $request->user();
-// });
 Route::get('/ShowProfile', function () {
     return Auth::user()->load('roles');
 });
-
 Route::patch('UpdateProfile/{id}', [UserController::class, 'update']);
-
-// Route::get('/GetRoles', function ($id) {
-//     $roles = new Role();
-//     $roles = Role::find($id);
-//     return response()->json($roles);
-// });
-
 Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
     Route::post('signup', 'signup');
     Route::post('signin', 'signin');
