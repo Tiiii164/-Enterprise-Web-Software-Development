@@ -2,35 +2,24 @@
 export default {
   data() {
     return {
-      name: '',
-      email: '',
+      profile: {}
     };
   },
-  created() {
-    axios.get('/api/auth/ShowProfile')
-      .then(response => {
-        this.name = response.data.user.name;
-        this.email = response.data.user.email;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  },
   methods: {
-    updateProfile() {
-      axios.put('/auth/api/UpdateProfile', {
-        name: this.name,
-        email: this.email,
-      })
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
+    async updateProfile() {
+      try {
+        const response = 
+        await axios.patch(`/api/UpdateProfile/${this.$route.params.id}`, this.profile)
+        .then((res) => {
+          this.$router.push('/ShowProfile')
+            });
+        console.log(response.data)
+      } catch (error) {
         console.log(error);
-      });
-    },
-  },
-};
+      }
+    }
+  }
+}
 </script>
 
 <template>
@@ -38,10 +27,10 @@ export default {
     <h1>Update Profile</h1>
     <form @submit.prevent="updateProfile">
       <label for="name">Name:</label>
-      <input type="text" v-model="name">
+      <input type="text" v-model="profile.name">
       <br>
       <label for="email">Email:</label>
-      <input type="email" v-model="email">
+      <input type="email" v-model="profile.email">
       <br>
       <button type="submit">Update</button>
     </form>

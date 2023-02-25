@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Role;
+use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -43,7 +43,7 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->password = bcrypt('password');
         $role  = Role::where('name', $data['role'])->first();
-        
+
         $user->save();
 
         $user->roles()->attach($role);
@@ -81,7 +81,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email')
+        ]);
+        return response()->json($user);
     }
 
     /**

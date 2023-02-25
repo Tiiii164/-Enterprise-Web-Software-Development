@@ -7,14 +7,32 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\topicsController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Role;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Route::middleware('auth:api')->get('/auth/ShowProfile', function (Request $request) {
+//     return $request->user();
+// });
+Route::get('/ShowProfile', function () {
+    return Auth::user()->load('roles');
 });
 
-Route::controller(AuthController::class)->prefix('/auth/')->group( function(){
-    Route::post('signup','signup');
-    Route::post('signin','signin');
+Route::patch('UpdateProfile/{id}', [UserController::class, 'update']);
+
+// Route::get('/GetRoles', function ($id) {
+//     $roles = new Role();
+//     $roles = Role::find($id);
+//     return response()->json($roles);
+// });
+
+Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
+    Route::post('signup', 'signup');
+    Route::post('signin', 'signin');
 });
 
 Route::controller(TopicsController::class)->group(function () {
@@ -25,17 +43,6 @@ Route::controller(TopicsController::class)->group(function () {
     Route::delete('/topics/delete/{id}', 'destroy');
 });
 
-Route::middleware('jwt.auth')->get('/profile', 'AuthController@profile');
-
-Route::middleware('auth:api')->get('/auth/ShowProfile', function (Request $request) {
-    return $request->user();
-});
-
-Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
-    Route::get('ShowProfile', 'profile');
-    Route::put('UpdateProfile', 'updateProfile')->name('update-profile');
-});
-
 Route::controller(RolesController::class)->group(function () {
     Route::get('/roles/RolesIndex', 'index');
     Route::get('/roles/edit/{id}', 'edit');
@@ -44,19 +51,18 @@ Route::controller(RolesController::class)->group(function () {
     Route::delete('/roles/delete/{id}', 'destroy');
 });
 
-Route::controller(DepartmentsController::class)->group( function(){
+Route::controller(DepartmentsController::class)->group(function () {
     Route::get('/departments/DepartmentsIndex', 'index');
     Route::get('/departments/edit/{id}', 'edit');
     Route::post('/departments/DepartmentsCreate', 'store');
-    Route::patch('/departments/DepartmentsUpdate/{id}','update');
+    Route::patch('/departments/DepartmentsUpdate/{id}', 'update');
     Route::delete('/departments/delete/{id}', 'destroy');
 });
 
-Route::controller(CategoriesController::class)->group( function(){
+Route::controller(CategoriesController::class)->group(function () {
     Route::get('/categories/CategoriesIndex', 'index');
     Route::get('/categories/edit/{id}', 'edit');
     Route::post('/categories/CategoriesCreate', 'store');
-    Route::patch('/categories/CategoriesUpdate/{id}','update');
+    Route::patch('/categories/CategoriesUpdate/{id}', 'update');
     Route::delete('/categories/delete/{id}', 'destroy');
 });
-// Route::get('StaffProfile','showProfile');
