@@ -54,13 +54,18 @@ export default {
             <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
         <li class="nav-item" v-if="roles.has('Admin')">
-          <router-link class="nav-link active" aria-current="page" to="/RolesIndex">Roles</router-link>
+          <router-link class="nav-link active" aria-current="page" to="/DepartmentsIndex">Department</router-link>
+        </li>
+        <li class="nav-item" v-if="roles.has('Admin')">
+          <router-link class="nav-link active" aria-current="page" to="/CategoriesIndex">Category</router-link>
+        </li>
+        <li class="nav-item" v-if="roles.has('Admin')">
+          <router-link class="nav-link active" aria-current="page" to="/RolesIndex">Role</router-link>
         </li>
       </ul>
       <div class="d-flex">
         <span class="capitalize">Hello 
-          <router-link 
-          class="text-primary user_link me-2" to="/ShowProFile">{{ currentUser.name }} 
+          <router-link class="text-primary user_link me-2" to="/ShowProFile">{{ currentUser.name }} 
         </router-link>
             <button type="button" class="btn btn-danger" @click="handleLogout">Logout</button>
         </span>
