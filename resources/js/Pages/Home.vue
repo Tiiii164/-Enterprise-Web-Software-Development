@@ -19,6 +19,7 @@ export default {
       axios.get('/getCurrentUser')
         .then(response => { 
           this.currentUser = response.data
+          console.log(this.currentUser)
         }
       )
       .catch(error => { console.log(error) }
