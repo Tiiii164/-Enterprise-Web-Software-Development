@@ -54,6 +54,11 @@ Route::get('/TopicsIndex', [TopicsController::class, 'showTopics']);
 Route::get('/TopicsCreate', [TopicsController::class, 'showTopicsCreate']);
 Route::get('/TopicsUpdate/{id}', [TopicsController::class, 'showTopicsUpdate']);
 
+//Ideas
+Route::get('/IdeasIndex', [IdeasController::class, 'showIdeas']);
+Route::get('/IdeasCreate', [IdeasController::class, 'showIdeasCreate']);
+Route::get('/IdeasUpdate/{id}', [IdeasController::class, 'showIdeasUpdate']);
+
 //Role
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);
