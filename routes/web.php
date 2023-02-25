@@ -26,13 +26,13 @@ Auth::routes();
 Route::get('/home', [Controller::class, 'showHome'])->name('home');
 
 //User
-Route::get('/getCurrentUser', function() {
+Route::get('/getCurrentUser', function () {
     return Auth::user()->load('roles');
- });
+});
 Route::get('/signup', [AuthController::class, 'showFormSignUp']);
 Route::post('signup', [AuthController::class, 'signup'])->name('signup');
 Route::get('/signin', [AuthController::class, 'showFormSignIn']);
-Route::post('signin', [ AuthController::class, 'signin'])->name('signin');
+Route::post('signin', [AuthController::class, 'signin'])->name('signin');
 Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Profile
@@ -49,7 +49,7 @@ Route::get('/CategoriesIndex', [CategoriesController::class, 'showCategories']);
 Route::get('/CategoriesCreate', [CategoriesController::class, 'showCategoriesCreate']);
 Route::get('/CategoriesUpdate/{id}', [CategoriesController::class, 'showCategoriesUpdate']);
 
-//Topic
+//Topics
 Route::get('/TopicsIndex', [TopicsController::class, 'showTopics']);
 Route::get('/TopicsCreate', [TopicsController::class, 'showTopicsCreate']);
 Route::get('/TopicsUpdate/{id}', [TopicsController::class, 'showTopicsUpdate']);
