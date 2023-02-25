@@ -1,11 +1,12 @@
 <script>
 import NavBar from '@/Components/NavBar.vue';
 import TheFooter from '@/Components/TheFooter.vue';
+import axios from 'axios';
 export default {
   components: {
     NavBar,
     TheFooter,
-},
+  },
   data() {
     return {
       department: {
@@ -31,17 +32,14 @@ export default {
       }
     },
     async updateDepartments() {
-      try {
-        const response = await axios.patch(`/api/departments/DepartmentsUpdate/${this.$route.params.id}`, this.department)
+        await axios.patch(`/api/departments/DepartmentsUpdate/${this.$route.params.id}`, this.department)
         .then((res) => {
           this.$router.push('/DepartmentsIndex')
-            });
-        console.log(response.data)
-      } catch (error) {
-        console.log(error);
-      }
+        }).catch (error => {
+          console.log(error);
+      })
     }
-  }
+  },
 }
 </script>
 <template>
