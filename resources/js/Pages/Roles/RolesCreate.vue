@@ -55,7 +55,7 @@ export default {
                                 <strong>Name</strong>
                                 <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter role name">
                             </div>
-                            <button type="submit" class="btn btn-primary"  @click.prevent="handlecreateRole">Create</button>
+                            <button type="submit" class="btn btn-primary mt-2"  @click.prevent="handlecreateRole">Create</button>
                         </div>
                     </div>
                 </form>
