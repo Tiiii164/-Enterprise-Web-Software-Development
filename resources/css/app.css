@@ -71,6 +71,8 @@ html{
     margin-top: 200px;
     color: white;
     right: 0;
+    font-weight: bold;
+    font-size: 20px;
 }
 .kimetsu-img{
     width: 100%;
@@ -78,11 +80,13 @@ html{
 }
 
 .card-title{
-    color: #D8BFD8 !important;
+    color: black !important;
+    font-weight: bold;
 }
 .card-title1{
   color: white !important;
-    
+  font-weight: bold;
+  font-size: 38px;
 }
 .nav-item1{
     color: grey !important;
@@ -97,7 +101,9 @@ input{
     width: 400px; 
 }
 input::placeholder{
-    color: white!important;
+    color: pink!important;
+    font-weight: bold;
+    font-size: 20px;
   }
 
 input{
