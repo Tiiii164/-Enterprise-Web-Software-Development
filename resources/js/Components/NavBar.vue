@@ -15,7 +15,6 @@ export default {
       axios.get('/getCurrentUser')
         .then(response => { 
           this.currentUser = response.data
-          console.log(this.currentUser)
           this.currentUser.roles.forEach(r => {
             this.roles.add(r.name);
           })
@@ -53,16 +52,16 @@ export default {
           </a>
           <ul class="dropdown-menu">
             <li class="dropdown-item">
-              <router-link class="nav-link active" to="/StaffSubmission">Category</router-link>
+              <router-link class="nav-link active" to="/CategoriesIndex">Category</router-link>
             </li>
             <li class="dropdown-item">
               <router-link class="nav-link active" to="#">Submission</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active" to="/StaffSubmission">Department</router-link>
+              <router-link class="nav-link active" to="/DepartmentsIndex">Department</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active" to="/StaffSubmission">Role</router-link>
+              <router-link class="nav-link active" to="/RolesIndex">Role</router-link>
             </li>
             <li class="dropdown-item">
               <router-link class="nav-link active" to="#">User</router-link>
@@ -70,10 +69,10 @@ export default {
           </ul>
         </li>
         <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager') || roles.has('Staff')">
-          <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Topic</router-link>
+          <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
         <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager')">
-          <router-link class="nav-link active" aria-current="page" to="/RolesIndex">Statistics</router-link>
+          <router-link class="nav-link active" aria-current="page" to="/TopicsIndex">Statistics</router-link>
         </li>
       </ul>
       <div class="d-flex">

@@ -1,10 +1,8 @@
 import { createWebHistory, createRouter } from "vue-router"
 import Home from '../Pages/Home.vue'
 import StaffSub from "../Pages/Staff/StaffSubmission.vue"
-import StaffProfile from "../Pages/Staff/StaffProfile.vue"
 import SignIn from "../Pages/Auth/SignIn.vue"
 import SignUp from "../Pages/Auth/SignUp.vue"
-import Admin from "../Pages/Admin/Admin.vue"
 //roles
 import RolesCreate from "../Pages/Roles/RolesCreate.vue"
 import RolesIndex from "../Pages/Roles/RolesIndex.vue"
@@ -28,31 +26,15 @@ import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-    //topics
     {
-        path: '/topicsCreate',
-        name: 'TopicsCreate',
-        component: TopicsCreate,
-    },
-    {
-        path: '/topicsIndex',
-        name: 'TopicsIndex',
-        component: TopicsIndex,
-    },
-    {
-        path: '/topicsUpdate/:id',
-        name: 'TopicsUpdate',
-        component: TopicsUpdate,
+        path: '/',
+        name: 'Home',
+        component: Home,
     },
     {
         path: '/signup',
         name: 'Sign Up',
         component: SignUp
-      },
-    {
-        path: '/staffSubmission',
-        name: 'Staff Submission',
-        component: StaffSub,
     },
     {
         path: '/signin',
@@ -60,64 +42,9 @@ const router = createRouter({
         component: SignIn,
     },
     {
-        path: '/',
-        name: 'Home',
-        component: Home,
-    },
-    {
-        path: '/staffProfile',
-        name: 'Staff Profile',
-        component: StaffProfile,
-    },
-    {
-        path: '/admin',
-        name: 'Admin',
-        component: Admin,
-    },
-    {
-        path: '/rolesCreate',
-        name: 'RolesCreate',
-        component: RolesCreate,
-    },
-    {
-        path: '/rolesIndex',
-        name: 'RolesIndex',
-        component: RolesIndex,
-    },
-    {
-        path: '/rolesUpdate/:id',
-        name: 'RolesUpdate',
-        component: RolesUpdate,
-    },
-    {
-        path: '/DepartmentsCreate',
-        name: 'DepartmentsCreate',
-        component: DepartmentsCreate,
-    },
-    {
-        path: '/DepartmentsIndex',
-        name: 'DepartmentsIndex',
-        component: DepartmentsIndex,
-    },
-    {
-        path: '/DepartmentsUpdate/:id',
-        name: 'DepartmentsUpdate',
-        component: DepartmentsUpdate,
-    },
-    {
-        path: '/CategoriesCreate',
-        name: 'CategoriesCreate',
-        component: CategoriesCreate,
-    },
-    {
-        path: '/CategoriesIndex',
-        name: 'CategoriesIndex',
-        component: CategoriesIndex,
-    },
-    {
-        path: '/CategoriesUpdate/:id',
-        name: 'CategoriesUpdate',
-        component: CategoriesUpdate,
+        path: '/staffSubmission',
+        name: 'Staff Submission',
+        component: StaffSub,
     },
     {
         path: '/ShowProfile',
@@ -128,6 +55,71 @@ const router = createRouter({
         path: '/UpdateProfile/:id',
         name: 'UpdateProfile',
         component: UpdateProfile,
+    },
+    //role
+    {
+        path: '/RolesIndex',
+        name: 'RolesIndex',
+        component: RolesIndex,
+    },
+    {
+        path: '/RolesCreate',
+        name: 'RolesCreate',
+        component: RolesCreate,
+    },
+    {
+        path: '/RolesUpdate/:id',
+        name: 'RolesUpdate',
+        component: RolesUpdate,
+    },
+    //department
+    {
+        path: '/DepartmentsIndex',
+        name: 'DepartmentsIndex',
+        component: DepartmentsIndex,
+    },
+    {
+        path: '/DepartmentsCreate',
+        name: 'DepartmentsCreate',
+        component: DepartmentsCreate,
+    },
+    {
+        path: '/DepartmentsUpdate/:id',
+        name: 'DepartmentsUpdate',
+        component: DepartmentsUpdate,
+    },
+    //category
+    {
+        path: '/CategoriesIndex',
+        name: 'CategoriesIndex',
+        component: CategoriesIndex,
+    },
+    {
+        path: '/CategoriesCreate',
+        name: 'CategoriesCreate',
+        component: CategoriesCreate,
+    },
+    {
+        path: '/CategoriesUpdate/:id',
+        name: 'CategoriesUpdate',
+        component: CategoriesUpdate,
+    },
+    //topics
+    {
+        path: '/TopicsIndex',
+        name: 'TopicsIndex',
+        component: TopicsIndex,
+    },
+    {
+        path: '/TopicsCreate',
+        name: 'TopicsCreate',
+        component: TopicsCreate,
+    },
+    
+    {
+        path: '/TopicsUpdate/:id',
+        name: 'TopicsUpdate',
+        component: TopicsUpdate,
     },
 ]
 })

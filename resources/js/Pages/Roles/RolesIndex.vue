@@ -14,7 +14,6 @@ export default {
   created() {
     this.getRole();
   },
-  mounted() {},
   methods: {
     async getRole() {
       try {
