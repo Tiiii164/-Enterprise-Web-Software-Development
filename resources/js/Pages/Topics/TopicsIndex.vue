@@ -11,22 +11,21 @@ export default {
       topics: []
     }
   },
-  setup() {
-    const form = reactive({
-      name: '',
-      closure_date: '',
-      final_closure_date: '',
-    })
-    const getTopics = async () => {
+  created() {
+    this.getTopics();
+  },
+  mounted() { },
+  methods: {
+    async getTopics() {
       try {
         const response = await axios.get('/api/topics/TopicsIndex');
         this.topics = response.data;
       } catch (error) {
         console.log(error);
       }
-    }
-    const deleteTopics = async (id) => {
-      if (confirm("Are you sure you want to delete this topic?")) {
+    },
+    async deleteTopics(id) {
+      if (confirm("Are you sure you want to delete this Topic?")) {
         try {
           const response = await axios.delete(`/api/topics/delete/${id}`);
           console.log(response.data);

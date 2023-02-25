@@ -63,11 +63,13 @@ export default {
                 </div>
                 <div class="form-group">
                   <strong>Closure Date</strong>
-                  <input type="text" name="name" class="form-control" v-model="form.closure_date" placeholder="Enter Closure Date">
+                  <input type="date" name="name" class="form-control" v-model="form.closure_date"
+                    placeholder="Enter Closure Date">
                 </div>
                 <div class="form-group">
                   <strong>Final Closure Date</strong>
-                  <input type="text" name="name" class="form-control" v-model="form.final_closure_date" placeholder="Enter Final Closure Date">
+                  <input type="date" name="name" class="form-control" v-model="form.final_closure_date"
+                    placeholder="Enter Final Closure Date">
                 </div>
                 <button type="submit" class="btn btn-primary mt-2" @click.prevent="handlecreateTopics">Create</button>
               </div>
@@ -77,5 +79,4 @@ export default {
       </div>
     </div>
   </form>
-  <TheFooter></TheFooter>
-</template>
+  <TheFooter></TheFooter></template>
