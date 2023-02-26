@@ -6,8 +6,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\topicsController;
+use App\Http\Controllers\TopicsController;
+use App\Http\Controllers\IdeasController;
 use App\Http\Controllers\UserController;
+use App\Models\Ideas;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
 
@@ -26,7 +28,7 @@ Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
     Route::post('signin', 'signin');
 });
 
-//TopicsController
+//topics
 Route::controller(TopicsController::class)->group(function () {
     Route::get('/topics/TopicsIndex', 'index');
     Route::get('/topics/edit/{id}', 'edit');
@@ -34,6 +36,17 @@ Route::controller(TopicsController::class)->group(function () {
     Route::patch('/topics/TopicsUpdate/{id}', 'update');
     Route::delete('/topics/delete/{id}', 'destroy');
 });
+//Ideas
+Route::controller(IdeasController::class)->group(function () {
+        
+    Route::get('/ideas/IdeasIndex', 'index');
+    Route::get('/ideas/edit/{id}', 'edit');
+    Route::post('/ideas/IdeasCreate', 'store');
+    Route::patch('/ideas/IdeasUpdate/{id}', 'update');
+    Route::delete('/ideas/delete/{id}', 'destroy');
+});
+
+
 
 //RolesController
 Route::controller(RolesController::class)->group(function () {

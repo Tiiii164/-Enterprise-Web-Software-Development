@@ -15,10 +15,14 @@ import DepartmentsUpdate from "../Pages/Departments/DepartmentsUpdate.vue"
 import CategoriesCreate from "../Pages/Categories/CategoriesCreate.vue"
 import CategoriesIndex from "../Pages/Categories/CategoriesIndex.vue"
 import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
-//topics
+//Topics
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
 import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
+//Ideas
+import IdeasCreate from "../Pages/Ideas/IdeasCreate.vue"
+import IdeasIndex from "../Pages/Ideas/IdeasIndex.vue"
+import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
@@ -138,7 +142,7 @@ function isAuthenticated() {
 router.beforeEach((to, from, next) => {
 
     if (to.path !== '/signup' && to.path !== '/signin' && !isAuthenticated()) {
-        return next({path: '/signup'})
+        return next({ path: '/signup' })
 
     }
     return next()
