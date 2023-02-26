@@ -8,10 +8,28 @@ export default {
 },
   data() {
     return {
-      role: {}
+      role: {
+        name: "",
+        _method: "patch",
+      }
     }
   },
+  created() {
+    this.showRoles()
+  },
   methods: {
+    async showRoles() {
+      try {
+        const response = await axios.patch(`/api/roles/RolesUpdate/${this.$route.params.id}`)
+        .then((res) => {
+          const {name} = res.data
+          this.role.name = name
+            });
+        console.log(response.data)
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async updateRoles() {
       try {
         const response = await axios.patch(`/api/roles/RolesUpdate/${this.$route.params.id}`, this.role)
@@ -47,10 +65,10 @@ export default {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <strong>Role Name</strong>
-                                <input type="text" name="name" v-model="role.name" class="form-control" placeholder="Enter Role">
+                                <input type="text" name="name" v-model="role.name" class="form-control">
                             </div>
                             <div class="form-group">
-                              <button class="btn btn-primary" type="submit">Update</button>
+                              <button class="btn btn-primary mt-2" type="submit">Update</button>
                             </div>
                           </div>
                       </div>

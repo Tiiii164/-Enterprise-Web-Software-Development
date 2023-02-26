@@ -10,9 +10,9 @@ export default {
             email: '',
             password: '',
         })
-        const handleLogin = async () => {
+        const handleSignIn = async () => {
             try {
-                const result = await axios.post('/api/auth/Login', form)
+                const result = await axios.post('/api/auth/signin', form)
                 if (result.status === 200 && result.data && result.data.token) {
                     localStorage.setItem('Idea_token', result.data.token)
                     await router.push('/')
@@ -21,14 +21,14 @@ export default {
                 if(e && e.response.data && e.response.data.errors) {
                     errors.value = Object.values(e.response.data.errors)
                 } else {
-                    errors.value = "Login Failed"
+                    errors.value = "Sign In Failed"
                 }
             }
         }
         return {
             form,
             errors,
-            handleLogin,
+            handleSignIn,
         }
     }
 }
@@ -39,10 +39,9 @@ export default {
             <div class="col-md-8">
                 <div class="">
                 <div class="card-body">
-                    <h1 class="card-title">Welcome back</h1>
-                    <h2 class="card-title1">Hello User! Please enter your details</h2>
-                    <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{errors}}</p>
-                    <form method="post" @submit.prevent="handleLogin">
+                    <h4 class="card-title">Sign In Form</h4>
+                    <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{ errors }}</p>
+                    <form method="post" @submit.prevent="handleSignIn">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email: </label>
                             <input type="text" name="email" v-model="form.email" id="email" class="border" placeholder=" Enter Email">
@@ -52,11 +51,12 @@ export default {
                             <input type="password" name="password" v-model="form.password" id="password" class="border" placeholder=" Enter Password">
                         </div>
                         <div class="d-flex justify-center">
-                            <router-link class="buttoncss ml-16" to="/Register"> Register </router-link>
-                            <button type="submit" class="buttoncss ml-16"> Login </button>
+                            <router-link class="buttoncss ml-16" to="/signup"> Sign Up </router-link>
+                            <button type="submit" class="buttoncss ml-16">Sign In</button>
                         </div>
                     </form>      
                 </div>                
+
                 </div>
             </div>
         </div>
