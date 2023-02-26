@@ -2,6 +2,9 @@
 import NavBar from '@/Components/NavBar.vue';
 import TheFooter from '@/Components/TheFooter.vue';
 export default {
+  components: {
+    NavBar, TheFooter,
+  },
   data() {
     return {
       CurrentUser: {},

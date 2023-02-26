@@ -55,7 +55,7 @@ export default {
               <router-link class="nav-link active" to="/CategoriesIndex">Category</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active" to="#">Submission</router-link>
+              <router-link class="nav-link active" to="TopicsIndex">Submission</router-link>
             </li>
             <li class="dropdown-item">
               <router-link class="nav-link active" to="/DepartmentsIndex">Department</router-link>
@@ -69,7 +69,7 @@ export default {
           </ul>
         </li>
         <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager') || roles.has('Staff')">
-          <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
+          <router-link class="nav-link active" aria-current="page" to="/TopicsIndex">Staff Submission</router-link>
         </li>
         <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager')">
           <router-link class="nav-link active" aria-current="page" to="#">Statistics</router-link>
