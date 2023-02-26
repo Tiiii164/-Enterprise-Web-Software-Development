@@ -22,6 +22,7 @@ import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
+import ChangePassword from "../Pages/Auth/ChangePassword.vue"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -120,6 +121,12 @@ const router = createRouter({
         path: '/TopicsUpdate/:id',
         name: 'TopicsUpdate',
         component: TopicsUpdate,
+    },
+
+    {
+        path: '/ChangePassword',
+        name: 'ChangePassword',
+        component: ChangePassword,
     },
 ]
 })
