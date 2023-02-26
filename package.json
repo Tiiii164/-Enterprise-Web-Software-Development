@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@types/es6-promise": "^3.3.0",
+        "@vuepic/vue-datepicker": "^4.0.1",
         "@websanova/vue-auth": "^4.2.1",
         "bootstrap-vue": "^2.23.1",
         "jsonwebtoken": "^9.0.0",
@@ -34,14 +35,14 @@
         "vue-virtual-scroller": "^2.0.0-beta.8",
         "vuex": "^4.1.0"
     },
-        "name": "6anhemsieunhan",
-        "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\" alt=\"Laravel Logo\"></a></p>",
-        "version": "1.0.0",
-        "main": "postcss.config.js",
-        "directories": {
-            "test": "tests"
+    "name": "6anhemsieunhan",
+    "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\" alt=\"Laravel Logo\"></a></p>",
+    "version": "1.0.0",
+    "main": "postcss.config.js",
+    "directories": {
+        "test": "tests"
     },
-        "keywords": [],
-        "author": "",
-        "license": "ISC"
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }
