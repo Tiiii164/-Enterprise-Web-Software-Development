@@ -18,7 +18,7 @@ use App\Http\Controllers\DepartmentsController;
 require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
-    return view('home');
+    return view('app');
 });
 
 Auth::routes();

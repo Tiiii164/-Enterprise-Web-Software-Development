@@ -27,7 +27,7 @@ class LaratrustSetupTables extends Migration
             $table->timestamps();
         });
 
-        // Create table for storing permissions
+        // Create table for storing departments
         Schema::create('departments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
@@ -70,18 +70,6 @@ class LaratrustSetupTables extends Migration
 
             $table->primary(['permission_id', 'role_id']);
         });
-
-        // Create table for associating permissions to users (Many To Many Polymorphic)
-        Schema::create('departments_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('departments_id');
-            $table->unsignedBigInteger('user_id');
-            $table->string('user_type');
-
-            $table->foreign('departments_id')->references('id')->on('departments')
-                ->onUpdate('cascade')->onDelete('cascade');
-
-            $table->primary(['user_id', 'departments_id', 'user_type']);
-        });
     }
 
     /**
@@ -91,9 +79,6 @@ class LaratrustSetupTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departments');
-        Schema::dropIfExists('departments_user');
-
         Schema::dropIfExists('permission_user');
         Schema::dropIfExists('permissions');
 

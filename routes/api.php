@@ -60,6 +60,7 @@ Route::controller(RolesController::class)->group(function () {
 
 //DepartmentsController
 Route::controller(DepartmentsController::class)->group(function () {
+    Route::get('/departments', 'getDepartments');
     Route::get('/departments/DepartmentsIndex', 'index');
     Route::get('/departments/edit/{id}', 'edit');
     Route::post('/departments/DepartmentsCreate', 'store');

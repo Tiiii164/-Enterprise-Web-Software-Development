@@ -22,6 +22,13 @@ class DepartmentsController extends Controller
         return response()->json($departments);
     }
 
+    public function getDepartments()
+    {
+        $data = Departments::get();
+   
+        return response()->json($data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

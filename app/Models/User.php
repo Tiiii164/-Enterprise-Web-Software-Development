@@ -33,6 +33,10 @@ class Users extends Model
     {
         return $this->hasMany(Reacts::class);
     }
+    public function departments()
+    {
+        return $this->hasMany(Departments::class);
+    }
     public function roles()
     {
         return $this->belongsToMany(Role::class);

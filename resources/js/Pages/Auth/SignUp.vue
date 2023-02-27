@@ -3,6 +3,12 @@ import axios from 'axios';
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router"
     export default {
+    data() {
+        return {
+            department: 0,
+            departments: [],
+        }
+    },
     setup() {
         const errors = ref()
         const router = useRouter();
@@ -33,6 +39,17 @@ import { useRouter } from "vue-router"
             errors,
             handleSignUp,
         }
+    },
+    methods: {
+        async getDepartments() {
+            axios.get('/api/departments/')    
+            .then((response) => { 
+                this.departments = response.data;
+            });
+        }
+    },
+    created() {
+        this.getDepartments();
     }
 }
 </script>
@@ -60,6 +77,16 @@ import { useRouter } from "vue-router"
                         <div class="mb-3">
                             <label for="password" class="form-label">Confirm Password: </label>
                             <input type="password" name="password_confirm" v-model="form.password_confirmation" id="password_confirm" class="form-control" placeholder="Confirm Password">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Departments: </label>
+                            <div class="form-floating">
+                                <select class="form-select" v-model="department">
+                                    <option value='0'>Select Department</option>
+                                    <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
+                                </select>
+                            <label for="floatingSelect">Choose Department</label>    
+                            </div>
                         </div>
                         <div class="d-flex justify-content-between">
                             <router-link class="btn btn-danger" to="/signin"> Sign In </router-link>

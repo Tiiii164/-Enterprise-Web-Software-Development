@@ -20,7 +20,6 @@ export default {
       axios.get('/api/ShowProfile')
         .then(response => { 
           this.CurrentUser = response.data
-          // console.log(this.CurrentUser)
           this.CurrentUser.roles.forEach(r => {
             this.roles.add(r.name);
           })

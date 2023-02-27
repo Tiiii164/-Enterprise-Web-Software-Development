@@ -47,7 +47,7 @@ export default {
     <div class="collapse navbar-collapse justify-between" id="navbar">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown" v-if="roles.has('Admin') || roles.has('Manager')">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Management
           </a>
           <ul class="dropdown-menu">

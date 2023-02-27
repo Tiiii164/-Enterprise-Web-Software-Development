@@ -22,19 +22,17 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-        // Schema::table('users', function (Blueprint $table) {
-
-        //     $table->foreignId('role_id')->constrained('roles');
-        //     $table->foreignId('department_id')->constrained('departments');
-        //     // $table->foreign('role_id')
-        //     //     ->references('id')
-        //     //     ->on('roles')
-        //     //     ->onDelete('cascade');
-        //     // $table->foreign('department_id')
-        //     //     ->references('id')
-        //     //     ->on('departments')
-        //     //     ->onDelete('cascade');
-        // });
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('department_id')->constrained('departments');
+            // $table->foreign('role_id')
+            //     ->references('id')
+            //     ->on('roles')
+            //     ->onDelete('cascade');
+            // $table->foreign('department_id')
+            //     ->references('id')
+            //     ->on('departments')
+            //     ->onDelete('cascade');
+        });
     }
 
     /**
