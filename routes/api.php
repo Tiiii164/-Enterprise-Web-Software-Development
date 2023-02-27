@@ -10,10 +10,17 @@ use App\Http\Controllers\topicsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
+use App\Models\User;
 
 Route::get('/ShowProfile', function () {
     return Auth::user()->load('roles');
 });
+
+Route::get('/UsersIndex', function () {
+    $users = User::with('roles')->get();
+    return response()->json($users);
+});
+
 Route::patch('UpdateProfile/{id}', [UserController::class, 'update']);
 Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
     Route::post('signup', 'signup');
@@ -51,3 +58,13 @@ Route::controller(CategoriesController::class)->group(function () {
     Route::patch('/categories/CategoriesUpdate/{id}', 'update');
     Route::delete('/categories/delete/{id}', 'destroy');
 });
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/users/UsersIndex', 'index');
+    Route::get('/users/edit/{id}', 'edit');
+    Route::post('/users/UsersCreate', 'store');
+    Route::patch('/users/UsersUpdate/{id}', 'update');
+    Route::delete('/users/delete/{id}', 'destroy');
+});
+
+
