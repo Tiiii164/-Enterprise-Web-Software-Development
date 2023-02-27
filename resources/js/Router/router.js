@@ -47,6 +47,11 @@ const router = createRouter({
         component: SignIn,
     },
     {
+        path: '/ChangePassword',
+        name: 'ChangePassword',
+        component: ChangePassword,
+    },
+    {
         path: '/staffSubmission',
         name: 'Staff Submission',
         component: StaffSub,
@@ -126,11 +131,21 @@ const router = createRouter({
         name: 'TopicsUpdate',
         component: TopicsUpdate,
     },
-
+    //ideas
     {
-        path: '/ChangePassword',
-        name: 'ChangePassword',
-        component: ChangePassword,
+        path: '/IdeasIndex',
+        name: 'IdeasIndex',
+        component: IdeasIndex,
+    },
+    {
+        path: '/IdeasCreate',
+        name: 'IdeasCreate',
+        component: IdeasCreate,
+    },
+    {
+        path: '/IdeasUpdate/:id',
+        name: 'IdeasUpdate',
+        component: IdeasUpdate,
     },
 ]
 })
