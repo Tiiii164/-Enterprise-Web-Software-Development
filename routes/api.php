@@ -25,15 +25,17 @@ Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
 Route::controller(TopicsController::class)->group(function () {
     Route::get('/topics/TopicsIndex', 'index');
     Route::get('/topics/edit/{id}', 'edit');
+    Route::get('/topics/TopicsShow/{id}', 'infoTopics');
     Route::post('/topics/TopicsCreate', 'store');
     Route::patch('/topics/TopicsUpdate/{id}', 'update');
     Route::delete('/topics/delete/{id}', 'destroy');
 });
 //Ideas
 Route::controller(IdeasController::class)->group(function () {
-        
+
     Route::get('/ideas/IdeasIndex', 'index');
     Route::get('/ideas/edit/{id}', 'edit');
+    Route::get('/ideas/show/{id}', 'show');
     Route::post('/ideas/IdeasCreate', 'store');
     Route::patch('/ideas/IdeasUpdate/{id}', 'update');
     Route::delete('/ideas/delete/{id}', 'destroy');

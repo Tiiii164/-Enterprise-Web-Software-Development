@@ -8,7 +8,8 @@ export default {
   },
   data() {
     return {
-      topics: []
+      topics: [],
+
     }
   },
   created() {
@@ -20,6 +21,8 @@ export default {
       try {
         const response = await axios.get('/api/topics/TopicsIndex');
         this.topics = response.data;
+
+        debug.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -57,7 +60,7 @@ export default {
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th>No.</th>
+              <th>No</th>
               <th>Name</th>
               <th>Closure Date</th>
               <th>Final Closure Date</th>
@@ -73,6 +76,7 @@ export default {
               <td>
                 <div>
                   <router-link :to="'/TopicsUpdate/' + topics.id" class="btn btn-primary">Edit</router-link>
+                  <router-link :to="'/TopicsShow/' + topics.id" class="btn btn-primary">View Ideas</router-link>
                   <button class="btn btn-danger" @click.prevent="deleteTopics(topics.id)">Delete</button>
                 </div>
               </td>
