@@ -9,26 +9,24 @@ export default {
   data() {
     return {
       users: [],
-      roles: new Set(),
-      users:'',
-      
+      roles: 'name',
     }
   },
   created() {
     this.getUser();
   },
-
   methods: {
-    async getUser() {
-      try {
-        const response = await axios.get('/api/UsersIndex');
-        this.users = response.data
-        this.users.roles.forEach(r => { this.roles.add(r.name);})
-        console.log(this.users)
-         
-      } catch (error) {
-        console.log(error);
-      }
+    getUser() {
+      axios.get('/api/users/UsersIndex')
+      .then(response => {
+        this.users = response.data.users,
+        this.roles = response.data.roles,
+        console.log(response.data)
+        // this.users.roles.forEach(r => {
+        // this.roles.add(r.name);
+        // })
+      })
+      .catch (error => {console.log(error)})
     },
     async deleteUser(id) {
       if (confirm("Are you sure you want to delete this user?")) {
@@ -73,17 +71,17 @@ export default {
                         </tr>
                     </thead>
                     <tbody>
-                            <tr v-for="(role, index) in roles" :key="role">
+                            <tr v-for="(user, index) in users " :key="index">
                                 <td>{{ index + 1 }}</td>
-                                <td>{{ users.email }}</td>
-                                <td>{{ users.name }}</td>
-                                <td>{{ role }}</td>
-                              
-                                
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td v-for="role in user.roles" :key="role.id">
+                                  <td >{{ role.name }}</td>
+                                </td>
                                 <div>
-                                      <router-link :to="'/UsersUpdate/' + user.id" class="btn btn-primary">Edit</router-link>
-                                      <button class="btn btn-danger" @click.prevent="deleteUser(user.id)">Delete</button>
-                                    </div>
+                                  <router-link :to="'/UsersUpdate/' + user.id" class="btn btn-primary">Edit</router-link>
+                                  <button class="btn btn-danger" @click.prevent="deleteUser(user.id)">Delete</button>
+                                </div>
                             </tr>
                     </tbody>
                 </table> 

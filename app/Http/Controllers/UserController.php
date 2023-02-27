@@ -18,8 +18,9 @@ class UserController extends Controller
     {
         // $users = User::get()->load('roles');
         // return $users;
-        $user = User::all();
-        return response()->json($user);
+        $users = User::with('roles')->get();
+        $roles = Role::all();
+        return response()->json(['users' => $users, 'roles' => $roles]);
     }
 
     /**
