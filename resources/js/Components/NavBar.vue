@@ -1,54 +1,87 @@
 <script>
-import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router"
-    const user = ref();
-    let router = useRouter();
-    onMounted(() => {
-      authentication()
-    })
-    const authentication = async () => {
-        isLoading.value = true
-      try {
-        const req = await request('get', '/api/user')
-        user.value = req.data
-    } catch (e) {
-        await router.push('/')
-      }
+export default {
+  data() {
+    return {
+      currentUser: {},
+      roles: new Set(),
     }
+},
+  created() {
+      this.getCurrentUser()
+},
+  methods: {
+    getCurrentUser() {
+      axios.get('/getCurrentUser')
+        .then(response => { 
+          this.currentUser = response.data
+          this.currentUser.roles.forEach(r => {
+            this.roles.add(r.name);
+          })
+        }
+      )
+      .catch(error => { console.log(error) }
+      )
+  },
+},
+  setup() {
+    const router = useRouter();
     const handleLogout = () => {
-        localStorage.removeItem('token')
-        router.push('/')
+        localStorage.removeItem('Idea_token')
+        router.push('/signin')
     }
-export default {}
+    return {
+      handleLogout,
+    } 
+  }
+};
 </script>
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <router-link class="navbar-brand" to="/">Idea</router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" 
+      aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-between" id="navbarNav">
+    <div class="collapse navbar-collapse justify-between" id="navbar">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
+        <li class="nav-item dropdown" v-if="roles.has('Admin') || roles.has('Manager')">
+          <a class="nav-link dropdown-toggle active nav-item1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Management
+          </a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item">
+              <router-link class="nav-link active nav-item1" to="/CategoriesIndex">Category</router-link>
+            </li>
+            <li class="dropdown-item">
+              <router-link class="nav-link active nav-item1" to="TopicsIndex">Submission</router-link>
+            </li>
+            <li class="dropdown-item">
+              <router-link class="nav-link active nav-item1" to="/DepartmentsIndex">Department</router-link>
+            </li>
+            <li class="dropdown-item">
+              <router-link class="nav-link active nav-item1" to="/RolesIndex">Role</router-link>
+            </li>
+            <li class="dropdown-item">
+              <router-link class="nav-link active nav-item1" to="#">User</router-link>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
+        <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager') || roles.has('Staff')">
+          <router-link class="nav-link active nav-item1" aria-current="page" to="/TopicsIndex">Staff Submission</router-link>
         </li>
-        <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/Login">Log In</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/Register">Register</router-link>
+        <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager')">
+          <router-link class="nav-link active nav-item1" aria-current="page" to="#">Statistics</router-link>
         </li>
       </ul>
-      <form class="d-flex">
-        <span class="capitalize">Welcome {{ user && user.name }} 
-            <a type="button" class="" @click="handleLogout">Logout</a>
-          </span>
-      </form>
+      <div class="d-flex">
+        <span class="capitalize">Hello 
+          <router-link class="text-primary user_link me-2" to="/ShowProfile">{{ currentUser.name }} 
+          </router-link>
+          <button type="button" class="btn btn-danger" @click="handleLogout">Logout</button>
+        </span>
+      </div>
     </div>
   </div>
 </nav>

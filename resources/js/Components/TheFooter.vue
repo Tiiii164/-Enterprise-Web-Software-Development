@@ -2,16 +2,16 @@
     <div class="footer">
         <div class="footer1">
             <div class="img1">
-                <a href="https://www.facebook.com/"><img src="../../css/facebook.png" width="30" height="30"></a>
+                <a href="https://www.facebook.com/"  target="_blank" rel="noreferrer"><img src="../../css/facebook.png" width="30" height="30"></a>
             </div>
             <div class="img1">
-                <a href="https://www.instagram.com/"><img src="../../css/instagram.png" width="30" height="30"></a>
+                <a href="https://www.instagram.com/"  target="_blank" rel="noreferrer"><img src="../../css/instagram.png" width="30" height="30"></a>
             </div>
             <div class="img1">
-                <a href="https://chat.zalo.me/"><img src="../../css/zalo.png" width="30" height="30"></a>
+                <a href="https://chat.zalo.me/"  target="_blank" rel="noreferrer"><img src="../../css/zalo.png" width="30" height="30"></a>
             </div>
             <div class="img1">
-                <a href="https://www.youtube.com/"><img src="../../css/youtube.png" width="30" height="30"></a>
+                <a href="https://www.youtube.com/"  target="_blank" rel="noreferrer"><img src="../../css/youtube.png" width="30" height="30"></a>
             </div>
         </div>
         <div class="footer2">
