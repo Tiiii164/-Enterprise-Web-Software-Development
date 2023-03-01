@@ -18,4 +18,8 @@ class Controller extends BaseController
     {
         return Inertia::render('Statistics');
     }
+    public function showStaffSubmission()
+    {
+        return Inertia::render('StaffSubmission');
+    }
 }

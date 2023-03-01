@@ -82,8 +82,7 @@ export default {
               <td>{{ topics.final_closure_date }}</td>
               <td>
                 <div>
-                  <router-link :to="'/TopicsUpdate/' + topics.id" class="btn btn-primary">Edit</router-link>
-                  <router-link :to="'/TopicsShow/' + topics.id" class="btn btn-primary">View Ideas</router-link>
+                  <router-link :to="'/TopicsUpdate/' + topics.id" class="btn btn-primary me-3">Edit</router-link>
                   <button class="btn btn-danger" @click.prevent="deleteTopics(topics.id)">Delete</button>
                 </div>
               </td>

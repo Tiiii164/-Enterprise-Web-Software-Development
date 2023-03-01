@@ -49,6 +49,11 @@ class LaratrustSetupTables extends Migration
             $table->timestamps();
         });
 
+        // Seed for departments
+        DB::table('departments')->insert([
+            'name' => 'All',
+        ]);
+
         // Create table for storing users
         Schema::create('users', function (Blueprint $table) {
             $table->id();

@@ -11,15 +11,11 @@ import * as directives from 'vuetify/lib/directives/index.mjs'
 import 'bootstrap/dist/js/bootstrap.js'
 
 const vuetify = createVuetify({
-        components,
-        directives
+  components,
+  directives
 })
 
 createApp(App)
         .use(router)
-
         .use(vuetify)
         .mount('#app');
-
-      
-

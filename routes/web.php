@@ -24,6 +24,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [Controller::class, 'showHome'])->name('home');
+Route::get('/Statistics', [Controller::class, 'showStatistics'])->name('Statistics');
+Route::get('/StaffSubmission', [Controller::class, 'showStaffSubmission'])->name('StaffSubmission');
 
 //User
 Route::get('/getCurrentUser', function () {
@@ -54,8 +56,6 @@ Route::get('/TopicsIndex', [TopicsController::class, 'showTopics']);
 Route::get('/TopicsCreate', [TopicsController::class, 'showTopicsCreate']);
 Route::get('/TopicsUpdate/{id}', [TopicsController::class, 'showTopicsUpdate']);
 Route::get('/TopicsShow/{id}', [TopicsController::class, 'showTopicsShow']);
-//Route::get('/TopicsShow/{id}', [TopicsController::class, 'inforTopics']);
-
 
 //Ideas
 Route::get('/IdeasIndex', [IdeasController::class, 'showIdeas']);
@@ -66,5 +66,3 @@ Route::get('/IdeasShow/{id}', [IdeasController::class, 'showIdeasShow']);
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);
 Route::get('/RolesUpdate/{id}', [RolesController::class, 'showRolesUpdate']);
-
-Route::get('/Statistics', [Controller::class, 'showStatistics'])->name('Statistics');
