@@ -29,8 +29,7 @@ class AuthController extends Controller
                 [
                     'name' => 'required|string|max:255',
                     'email' => 'required|string|email|max:255|unique:users,email',
-                    'password' => 'required|confirmed|min:3',
-                    'department_id'=> '',
+                    'password' => 'required|confirmed|min:4',
                 ]
             );
 
@@ -49,7 +48,6 @@ class AuthController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
-            $user->department_id = $request->department_id;
             $user->save();
             $user->roles()->attach(Role::where('name', 'Staff')->first());
 
@@ -138,4 +136,47 @@ class AuthController extends Controller
     {
         return Inertia::render('ShowProfile');
     }
+
+    // public function Profile()
+    // {
+    //     try {
+    //         if (!$token = JWTAuth::parseToken()) {
+    //             return response()->json(['error' => 'Token not provided.'], 401);
+    //         }
+    //         $user = $token->authenticate();
+    //         if (!$user) {
+    //             return response()->json(['error' => 'User not found.'], 404);
+    //         }
+    //     } catch (TokenExpiredException $e) {
+    //         return response()->json(['error' => 'Token expired.'], 401);
+    //     } catch (TokenInvalidException $e) {
+    //         return response()->json(['error' => 'Token invalid.'], 401);
+    //     } catch (JWTException $e) {
+    //         return response()->json(['error' => 'Token absent.'], 401);
+    //     }
+    //     return response()->json(compact('user'));
+    // }
+
+    // public function updateProfile(Request $request)
+    // {
+    //     try {
+    //         if (!$token = JWTAuth::parseToken()) {
+    //             return response()->json(['error' => 'Token not provided.'], 401);
+    //         }
+    //         $user = $token->authenticate();
+    //         if (!$user) {
+    //             return response()->json(['error' => 'User not found.'], 404);
+    //         }
+    //     } catch (TokenExpiredException $e) {
+    //         return response()->json(['error' => 'Token expired.'], 401);
+    //     } catch (TokenInvalidException $e) {
+    //         return response()->json(['error' => 'Token invalid.'], 401);
+    //     } catch (JWTException $e) {
+    //         return response()->json(['error' => 'Token absent.'], 401);
+    //     }
+    //     $user->name = $request->input('name');
+    //     $user->email = $request->input('email');
+    //     $user->save();
+    //     return response()->json(compact('user'));
+    // }
 }
