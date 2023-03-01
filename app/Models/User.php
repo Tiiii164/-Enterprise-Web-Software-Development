@@ -35,7 +35,7 @@ class Users extends Model
     }
     public function departments()
     {
-        return $this->hasMany(Departments::class);
+        return $this->belongsToMany(Departments::class);
     }
     public function roles()
     {
@@ -63,6 +63,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'department_id'
     ];
 
     /**

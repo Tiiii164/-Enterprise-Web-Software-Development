@@ -30,7 +30,7 @@ class AuthController extends Controller
                     'name' => 'required|string|max:255',
                     'email' => 'required|string|email|max:255|unique:users,email',
                     'password' => 'required|confirmed|min:3',
-                    'departments' => 'required',
+                    'department_id'=> '',
                 ]
             );
 
@@ -49,7 +49,7 @@ class AuthController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
-            $user->department = $request->department;
+            $user->department_id = $request->department_id;
             $user->save();
             $user->roles()->attach(Role::where('name', 'Staff')->first());
 

@@ -27,7 +27,8 @@ import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
 import ChangePassword from "../Pages/Auth/ChangePassword.vue"
-
+//statistics
+import Statistics from "../Pages/Statistics.vue"
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -146,6 +147,12 @@ const router = createRouter({
         path: '/IdeasUpdate/:id',
         name: 'IdeasUpdate',
         component: IdeasUpdate,
+    },
+    //Statistics
+    {
+        path: '/Statistics',
+        name: 'Statistics',
+        component: Statistics,
     },
 ]
 })

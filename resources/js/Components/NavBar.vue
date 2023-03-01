@@ -73,7 +73,7 @@ export default {
           <router-link class="nav-link active" aria-current="page" to="/IdeasIndex">Staff Submission</router-link>
         </li>
         <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager')">
-          <router-link class="nav-link active" aria-current="page" to="#">Statistics</router-link>
+          <router-link class="nav-link active" aria-current="page" to="/Statistics">Statistics</router-link>
         </li>
       </ul>
       <div class="d-flex">

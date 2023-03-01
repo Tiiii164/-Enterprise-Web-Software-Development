@@ -5,7 +5,6 @@ import { useRouter } from "vue-router"
     export default {
     data() {
         return {
-            department: 0,
             departments: [],
         }
     },
@@ -17,6 +16,7 @@ import { useRouter } from "vue-router"
             name: '',
             password: '',
             password_confirmation: '',
+            department_id: '',
         })
         const handleSignUp = async (evt) => {
             evt.preventDefault()
@@ -81,7 +81,7 @@ import { useRouter } from "vue-router"
                         <div class="mb-3">
                             <label class="form-label">Departments: </label>
                             <div class="form-floating">
-                                <select class="form-select" v-model="department">
+                                <select class="form-select" v-model="form.department_id">
                                     <option value='0'>Select Department</option>
                                     <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
                                 </select>

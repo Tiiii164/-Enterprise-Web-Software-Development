@@ -16,9 +16,6 @@ class DepartmentsController extends Controller
      * @return \Illuminate\Http\Response
      */
         $departments = Departments::all();
-        // return view('departments.index', [
-        //     'departments' => $departments,
-        // ]);
         return response()->json($departments);
     }
 

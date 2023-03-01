@@ -9,17 +9,22 @@ export default {
   data() {
     return {
       CurrentUser: {},
-      roles: new Set(),
+      roles: new Set (),
+      departments: [
+        'name'
+      ],
     }
 },
-  created() {
-      this.getCurrentUser();
+  mounted() {
+    this.getCurrentUser();
+    this.getDepartments();
 },
   methods: {
     getCurrentUser() {
       axios.get('/api/ShowProfile')
         .then(response => { 
           this.CurrentUser = response.data
+          console.log(response.data);
           this.CurrentUser.roles.forEach(r => {
             this.roles.add(r.name);
           })
@@ -27,7 +32,14 @@ export default {
       )
       .catch(error => { console.log(error) }
       )
-    }
+    },
+    getDepartments() {
+      axios.get('/api/departments')
+        .then(response => {
+          this.departments = response.data
+          console.log(response.data)
+      })
+    },
   }
 };
 </script>
@@ -49,10 +61,11 @@ export default {
                             <th>Name:</th>
                             <th>Email:</th>
                             <th>Role:</th>
+                            <th>Department:</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <tr v-for="role in roles" :key="role">
+                            <tr v-for="role in roles" :key="role.id">
                                 <td>{{ CurrentUser.name }} 
                                   <span>
                                   <router-link :to="'/UpdateProfile/' + CurrentUser.id" 
@@ -60,7 +73,13 @@ export default {
                                   </span>
                                 </td>
                                 <td>{{ CurrentUser.email }}</td>
-                                <td>{{ role }}</td>
+                                <td >
+                                  <td>{{ role }}</td>
+                                </td>
+                                <td>{{ CurrentUser.department_id }}</td>
+                                <!-- <td v-for="department in departments" :key="department.id">
+                                  <td>{{ department }}</td>
+                                </td> -->
                             </tr>
                     </tbody>
                 </table> 
