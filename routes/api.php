@@ -74,6 +74,7 @@ Route::controller(DepartmentsController::class)->group(function () {
 
 //CategoriesController
 Route::controller(CategoriesController::class)->group(function () {
+    Route::get('/categories', 'getCategories');
     Route::get('/categories/CategoriesIndex', 'index');
     Route::get('/categories/edit/{id}', 'edit');
     Route::post('/categories/CategoriesCreate', 'store');

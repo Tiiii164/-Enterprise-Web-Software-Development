@@ -10,7 +10,8 @@ export default {
   },
   data() {
     return {
-      ideas: []
+      ideas: [],
+      categories: [],
     }
   },
   setup() {
@@ -19,6 +20,7 @@ export default {
       title: '',
       text: '',
       file_path: '',
+      category_id: '',
     })
     const handlecreateIdeas = async () => {
       try {
@@ -35,7 +37,18 @@ export default {
       form,
       handlecreateIdeas,
     }
-  }
+  },
+  methods: {
+        async getCategories() {
+            axios.get('/api/categories/')    
+            .then((response) => { 
+                this.categories = response.data;
+            });
+        }
+    },
+    created() {
+        this.getCategories();
+    }
 }
 </script>
 <template>
@@ -69,7 +82,12 @@ export default {
                   <strong>File Path</strong>
                   <input type="text" name="file_path" class="form-control" v-model="form.file_path" placeholder="">
                 </div>
-
+                <div class="form-group">
+                    <strong>Category</strong>
+                    <select class="form-select form-control" v-model="form.category_id">
+                        <option v-for="data in categories" :value="data.id">{{ data.name }}</option>
+                    </select>    
+                </div>
                 <button type="submit" class="btn btn-primary mt-2" @click.prevent="handlecreateIdeas">Create</button>
               </div>
             </div>

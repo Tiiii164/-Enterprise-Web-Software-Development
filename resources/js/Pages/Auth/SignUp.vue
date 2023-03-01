@@ -80,13 +80,9 @@ import { useRouter } from "vue-router"
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Departments: </label>
-                            <div class="form-floating">
-                                <select class="form-select" v-model="form.department_id">
-                                    <option value='0'>Select Department</option>
-                                    <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
-                                </select>
-                            <label for="floatingSelect">Choose Department</label>    
-                            </div>
+                            <select class="form-select form-control" v-model="form.department_id">
+                                <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
+                            </select>
                         </div>
                         <div class="d-flex justify-content-between">
                             <router-link class="btn btn-danger" to="/signin"> Sign In </router-link>
