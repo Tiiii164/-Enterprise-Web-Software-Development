@@ -25,7 +25,6 @@ export default {
           const {name} = res.data
           this.role.name = name
             });
-        console.log(response.data)
       } catch (error) {
         console.log(error);
       }

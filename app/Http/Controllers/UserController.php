@@ -19,8 +19,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get()->load('roles');
-        return $users;
+        // $users = User::get()->load('roles');
+        // return $users;
+        $users = User::with('roles')->get();
+        $users = User::with('departments')->get();
+        $roles = Role::all();
+        return response()->json(['users' => $users, 'roles' => $roles, 'departments' => $departments]);
     }
 
     /**
@@ -47,7 +51,9 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->password = bcrypt('password');
         $role  = Role::where('name', $data['role'])->first();
-
+        $department = Departments::where('name', $data['department'])->first();
+        $permission = Permissions::where('name', $data['permission'])->first();
+        
         $user->save();
 
         $user->roles()->attach($role);

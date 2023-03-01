@@ -11,10 +11,15 @@ use App\Http\Controllers\IdeasController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Auth;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Departments;
+
 
 //Custom function
 Route::get('/ShowProfile', function () {
-    return Auth::user()->load('roles');
+    return Auth::user()->load('roles')
+                       ->load('permissions');
 });
 
 //UserController
@@ -36,6 +41,7 @@ Route::controller(TopicsController::class)->group(function () {
     Route::patch('/topics/TopicsUpdate/{id}', 'update');
     Route::delete('/topics/delete/{id}', 'destroy');
 });
+
 //Ideas
 Route::controller(IdeasController::class)->group(function () {
 
@@ -47,8 +53,6 @@ Route::controller(IdeasController::class)->group(function () {
     Route::delete('/ideas/delete/{id}', 'destroy');
 });
 
-
-
 //RolesController
 Route::controller(RolesController::class)->group(function () {
     Route::get('/roles/RolesIndex', 'index');
@@ -58,16 +62,15 @@ Route::controller(RolesController::class)->group(function () {
     Route::delete('/roles/delete/{id}', 'destroy');
 });
 
-
 //DepartmentsController
 Route::controller(DepartmentsController::class)->group(function () {
+    Route::get('/departments', 'getDepartments');
     Route::get('/departments/DepartmentsIndex', 'index');
     Route::get('/departments/edit/{id}', 'edit');
     Route::post('/departments/DepartmentsCreate', 'store');
     Route::patch('/departments/DepartmentsUpdate/{id}', 'update');
     Route::delete('/departments/delete/{id}', 'destroy');
 });
-
 
 //CategoriesController
 Route::controller(CategoriesController::class)->group(function () {
