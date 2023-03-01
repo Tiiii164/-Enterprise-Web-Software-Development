@@ -93,16 +93,16 @@ const router = createRouter({
             name: 'Home',
             component: Home,
         },
-        {
-            path: '/staffProfile',
-            name: 'Staff Profile',
-            component: StaffProfile,
-        },
-        {
-            path: '/admin',
-            name: 'Admin',
-            component: Admin,
-        },
+        // {
+        //     path: '/staffProfile',
+        //     name: 'Staff Profile',
+        //     component: StaffProfile,
+        // },
+        // {
+        //     path: '/admin',
+        //     name: 'Admin',
+        //     component: Admin,
+        // },
         {
             path: '/rolesCreate',
             name: 'RolesCreate',
