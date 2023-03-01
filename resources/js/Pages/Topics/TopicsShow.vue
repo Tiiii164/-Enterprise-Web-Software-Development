@@ -69,6 +69,7 @@ export default {
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Title</th>
                             <th>Text</th>
                             <th>File Path</th>
                             <th>Created At</th>
@@ -78,6 +79,7 @@ export default {
                     <tbody>
                         <tr v-for="(ideas, index) in topics.ideas" :key="ideas.id">
                             <td>{{ index + 1 }}</td>
+                            <td>{{ ideas.title }}</td>
                             <td>{{ ideas.text }}</td>
                             <td>{{ ideas.file_path }}</td>
                             <td>{{ ideas.created_at }}</td>
@@ -85,10 +87,10 @@ export default {
                             <td>
                                 <div>
                                     <router-link :to="'/TopicsUpdate/' + topics.id"
-                                        class="btn btn-primary">Edit</router-link>
+                                        class="btn btn-primary">Like</router-link>
                                     <router-link :to="'/TopicsShow/' + topics.id" class="btn btn-primary">View
                                         Ideas</router-link>
-                                    <button class="btn btn-danger" @click.prevent="deleteIdeas(topics.id)">Delete</button>
+                                    <button class="btn btn-danger" @click.prevent="deleteIdeas(topics.id)">DisLike</button>
                                 </div>
                             </td>
                         </tr>

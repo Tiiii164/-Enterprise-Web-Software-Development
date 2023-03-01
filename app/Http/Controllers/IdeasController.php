@@ -42,6 +42,7 @@ class IdeasController extends Controller
     public function store(Request $request)
     {
         $ideas = new Ideas();
+        $ideas->title = $request->input('title');
         $ideas->text = $request->input('text');
         $ideas->file_path = $request->input('file_path');
         $ideas->save();

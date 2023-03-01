@@ -69,6 +69,7 @@ class LaratrustSetupTables extends Migration
         // Create table for storing ideas
         Schema::create('ideas', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('text');
             $table->string('file_path');
             $table->timestamps();

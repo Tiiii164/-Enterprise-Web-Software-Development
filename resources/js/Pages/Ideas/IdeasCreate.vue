@@ -16,9 +16,9 @@ export default {
   setup() {
     const router = useRouter();
     const form = reactive({
-      name: '',
-      closure_date: '',
-      final_closure_date: '',
+      title: '',
+      text: '',
+      file_path: '',
     })
     const handlecreateIdeas = async () => {
       try {
@@ -49,7 +49,7 @@ export default {
               <h3>Create new Ideas</h3>
             </div>
             <div class="col-md-6">
-              <router-link to="/IdeasIndex" class="btn btn-primary float-end">Back to list</router-link>
+              <router-link to="/TopicsIndex" class="btn btn-primary float-end">Back to list</router-link>
             </div>
           </div>
         </div>
@@ -58,19 +58,18 @@ export default {
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <strong>Name</strong>
-                  <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter Idea">
+                  <strong>Title</strong>
+                  <input type="text" name="title" class="form-control" v-model="form.title" placeholder="Enter Title">
                 </div>
                 <div class="form-group">
-                  <strong>Closure Date</strong>
-                  <input type="date" name="name" class="form-control" v-model="form.closure_date"
-                    placeholder="Enter Closure Date">
+                  <strong>Text</strong>
+                  <input type="text" name="text" class="form-control" v-model="form.text" placeholder="Enter Idea">
                 </div>
                 <div class="form-group">
-                  <strong>Final Closure Date</strong>
-                  <input type="date" name="name" class="form-control" v-model="form.final_closure_date"
-                    placeholder="Enter Final Closure Date">
+                  <strong>File Path</strong>
+                  <input type="text" name="file_path" class="form-control" v-model="form.file_path" placeholder="">
                 </div>
+
                 <button type="submit" class="btn btn-primary mt-2" @click.prevent="handlecreateIdeas">Create</button>
               </div>
             </div>
@@ -79,4 +78,5 @@ export default {
       </div>
     </div>
   </form>
-  <TheFooter></TheFooter></template>
+  <TheFooter></TheFooter>
+</template>
