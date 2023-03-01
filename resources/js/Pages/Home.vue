@@ -33,7 +33,7 @@ export default {
     <div class="container">
       <div class="jumbotron mt-5">
           <div class="col-sm-8 mx-auto">
-            <h1 class="text-center"> Welcome <span class="text-danger">{{ currentUser.name }}</span></h1>
+            <h1 class="text-center"> Welcome <span class="text-success">{{ currentUser.name }}</span> <span class="text-success"></span></h1>
           </div>
         </div>
     </div>
