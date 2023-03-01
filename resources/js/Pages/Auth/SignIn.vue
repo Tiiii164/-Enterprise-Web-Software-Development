@@ -34,32 +34,34 @@ export default {
 }
 </script>
 <template>
-    <div class="container position-absolute top-50 start-50 translate-middle">
-        <div class="row">
-            <div class="col-md-8 m-auto">
-                <div class="card">
-
+    <div class="kimetsu">
+        <div class="row1">
+            <div class="col-md-8">
+                <div class="">
                 <div class="card-body">
                     <h4 class="card-title">Sign In Form</h4>
                     <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{ errors }}</p>
                     <form method="post" @submit.prevent="handleSignIn">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email: </label>
-                            <input type="text" name="email" v-model="form.email" id="email" class="form-control" placeholder="Enter Email">
+                            <input type="text" name="email" v-model="form.email" id="email" class="border" placeholder=" Enter Email">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password: </label>
-                            <input type="password" name="password" v-model="form.password" id="password" class="form-control" placeholder="Enter Password">
+                            <input type="password" name="password" v-model="form.password" id="password" class="border" placeholder=" Enter Password">
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <router-link class="btn btn-danger" to="/signup"> Sign Up </router-link>
-                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        <div class="d-flex justify-center">
+                            <router-link class="buttoncss ml-16" to="/signup"> Sign Up </router-link>
+                            <button type="submit" class="buttoncss ml-16">Sign In</button>
                         </div>
                     </form>      
                 </div>                
 
                 </div>
             </div>
+        </div>
+        <div>
+            <img src="../../../css/2.jpg" alt="" class="kimetsu-img">
         </div>
     </div>
 </template>

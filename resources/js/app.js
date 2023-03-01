@@ -4,6 +4,7 @@ import './bootstrap';
 import { createApp } from 'vue';
 import router from '../js/Router/router'
 import App from './Layouts/App.vue'
+
 import { createVuetify } from 'vuetify';
 import 'vuetify/styles'
 import * as components from 'vuetify/lib/components/index.mjs'
