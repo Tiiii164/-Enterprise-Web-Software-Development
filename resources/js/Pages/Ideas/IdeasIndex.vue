@@ -16,13 +16,21 @@ export default {
     this.getIdeas();
     //this.getTopics();
   },
-  mounted() { },
   methods: {
     getIdeas() {
       axios.get('/api/ideas/IdeasIndex').then(response => {
         this.ideas = response.data.ideas
         this.topics = response.data.topics;
         console.log(response.data);
+
+        // console.log(topics[idea.topic_id].name);
+      })
+    },
+    getTopics() {
+      axios.get('/api/topics/TopicsIndex').then(response => {
+        this.topics = response.data.topics
+        console.log(response.data);
+
 
       })
     },

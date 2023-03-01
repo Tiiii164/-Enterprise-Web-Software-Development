@@ -12,14 +12,21 @@ use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Auth;
 
+//Custom function
 Route::get('/ShowProfile', function () {
     return Auth::user()->load('roles');
 });
+
+//UserController
 Route::patch('UpdateProfile/{id}', [UserController::class, 'update']);
+Route::post('/ChangPassword', [UserController::class, 'changePassword']);
+
+//AuthController
 Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
     Route::post('signup', 'signup');
     Route::post('signin', 'signin');
 });
+
 //topics
 Route::controller(TopicsController::class)->group(function () {
     Route::get('/topics/TopicsIndex', 'index');
@@ -42,6 +49,7 @@ Route::controller(IdeasController::class)->group(function () {
 
 
 
+//RolesController
 Route::controller(RolesController::class)->group(function () {
     Route::get('/roles/RolesIndex', 'index');
     Route::get('/roles/edit/{id}', 'edit');
@@ -50,6 +58,8 @@ Route::controller(RolesController::class)->group(function () {
     Route::delete('/roles/delete/{id}', 'destroy');
 });
 
+
+//DepartmentsController
 Route::controller(DepartmentsController::class)->group(function () {
     Route::get('/departments/DepartmentsIndex', 'index');
     Route::get('/departments/edit/{id}', 'edit');
@@ -58,6 +68,8 @@ Route::controller(DepartmentsController::class)->group(function () {
     Route::delete('/departments/delete/{id}', 'destroy');
 });
 
+
+//CategoriesController
 Route::controller(CategoriesController::class)->group(function () {
     Route::get('/categories/CategoriesIndex', 'index');
     Route::get('/categories/edit/{id}', 'edit');

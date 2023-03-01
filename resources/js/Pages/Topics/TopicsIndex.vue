@@ -32,16 +32,15 @@ export default {
         try {
           const response = await axios.delete(`/api/topics/delete/${id}`);
           console.log(response.data);
-          this.getTopics();
+          this.getTopic();
         } catch (error) {
           console.log(error);
         }
       }
     }
-  }
+  },
 }
 </script>
-
 <template>
   <NavBar></NavBar>
   <div class="container">

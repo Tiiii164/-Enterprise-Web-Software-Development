@@ -1,10 +1,8 @@
 import { createWebHistory, createRouter } from "vue-router"
 import Home from '../Pages/Home.vue'
 import StaffSub from "../Pages/Staff/StaffSubmission.vue"
-import StaffProfile from "../Pages/Staff/StaffProfile.vue"
 import SignIn from "../Pages/Auth/SignIn.vue"
 import SignUp from "../Pages/Auth/SignUp.vue"
-import Admin from "../Pages/Admin/Admin.vue"
 //roles
 import RolesCreate from "../Pages/Roles/RolesCreate.vue"
 import RolesIndex from "../Pages/Roles/RolesIndex.vue"
@@ -29,10 +27,12 @@ import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
+import ChangePassword from "../Pages/Auth/ChangePassword.vue"
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+
         //topics
         {
             path: '/topicsCreate',
@@ -159,6 +159,7 @@ const router = createRouter({
             component: UpdateProfile,
         },
     ]
+
 })
 
 function isAuthenticated() {

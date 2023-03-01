@@ -37,7 +37,7 @@ Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->nam
 
 //Profile
 Route::get('/ShowProfile', [AuthController::class, 'showProfile'])->name('show-profile');
-
+Route::post('/ChangePassword', [UserController::class, 'showChangePassword']);
 
 //Department
 Route::get('/DepartmentsIndex', [DepartmentsController::class, 'showDepartments']);
