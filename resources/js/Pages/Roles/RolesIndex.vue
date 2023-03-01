@@ -48,8 +48,7 @@ export default {
                         <h3>Manage Roles</h3>
                     </div>
                     <div class="col-md-6">
-                        <router-link to="/RolesCreate" class="btn btn-primary float-end">
-                          Add new roles</router-link>
+                        <router-link to="/RolesCreate" class="btn btn-primary float-end">Add new roles</router-link>
                     </div>
                 </div>
             </div>
