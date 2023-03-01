@@ -74,9 +74,6 @@ class TopicsController extends Controller
     public function inforTopics($id)
     {
         $topics = Topics::with('ideas')->find($id);
-        if (!$topics) {
-            return response()->json(['error' => 'Topic not found'], 404);
-        }
         $ideas = $topics->ideas;
         return response()->json(['ideas' => $ideas, 'topics' => $topics]);
     }

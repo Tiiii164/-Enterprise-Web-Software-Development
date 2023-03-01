@@ -22,7 +22,7 @@ export default {
         const response = await axios.get('/api/topics/TopicsIndex');
         this.topics = response.data;
 
-        debug.log(response.data);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -50,7 +50,15 @@ export default {
         <div class="row">
           <div class="col-md-6">
             <h3>Manage Topics</h3>
+
+            <!-- <tr v-for="topics in topics" :key="index">
+                            <td>{{ index + 1 }}</td>
+                            <td>{{ topics.name }}</td>
+                            <td>{{ topics.closure_date }}</td>
+                            <td>{{ topics.final_closure_date }}</td>
+                          </tr> -->
           </div>
+
           <div class="col-md-6">
             <router-link to="/TopicsCreate" class="btn btn-primary float-end">Add new Topics</router-link>
           </div>

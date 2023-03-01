@@ -21,9 +21,9 @@ return new class extends Migration
         });
         //foreign keys 
         Schema::table('ideas', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('category_id')->constrained('categories');
-            $table->foreignId('topic_id')->constrained('topics');
+            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('categories_id')->constrained('categories');
+            $table->foreignId('topics_id')->constrained('topics');
         });
     }
 
