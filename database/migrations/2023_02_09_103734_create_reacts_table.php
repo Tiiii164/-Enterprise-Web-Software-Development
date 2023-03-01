@@ -29,8 +29,8 @@ return new class extends Migration
             //$table->timestamps();
         });
         Schema::table('reacts', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('idea_id')->constrained('ideas');
+            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('ideas_id')->constrained('ideas');
         });
     }
 
