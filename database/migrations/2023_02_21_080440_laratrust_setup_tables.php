@@ -67,9 +67,9 @@ class LaratrustSetupTables extends Migration
             $table->string('text');
             $table->string('file_path');
             $table->timestamps();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('category_id')->constrained('categories');
-            $table->foreignId('topic_id')->constrained('topics');
+            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('categories_id')->constrained('categories');
+            $table->foreignId('topics_id')->constrained('topics');
         });
 
         // Create table for storing comments
@@ -77,6 +77,8 @@ class LaratrustSetupTables extends Migration
             $table->id();
             $table->string('text');
             $table->timestamps();
+            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('ideas_id')->constrained('ideas');
         });
 
         // Create table for storing reacts
@@ -84,16 +86,16 @@ class LaratrustSetupTables extends Migration
             $table->id();
             $table->integer('like');
             $table->integer('dis_like');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('idea_id')->constrained('ideas');
+            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('ideas_id')->constrained('ideas');
         });
 
         // Create table for storing views
         Schema::create('views', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('idea_id')->constrained('ideas');
+            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('ideas_id')->constrained('ideas');
         });
         
         // Create table for associating roles to users and teams (Many To Many Polymorphic)

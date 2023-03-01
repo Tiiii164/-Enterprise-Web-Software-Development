@@ -17,7 +17,8 @@ class IdeasController extends Controller
     public function index()
     {
         $ideas = Ideas::with('topics')->get();
-        return response()->json(['ideas' => $ideas]);
+        $topics = Topics::all();
+        return response()->json(['ideas' => $ideas, 'topics' => $topics]);
         // $ideas = Ideas::all();
         // return response()->json($ideas);
     }
@@ -68,7 +69,10 @@ class IdeasController extends Controller
     {
         return Inertia::render('IdeasUpdate');
     }
-
+    public function showIdeasShow($id)
+    {
+        return Inertia::render('IdeasShow');
+    }
     /**
      * Update the specified resource in storage.
      *
