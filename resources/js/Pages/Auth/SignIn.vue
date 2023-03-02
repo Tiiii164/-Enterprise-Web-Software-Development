@@ -34,12 +34,13 @@ export default {
 }
 </script>
 <template>
-    <div class="kimetsu">
-        <div class="row1">
+    <div class="kimetsu" style="width:auto" >
+        <div class="row1" style="position:absolute; width:600px">
             <div class="col-md-8">
                 <div class="">
                 <div class="card-body">
-                    <h4 class="card-title">Sign In Form</h4>
+                    <h4 class="card-title">Welcome back</h4>
+                    <h4 class="card-title1">Welcome back! Please enter your details</h4>
                     <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{ errors }}</p>
                     <form method="post" @submit.prevent="handleSignIn">
                         <div class="mb-3">
@@ -50,9 +51,9 @@ export default {
                             <label for="password" class="form-label">Password: </label>
                             <input type="password" name="password" v-model="form.password" id="password" class="border" placeholder=" Enter Password">
                         </div>
-                        <div class="d-flex justify-center">
-                            <router-link class="buttoncss ml-16" to="/signup"> Sign Up </router-link>
-                            <button type="submit" class="buttoncss ml-16">Sign In</button>
+                        <div class="d-flex" style="width:auto">
+                            <router-link class="buttoncss ml-6" to="/signup"> Sign Up </router-link>
+                            <button type="submit" class="buttoncss ml-6">Sign In</button>
                         </div>
                     </form>      
                 </div>                
@@ -61,7 +62,7 @@ export default {
             </div>
         </div>
         <div>
-            <img src="../../../css/2.jpg" alt="" class="kimetsu-img">
+            <img src="../../../css/login.jpg" alt="" class="mh-100" style="height: 1000px; width:100%">
         </div>
     </div>
 </template>

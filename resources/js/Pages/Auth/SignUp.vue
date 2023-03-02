@@ -37,12 +37,13 @@ import { useRouter } from "vue-router"
 }
 </script>
 <template>
-    <div class="kimetsu">
-        <div class="row1">
+    <div class="kimetsu" style="width:auto" >
+        <div class="row1" style="position:absolute; width:600px">
             <div class="col-md-8 ">
                 <div class="">
                 <div class="card-body">
-                    <h4 class="card-title">Sign Up Form</h4>
+                    <h4 class="card-title">START FOR FREE</h4>
+                    <h4 class="card-title1">Create new account.</h4>
                     <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{errors}}</p>
                     <form method="post" @submit.prevent="handleSignUp">
                         <div class="mb-3">
@@ -61,9 +62,9 @@ import { useRouter } from "vue-router"
                             <label for="password" class="form-label">Confirm Password: </label>
                             <input type="password" name="password_confirm" v-model="form.password_confirmation" class="border" id="password_confirm"  placeholder=" Confirm Password">
                         </div>
-                        <div class="d-flex justify-content">
-                            <router-link class="buttoncss ml-16" to="/signin"> Sign In </router-link>
-                            <button type="submit" class="buttoncss ml-16">Sign Up</button>
+                        <div class="d-flex" style="width:auto">
+                            <router-link class="buttoncss ml-6" to="/signin"> Sign In </router-link>
+                            <button type="submit" class="buttoncss ml-6">Sign Up</button>
                         </div>
                     </form>      
                 </div>                
@@ -71,7 +72,7 @@ import { useRouter } from "vue-router"
             </div>
         </div>
         <div>
-            <img src="../../../css/2.jpg" alt="" class="kimetsu-img">
+            <img src="../../../css/login.jpg" alt="" class="mh-100" style="height: 1000px; width:100%">
         </div>
     </div>
 </template>
