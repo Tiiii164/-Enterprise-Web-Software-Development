@@ -38,7 +38,7 @@ import { useRouter } from "vue-router"
 </script>
 <template>
     <div class="kimetsu" style="width:auto" >
-        <div class="row1" style="position:absolute; width:600px">
+        <div class="row1" style="position:absolute">
             <div class="col-md-8 ">
                 <div class="">
                 <div class="card-body">
