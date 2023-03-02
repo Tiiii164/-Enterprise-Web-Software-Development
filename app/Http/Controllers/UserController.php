@@ -40,25 +40,19 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        // $data = $request->input('user');
-        // $user = new User();
-        // $user->name = $data['name'];
-        // $user->email = $data['email'];
-        // $user->password = bcrypt('password');
-        // $role  = Role::where('name', $data['role'])->first();
+{
+    $user = new User();
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->password = bcrypt($request->password);
+    $user->assignRole($request->input('roles'));
+    $user->save();
+    
+    return response()->json([
+        'message' => 'User created successfully!'
+    ]);
+}
 
-        // $user->save();
-
-        // $user->roles()->attach($role);
-        // return response('success');
-        $users = new User();
-        $users->name = $request->input('name');
-        $users->email = $request->input('email');
-        $users->password = $request->bcrypt('password');
-        $users->save();
-        return response()->json($users);
-    }
 
     /**
      * Display the specified resource.

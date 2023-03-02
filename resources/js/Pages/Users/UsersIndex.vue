@@ -64,8 +64,8 @@ export default {
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Email</th>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Role</th>
                             <th>Action</th>
                         </tr>

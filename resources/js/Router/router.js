@@ -16,7 +16,7 @@ import CategoriesCreate from "../Pages/Categories/CategoriesCreate.vue"
 import CategoriesIndex from "../Pages/Categories/CategoriesIndex.vue"
 import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
 //user
-import UsersCreate from "../Pages/Users/UsersCreate.vue"
+import UsersCreate from"../Pages/Users/UsersCreate.vue"
 import UsersIndex from "../Pages/Users/UsersIndex.vue"
 import UsersUpdate from "../Pages/Users/UsersUpdate.vue"
 //topics

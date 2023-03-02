@@ -20,6 +20,11 @@ Route::get('/ShowProfile', function () {
 //     $users = User::with('roles')->get();
 //     return response()->json($users);
 // });
+Route::get('/api/roles/RolesIndex', function () {
+    $roles = Role::table('roles')->get();
+    return response()->json($roles);
+});
+
 
 Route::patch('UpdateProfile/{id}', [UserController::class, 'update']);
 Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
