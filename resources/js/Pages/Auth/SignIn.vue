@@ -34,12 +34,12 @@ export default {
 }
 </script>
 <template>
-    <div class="kimetsu" style="width:auto" >
-        <div class="row1" style="position:absolute">
+    <div class="login&logout" style="width:auto" >
+        <div class="row1 signin" style="position:absolute;width:auto">
             <div class="col-md-8">
                 <div class="">
                 <div class="card-body">
-                    <h4 class="card-title">Welcome back</h4>
+                    <h4 class="card-title">WELCOME BACK</h4>
                     <h4 class="card-title1">Welcome back! Please enter your details</h4>
                     <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{ errors }}</p>
                     <form method="post" @submit.prevent="handleSignIn">
@@ -62,7 +62,7 @@ export default {
             </div>
         </div>
         <div>
-            <img src="../../../css/login.jpg" alt="" class="mh-100" style="height: 1000px; width:100%">
+            <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsi" style="width:100%">
         </div>
     </div>
 </template>

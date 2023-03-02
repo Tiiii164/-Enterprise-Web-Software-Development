@@ -37,9 +37,9 @@ import { useRouter } from "vue-router"
 }
 </script>
 <template>
-    <div class="kimetsu" style="width:auto" >
-        <div class="row1" style="position:absolute">
-            <div class="col-md-8 ">
+    <div class="login&logout" style="width:auto" >
+        <div class="row1 signup" style="position:absolute;width:auto">
+            <div class="col-md-16">
                 <div class="">
                 <div class="card-body">
                     <h4 class="card-title">START FOR FREE</h4>
@@ -72,7 +72,7 @@ import { useRouter } from "vue-router"
             </div>
         </div>
         <div>
-            <img src="../../../css/login.jpg" alt="" class="mh-100" style="height: 1000px; width:100%">
+            <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
         </div>
     </div>
 </template>

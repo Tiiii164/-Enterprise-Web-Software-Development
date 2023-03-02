@@ -153,3 +153,36 @@ input{
 .user_link {
     text-decoration: none;
 }
+@media (min-width:800px) {
+    .signup {
+      margin-right: 200px ;
+      width: 400px;
+    }
+    .signin{
+        margin-left: 300px;
+        margin-top: 200px;
+    }
+    .backgroundsi{
+        height: 800px;
+    }
+    .backgroundsu{
+        height: 800px;
+    }
+}
+@media only screen and (max-width:640px) {
+    .backgroundsu {
+      height: 1000px;
+    }
+    .signup{
+        justify-content: center;
+        align-items: center;
+    }
+    .backgroundsi{
+        height: 1000px;
+    }
+    
+    .signin{
+        justify-content: center;
+        align-items: center;
+    }
+  }
