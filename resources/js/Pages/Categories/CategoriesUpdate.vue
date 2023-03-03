@@ -29,8 +29,7 @@ export default {
       } catch (error) {
         console.log(error);
       }
-    }
-  },
+    },
     async updateCategory() {
       try {
         const response = await axios.patch(`/api/categories/CategoriesUpdate/${this.$route.params.id}`, this.category)
@@ -43,6 +42,7 @@ export default {
       }
     }
   }
+}
 </script>
 <template>
   <NavBar></NavBar>

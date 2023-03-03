@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\IdeasController;
 use App\Http\Controllers\TopicsController;
+use App\Http\Controllers\UserController;
 use App\Models\Categories;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -18,17 +19,20 @@ use App\Http\Controllers\DepartmentsController;
 require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
-    return view('home');
+    return view('app');
 });
 
 Auth::routes();
 
 Route::get('/home', [Controller::class, 'showHome'])->name('home');
+Route::get('/Statistics', [Controller::class, 'showStatistics'])->name('Statistics');
+Route::get('/StaffSubmission', [Controller::class, 'showStaffSubmission'])->name('StaffSubmission');
 
 //User
 Route::get('/getCurrentUser', function () {
     return Auth::user()->load('roles');
 });
+
 Route::get('/signup', [AuthController::class, 'showFormSignUp']);
 Route::post('signup', [AuthController::class, 'signup'])->name('signup');
 Route::get('/signin', [AuthController::class, 'showFormSignIn']);
@@ -54,15 +58,19 @@ Route::get('/TopicsIndex', [TopicsController::class, 'showTopics']);
 Route::get('/TopicsCreate', [TopicsController::class, 'showTopicsCreate']);
 Route::get('/TopicsUpdate/{id}', [TopicsController::class, 'showTopicsUpdate']);
 Route::get('/TopicsShow/{id}', [TopicsController::class, 'showTopicsShow']);
-//Route::get('/TopicsShow/{id}', [TopicsController::class, 'inforTopics']);
-
 
 //Ideas
 Route::get('/IdeasIndex', [IdeasController::class, 'showIdeas']);
 Route::get('/IdeasCreate', [IdeasController::class, 'showIdeasCreate']);
 Route::get('/IdeasUpdate/{id}', [IdeasController::class, 'showIdeasUpdate']);
 Route::get('/IdeasShow/{id}', [IdeasController::class, 'showIdeasShow']);
+
 //Role
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);
 Route::get('/RolesUpdate/{id}', [RolesController::class, 'showRolesUpdate']);
+
+//User
+Route::get('/UsersIndex', [UserController::class, 'showUsers']);
+Route::get('/UsersCreate', [UserController::class, 'showUsersCreate']);
+Route::get('/UsersUpdate/{id}', [UserController::class, 'showUsersUpdate']);

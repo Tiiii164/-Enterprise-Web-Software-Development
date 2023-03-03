@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-use App\Models\Role;
 use Inertia\Inertia;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
 
 class UserController extends Controller
 {
@@ -19,8 +19,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get()->load('roles');
-        return $users;
+        $users = User::with('roles')->get();
+        $roles = Role::all();
+        return response()->json(['users' => $users, 'roles' => $roles]);
     }
 
     /**
@@ -28,9 +29,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function showUsersCreate()
     {
-        //
+        return Inertia::render('UsersCreate');
     }
 
     /**
@@ -40,40 +41,44 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $data = $request->input('user');
+{
+        $validation = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email',
+                'password' => 'required|confirmed|min:4',
+                'department_id' => 'required'
+            ]
+        );
         $user = new User();
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = bcrypt('password');
-        $role  = Role::where('name', $data['role'])->first();
-
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->department_id = $request->department_id;
         $user->save();
 
+        $role = Role::where('id', $request->role)->first();
         $user->roles()->attach($role);
-        return response('success');
-    }
-
+        // $permission  = Permissions::where('id', $request->permission)->first();
+        // $user->permissions()->attach($permission);
+        return response('success');   
+}
+                
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showUsers()
     {
-        //
+        return Inertia::render('UsersIndex');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function showUsersUpdate($id)
     {
-        //
+        return Inertia::render('UsersUpdate');
     }
 
     /**
@@ -86,7 +91,10 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $user->update($request->all());
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email')
+        ]);
         return response()->json($user);
     }
 
@@ -98,31 +106,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    public function showChangePassword()
-    {
-        return Inertia::render('ChangePassword');
-    }
-
-    public function changePassword(Request $request)
-    {
-        $user = Auth::user();
-        if (!Hash::check($request->current_password, Auth::user()->password)) {
-            return response()->json([
-                'errors' => ['current_password' =>
-                ['The provided password does not match your current password.']]
-            ], 422);
-        }
-        $validatedData = $request->validate([
-            'current_password' => ['required'],
-            'new_password' => ['required', 'min:3', 'different:current_password'],
-            'confirm_password' => ['required', 'same:new_password'],
-        ]);
-        $user->update([
-            'password' => Hash::make($validatedData['new_password'])
-        ]);
-        return response()->json(['message' => 'Password updated successfully.']);
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['message' => 'User has been deleted']);
     }
 }

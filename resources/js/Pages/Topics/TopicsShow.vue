@@ -47,36 +47,25 @@ export default {
 <template>
     <NavBar></NavBar>
     <div class="container">
+        <h1>List of Ideas</h1>
+        <div class="row">
+            <div class="col-4">
+                <dt>Ideas of Topic: </dt>
+                <dt>Closure Date: </dt>
+                <dt>Final Closure Date: </dt>
+            </div>
+            <div class="col-4" v-for="topic in topics" :key="topic">
+                <dd>{{ topic.name }}</dd>
+                <dd>{{ topic.closure_date }}</dd>
+                <dd>{{ topic.final_closure_date }}</dd>
+            </div>
+        </div>
         <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6">
-                        <thead>
-                            <tr>
-                                <td>Ideas of Topic: </td>
-                                <td>Closure Date</td>
-                                <td>Final Closure Date</td>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="topics in topics" :key="index">
-                                <th>{{ topics.name }}</th>
-                                <th>{{ topics.closure_date }}</th>
-                                <th>{{ topics.final_closure_date }}</th>
-                            </tr>
-                        </tbody>
-
-
-
-
-                    </div>
-                    <div class="col-md-6">
-                        <router-link to="/IdeasCreate" class="btn btn-primary float-end">Add new Ideas</router-link>
-                    </div>
-                </div>
+            <div class="card-body col-2">
+                <router-link to="/IdeasCreate" class="btn btn-primary float-end">Add new Ideas</router-link>
             </div>
             <div class="card-body">
+                
                 <table class="table table-bordered">
                     <thead>
                         <tr>
