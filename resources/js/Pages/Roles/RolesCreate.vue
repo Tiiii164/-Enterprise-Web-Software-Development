@@ -19,7 +19,6 @@ export default {
         .then((res) => {
                 router.push('/RolesIndex')
             })
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }

@@ -26,7 +26,6 @@ export default {
           .then((res) => {
             router.push('/TopicsIndex')
           })
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }

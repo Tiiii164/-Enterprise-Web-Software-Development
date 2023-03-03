@@ -15,6 +15,10 @@ import DepartmentsUpdate from "../Pages/Departments/DepartmentsUpdate.vue"
 import CategoriesCreate from "../Pages/Categories/CategoriesCreate.vue"
 import CategoriesIndex from "../Pages/Categories/CategoriesIndex.vue"
 import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
+//user
+import UsersCreate from"../Pages/Users/UsersCreate.vue"
+import UsersIndex from "../Pages/Users/UsersIndex.vue"
+import UsersUpdate from "../Pages/Users/UsersUpdate.vue"
 //Topics
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
@@ -24,10 +28,10 @@ import TopicsShow from "../Pages/Topics/TopicsShow.vue"
 import IdeasCreate from "../Pages/Ideas/IdeasCreate.vue"
 import IdeasIndex from "../Pages/Ideas/IdeasIndex.vue"
 import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
+import IdeasShow from "../Pages/Ideas/IdeasShow.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
-import ChangePassword from "../Pages/Auth/ChangePassword.vue"
 //statistics
 import Statistics from "../Pages/Statistics.vue"
 const router = createRouter({
@@ -49,12 +53,7 @@ const router = createRouter({
         component: SignIn,
     },
     {
-        path: '/ChangePassword',
-        name: 'ChangePassword',
-        component: ChangePassword,
-    },
-    {
-        path: '/staffSubmission',
+        path: '/StaffSubmission',
         name: 'Staff Submission',
         component: StaffSub,
     },
@@ -117,42 +116,63 @@ const router = createRouter({
         component: CategoriesUpdate,
     },
     //topics
+        {
+            path: '/topicsCreate',
+            name: 'TopicsCreate',
+            component: TopicsCreate,
+        },
+        {
+            path: '/topicsIndex',
+            name: 'TopicsIndex',
+            component: TopicsIndex,
+        },
+        {
+            path: '/topicsUpdate/:id',
+            name: 'TopicsUpdate',
+            component: TopicsUpdate,
+        },
+        {
+            path: '/TopicsShow/:id',
+            name: 'TopicsShow',
+            component: TopicsShow,
+        },
+
+        //Ideas
+        {
+            path: '/ideasCreate',
+            name: 'IdeasCreate',
+            component: IdeasCreate,
+        },
+        {
+            path: '/ideasIndex',
+            name: 'IdeasIndex',
+            component: IdeasIndex,
+        },
+        {
+            path: '/ideasUpdate/:id',
+            name: 'IdeasUpdate',
+            component: IdeasUpdate,
+        },
+        {
+            path: '/IdeasShow/:id',
+            name: 'IdeasShow',
+            component: IdeasShow,
+        },
+    //user
     {
-        path: '/TopicsIndex',
-        name: 'TopicsIndex',
-        component: TopicsIndex,
+        path: '/UsersIndex',
+        name: 'UsersIndex',
+        component: UsersIndex,
     },
     {
-        path: '/TopicsCreate',
-        name: 'TopicsCreate',
-        component: TopicsCreate,
-    },
-    
-    {
-        path: '/TopicsUpdate/:id',
-        name: 'TopicsUpdate',
-        component: TopicsUpdate,
+        path: '/UsersCreate',
+        name: 'UsersCreate',
+        component: UsersCreate,
     },
     {
-        path: '/TopicsShow/:id',
-        name: 'TopicsShow',
-        component: TopicsShow,
-    },
-    //ideas
-    {
-        path: '/IdeasIndex',
-        name: 'IdeasIndex',
-        component: IdeasIndex,
-    },
-    {
-        path: '/IdeasCreate',
-        name: 'IdeasCreate',
-        component: IdeasCreate,
-    },
-    {
-        path: '/IdeasUpdate/:id',
-        name: 'IdeasUpdate',
-        component: IdeasUpdate,
+        path: '/UsersUpdate/:id',
+        name: 'UsersUpdate',
+        component: UsersUpdate,
     },
     //Statistics
     {
@@ -170,7 +190,7 @@ function isAuthenticated() {
 router.beforeEach((to, from, next) => {
 
     if (to.path !== '/signup' && to.path !== '/signin' && !isAuthenticated()) {
-        return next({ path: '/signup' })
+        return next({path: '/signup'})
 
     }
     return next()
