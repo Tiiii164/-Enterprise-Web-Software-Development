@@ -53,7 +53,7 @@ class TopicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showTopicsShow()
+    public function showTopics()
     {
         return Inertia::render('TopicsIndex');
     }
@@ -80,20 +80,6 @@ class TopicsController extends Controller
 
         return response()->json(['ideas' => $ideas, 'topics' => $topics]);
     }
-    // public function inforTopics($id)
-    // {
-    //     $topics = Topics::find($id);
-    //     $ideas = $topics->ideas;
-    //     $comments = Comments::join('ideas', 'comments.ideas_id', '=', 'ideas.id')
-    //         ->join('topics', 'ideas.topics_id', '=', 'topics.id')
-    //         ->where('topics.id', '=', $id)
-    //         ->get();
-    //     $reacts = Reacts::join('ideas', 'reacts.ideas_id', '=', 'ideas.id')
-    //         ->join('topics', 'ideas.topics_id', '=', 'topics.id')
-    //         ->where('topics.id', '=', $id)
-    //         ->get();
-    //     return response()->json(['ideas' => $ideas, 'topics' => $topics, 'comments' => $comments, 'reacts' => $reacts]);
-    // }
 
     /**
      * Update the specified resource in storage.

@@ -29,7 +29,7 @@ export default {
         try {
           const response = await axios.delete(`/api/topics/delete/${id}`);
           console.log(response.data);
-          this.getTopic();
+          this.getTopics();
         } catch (error) {
           console.log(error);
         }
