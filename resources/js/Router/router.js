@@ -23,17 +23,10 @@ import UsersUpdate from "../Pages/Users/UsersUpdate.vue"
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
 import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
-import TopicsShow from "../Pages/Topics/TopicsShow.vue"
-//Ideas
-import IdeasCreate from "../Pages/Ideas/IdeasCreate.vue"
-import IdeasIndex from "../Pages/Ideas/IdeasIndex.vue"
-import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
-import ChangePassword from "../Pages/Auth/ChangePassword.vue"
-//statistics
-import Statistics from "../Pages/Statistics.vue"
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -51,11 +44,6 @@ const router = createRouter({
         path: '/signin',
         name: 'Sign In',
         component: SignIn,
-    },
-    {
-        path: '/ChangePassword',
-        name: 'ChangePassword',
-        component: ChangePassword,
     },
     {
         path: '/staffSubmission',
@@ -191,7 +179,7 @@ function isAuthenticated() {
 router.beforeEach((to, from, next) => {
 
     if (to.path !== '/signup' && to.path !== '/signin' && !isAuthenticated()) {
-        return next({ path: '/signup' })
+        return next({path: '/signup'})
 
     }
     return next()

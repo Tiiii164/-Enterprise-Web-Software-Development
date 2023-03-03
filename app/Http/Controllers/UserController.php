@@ -11,7 +11,6 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-
 class UserController extends Controller
 {
     /**
@@ -95,7 +94,10 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $user->update($request->all());
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email')
+        ]);
         return response()->json($user);
     }
 
@@ -110,30 +112,5 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
         return response()->json(['message' => 'User has been deleted']);
-    }
-
-    public function showChangePassword()
-    {
-        return Inertia::render('ChangePassword');
-    }
-
-    public function changePassword(Request $request)
-    {
-        $user = Auth::user();
-        if (!Hash::check($request->current_password, Auth::user()->password)) {
-            return response()->json([
-                'errors' => ['current_password' =>
-                ['The provided password does not match your current password.']]
-            ], 422);
-        }
-        $validatedData = $request->validate([
-            'current_password' => ['required'],
-            'new_password' => ['required', 'min:3', 'different:current_password'],
-            'confirm_password' => ['required', 'same:new_password'],
-        ]);
-        $user->update([
-            'password' => Hash::make($validatedData['new_password'])
-        ]);
-        return response()->json(['message' => 'Password updated successfully.']);
     }
 }
