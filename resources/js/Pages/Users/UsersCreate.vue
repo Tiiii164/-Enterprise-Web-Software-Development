@@ -10,7 +10,8 @@ export default {
   },
   data() {
     return {   
-      roles: [], 
+      roles: [],
+      departments: [], 
   }
 },
   setup() {
@@ -19,6 +20,7 @@ export default {
           name: '',
           email: '',
           password: '',
+          department_id: '',
           role: '',
     })
     const createUser = async() => {
@@ -37,6 +39,12 @@ export default {
     }
   },
   methods: {
+    async getDepartments() {
+        axios.get('/api/departments/')    
+        .then((response) => { 
+          this.departments = response.data;
+    });
+  },
     async getRoles() {
         axios.get('/api/roles/RolesIndex')
         .then(response => {
@@ -47,6 +55,7 @@ export default {
 },
   mounted() {
     this.getRoles();
+    this.getDepartments();
   },  
 }
 </script>
@@ -79,6 +88,10 @@ export default {
                                   <label class="form-label" for="role">Role:</label>
                                   <select class="form-select form-control" v-model="form.role">
                                     <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
+                                  </select>
+                                  <label class="form-label">Departments: </label>
+                                  <select class="form-select form-control" v-model="form.department_id">
+                                      <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
                                   </select>
                               </div>
                               <button type="submit" class="btn btn-primary mt-2"  @click.prevent="createUser">Create</button>

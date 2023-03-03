@@ -16,10 +16,14 @@ class DepartmentsController extends Controller
      * @return \Illuminate\Http\Response
      */
         $departments = Departments::all();
-        // return view('departments.index', [
-        //     'departments' => $departments,
-        // ]);
         return response()->json($departments);
+    }
+
+    public function getDepartments()
+    {
+        $data = Departments::get();
+   
+        return response()->json($data);
     }
 
     /**

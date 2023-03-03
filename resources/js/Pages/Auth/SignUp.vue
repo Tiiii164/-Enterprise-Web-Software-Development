@@ -2,7 +2,12 @@
 import axios from 'axios';
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router"
-    export default {
+export default {
+    data() {
+        return {
+            departments: [],
+        }
+    },
     setup() {
         const errors = ref()
         const router = useRouter();
@@ -11,6 +16,7 @@ import { useRouter } from "vue-router"
             name: '',
             password: '',
             password_confirmation: '',
+            department_id: '',
         })
         const handleSignUp = async (evt) => {
             evt.preventDefault()
@@ -33,6 +39,17 @@ import { useRouter } from "vue-router"
             errors,
             handleSignUp,
         }
+    },
+    methods: {
+        async getDepartments() {
+            axios.get('/api/departments/')    
+            .then((response) => { 
+                this.departments = response.data;
+            });
+        }
+    },
+    created() {
+        this.getDepartments();
     }
 }
 </script>
@@ -61,6 +78,12 @@ import { useRouter } from "vue-router"
                         <div class="mb-3">
                             <label for="password" class="form-label">Confirm Password: </label>
                             <input type="password" name="password_confirm" v-model="form.password_confirmation" class="border" id="password_confirm"  placeholder=" Confirm Password">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Departments: </label>
+                            <select class="form-select form-control" v-model="form.department_id">
+                                <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
+                            </select>
                         </div>
                         <div class="d-flex" style="width:auto">
                             <router-link class="buttoncss ml-6" to="/signin"> Sign In </router-link>

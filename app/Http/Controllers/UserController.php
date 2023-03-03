@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Role;
@@ -18,8 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get()->load('roles');
-        return $users;
+        $users = User::with('roles')->get();
+        $roles = Role::all();
+        return response()->json(['users' => $users, 'roles' => $roles]);
     }
 
     /**
@@ -46,13 +46,13 @@ class UserController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email',
                 'password' => 'required|confirmed|min:4',
+                'department_id'=> 'required',
             ]
         );
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        //$department = Departments::where('name', $data['department'])->first();
 
         $user->save();
 

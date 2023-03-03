@@ -22,9 +22,6 @@ export default {
         this.users = response.data.users,
         this.roles = response.data.roles,
         console.log(response.data)
-        // this.users.roles.forEach(r => {
-        // this.roles.add(r.name);
-        // })
       })
       .catch (error => {console.log(error)})
     },
