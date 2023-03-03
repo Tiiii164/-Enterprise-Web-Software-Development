@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -46,7 +48,7 @@ class UserController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email',
                 'password' => 'required|confirmed|min:4',
-                'department_id'=> 'required',
+                'department_id' => 'required'
             ]
         );
         $user = new User();

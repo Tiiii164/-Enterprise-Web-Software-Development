@@ -147,7 +147,6 @@ const router = createRouter({
         name: 'UsersCreate',
         component: UsersCreate,
     },
-    
     {
         path: '/UsersUpdate/:id',
         name: 'UsersUpdate',
