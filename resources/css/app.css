@@ -84,7 +84,6 @@
 input{
     border: none !important;
     outline: none !important;
-    
 }
 input::placeholder{
     color: black!important;
@@ -94,6 +93,7 @@ input::placeholder{
 
 input{
     color: black!important;
+    font-weight: bold !important;
 }
 .border{
     display: flex;
