@@ -64,7 +64,7 @@ export default {
               <router-link class="nav-link active" to="/RolesIndex">Role</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active" to="#">User</router-link>
+              <router-link class="nav-link active" to="/UsersIndex">User</router-link>
             </li>
           </ul>
         </li>

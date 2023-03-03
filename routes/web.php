@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\IdeasController;
 use App\Http\Controllers\TopicsController;
+use App\Http\Controllers\UserController;
 use App\Models\Categories;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,8 @@ Route::get('/home', [Controller::class, 'showHome'])->name('home');
 Route::get('/getCurrentUser', function () {
     return Auth::user()->load('roles');
 });
+
+
 Route::get('/signup', [AuthController::class, 'showFormSignUp']);
 Route::post('signup', [AuthController::class, 'signup'])->name('signup');
 Route::get('/signin', [AuthController::class, 'showFormSignIn']);
@@ -57,3 +60,8 @@ Route::get('/TopicsUpdate/{id}', [TopicsController::class, 'showTopicsUpdate']);
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);
 Route::get('/RolesUpdate/{id}', [RolesController::class, 'showRolesUpdate']);
+
+//User
+Route::get('/UsersIndex', [UserController::class, 'showUsers']);
+Route::get('/UsersCreate', [UserController::class, 'showUsersCreate']);
+Route::get('/UsersUpdate/{id}', [UserController::class, 'showUsersUpdate']);
