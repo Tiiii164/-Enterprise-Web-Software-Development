@@ -34,13 +34,13 @@ export default {
 }
 </script>
 <template>
-    <div class="container position-absolute top-50 start-50 translate-middle">
-        <div class="row">
-            <div class="col-md-8 m-auto">
-                <div class="card">
-
+    <div class="login&logout" style="width:auto" >
+        <div class="row1 signin" style="position:absolute;width:auto">
+            <div class="col-md-8">
+                <div class="">
                 <div class="card-body">
-                    <h4 class="card-title">Sign In Form</h4>
+                    <h4 class="card-title">WELCOME BACK</h4>
+                    <h4 class="card-title1">Welcome back! Please enter your details</h4>
                     <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{ errors }}</p>
                     <form method="post" @submit.prevent="handleSignIn">
                         <div class="mb-3">
@@ -51,15 +51,18 @@ export default {
                             <label for="password" class="form-label">Password: </label>
                             <input type="password" name="password" v-model="form.password" id="password" class="form-control" placeholder="Enter Password">
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <router-link class="btn btn-danger" to="/signup"> Sign Up </router-link>
-                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        <div class="d-flex" style="width:auto">
+                            <router-link class="buttoncss ml-6" to="/signup"> Sign Up </router-link>
+                            <button type="submit" class="buttoncss ml-6">Sign In</button>
                         </div>
                     </form>      
                 </div>                
 
                 </div>
             </div>
+        </div>
+        <div>
+            <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsi" style="width:100%">
         </div>
     </div>
 </template>

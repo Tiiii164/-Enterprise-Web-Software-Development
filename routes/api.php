@@ -20,11 +20,6 @@ Route::get('/ShowProfile', function () {
                        ->load('permissions');
 });
 
-
-// Route::get('/UsersIndex', function () {
-//     $users = User::with('roles')->get();
-//     return response()->json($users);
-// });
 Route::get('/api/roles/RolesIndex', function () {
     $roles = Role::table('roles')->get();
     return response()->json($roles);

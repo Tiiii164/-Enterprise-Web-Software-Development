@@ -91,9 +91,9 @@ export default {
                                   </select>
                                   <label class="form-label">Departments: </label>
                                   <select class="form-select form-control" v-model="form.department_id">
-                                    <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
+                                      <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
                                   </select>
-                                </div>
+                              </div>
                               <button type="submit" class="btn btn-primary mt-2"  @click.prevent="createUser">Create</button>
                           </div>
                       </div>

@@ -33,7 +33,6 @@ Route::get('/getCurrentUser', function () {
     return Auth::user()->load('roles');
 });
 
-
 Route::get('/signup', [AuthController::class, 'showFormSignUp']);
 Route::post('signup', [AuthController::class, 'signup'])->name('signup');
 Route::get('/signin', [AuthController::class, 'showFormSignIn']);

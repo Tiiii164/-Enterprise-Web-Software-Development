@@ -13,12 +13,6 @@ class CategoriesController extends Controller
         $categories = Categories::all();
         return response()->json($categories);
     }
-    public function getCategories()
-    {
-        $data = Categories::get();
-   
-        return response()->json($data);
-    }
     public function showCategoriesCreate()
     {
         return Inertia::render('CategoriesCreate');

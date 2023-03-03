@@ -31,7 +31,6 @@ import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
-import ChangePassword from "../Pages/Auth/ChangePassword.vue"
 //statistics
 import Statistics from "../Pages/Statistics.vue"
 const router = createRouter({
@@ -53,12 +52,7 @@ const router = createRouter({
         component: SignIn,
     },
     {
-        path: '/ChangePassword',
-        name: 'ChangePassword',
-        component: ChangePassword,
-    },
-    {
-        path: '/staffSubmission',
+        path: '/StaffSubmission',
         name: 'Staff Submission',
         component: StaffSub,
     },
@@ -190,7 +184,7 @@ function isAuthenticated() {
 router.beforeEach((to, from, next) => {
 
     if (to.path !== '/signup' && to.path !== '/signin' && !isAuthenticated()) {
-        return next({ path: '/signup' })
+        return next({path: '/signup'})
 
     }
     return next()

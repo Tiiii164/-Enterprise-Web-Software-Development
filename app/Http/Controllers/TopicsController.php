@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Topics;
-
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -52,7 +50,7 @@ class TopicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showTopics()
+    public function showTopicsShow()
     {
         return Inertia::render('TopicsIndex');
     }
@@ -63,20 +61,11 @@ class TopicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showTopicsUpdate()
+    public function showTopicsUpdate($id)
     {
         return Inertia::render('TopicsUpdate');
     }
-    public function showTopicsShow()
-    {
-        return Inertia::render('TopicsShow');
-    }
-    public function inforTopics($id)
-    {
-        $topics = Topics::with('ideas')->find($id);
-        $ideas = $topics->ideas;
-        return response()->json(['ideas' => $ideas, 'topics' => $topics]);
-    }
+
     /**
      * Update the specified resource in storage.
      *
