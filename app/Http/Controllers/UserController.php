@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Role;
@@ -41,19 +43,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
 {
-    $user = new User();
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->password = bcrypt($request->password);
-    $user->assignRole($request->input('roles'));
-    $user->save();
-    
-    return response()->json([
-        'message' => 'User created successfully!'
-    ]);
+        $validation = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email',
+                'password' => 'required|confirmed|min:4',
+            ]
+        );
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        // $user->department_id = '1';
+        $user->save();
+
+        $role = Role::where('id', $request->role)->first();
+        $user->roles()->attach($role);
+        return response('success');   
 }
-
-
+                
     /**
      * Display the specified resource.
      *

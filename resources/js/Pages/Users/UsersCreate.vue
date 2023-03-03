@@ -1,52 +1,58 @@
 <script>
 import axios from 'axios';
-import DropdownRole from '@/Components/DropdownRole.vue';
-import { ref, reactive } from "vue";
+import { reactive } from "vue";
 import { useRouter } from "vue-router"
-    export default {
-        data() {
-    return {
-      roles: [],
-      selectedRole: null,
-    };
-  },
-  mounted() {
-    axios.get('/api/roles/RolesIndex').then(response => {
-      this.roles = response.data;
-    });
-  },
+import NavBar from '@/Components/NavBar.vue';
+import TheFooter from '@/Components/TheFooter.vue';
+export default {
   components: {
-    DropdownRole,
+    NavBar, TheFooter
   },
-    setup() {
-        const errors = ref()
-        const router = useRouter();
-        const form = reactive({
-            email: '',
-            name: '',
-            password: '',
-            
-        })
-        
-        const createUser = async() => {
-      try {
-        const response = await axios.post('/api/users/UsersCreate', form);
-        console.log(response.data);
+  data() {
+    return {   
+      roles: [], 
+  }
+},
+  setup() {
+    const router = useRouter()
+    const form = reactive ({
+          name: '',
+          email: '',
+          password: '',
+          role: '',
+    })
+    const createUser = async() => {
+        axios.post('/api/users/UsersCreate', form)
+        .then(response => {
+        console.log(response);
         router.push('/UsersIndex');
-      } catch (error) {
-        console.error(error);
-      }
-    }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    } 
     return {
-        form,
-        createUser,
+      form,
+      createUser,
     }
-    }
+  },
+  methods: {
+    async getRoles() {
+        axios.get('/api/roles/RolesIndex')
+        .then(response => {
+          this.roles = response.data;
+          console.log(response.data);
+    });
+  }, 
+},
+  mounted() {
+    this.getRoles();
+  },  
 }
 </script>
 <template>
     <NavBar></NavBar>
-      <form @submit.prevent="createUser" method="POST">
+      <form method="POST">
         <div class="container">
           <div class="card">
               <div class="card-header">
@@ -70,7 +76,10 @@ import { useRouter } from "vue-router"
                                   <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter name">
                                   <strong>Pass</strong>
                                   <input type="password" name="password" class="form-control" v-model="form.password" placeholder="Enter pass">
-                                  <dropdown-role></dropdown-role>
+                                  <label class="form-label" for="role">Role:</label>
+                                  <select class="form-select form-control" v-model="form.role">
+                                    <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
+                                  </select>
                               </div>
                               <button type="submit" class="btn btn-primary mt-2"  @click.prevent="createUser">Create</button>
                           </div>
