@@ -87,13 +87,13 @@ input{
     
 }
 input::placeholder{
-    color: white!important;
+    color: black!important;
     font-weight: bold;
     font-size: 20px;
   }
 
 input{
-    color: white!important;
+    color: black!important;
 }
 .border{
     display: flex;
