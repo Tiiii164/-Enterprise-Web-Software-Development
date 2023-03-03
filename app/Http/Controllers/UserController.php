@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -18,8 +20,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get()->load('roles');
-        return $users;
+        // $users = User::get()->load('roles');
+        // return $users;
+        $users = User::with('roles')->get();
+        $roles = Role::all();
+        return response()->json(['users' => $users, 'roles' => $roles]);
     }
 
     /**
