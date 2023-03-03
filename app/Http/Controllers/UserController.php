@@ -52,14 +52,14 @@ class UserController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email',
                 'password' => 'required|confirmed|min:4',
+                'department_id' => 'required'
             ]
         );
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        //$department = Departments::where('name', $data['department'])->first();
-
+        
         $user->save();
 
         $role = Role::where('id', $request->role)->first();
