@@ -15,6 +15,10 @@ import DepartmentsUpdate from "../Pages/Departments/DepartmentsUpdate.vue"
 import CategoriesCreate from "../Pages/Categories/CategoriesCreate.vue"
 import CategoriesIndex from "../Pages/Categories/CategoriesIndex.vue"
 import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
+//user
+import UsersCreate from"../Pages/Users/UsersCreate.vue"
+import UsersIndex from "../Pages/Users/UsersIndex.vue"
+import UsersUpdate from "../Pages/Users/UsersUpdate.vue"
 //Topics
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
@@ -117,6 +121,11 @@ const router = createRouter({
         component: CategoriesUpdate,
     },
     //topics
+     {
+        path: '/TopicsShow/:id',
+        name: 'TopicsShow',
+        component: TopicsShow,
+    },
     {
         path: '/TopicsIndex',
         name: 'TopicsIndex',
@@ -133,11 +142,22 @@ const router = createRouter({
         name: 'TopicsUpdate',
         component: TopicsUpdate,
     },
+    //user
     {
-        path: '/TopicsShow/:id',
-        name: 'TopicsShow',
-        component: TopicsShow,
+        path: '/UsersIndex',
+        name: 'UsersIndex',
+        component: UsersIndex,
     },
+    {
+        path: '/UsersCreate',
+        name: 'UsersCreate',
+        component: UsersCreate,
+    },
+    
+    {
+        path: '/UsersUpdate/:id',
+        name: 'UsersUpdate',
+        component: UsersUpdate,
     //ideas
     {
         path: '/IdeasIndex',

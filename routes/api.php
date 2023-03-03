@@ -14,13 +14,21 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Departments;
 
-
 //Custom function
 Route::get('/ShowProfile', function () {
     return Auth::user()->load('roles')
                        ->load('permissions');
 });
 
+
+// Route::get('/UsersIndex', function () {
+//     $users = User::with('roles')->get();
+//     return response()->json($users);
+// });
+Route::get('/api/roles/RolesIndex', function () {
+    $roles = Role::table('roles')->get();
+    return response()->json($roles);
+});
 //UserController
 Route::patch('UpdateProfile/{id}', [UserController::class, 'update']);
 Route::post('/ChangPassword', [UserController::class, 'changePassword']);
@@ -79,4 +87,12 @@ Route::controller(CategoriesController::class)->group(function () {
     Route::post('/categories/CategoriesCreate', 'store');
     Route::patch('/categories/CategoriesUpdate/{id}', 'update');
     Route::delete('/categories/delete/{id}', 'destroy');
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/users/UsersIndex', 'index');
+    Route::get('/users/edit/{id}', 'edit');
+    Route::post('/users/UsersCreate', 'store');
+    Route::patch('/users/UsersUpdate/{id}', 'update');
+    Route::delete('/users/delete/{id}', 'destroy');
 });
