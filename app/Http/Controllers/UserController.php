@@ -53,13 +53,13 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-
+        $user->department_id = $request->department_id;
         $user->save();
 
         $role = Role::where('id', $request->role)->first();
         $user->roles()->attach($role);
-        $permission  = Permissions::where('id', $request->permission)->first();
-        $user->permissions()->attach($permission);
+        // $permission  = Permissions::where('id', $request->permission)->first();
+        // $user->permissions()->attach($permission);
         return response('success');   
 }
                 

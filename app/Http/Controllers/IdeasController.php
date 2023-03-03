@@ -11,14 +11,14 @@ use App\Http\Requests\CreateValidationRequest;
 
 class IdeasController extends Controller
 {
-    public function index()
+    public function showIdeas()
     {
         $ideas = Ideas::all();
         return view('ideas.index', [
             'ideas' => $ideas,
         ]);
     }
-    public function create()
+    public function showIdeasCreate()
     {
         $categories = Categories::all();
         return view('ideas.create', [
@@ -26,7 +26,7 @@ class IdeasController extends Controller
         ]);
     }
 
-    public function getdata(Request $request)
+    public function showIdeasShow(Request $request)
     {
         $request->validate([
         'text' => 'required',

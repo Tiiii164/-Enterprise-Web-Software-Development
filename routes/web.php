@@ -19,18 +19,19 @@ use App\Http\Controllers\DepartmentsController;
 require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
-    return view('home');
+    return view('app');
 });
 
 Auth::routes();
 
 Route::get('/home', [Controller::class, 'showHome'])->name('home');
+Route::get('/Statistics', [Controller::class, 'showStatistics'])->name('Statistics');
+Route::get('/StaffSubmission', [Controller::class, 'showStaffSubmission'])->name('StaffSubmission');
 
 //User
 Route::get('/getCurrentUser', function () {
     return Auth::user()->load('roles');
 });
-
 
 Route::get('/signup', [AuthController::class, 'showFormSignUp']);
 Route::post('signup', [AuthController::class, 'signup'])->name('signup');
@@ -40,6 +41,7 @@ Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->nam
 
 //Profile
 Route::get('/ShowProfile', [AuthController::class, 'showProfile'])->name('show-profile');
+Route::post('/ChangePassword', [UserController::class, 'showChangePassword']);
 
 //Department
 Route::get('/DepartmentsIndex', [DepartmentsController::class, 'showDepartments']);
@@ -55,7 +57,13 @@ Route::get('/CategoriesUpdate/{id}', [CategoriesController::class, 'showCategori
 Route::get('/TopicsIndex', [TopicsController::class, 'showTopics']);
 Route::get('/TopicsCreate', [TopicsController::class, 'showTopicsCreate']);
 Route::get('/TopicsUpdate/{id}', [TopicsController::class, 'showTopicsUpdate']);
+Route::get('/TopicsShow/{id}', [TopicsController::class, 'showTopicsShow']);
 
+//Ideas
+Route::get('/IdeasIndex', [IdeasController::class, 'showIdeas']);
+Route::get('/IdeasCreate', [IdeasController::class, 'showIdeasCreate']);
+Route::get('/IdeasUpdate/{id}', [IdeasController::class, 'showIdeasUpdate']);
+Route::get('/IdeasShow/{id}', [IdeasController::class, 'showIdeasShow']);
 //Role
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);

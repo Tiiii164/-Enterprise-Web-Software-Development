@@ -52,7 +52,7 @@ const router = createRouter({
         component: SignIn,
     },
     {
-        path: '/staffSubmission',
+        path: '/StaffSubmission',
         name: 'Staff Submission',
         component: StaffSub,
     },

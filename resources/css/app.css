@@ -155,6 +155,9 @@ input{
 .user_link {
     text-decoration: none;
 }
+.dropdown-menu {
+    margin: 0!important;
+}
 @media (min-width:800px) {
     .signup {
       margin-right: 200px ;

@@ -50,7 +50,7 @@ class TopicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showTopics()
+    public function showTopicsShow()
     {
         return Inertia::render('TopicsIndex');
     }
