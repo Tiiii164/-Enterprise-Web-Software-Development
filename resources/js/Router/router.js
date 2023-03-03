@@ -146,7 +146,6 @@ const router = createRouter({
         path: '/UsersUpdate/:id',
         name: 'UsersUpdate',
         component: UsersUpdate,
-    },
     //ideas
     {
         path: '/IdeasIndex',
