@@ -37,9 +37,9 @@ import { useRouter } from "vue-router"
 }
 </script>
 <template>
-    <div class="kimetsu">
-        <div class="row1">
-            <div class="col-md-8 ">
+    <div class="login&logout" style="width:auto" >
+        <div class="row1 signup" style="position:absolute;width:auto">
+            <div class="col-md-16">
                 <div class="">
                 <div class="card-body">
                     <h4 class="card-title">START FOR FREE</h4>
@@ -48,29 +48,23 @@ import { useRouter } from "vue-router"
                     <form method="post" @submit.prevent="handleSignUp">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name: </label>
-                            <input type="text" name="name" v-model="form.name" id="username" class="form-control" placeholder="Enter Name">
+                            <input type="text" name="name" v-model="form.name" id="username"  class="border" placeholder=" Enter Name" plain>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email: </label>
-                            <input type="text" name="email" v-model="form.email" id="email" class="form-control" placeholder="Enter Email">
+                            <input type="text" name="email" v-model="form.email"  id="email" class="border" placeholder=" Enter Email" plain>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password: </label>
-                            <input type="password" name="password" v-model="form.password" id="password" class="form-control" placeholder="Enter Password">
+                            <input type="password" name="password" v-model="form.password" id="password" class="border" placeholder=" Enter Password" plain>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Confirm Password: </label>
-                            <input type="password" name="password_confirm" v-model="form.password_confirmation" id="password_confirm" class="form-control" placeholder="Confirm Password">
+                            <input type="password" name="password_confirm" v-model="form.password_confirmation" class="border" id="password_confirm"  placeholder=" Confirm Password">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Departments: </label>
-                            <select class="form-select form-control" v-model="form.department_id">
-                                <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
-                            </select>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <router-link class="buttoncss ml-16" to="/signin"> Sign In </router-link>
-                            <button type="submit" class="buttoncss ml-16">Sign Up</button>
+                        <div class="d-flex" style="width:auto">
+                            <router-link class="buttoncss ml-6" to="/signin"> Sign In </router-link>
+                            <button type="submit" class="buttoncss ml-6">Sign Up</button>
                         </div>
                     </form>      
                 </div>                
@@ -78,7 +72,7 @@ import { useRouter } from "vue-router"
             </div>
         </div>
         <div>
-            <img src="../../../css/2.jpg" alt="" class="kimetsu-img">
+            <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
         </div>
     </div>
 </template>

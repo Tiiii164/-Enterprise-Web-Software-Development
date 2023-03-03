@@ -23,10 +23,16 @@ import UsersUpdate from "../Pages/Users/UsersUpdate.vue"
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
 import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
+import TopicsShow from "../Pages/Topics/TopicsShow.vue"
+//Ideas
+import IdeasCreate from "../Pages/Ideas/IdeasCreate.vue"
+import IdeasIndex from "../Pages/Ideas/IdeasIndex.vue"
+import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
-
+//statistics
+import Statistics from "../Pages/Statistics.vue"
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -146,6 +152,7 @@ const router = createRouter({
         path: '/UsersUpdate/:id',
         name: 'UsersUpdate',
         component: UsersUpdate,
+    },
     //ideas
     {
         path: '/IdeasIndex',
