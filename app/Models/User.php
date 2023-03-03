@@ -33,10 +33,6 @@ class Users extends Model
     {
         return $this->hasMany(Reacts::class);
     }
-    public function departments()
-    {
-        return $this->belongsToMany(Departments::class);
-    }
     public function roles()
     {
         return $this->belongsToMany(Role::class);
@@ -63,7 +59,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'department_id'
     ];
 
     /**
