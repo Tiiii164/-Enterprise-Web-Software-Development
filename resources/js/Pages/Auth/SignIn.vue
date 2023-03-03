@@ -45,11 +45,11 @@ export default {
                     <form method="post" @submit.prevent="handleSignIn">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email: </label>
-                            <input type="text" name="email" v-model="form.email" id="email" class="border" placeholder=" Enter Email">
+                            <input type="text" name="email" v-model="form.email" id="email" class="form-control" placeholder="Enter Email">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password: </label>
-                            <input type="password" name="password" v-model="form.password" id="password" class="border" placeholder=" Enter Password">
+                            <input type="password" name="password" v-model="form.password" id="password" class="form-control" placeholder="Enter Password">
                         </div>
                         <div class="d-flex" style="width:auto">
                             <router-link class="buttoncss ml-6" to="/signup"> Sign Up </router-link>

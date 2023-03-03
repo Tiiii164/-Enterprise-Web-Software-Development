@@ -61,10 +61,10 @@ export default {
               <router-link class="nav-link active nav-item1" to="/DepartmentsIndex">Department</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active nav-item1" to="/RolesIndex">Role</router-link>
+              <router-link class="nav-link active" to="/RolesIndex">Role</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active nav-item1" to="#">User</router-link>
+              <router-link class="nav-link active" to="#">User</router-link>
             </li>
           </ul>
         </li>
