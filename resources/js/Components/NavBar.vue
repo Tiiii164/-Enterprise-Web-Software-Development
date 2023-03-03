@@ -47,19 +47,20 @@ export default {
     <div class="collapse navbar-collapse justify-between" id="navbar">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown" v-if="roles.has('Admin') || roles.has('Manager')">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Management
           </a>
           <ul class="dropdown-menu">
             <li class="dropdown-item">
+              <router-link class="nav-link active" to="/DepartmentsIndex">Department</router-link>
+            </li>
+            <li class="dropdown-item">
               <router-link class="nav-link active" to="/CategoriesIndex">Category</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active" to="#">Submission</router-link>
+              <router-link class="nav-link active" to="/TopicsIndex">Topics</router-link>
             </li>
-            <li class="dropdown-item">
-              <router-link class="nav-link active" to="/DepartmentsIndex">Department</router-link>
-            </li>
+            
             <li class="dropdown-item">
               <router-link class="nav-link active" to="/RolesIndex">Role</router-link>
             </li>
@@ -72,7 +73,7 @@ export default {
           <router-link class="nav-link active" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
         <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager')">
-          <router-link class="nav-link active" aria-current="page" to="#">Statistics</router-link>
+          <router-link class="nav-link active" aria-current="page" to="/Statistics">Statistics</router-link>
         </li>
       </ul>
       <div class="d-flex">
