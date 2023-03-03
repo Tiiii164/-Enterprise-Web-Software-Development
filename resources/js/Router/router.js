@@ -153,11 +153,11 @@ const router = createRouter({
         name: 'UsersCreate',
         component: UsersCreate,
     },
-    
     {
         path: '/UsersUpdate/:id',
         name: 'UsersUpdate',
         component: UsersUpdate,
+    },
     //ideas
     {
         path: '/IdeasIndex',
