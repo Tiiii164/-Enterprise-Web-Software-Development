@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topics;
-
+use App\Models\Reacts;
+use App\Models\Ideas;
+use App\Models\Comments;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -75,8 +77,23 @@ class TopicsController extends Controller
     {
         $topics = Topics::with('ideas')->find($id);
         $ideas = $topics->ideas;
+
         return response()->json(['ideas' => $ideas, 'topics' => $topics]);
     }
+    // public function inforTopics($id)
+    // {
+    //     $topics = Topics::find($id);
+    //     $ideas = $topics->ideas;
+    //     $comments = Comments::join('ideas', 'comments.ideas_id', '=', 'ideas.id')
+    //         ->join('topics', 'ideas.topics_id', '=', 'topics.id')
+    //         ->where('topics.id', '=', $id)
+    //         ->get();
+    //     $reacts = Reacts::join('ideas', 'reacts.ideas_id', '=', 'ideas.id')
+    //         ->join('topics', 'ideas.topics_id', '=', 'topics.id')
+    //         ->where('topics.id', '=', $id)
+    //         ->get();
+    //     return response()->json(['ideas' => $ideas, 'topics' => $topics, 'comments' => $comments, 'reacts' => $reacts]);
+    // }
     /**
      * Update the specified resource in storage.
      *

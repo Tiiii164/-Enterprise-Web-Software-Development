@@ -24,6 +24,7 @@ import TopicsShow from "../Pages/Topics/TopicsShow.vue"
 import IdeasCreate from "../Pages/Ideas/IdeasCreate.vue"
 import IdeasIndex from "../Pages/Ideas/IdeasIndex.vue"
 import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
+import IdeasShow from "../Pages/Ideas/IdeasShow.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
@@ -70,6 +71,11 @@ const router = createRouter({
             path: '/ideasUpdate/:id',
             name: 'IdeasUpdate',
             component: IdeasUpdate,
+        },
+        {
+            path: '/IdeasShow/:id',
+            name: 'IdeasShow',
+            component: IdeasShow,
         },
 
 
