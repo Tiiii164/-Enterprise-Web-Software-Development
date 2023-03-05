@@ -50,7 +50,7 @@ Route::controller(IdeasController::class)->group(function () {
 
     Route::get('/ideas/IdeasIndex', 'index');
     Route::get('/ideas/edit/{id}', 'edit');
-    Route::get('/ideas/show/{id}', 'show');
+    Route::get('/ideas/IdeasShow/{id}', 'inforIdeas');
     Route::post('/ideas/IdeasCreate', 'store');
     Route::patch('/ideas/IdeasUpdate/{id}', 'update');
     Route::delete('/ideas/delete/{id}', 'destroy');
@@ -83,7 +83,7 @@ Route::controller(CategoriesController::class)->group(function () {
     Route::patch('/categories/CategoriesUpdate/{id}', 'update');
     Route::delete('/categories/delete/{id}', 'destroy');
 });
-
+//UsersController
 Route::controller(UserController::class)->group(function () {
     Route::get('/users/UsersIndex', 'index');
     Route::get('/users/edit/{id}', 'edit');

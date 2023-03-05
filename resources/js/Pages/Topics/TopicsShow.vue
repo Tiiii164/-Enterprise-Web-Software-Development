@@ -89,8 +89,8 @@ export default {
                                 <div>
                                     <router-link :to="'/TopicsUpdate/' + topics.id"
                                         class="btn btn-primary">Like</router-link>
-                                    <router-link :to="'/TopicsShow/' + topics.id" class="btn btn-primary">View
-                                        Ideas</router-link>
+                                    <router-link :to="'/IdeasShow/' + ideas.id"
+                                        class="btn btn-primary">Details</router-link>
                                     <button class="btn btn-danger" @click.prevent="deleteIdeas(topics.id)">DisLike</button>
                                 </div>
                             </td>
