@@ -16,6 +16,7 @@ export default {
             name: '',
             password: '',
             password_confirmation: '',
+            department: '',
         })
         const handleSignUp = async (evt) => {
             evt.preventDefault()
@@ -41,13 +42,13 @@ export default {
     },
     methods: {
         async getDepartments() {
-            axios.get('/api/departments/')    
+            axios.get('/api/departments/DepartmentsIndex')    
             .then((response) => { 
                 this.departments = response.data;
             });
         }
     },
-    created() {
+    mounted() {
         this.getDepartments();
     }
 }
@@ -80,8 +81,8 @@ export default {
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Departments: </label>
-                            <select class="form-select form-control" v-model="form.department_id">
-                                <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
+                            <select class="form-select form-control" v-model="form.department">
+                                <option v-for="department in departments" :value="department.id">{{ department.name }}</option>
                             </select>
                         </div>
                         <div class="d-flex" style="width:auto">
