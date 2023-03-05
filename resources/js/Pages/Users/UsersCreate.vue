@@ -9,9 +9,9 @@ export default {
     NavBar, TheFooter
   },
   data() {
-    return {   
-      roles: [],
-      departments: [], 
+    return {
+      departments: [],   
+      roles: [], 
   }
 },
   setup() {
