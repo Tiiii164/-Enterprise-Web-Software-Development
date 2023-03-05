@@ -30,7 +30,9 @@ Route::get('/StaffSubmission', [Controller::class, 'showStaffSubmission'])->name
 
 //User
 Route::get('/getCurrentUser', function () {
-    return Auth::user()->load('roles');
+    return Auth::user()->load('roles')
+                       ->load('permissions')
+                       ->load('departments');
 });
 
 Route::get('/signup', [AuthController::class, 'showFormSignUp']);
