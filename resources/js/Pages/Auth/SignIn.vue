@@ -30,9 +30,9 @@ export default {
     const validatePassword = () => {
       const password = document.getElementById('password');
       const passwordError = document.getElementById('passwordError');
-      if(!form.password || form.password.length < 4) {
+      if(!form.password || form.password.length < 3) {
         password.classList.add('is-invalid');
-        passwordError.textContent = 'Please enter a password that is at least 4 characters long';
+        passwordError.textContent = 'Please enter a password that is at least 3 characters long';
         return false;
       } else {
         password.classList.remove('is-invalid');

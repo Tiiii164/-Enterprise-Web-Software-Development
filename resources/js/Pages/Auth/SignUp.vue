@@ -24,8 +24,8 @@ export default {
     errors.value = "Please enter a valid email address"
     return
   }
-  if (form.password.length < 4) {
-    errors.value = "Password must be at least 4 characters long"
+  if (form.password.length < 3) {
+    errors.value = "Password must be at least 3 characters long"
     return
   }
   try {
