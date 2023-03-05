@@ -18,6 +18,12 @@ class CategoriesController extends Controller
         return Inertia::render('CategoriesCreate');
     }
 
+    public function getCategories()
+    {
+        $data = Categories::get();
+        return response()->json($data);
+    }
+
     public function store(Request $request)
     {
         $categories = new Categories();

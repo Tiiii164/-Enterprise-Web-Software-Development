@@ -2,6 +2,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topics;
+use App\Models\Reacts;
+use App\Models\Ideas;
+use App\Models\Comments;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -50,7 +53,7 @@ class TopicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showTopicsShow()
+    public function showTopics()
     {
         return Inertia::render('TopicsIndex');
     }
@@ -66,6 +69,11 @@ class TopicsController extends Controller
         return Inertia::render('TopicsUpdate');
     }
 
+    public function showTopicsShow()
+    {
+        return Inertia::render('TopicsShow');
+    }
+
     public function inforTopics($id)
     {
         $topics = Topics::with('ideas')->find($id);
@@ -73,7 +81,7 @@ class TopicsController extends Controller
 
         return response()->json(['ideas' => $ideas, 'topics' => $topics]);
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
