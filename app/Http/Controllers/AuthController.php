@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Departments;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,6 @@ class AuthController extends Controller
                     'name' => 'required|string|max:255',
                     'email' => 'required|string|email|max:255|unique:users,email',
                     'password' => 'required|confirmed|min:4',
-                    'department_id'=> 'required',
                 ]
             );
 
@@ -49,9 +49,9 @@ class AuthController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
-            $user->department_id = $request->department_id;
             $user->save();
             $user->roles()->attach(Role::where('name', 'Staff')->first());
+            $user->departments()->attach(Departments::where('id', $request->department)->first());
 
             return response()->json([
                 'status' => true,
