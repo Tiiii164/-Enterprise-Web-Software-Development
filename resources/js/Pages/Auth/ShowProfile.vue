@@ -9,6 +9,7 @@ export default {
     return {
       CurrentUser: {},
       roles: new Set(),
+      departments: new Set(),
     }
 },
   created() {
@@ -22,6 +23,9 @@ export default {
           console.log(this.CurrentUser)
           this.CurrentUser.roles.forEach(r => {
             this.roles.add(r.name);
+          }),
+          this.CurrentUser.departments.forEach(d => {
+            this.departments.add(d.name);
           })
         }
       )
@@ -47,7 +51,8 @@ export default {
                 <div>
                   <p>Name: {{ CurrentUser.name }}</p>
                   <p>Email: {{ CurrentUser.email }}</p>
-                  <div v-for="role in roles" :key="role">Role Name: {{ role }}</div>
+                  <p v-for="role in roles" :key="role">Role Name: {{ role }}</p>
+                  <p v-for="department in departments" :key="department">Department Name: {{ department }}</p>
                 </div>
                     <div>
                         <router-link :to="'/UpdateProfile/' + CurrentUser.id" class="btn btn-primary mt-2">Edit</router-link>

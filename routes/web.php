@@ -30,7 +30,9 @@ Route::get('/StaffSubmission', [Controller::class, 'showStaffSubmission'])->name
 
 //User
 Route::get('/getCurrentUser', function () {
-    return Auth::user()->load('roles');
+    return Auth::user()->load('roles')
+                       ->load('permissions')
+                       ->load('departments');
 });
 
 Route::get('/signup', [AuthController::class, 'showFormSignUp']);
@@ -64,6 +66,7 @@ Route::get('/IdeasIndex', [IdeasController::class, 'showIdeas']);
 Route::get('/IdeasCreate', [IdeasController::class, 'showIdeasCreate']);
 Route::get('/IdeasUpdate/{id}', [IdeasController::class, 'showIdeasUpdate']);
 Route::get('/IdeasShow/{id}', [IdeasController::class, 'showIdeasShow']);
+
 //Role
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);

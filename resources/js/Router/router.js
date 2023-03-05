@@ -28,6 +28,7 @@ import TopicsShow from "../Pages/Topics/TopicsShow.vue"
 import IdeasCreate from "../Pages/Ideas/IdeasCreate.vue"
 import IdeasIndex from "../Pages/Ideas/IdeasIndex.vue"
 import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
+import IdeasShow from "../Pages/Ideas/IdeasShow.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
@@ -115,27 +116,48 @@ const router = createRouter({
         component: CategoriesUpdate,
     },
     //topics
-     {
-        path: '/TopicsShow/:id',
-        name: 'TopicsShow',
-        component: TopicsShow,
-    },
-    {
-        path: '/TopicsIndex',
-        name: 'TopicsIndex',
-        component: TopicsIndex,
-    },
-    {
-        path: '/TopicsCreate',
-        name: 'TopicsCreate',
-        component: TopicsCreate,
-    },
-    
-    {
-        path: '/TopicsUpdate/:id',
-        name: 'TopicsUpdate',
-        component: TopicsUpdate,
-    },
+        {
+            path: '/topicsCreate',
+            name: 'TopicsCreate',
+            component: TopicsCreate,
+        },
+        {
+            path: '/topicsIndex',
+            name: 'TopicsIndex',
+            component: TopicsIndex,
+        },
+        {
+            path: '/topicsUpdate/:id',
+            name: 'TopicsUpdate',
+            component: TopicsUpdate,
+        },
+        {
+            path: '/TopicsShow/:id',
+            name: 'TopicsShow',
+            component: TopicsShow,
+        },
+
+        //Ideas
+        {
+            path: '/ideasCreate',
+            name: 'IdeasCreate',
+            component: IdeasCreate,
+        },
+        {
+            path: '/ideasIndex',
+            name: 'IdeasIndex',
+            component: IdeasIndex,
+        },
+        {
+            path: '/ideasUpdate/:id',
+            name: 'IdeasUpdate',
+            component: IdeasUpdate,
+        },
+        {
+            path: '/IdeasShow/:id',
+            name: 'IdeasShow',
+            component: IdeasShow,
+        },
     //user
     {
         path: '/UsersIndex',
@@ -151,22 +173,6 @@ const router = createRouter({
         path: '/UsersUpdate/:id',
         name: 'UsersUpdate',
         component: UsersUpdate,
-    },
-    //ideas
-    {
-        path: '/IdeasIndex',
-        name: 'IdeasIndex',
-        component: IdeasIndex,
-    },
-    {
-        path: '/IdeasCreate',
-        name: 'IdeasCreate',
-        component: IdeasCreate,
-    },
-    {
-        path: '/IdeasUpdate/:id',
-        name: 'IdeasUpdate',
-        component: IdeasUpdate,
     },
     //Statistics
     {

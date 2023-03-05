@@ -17,7 +17,8 @@ use App\Models\Departments;
 //Custom function
 Route::get('/ShowProfile', function () {
     return Auth::user()->load('roles')
-                       ->load('permissions');
+                       ->load('permissions')
+                       ->load('departments');
 });
 
 Route::get('/api/roles/RolesIndex', function () {
@@ -49,7 +50,7 @@ Route::controller(IdeasController::class)->group(function () {
 
     Route::get('/ideas/IdeasIndex', 'index');
     Route::get('/ideas/edit/{id}', 'edit');
-    Route::get('/ideas/show/{id}', 'show');
+    Route::get('/ideas/IdeasShow/{id}', 'inforIdeas');
     Route::post('/ideas/IdeasCreate', 'store');
     Route::patch('/ideas/IdeasUpdate/{id}', 'update');
     Route::delete('/ideas/delete/{id}', 'destroy');
@@ -66,7 +67,6 @@ Route::controller(RolesController::class)->group(function () {
 
 //DepartmentsController
 Route::controller(DepartmentsController::class)->group(function () {
-    Route::get('/departments', 'getDepartments');
     Route::get('/departments/DepartmentsIndex', 'index');
     Route::get('/departments/edit/{id}', 'edit');
     Route::post('/departments/DepartmentsCreate', 'store');
@@ -83,7 +83,7 @@ Route::controller(CategoriesController::class)->group(function () {
     Route::patch('/categories/CategoriesUpdate/{id}', 'update');
     Route::delete('/categories/delete/{id}', 'destroy');
 });
-
+//UsersController
 Route::controller(UserController::class)->group(function () {
     Route::get('/users/UsersIndex', 'index');
     Route::get('/users/edit/{id}', 'edit');

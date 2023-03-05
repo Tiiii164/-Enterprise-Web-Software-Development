@@ -14,7 +14,6 @@ export default {
   created() {
     this.getDepartment();
   },
-  mounted() {},
   methods: {
     async getDepartment() {
       try {
@@ -68,8 +67,8 @@ export default {
                                 <td>{{ department.name }}</td>
                                 <td>
                                     <div>
-                                      <router-link :to="'/DepartmentsUpdate/' + department.id" class="btn btn-primary">Edit</router-link>
-                                      <button class="btn btn-danger" @click.prevent="deleteDepartment(department.id)">Delete</button>
+                                      <router-link :to="'/DepartmentsUpdate/' + departments.id" class="btn btn-primary">Edit</router-link>
+                                      <button class="btn btn-danger" @click.prevent="deleteDepartment(departments.id)">Delete</button>
                                     </div>
                                 </td>
                             </tr>

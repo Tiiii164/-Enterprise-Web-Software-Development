@@ -9,7 +9,8 @@ export default {
   data() {
     return {
       users: [],
-      roles: 'name',
+      roles: [],
+      departments: [],
     }
   },
   created() {
@@ -21,6 +22,7 @@ export default {
       .then(response => {
         this.users = response.data.users,
         this.roles = response.data.roles,
+        this.departments = response.data.departments,
         console.log(response.data)
       })
       .catch (error => {console.log(error)})
@@ -38,10 +40,8 @@ export default {
     }
   
   },
-  
 }
 </script>
-
 <template>
   <NavBar></NavBar>
   <div class="container">
@@ -64,16 +64,20 @@ export default {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Department</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                            <tr v-for="(user, index) in users " :key="index">
+                            <tr v-for="(user, index) in users" :key="index">
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
-                                <td v-for="role in user.roles" :key="role.id">
+                                <td v-for="role in user.roles">
                                   <td >{{ role.name }}</td>
+                                </td>
+                                <td v-for="department in user.departments" :key="department.id">
+                                  <td >{{ department.name }}</td>
                                 </td>
                                 <div>
                                   <router-link :to="'/UsersUpdate/' + user.id" class="btn btn-primary">Edit</router-link>
