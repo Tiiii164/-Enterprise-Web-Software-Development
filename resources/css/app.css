@@ -10,7 +10,7 @@ html{
 
 
 .footer1{
-    height: 100px;
+    height: 50px;
     display: flex;
     align-items: center;
    justify-content: center;
@@ -24,7 +24,7 @@ html{
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 70px;
+    height: 30px;
 }
 .footer2 .text2{
     margin-top: 4px;
@@ -154,6 +154,18 @@ input{
 .dropdown-menu {
     margin: 0!important;
 }
+.textuser{
+    color: red;
+    font-weight:900;
+    font-family: cursive;
+    
+}
+.background2{
+    opacity: 0.5;
+}
+.welcomeuser{
+    z-index: 1;
+}
 @media (min-width:1000px) {
     .signup {
       margin-right: 300px;
@@ -169,6 +181,19 @@ input{
     .backgroundsu{
         height: 800px;
     }
+    .welcomeuser{
+        margin-top: 100px;
+    }
+    .textuser{
+        font-size:40px !important;
+    }
+    .welcometext{
+        font-size: 40px;
+        display: flex;
+        font-weight:900;
+        font-family: cursive;
+    }
+
 }
 @media only screen and (max-width:1000px) {
     .backgroundsu {
@@ -184,5 +209,28 @@ input{
     .signin{
         justify-content: center;
         align-items: center;
+    }
+    .hellotext{
+        font-size: 20px;
+    }
+    .footer2{
+        height: 50px;
+    }
+    .background2{
+        height: 300px;
+        width: auto;
+    }
+    .welcometext{
+        font-size: 25px;
+        margin: 0 !important;
+        font-weight:900;
+        font-family: cursive;
+    }
+    .greenwich{
+        margin-top: 8px;
+        font-size: 18px !important;
+    }
+    .textuser{
+        font-size:30px !important;
     }
   }
