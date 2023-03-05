@@ -65,14 +65,14 @@ html{
         /* SignIn&SignOut */
 
 .row1{
-    margin-top: 200px;
+    margin-top: 100px;
     color: white;
     right: 0;
     font-weight: bold;
     font-size: 20px;
 }
 .card-title{
-    color: black !important;
+    color: grey !important;
     font-weight: bold;
 }
 .card-title1{
@@ -88,23 +88,19 @@ html{
 .nav-item1:hover{
     color: black !important;
 }
-input{
-    border: none !important;
-    outline: none !important;
-    
-}
+
+
 input::placeholder{
     color: black!important;
-    font-weight: bold;
-    font-size: 20px;
-  }
+}
 
 input{
+    outline: none;
     color: black!important;
     font-weight: bold !important;
     font-size: 20px !important;
 }
-.border{
+.form-control{
     display: flex;
     margin-left: 20px;
 }
@@ -158,9 +154,9 @@ input{
 .dropdown-menu {
     margin: 0!important;
 }
-@media (min-width:800px) {
+@media (min-width:1000px) {
     .signup {
-      margin-right: 200px ;
+      margin-right: 300px;
       width: 400px;
     }
     .signin{
@@ -174,13 +170,12 @@ input{
         height: 800px;
     }
 }
-@media only screen and (max-width:640px) {
+@media only screen and (max-width:1000px) {
     .backgroundsu {
       height: 1000px;
     }
     .signup{
-        justify-content: center;
-        align-items: center;
+        margin-right: 50px;
     }
     .backgroundsi{
         height: 1000px;

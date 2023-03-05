@@ -65,19 +65,19 @@ export default {
                     <form method="post" @submit.prevent="handleSignUp">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name: </label>
-                            <input type="text" name="name" v-model="form.name" id="username"  class="border" placeholder=" Enter Name" plain>
+                            <input type="text" name="name" v-model="form.name" id="username"  class="form-control" placeholder=" Enter Name" plain>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email: </label>
-                            <input type="text" name="email" v-model="form.email"  id="email" class="border" placeholder=" Enter Email" plain>
+                            <input type="text" name="email" v-model="form.email"  id="email" class="form-control" placeholder=" Enter Email" plain>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password: </label>
-                            <input type="password" name="password" v-model="form.password" id="password" class="border" placeholder=" Enter Password" plain>
+                            <input type="password" name="password" v-model="form.password" id="password" class="form-control" placeholder=" Enter Password" plain>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Confirm Password: </label>
-                            <input type="password" name="password_confirm" v-model="form.password_confirmation" class="border" id="password_confirm"  placeholder=" Confirm Password">
+                            <input type="password" name="password_confirm" v-model="form.password_confirmation" class="form-control" id="password_confirm"  placeholder=" Confirm Password">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Departments: </label>
