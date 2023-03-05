@@ -55,7 +55,7 @@ export default {
             </div>
             <div class="card-body">
                <table class="table table-bordered mx-auto">
-                    <thead>
+                    <thead style="text-align:center;align-items:center;justify-content:center">
                         <tr>
                             <th>No.</th>
                             <th>Name</th>

@@ -59,11 +59,11 @@ export default {
 
 <template>
   <NavBar></NavBar>
-  <div class="container">
-    <div class="card">
+  <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
+    <div class="card categoriesindex">
       <div class="card-header">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6 catecenter">
             <div v-for="topic in topics" :key="topic.id">
               <thead>
                 <tr>
@@ -73,14 +73,14 @@ export default {
               </thead>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 catecenter">
             <router-link to="/IdeasCreate" class="btn btn-primary float-end">Add new Ideas</router-link>
           </div>
         </div>
       </div>
       <div class="card-body">
-        <table class="table table-bordered">
-          <thead>
+        <table class="table table-bordered mx-auto">
+          <thead style="text-align:center;align-items:center;justify-content:center">
             <tr>
               <th>No</th>
               <th>Text</th>
@@ -90,7 +90,7 @@ export default {
 
             </tr>
           </thead>
-          <tbody>
+          <tbody class="catetbody">
             <tr v-for="(ideas, index) in ideas" :key="index">
               <td>{{ index + 1 }}</td>
               <td>{{ ideas.text }}</td>
@@ -110,5 +110,8 @@ export default {
       </div>
     </div>
   </div>
+  <div>
+    <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
+</div>
   <TheFooter></TheFooter>
 </template>
