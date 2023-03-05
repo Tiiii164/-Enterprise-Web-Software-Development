@@ -8,22 +8,15 @@ use Inertia\Inertia;
 
 class DepartmentsController extends Controller
 {
-    public function index()
-    {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
         $departments = Departments::all();
         return response()->json($departments);
-    }
-
-    public function getDepartments()
-    {
-        $data = Departments::get();
-   
-        return response()->json($data);
     }
 
     /**
@@ -52,10 +45,10 @@ class DepartmentsController extends Controller
      */
     public function store(Request $request)
     {
-        $departments = new Departments();
-        $departments->name = $request->input('name');
-        $departments->save();
-        return response()->json($departments);
+        $department = new Departments();
+        $department->name = $request->input('name');
+        $department->save();
+        return response()->json($department);
     }
 
     /**

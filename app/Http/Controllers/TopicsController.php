@@ -66,6 +66,14 @@ class TopicsController extends Controller
         return Inertia::render('TopicsUpdate');
     }
 
+    public function inforTopics($id)
+    {
+        $topics = Topics::with('ideas')->find($id);
+        $ideas = $topics->ideas;
+
+        return response()->json(['ideas' => $ideas, 'topics' => $topics]);
+    }
+    
     /**
      * Update the specified resource in storage.
      *

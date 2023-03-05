@@ -20,8 +20,8 @@ export default {
           name: '',
           email: '',
           password: '',
-          department_id: '',
           role: '',
+          department: '',
     })
     const createUser = async() => {
         axios.post('/api/users/UsersCreate', form)
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     async getDepartments() {
-        axios.get('/api/departments/')    
+        axios.get('/api/departments/DepartmentsIndex')    
         .then((response) => { 
           this.departments = response.data;
     });
@@ -49,7 +49,6 @@ export default {
         axios.get('/api/roles/RolesIndex')
         .then(response => {
           this.roles = response.data;
-          console.log(response.data);
     });
   }, 
 },
@@ -90,8 +89,8 @@ export default {
                                     <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
                                   </select>
                                   <label class="form-label">Departments: </label>
-                                  <select class="form-select form-control" v-model="form.department_id">
-                                      <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
+                                  <select class="form-select form-control" v-model="form.department">
+                                      <option v-for="department in departments" :value="department.id">{{ department.name }}</option>
                                   </select>
                               </div>
                               <button type="submit" class="btn btn-primary mt-2"  @click.prevent="createUser">Create</button>

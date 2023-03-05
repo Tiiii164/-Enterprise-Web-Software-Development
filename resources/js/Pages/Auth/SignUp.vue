@@ -16,7 +16,6 @@ export default {
             name: '',
             password: '',
             password_confirmation: '',
-            department_id: '',
         })
         const handleSignUp = async (evt) => {
             evt.preventDefault()
