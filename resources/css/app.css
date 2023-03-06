@@ -44,9 +44,9 @@ html{
 }
 .img1 {
     position: relative;
-  }
+}
   
-  .img1::before {
+.img1::before {
     background: #C0C0C0;
     content: "";
     inset: 0;
@@ -55,13 +55,13 @@ html{
     transform-origin: right;
     transition: transform 0.5s ease-in-out;
     z-index: -1;
-  }
+}
   
-  .img1:hover::before {
+.img1:hover::before {
     transform: scaleX(1);
     transform-origin: left;
     border-radius: 10px 10px;
-  }
+}
         /* SignIn&SignOut */
 
 .row1{
@@ -155,16 +155,62 @@ input{
     margin: 0!important;
 }
 .textuser{
-    color: red;
+    color: black;
     font-weight:900;
     font-family: cursive;
-    
+}
+.textuser1{
+    color: #DC3545 !important;
 }
 .background2{
     opacity: 0.5;
 }
 .welcomeuser{
     z-index: 1;
+}
+.cateth{
+    text-align: center;
+}
+.catetbody{
+    text-align: center;
+}
+.currentuser{
+    font-family: cursive;
+    text-decoration: none;
+}
+.currenthover{
+    display: flex;
+    position: relative;
+    font-family: cursive;
+    text-decoration: none;
+    z-index: 1;
+}
+.currenthover::before {
+    background: grey;
+    content: "";
+    inset: 0;
+    position:absolute;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease-in-out;
+    z-index: -1;
+}
+
+.currenthover:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+.currenthover::after{
+    z-index: 1;
+}
+.currentuser1{
+    font-family: cursive;
+    font-weight: bold;
+    padding-right:2px;
+    align-items:center;
+    text-align:center;
+    justify-content:center;
+    margin:0 !important;
 }
 @media (min-width:1000px) {
     .signup {
@@ -187,13 +233,22 @@ input{
     .textuser{
         font-size:40px !important;
     }
+    .textuser1{
+        font-size:40px !important;
+    }
     .welcometext{
         font-size: 40px;
         display: flex;
         font-weight:900;
         font-family: cursive;
     }
-
+    .categoriesindex{
+        margin-top: 50px;
+        width: 1300px;
+    }
+    .catebutton{
+        float: right;
+    }
 }
 @media only screen and (max-width:1000px) {
     .backgroundsu {
@@ -232,5 +287,15 @@ input{
     }
     .textuser{
         font-size:30px !important;
+    }
+    .textuser1{
+        font-size:30px !important;
+    }
+    .categoriesindex{
+        margin-top: 50px;
+        justify-content: center;
+    }
+    .catecenter{
+        text-align: center;
     }
   }

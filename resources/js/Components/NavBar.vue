@@ -37,7 +37,7 @@ export default {
 };
 </script>
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <router-link class="navbar-brand" to="/">Idea</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" 
@@ -76,10 +76,10 @@ export default {
         </li>
       </ul>
       <div class="d-flex">
-        <span class="capitalize">Hello 
-          <router-link class="text-primary user_link me-2" to="/ShowProfile">{{ currentUser.name }} 
+        <span class="currentuser" style="font-weight:bold;display:flex;align-items:center;text-align:center"><h6 class="currentuser1">Hello,</h6>  
+          <router-link class="text-primary currenthover" style="margin-right:10px;width:auto" to="/ShowProfile">{{ currentUser.name }}!
           </router-link>
-          <button type="button" class="btn btn-danger" @click="handleLogout">Logout</button>
+          <button type="button" class="btn btn-danger currentuser" style="font-weight:bold;display:flex" @click="handleLogout">Logout</button>
         </span>
       </div>
     </div>

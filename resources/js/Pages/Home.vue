@@ -33,7 +33,7 @@ export default {
     <div style="width:100%;position:absolute" class="welcomeuser">
       <div class="jumbotron mt-5">
           <div class="col-sm-8 mx-auto hellotext">
-            <h1 class="text-center hellotext textuser"> Hello, <span class="text-success textuser" >{{ currentUser.name }}!</span> <span class="text-success textuser"></span></h1>
+            <h1 class="text-center hellotext textuser"> Hello,<span class="textuser1" >{{ currentUser.name }}!</span></h1>
           </div>
           <div style="display:flex;justify-content:center">
             <h2 class="text-center welcometext" >Welcome to <h2 class="welcometext" style="padding-left:10px;padding-right:10px;color:blue">FPT Greenwich</h2> University</h2>
