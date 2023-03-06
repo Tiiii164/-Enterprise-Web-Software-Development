@@ -19,28 +19,28 @@ export default {
             department: '',
         })
         const handleSignUp = async (evt) => {
-  evt.preventDefault()
-  if (!form.email.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
-    errors.value = "Please enter a valid email address"
-    return
-  }
-  if (form.password.length < 3) {
-    errors.value = "Password must be at least 3 characters long"
-    return
-  }
-  try {
-    const result = await axios.post('/api/auth/signup', form)
-    if (result.status === 200 && result.data && result.data.token) {
-      localStorage.setItem('Idea_token', result.data.token)
-      await router.push('/signin')
-    }
-  } catch(e) {
-    if(e.response.data && e.response.data.errors) {
-      errors.value = Object.values(e.response.data.errors)
-    } else {
-      errors.value = "Sign Up Failed"
-    }
-  }
+        evt.preventDefault()
+        if (!form.email.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
+            errors.value = "Please enter a valid email address"
+            return
+        }
+        if (form.password.length < 3) {
+            errors.value = "Password must be at least 3 characters long"
+            return
+        }
+        try {
+            const result = await axios.post('/api/auth/signup', form)
+            if (result.status === 200 && result.data && result.data.token) {
+            localStorage.setItem('Idea_token', result.data.token)
+            await router.push('/signin')
+            }
+        } catch(e) {
+            if(e.response.data && e.response.data.errors) {
+            errors.value = Object.values(e.response.data.errors)
+            } else {
+            errors.value = "Sign Up Failed"
+            }
+        }
 }
         return {
             form,
