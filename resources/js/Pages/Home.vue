@@ -30,12 +30,23 @@ export default {
 </script>
 <template>
   <NavBar></NavBar>
-    <div class="container">
+    <div style="width:100%;position:absolute" class="welcomeuser">
       <div class="jumbotron mt-5">
-          <div class="col-sm-8 mx-auto">
-            <h1 class="text-center"> Welcome <span class="text-success">{{ currentUser.name }}</span> <span class="text-success"></span></h1>
+          <div class="col-sm-8 mx-auto hellotext">
+            <h1 class="text-center hellotext textuser"> Hello,<span class="textuser1" >{{ currentUser.name }}!</span></h1>
           </div>
-        </div>
+          <div style="display:flex;justify-content:center">
+            <h2 class="text-center welcometext" >Welcome to <h2 class="welcometext" style="padding-left:10px;padding-right:10px;color:blue">FPT Greenwich</h2> University</h2>
+          </div>
+          <div>
+            <h5 class="text-center greenwich" style="font-weight:900;font-family:cursive">
+              Greenwich VietNam is an international joint program between the University of Greenwich,UK and FPT University
+            </h5>
+          </div>
+      </div>
+    </div>
+    <div>
+      <img src="../../css/background1.jpg" alt="" style="width:100%;" class="background2">
     </div>
     <theFooter></theFooter>
   </template>

@@ -53,7 +53,7 @@ class UserController extends Controller
             [
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email',
-                'password' => 'required|confirmed|min:4',
+                'password' => 'required|confirmed|min:3',
             ]
         );
         $user = new User();
