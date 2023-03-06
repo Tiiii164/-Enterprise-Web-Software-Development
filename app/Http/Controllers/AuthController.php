@@ -183,4 +183,3 @@ class AuthController extends Controller
     //     $user->save();
     //     return response()->json(compact('user'));
     // }
-}
