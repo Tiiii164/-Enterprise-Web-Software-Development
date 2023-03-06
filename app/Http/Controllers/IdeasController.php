@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Ideas;
 use App\Models\Topics;
 use App\Models\Reacts;
+use App\Models\Views;
+use App\Models\Comments;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -61,21 +64,23 @@ class IdeasController extends Controller
     {
         return Inertia::render('IdeasIndex');
     }
-
+    public function showIdeasShow()
+    {
+        return Inertia::render('IdeasShow');
+    }
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showIdeasUpdate($id)
+    public function showIdeasUpdate()
     {
         return Inertia::render('IdeasUpdate');
     }
-    public function showIdeasShow($id)
-    {
-        return Inertia::render('IdeasShow');
-    }
+
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -91,6 +96,16 @@ class IdeasController extends Controller
         return response()->json($ideas);
     }
 
+
+    public function inforIdeas($id)
+    {
+        $ideas = Ideas::with('comments', 'topics', 'categories', 'views')->find($id);
+        $comments = $ideas->comments;
+        $topics = $ideas->topics;
+        $categories = $ideas->categories;
+        $views = $ideas->views;
+        return response()->json(['ideas' => $ideas, 'topics' => $topics, 'categories' => $categories, 'views' => $views, 'comments' => $comments]);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -103,7 +118,6 @@ class IdeasController extends Controller
         $ideas->delete();
         return response()->json(['message' => 'Idea deleted']);
     }
-
     // public function storeLike(Request $request)
     // {
     //     $user_id = Auth::id();

@@ -112,8 +112,6 @@ return [
 
         'permissions' => 'permissions',
 
-        'departments' => 'departments',
-
         /**
          * Will be used only if the teams functionality is enabled.
          */

@@ -50,11 +50,6 @@ class LaratrustSetupTables extends Migration
             $table->timestamps();
         });
 
-        // Seed for departments
-        DB::table('departments')->insert([
-            'name' => 'All',
-        ]);
-
         // Create table for storing users
         Schema::create('users', function (Blueprint $table) {
             $table->id();
@@ -64,7 +59,6 @@ class LaratrustSetupTables extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->foreignId('department_id')->constrained('departments');
         });
 
         // Create table for storing ideas
@@ -112,29 +106,40 @@ class LaratrustSetupTables extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('ideas_id')->constrained('ideas');
         });
+        
+        Schema::create('departments_user', function (Blueprint $table) {
+            $table->unsignedBigInteger('departments_id');
+            $table->unsignedBigInteger('user_id');
+            // $table->string('user_type');
+
+            // $table->foreign('departments_id')->references('id')->on('departments')
+            //     ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->primary(['user_id', 'departments_id']);
+        });
 
         // Create table for associating roles to users and teams (Many To Many Polymorphic)
         Schema::create('role_user', function (Blueprint $table) {
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('user_type');
+            // $table->string('user_type');
 
-            $table->foreign('role_id')->references('id')->on('roles')
-                ->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('role_id')->references('id')->on('roles')
+            //     ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['user_id', 'role_id', 'user_type']);
+            $table->primary(['user_id', 'role_id']);
         });
 
         // Create table for associating permissions to users (Many To Many Polymorphic)
         Schema::create('permission_user', function (Blueprint $table) {
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('user_type');
+            // $table->string('user_type');
 
-            $table->foreign('permission_id')->references('id')->on('permissions')
-                ->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('permission_id')->references('id')->on('permissions')
+            //     ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['user_id', 'permission_id', 'user_type']);
+            $table->primary(['user_id', 'permission_id']);
         });
 
         // Create table for associating permissions to roles (Many-to-Many)
@@ -142,10 +147,10 @@ class LaratrustSetupTables extends Migration
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('role_id');
 
-            $table->foreign('permission_id')->references('id')->on('permissions')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('role_id')->references('id')->on('roles')
-                ->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('permission_id')->references('id')->on('permissions')
+            //     ->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('role_id')->references('id')->on('roles')
+            //     ->onUpdate('cascade')->onDelete('cascade');
 
             $table->primary(['permission_id', 'role_id']);
         });
@@ -177,7 +182,6 @@ class LaratrustSetupTables extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
-        Schema::dropIfExists('departments');
 
         Schema::dropIfExists('permission_user');
         Schema::dropIfExists('permissions');

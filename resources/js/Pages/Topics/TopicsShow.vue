@@ -62,12 +62,13 @@ export default {
                 <dd>{{ topic.closure_date }}</dd>
                 <dd>{{ topic.final_closure_date }}</dd>
             </div>
-            <div class="col-2 mb-2">
-                <router-link to="/IdeasCreate" class="btn btn-primary float-end">Add new Ideas</router-link>
-            </div>
         </div>
         <div class="card">
+            <div class="card-body col-2">
+                <router-link to="/IdeasCreate" class="btn btn-primary float-end">Add new Ideas</router-link>
+            </div>
             <div class="card-body">
+                
                 <table class="table table-bordered">
                     <thead>
                         <tr>

@@ -33,18 +33,6 @@ class Users extends Model
     {
         return $this->hasMany(Reacts::class);
     }
-    public function departments()
-    {
-        return $this->belongsToMany(Departments::class);
-    }
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
 }
 
 
@@ -63,7 +51,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'department_id'
     ];
 
     /**
@@ -75,7 +62,18 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
+    public function departments()
+    {
+        return $this->belongsToMany(Departments::class);
+    }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();
