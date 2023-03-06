@@ -7,8 +7,9 @@ use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TopicsController;
 use App\Http\Controllers\IdeasController;
+use App\Http\Controllers\ReactsController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ViewsController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
 use App\Models\User;
@@ -47,7 +48,6 @@ Route::controller(TopicsController::class)->group(function () {
 
 //Ideas
 Route::controller(IdeasController::class)->group(function () {
-
     Route::get('/ideas/IdeasIndex', 'index');
     Route::get('/ideas/edit/{id}', 'edit');
     Route::get('/ideas/IdeasShow/{id}', 'inforIdeas');
@@ -55,6 +55,15 @@ Route::controller(IdeasController::class)->group(function () {
     Route::patch('/ideas/IdeasUpdate/{id}', 'update');
     Route::delete('/ideas/delete/{id}', 'destroy');
 });
+
+//Reacts
+Route::controller(ReactsController::class)->group(function () {
+    Route::post('/like/{ideasId}', 'like');
+    Route::post('/dislike/{ideasId}', 'dislike');
+});
+
+//Views
+Route::post('/view/{ideasId}', [ViewsController::class, 'view']);
 
 //RolesController
 Route::controller(RolesController::class)->group(function () {

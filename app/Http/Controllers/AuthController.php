@@ -14,6 +14,7 @@ use Illuminate\Http\JsonResponse;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Illuminate\Support\Facades\Db;
 
 class AuthController extends Controller
 {
@@ -138,6 +139,7 @@ class AuthController extends Controller
     {
         return Inertia::render('ShowProfile');
     }
+}
 
     // public function Profile()
     // {
@@ -181,4 +183,3 @@ class AuthController extends Controller
     //     $user->save();
     //     return response()->json(compact('user'));
     // }
-}
