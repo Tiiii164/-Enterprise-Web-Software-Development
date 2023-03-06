@@ -14,7 +14,6 @@ export default {
     },
     created() {
         this.getTopics();
-
     },
     mounted() { },
     methods: {
@@ -28,18 +27,22 @@ export default {
                 console.log(error);
             }
         },
+        async likeIdea(ideasId) {
+            const response = await axios.post(`/api/like/${ideasId}`);
+            console.log(response.data.message);
+            location.reload();
+        },
 
+        async dislikeIdea(ideasId) {
+            const response = await axios.post(`/api/dislike/${ideasId}`);
+            console.log(response.data.message);
+            location.reload();
+        },
 
-        async deleteTopics(id) {
-            if (confirm("Are you sure you want to delete this Topic?")) {
-                try {
-                    const response = await axios.delete(`/api/topics/delete/${id}`);
-                    console.log(response.data);
-                    this.getTopics();
-                } catch (error) {
-                    console.log(error);
-                }
-            }
+        async viewIdea(ideasId) {
+            const response = await axios.post(`/api/view/${ideasId}`);
+            console.log(response.data.message);
+            location.reload();
         }
     }
 }
@@ -75,6 +78,10 @@ export default {
                             <th>File Path</th>
                             <th>Created At</th>
                             <th>Updated At</th>
+                            <th>Views</th>
+                            <th>Like</th>
+                            <th>Dislike</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,13 +92,18 @@ export default {
                             <td>{{ ideas.file_path }}</td>
                             <td>{{ ideas.created_at }}</td>
                             <td>{{ ideas.updated_at }}</td>
+                            <td>{{ ideas.views_count }}</td>
+                            <td>{{ ideas.likes_count }}</td>
+                            <td>{{ ideas.dislikes_count }}</td>
                             <td>
                                 <div>
-                                    <router-link :to="'/TopicsUpdate/' + topics.id"
-                                        class="btn btn-primary">Like</router-link>
-                                    <router-link :to="'/IdeasShow/' + ideas.id"
-                                        class="btn btn-primary">Details</router-link>
-                                    <button class="btn btn-danger" @click.prevent="deleteIdeas(topics.id)">DisLike</button>
+                                        <button class="btn btn-success"
+                                        @click="viewIdea(ideas.id)">View Details
+                                    </button>
+                                    <button class="btn btn-danger" 
+                                    @click="likeIdea(ideas.id)">Like</button>
+                                    <button class="btn btn-danger" 
+                                    @click="dislikeIdea(ideas.id)">Dislike</button>
                                 </div>
                             </td>
                         </tr>
