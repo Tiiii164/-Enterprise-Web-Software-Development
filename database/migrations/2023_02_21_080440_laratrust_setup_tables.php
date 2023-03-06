@@ -91,11 +91,11 @@ class LaratrustSetupTables extends Migration
             $table->boolean('like')->nullable();
             $table->boolean('dislike')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('users_id');
             $table->unsignedBigInteger('ideas_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('ideas_id')->references('id')->on('ideas')->onDelete('cascade');
-            $table->unique(['user_id', 'ideas_id']);
+            $table->unique(['users_id', 'ideas_id']);
         });
 
         // Create table for storing views

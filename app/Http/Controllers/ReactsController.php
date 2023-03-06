@@ -17,7 +17,7 @@ class ReactsController extends Controller
 
         $user = Auth::user();
         $react = Reacts::where('ideas_id', $ideasId)
-            ->where('user_id', $user->id)
+            ->where('users_id', $user->id)
             ->first();
 
         if ($react) {
@@ -39,7 +39,7 @@ class ReactsController extends Controller
             // Create a new react for the user and idea
             $react = new Reacts();
             $react->ideas_id = $ideas->id;
-            $react->user_id = $user->id;
+            $react->users_id = $user->id;
             $react->like = 1;
             $ideas->likes_count++;
             $react->save();
@@ -58,7 +58,7 @@ class ReactsController extends Controller
 
         $user = Auth::user();
         $react = Reacts::where('ideas_id', $ideasId)
-            ->where('user_id', $user->id)
+            ->where('users_id', $user->id)
             ->first();
 
         if ($react) {
@@ -80,7 +80,7 @@ class ReactsController extends Controller
             // Create a new react for the user and idea
             $react = new Reacts();
             $react->ideas_id = $ideas->id;
-            $react->user_id = $user->id;
+            $react->users_id = $user->id;
             $react->dislike = 1;
             $ideas->dislikes_count++;
             $react->save();

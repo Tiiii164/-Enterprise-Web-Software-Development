@@ -97,8 +97,8 @@ export default {
                             <td>{{ ideas.dislikes_count }}</td>
                             <td>
                                 <div>
-                                        <button class="btn btn-success"
-                                        @click="viewIdea(ideas.id)">View Details
+                                    <button class="btn btn-success"
+                                    @click="viewIdea(ideas.id)">View Details
                                     </button>
                                     <button class="btn btn-danger" 
                                     @click="likeIdea(ideas.id)">Like</button>
