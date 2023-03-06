@@ -83,6 +83,7 @@ export default {
           <thead>
             <tr>
               <th>No</th>
+              <th>Title</th>
               <th>Text</th>
               <th>File Path</th>
               <th>Created At</th>
@@ -94,6 +95,7 @@ export default {
             <tr v-for="(ideas, index) in ideas" :key="index">
               <td>{{ index + 1 }}</td>
               <td>{{ ideas.text }}</td>
+              <td>{{ ideas.title }}</td>
               <td>{{ ideas.file_path }}</td>
               <td>{{ ideas.created_at }}</td>
               <td>{{ ideas.updated_at }}</td>

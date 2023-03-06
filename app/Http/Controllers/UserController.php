@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Departments;
+use App\Models\Permission;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -52,8 +54,8 @@ class UserController extends Controller
         $user->password = bcrypt('password');
         $role  = Role::where('name', $data['role'])->first();
         $department = Departments::where('name', $data['department'])->first();
-        $permission = Permissions::where('name', $data['permission'])->first();
-        
+        $permission = Permission::where('name', $data['permission'])->first();
+
         $user->save();
 
         $user->roles()->attach($role);

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Ideas;
 use App\Models\Topics;
+use App\Models\Reacts;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class IdeasController extends Controller
 {
@@ -101,4 +103,41 @@ class IdeasController extends Controller
         $ideas->delete();
         return response()->json(['message' => 'Idea deleted']);
     }
+
+    // public function storeLike(Request $request)
+    // {
+    //     $user_id = Auth::id();
+    //     $idea_id = $request->input('idea_id');
+    //     $react = $request->input('react');
+
+    //     // check if the user has already reacted to this idea
+    //     $existing_react = Reacts::where('user_id', $user_id)
+    //         ->where('idea_id', $idea_id)
+    //         ->first();
+
+    //     if ($existing_react) {
+    //         // user has already reacted, update the react
+    //         $existing_react->like = $react == 'like' ? 1 : 0;
+    //         $existing_react->dislike = $react == 'dislike' ? 1 : 0;
+    //         $existing_react->save();
+    //     } else {
+    //         // create a new react
+    //         $react = new Reacts();
+    //         $react->user_id = $user_id;
+    //         $react->idea_id = $idea_id;
+    //         $react->like = $react == 'like' ? 1 : 0;
+    //         $react->dislike = $react == 'dislike' ? 1 : 0;
+    //         $react->save();
+    //     }
+
+    //     // get the number of likes and dislikes for this idea
+    //     $likes = Reacts::where('idea_id', $idea_id)->where('like', 1)->count();
+    //     $dislikes = Reacts::where('idea_id', $idea_id)->where('dislike', 1)->count();
+
+    //     // return the likes and dislikes count
+    //     return response()->json([
+    //         'likes' => $likes,
+    //         'dislikes' => $dislikes,
+    //     ]);
+    // }
 }

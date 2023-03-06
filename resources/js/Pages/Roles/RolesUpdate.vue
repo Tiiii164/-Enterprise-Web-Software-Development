@@ -45,7 +45,7 @@ export default {
 </script>
 <template>
   <NavBar></NavBar>
-    <form >
+    <form>
       <div class="container">
         <div class="card">
             <div class="card-header">

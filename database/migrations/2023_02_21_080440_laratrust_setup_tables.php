@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Db;
 
 class LaratrustSetupTables extends Migration
 {
@@ -73,6 +74,9 @@ class LaratrustSetupTables extends Migration
             $table->string('text');
             $table->string('file_path');
             $table->timestamps();
+            $table->unsignedBigInteger('views_count')->default(0);
+            $table->unsignedBigInteger('likes_count')->default(0);
+            $table->unsignedBigInteger('dislikes_count')->default(0);
             $table->foreignId('users_id')->constrained('users');
             $table->foreignId('categories_id')->constrained('categories');
             $table->foreignId('topics_id')->constrained('topics');
@@ -90,20 +94,25 @@ class LaratrustSetupTables extends Migration
         // Create table for storing reacts
         Schema::create('reacts', function (Blueprint $table) {
             $table->id();
-            $table->integer('like');
-            $table->integer('dis_like');
-            $table->foreignId('users_id')->constrained('users');
-            $table->foreignId('ideas_id')->constrained('ideas');
+            $table->boolean('like')->nullable();
+            $table->boolean('dislike')->nullable();
+            $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('ideas_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('ideas_id')->references('id')->on('ideas')->onDelete('cascade');
+            $table->unique(['user_id', 'ideas_id']);
         });
 
         // Create table for storing views
         Schema::create('views', function (Blueprint $table) {
             $table->id();
+            $table->boolean('isView')->nullable();
             $table->timestamps();
-            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('ideas_id')->constrained('ideas');
         });
-        
+
         // Create table for associating roles to users and teams (Many To Many Polymorphic)
         Schema::create('role_user', function (Blueprint $table) {
             $table->unsignedBigInteger('role_id');
