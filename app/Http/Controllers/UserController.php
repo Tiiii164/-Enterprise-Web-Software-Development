@@ -127,6 +127,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->update($request->all());
+        $user->roles()->detach($user->role_id);
+        $user->roles()->attach($request->role);
+        $user->departments()->detach($user->department_id);
+        $user->departments()->attach($request->department);
         return response()->json($user);
     }
 
