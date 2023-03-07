@@ -47,22 +47,22 @@ export default {
 <template>
   <NavBar></NavBar>
     <form>
-      <div class="container">
-        <div class="card">
+      <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
+        <div class="card categoriesindex">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-md-6">
+                  <div class="col-md-6 catecenter" >
                         <h3>Edit Roles</h3>
                     </div>
-                    <div class="col-md-6">
-                        <router-link to="/RolesIndex" class="btn btn-primary float-end">Back to list</router-link>
+                    <div class="col-md-6 catecenter" >
+                        <router-link to="/RolesIndex" class="btn btn-primary catebutton">Back to list</router-link>
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <form @submit.prevent="updateRoles">
                     <div class="row">
-                        <div class="col-md-6">
+                      <div class="col-md-6 catecenter" >
                             <div class="form-group">
                                 <strong>Role Name</strong>
                                 <input type="text" name="name" v-model="role.name" class="form-control">
@@ -76,6 +76,9 @@ export default {
             </div>
         </div>
       </div>
+      <div>
+        <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
+    </div>
     </form>
   <TheFooter></TheFooter>
   </template>

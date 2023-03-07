@@ -37,7 +37,7 @@ export default {
 };
 </script>
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:grid;top:0;width:100%;z-index:1">
   <div class="container-fluid">
     <router-link class="navbar-brand" to="/">Idea</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" 
