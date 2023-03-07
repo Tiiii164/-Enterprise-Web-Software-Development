@@ -9,7 +9,6 @@ export default {
     data() {
         return {
             ideas: [],
-
         }
     },
     created() {
@@ -63,17 +62,18 @@ export default {
                                 <td>View</td>
                                 <td>Topic</td>
                                 <td>Category</td>
+
                             </tr>
                         </thead>
 
                         <tbody class="catetbody">
                             <!-- <tr v-for="ideas, topics, categories in ideas, ideas.topics, ideas.categories">
-                                                            <th>{{ ideas.title }}</th>
-                                                            <th>{{ ideas.text }}</th>
-                                                            <th>{{ ideas.file_path }}</th>
-                                                            <th>{{ topics.name }}</th>
-                                                            <th>{{ categories.name }}</th>
-                                                        </tr> -->
+                                                                                                                                <th>{{ ideas.title }}</th>
+                                                                                                                                <th>{{ ideas.text }}</th>
+                                                                                                                                <th>{{ ideas.file_path }}</th>
+                                                                                                                                <th>{{ topics.name }}</th>
+                                                                                                                                <th>{{ categories.name }}</th>
+                                                                                                                            </tr> -->
                             <!-- ...... -->
                             <tr v-for="ideas in ideas" :key="ideas.id">
                                 <th>{{ ideas.title }}</th>
@@ -86,19 +86,15 @@ export default {
 
                             <!-- -------- -->
                             <!-- <tr v-for="views in ideas.views">
-                                                                                                <th>{{ views. }}</th>
-                                                                                            </tr> -->
+                                                                                                                                                    <th>{{ views. }}</th>
+                                                                                                                                                </tr> -->
                             <!-- <tr v-for="topics in ideas.topics" :key="ideas.id">
-                                        <th>{{ topics.name }}</th>
-                                    </tr>
-                                    <tr v-for="categories in ideas.categories" :key="ideas.id">
-                                        <th>{{ categories.name }}</th>
-                                    </tr> -->
+                                                                                            <th>{{ topics.name }}</th>
+                                                                                        </tr>
+                                                                                        <tr v-for="categories in ideas.categories" :key="ideas.id">
+                                                                                                    <th>{{ categories.name }}</th>
+                                                                                                    </tr> -->
                         </tbody>
-
-
-
-
                     </div>
                     <div class="col-md-6 catecenter" >
                         <router-link to="/TopicsIndex" class="btn btn-primary float-end">Back to list</router-link>
@@ -109,17 +105,12 @@ export default {
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-
-
                             <th>Text</th>
-
                             <th>Created At</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="comments in ideas.comments" :key="ideas.id">
-
                             <td>{{ comments.text }}</td>
                             <td>{{ comments.created_at }}</td>
                         </tr>
@@ -127,6 +118,25 @@ export default {
                 </table>
             </div>
         </div>
+    </div>
+
+    <div>
+
+        <h3>Comments</h3>
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <strong>Comment</strong>
+                        <input type="text" name="text" class="form-control" v-model="form.text" placeholder="Enter Comment">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mt-2" @click.prevent="">Create</button>
+                </div>
+            </div>
+        </form>
     </div>
     <TheFooter></TheFooter>
 </template>

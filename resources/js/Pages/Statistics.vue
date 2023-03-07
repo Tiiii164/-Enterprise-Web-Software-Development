@@ -50,8 +50,8 @@ export default {
     <NavBar></NavBar>
     <div class="container text-center mt-5">
         <div class="row ">
-            <div class="col-sm-6 .col-md-12 .col-lg-12 border">
-                <h4>Departments</h4>
+            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+                <h4>Departments with Users</h4>
                 <div v-for="department in departments" :key="department">
                     <div class="d-flex justify-content-between">
                         <div>{{ department.name }}</div>
@@ -60,8 +60,8 @@ export default {
                     <hr class="hr" />
                 </div>
             </div>
-            <div class="col-sm-6 .col-md-12 .col-lg-12 border">
-                <h4>Roles</h4>
+            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+                <h4>Roles with Users</h4>
                 <div v-for="role in roles" :key="role">
                     <div class="d-flex justify-content-between">
                         <div>{{ role.name }}</div>
@@ -70,10 +70,8 @@ export default {
                     <hr class="hr" />
                 </div>
             </div>
-        </div>
-        <div class="row ">
-            <div class="col-sm-6 .col-md-12 .col-lg-12 border">
-                <h4>Users</h4>
+            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+                <h4>Users with Ideas</h4>
                 <div v-for="user in users" :key="user">
                     <div class="d-flex justify-content-between">
                         <div>{{ user.name }}</div>
@@ -81,8 +79,6 @@ export default {
                     </div>
                     <hr class="hr" />
                 </div>
-            </div>
-            <div class="col-sm-6 .col-md-12 .col-lg-12 border">
             </div>
         </div>
     </div>

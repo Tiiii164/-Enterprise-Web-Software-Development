@@ -10,6 +10,7 @@ class Comments extends Model
     use HasFactory;
     protected $table = 'comments';
     protected $primaryKey = 'id';
+    protected $fillable = ['text'];
     //comment belongs to user, idea 
     public function users()
     {
