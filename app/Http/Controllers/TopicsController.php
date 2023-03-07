@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Topics;
@@ -20,7 +21,11 @@ class TopicsController extends Controller
         $topics = Topics::all();
         return response()->json($topics);
     }
-
+    public function getTopics()
+    {
+        $dataTopics = Topics::get();
+        return response()->json($dataTopics);
+    }
     /**
      * Show the form for creating a new resource.
      *
