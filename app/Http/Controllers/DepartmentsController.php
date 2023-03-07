@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Departments;
+use App\Models\User;
 use Inertia\Inertia;
 
 class DepartmentsController extends Controller
@@ -16,6 +17,15 @@ class DepartmentsController extends Controller
     public function index()
     {
         $departments = Departments::all();
+        return response()->json($departments);
+    }
+
+    public function count()
+    {
+        $departments = Departments::withCount('users')->get();
+        // $departments = Departments::withCount(['users' => function() {
+        //     User::where('ideas_id')->where('user_id');
+        // }])->get();
         return response()->json($departments);
     }
 
@@ -48,6 +58,7 @@ class DepartmentsController extends Controller
         $department = new Departments();
         $department->name = $request->input('name');
         $department->save();
+        $department->users_count = $request->users_count;
         return response()->json($department);
     }
 
