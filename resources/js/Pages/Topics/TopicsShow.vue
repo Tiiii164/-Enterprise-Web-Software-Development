@@ -49,7 +49,7 @@ export default {
 </script>
 <template>
     <NavBar></NavBar>
-    <div class="container">
+    <div class="" style="position:absolute;width:100%;justify-content:center;text-align:center">
         <h1>List of Ideas</h1>
         <div class="row">
             <div class="col-4">
@@ -63,9 +63,9 @@ export default {
                 <dd>{{ topic.final_closure_date }}</dd>
             </div>
         </div>
-        <div class="card">
-            <div class="card-body col-2">
-                <router-link to="/IdeasCreate" class="btn btn-primary float-end">Add new Ideas</router-link>
+        <div class="card" style="display:flex">
+            <div class="card-body col-2" style="display:flex;justify-content:center;width:100%">
+                <router-link to="/IdeasCreate" class="btn btn-primary catebutton">Add new Ideas</router-link>
             </div>
             <div class="card-body">
                 
@@ -111,6 +111,9 @@ export default {
                 </table>
             </div>
         </div>
+    </div>
+    <div>
+        <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
     </div>
     <TheFooter></TheFooter>
 </template>

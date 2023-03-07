@@ -49,12 +49,12 @@ export default {
 </script>
 <template>
     <NavBar></NavBar>
-    <div class="container">
-        <div class="card">
+    <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
+        <div class="card categoriesindex">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-md-6">
-                        <thead>
+                    <div class="col-md-6 catecenter" >
+                        <thead style="text-align:center;align-items:center;justify-content:center">
                             <h3>Details</h3>
                             <tr>
                                 <td>Tiltle</td>
@@ -66,7 +66,7 @@ export default {
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody class="catetbody">
                             <!-- <tr v-for="ideas, topics, categories in ideas, ideas.topics, ideas.categories">
                                                             <th>{{ ideas.title }}</th>
                                                             <th>{{ ideas.text }}</th>
@@ -100,7 +100,7 @@ export default {
 
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 catecenter" >
                         <router-link to="/TopicsIndex" class="btn btn-primary float-end">Back to list</router-link>
                     </div>
                 </div>
