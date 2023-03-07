@@ -68,7 +68,7 @@ export default {
             </li>
           </ul>
         </li>
-        <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager') || roles.has('Staff')">
+        <li class="nav-item">
           <router-link class="nav-link active nav-item1" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
         <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager')">

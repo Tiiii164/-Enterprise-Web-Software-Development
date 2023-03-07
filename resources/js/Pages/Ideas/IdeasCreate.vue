@@ -23,7 +23,7 @@ export default {
       file_path: '',
       categories_id: '',
       topics_id: '',
-      users_id: '',
+      user_id: '',
     })
     const handlecreateIdeas = async () => {
       try {
