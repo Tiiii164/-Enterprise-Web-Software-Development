@@ -1,10 +1,14 @@
 <script>
 import NavBar from '@/Components/NavBar.vue';
 import theFooter from '@/Components/TheFooter.vue';
+import evaluationStudent from '@/Components/EvaluationStudent.vue'
+import universityGreenwich from '@/Components/UniversityGreenwich.vue'
 export default {
   components: {
       NavBar,
       theFooter,
+      evaluationStudent,
+      universityGreenwich
   },
   data() {
     return {
@@ -29,6 +33,7 @@ export default {
 } 
 </script>
 <template>
+  <div class="homehtml">
   <NavBar></NavBar>
     <div style="width:100%;position:absolute" class="welcomeuser">
       <div class="jumbotron mt-5">
@@ -44,11 +49,15 @@ export default {
             </h5>
           </div>
       </div>
+      
     </div>
     <div>
       <img src="../../css/background1.jpg" alt="" style="width:100%;" class="background2">
     </div>
+    <evaluationStudent></evaluationStudent>
+    <universityGreenwich></universityGreenwich>
     <theFooter></theFooter>
+  </div>
   </template>
   
   
