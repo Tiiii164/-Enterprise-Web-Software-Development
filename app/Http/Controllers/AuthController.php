@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Departments;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ use Illuminate\Http\JsonResponse;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Illuminate\Support\Facades\Db;
 
 class AuthController extends Controller
 {
@@ -29,8 +31,7 @@ class AuthController extends Controller
                 [
                     'name' => 'required|string|max:255',
                     'email' => 'required|string|email|max:255|unique:users,email',
-                    'password' => 'required|confirmed|min:4',
-                    'department_id'=> 'required',
+                    'password' => 'required|confirmed|min:3',
                 ]
             );
 
@@ -49,9 +50,9 @@ class AuthController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
-            $user->department_id = $request->department_id;
             $user->save();
             $user->roles()->attach(Role::where('name', 'Staff')->first());
+            $user->departments()->attach(Departments::where('id', $request->department)->first());
 
             return response()->json([
                 'status' => true,
@@ -138,6 +139,7 @@ class AuthController extends Controller
     {
         return Inertia::render('ShowProfile');
     }
+}
 
     // public function Profile()
     // {
@@ -181,4 +183,3 @@ class AuthController extends Controller
     //     $user->save();
     //     return response()->json(compact('user'));
     // }
-}

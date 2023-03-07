@@ -30,7 +30,9 @@ Route::get('/StaffSubmission', [Controller::class, 'showStaffSubmission'])->name
 
 //User
 Route::get('/getCurrentUser', function () {
-    return Auth::user()->load('roles');
+    return Auth::user()->load('roles')
+                       ->load('permissions')
+                       ->load('departments');
 });
 
 Route::get('/signup', [AuthController::class, 'showFormSignUp']);
@@ -41,6 +43,7 @@ Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->nam
 
 //Profile
 Route::get('/ShowProfile', [AuthController::class, 'showProfile'])->name('show-profile');
+Route::patch('UpdateProfile/{id}', [UserController::class, 'update']);
 Route::post('/ChangePassword', [UserController::class, 'showChangePassword']);
 
 //Department

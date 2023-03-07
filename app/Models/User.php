@@ -17,10 +17,7 @@ class Users extends Model
     protected $table = 'users';
     protected $primaryKey = 'id';
     //user has many ideas, comments,reacts,views
-    public function ideas()
-    {
-        return $this->hasMany(Ideas::class);
-    }
+    
     public function comments()
     {
         return $this->hasMany(Comments::class);
@@ -32,14 +29,6 @@ class Users extends Model
     public function reacts()
     {
         return $this->hasMany(Reacts::class);
-    }
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
-    }
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
     }
 }
 
@@ -70,7 +59,22 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
+    public function ideas()
+    {
+        return $this->hasMany(Ideas::class);
+    }
+    public function departments()
+    {
+        return $this->belongsToMany(Departments::class);
+    }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();

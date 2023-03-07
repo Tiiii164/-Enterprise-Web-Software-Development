@@ -73,6 +73,7 @@ class TopicsController extends Controller
     {
         return Inertia::render('TopicsShow');
     }
+
     public function inforTopics($id)
     {
         $topics = Topics::with('ideas')->find($id);
