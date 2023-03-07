@@ -10,7 +10,8 @@ class Ideas extends Model
     use HasFactory;
     protected $table = 'ideas';
     protected $primaryKey = 'id';
-    protected $fillable = ['text','file-path'];
+    //protected $fillable = ['text','file-path'];
+    protected $fillable = ['title', 'text', 'file_path', 'users_id', 'topics_id', 'categories_id'];
 
     //idea has many views, comments, reacts
     public function views()

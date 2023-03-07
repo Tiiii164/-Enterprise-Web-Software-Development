@@ -68,7 +68,7 @@ export default {
                 <router-link to="/IdeasCreate" class="btn btn-primary float-end">Add new Ideas</router-link>
             </div>
             <div class="card-body">
-                
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -97,13 +97,12 @@ export default {
                             <td>{{ ideas.dislikes_count }}</td>
                             <td>
                                 <div>
-                                    <button class="btn btn-success"
-                                    @click="viewIdea(ideas.id)">View Details
-                                    </button>
-                                    <button class="btn btn-danger" 
-                                    @click="likeIdea(ideas.id)">Like</button>
-                                    <button class="btn btn-danger" 
-                                    @click="dislikeIdea(ideas.id)">Dislike</button>
+                                    <router-link :to="'/IdeasShow/' + ideas.id" class="btn btn-success"
+                                        @click="viewIdea(ideas.id)">View
+                                        Detail</router-link>
+                                    <!-- <button class="btn btn-success" @click="viewIdea(ideas.id)">View Details </button> -->
+                                    <button class="btn btn-danger" @click="likeIdea(ideas.id)">Like</button>
+                                    <button class="btn btn-danger" @click="dislikeIdea(ideas.id)">Dislike</button>
                                 </div>
                             </td>
                         </tr>

@@ -12,6 +12,7 @@ export default {
     return {
       ideas: [],
       categories: [],
+      topics: [],
     }
   },
   setup() {
@@ -20,7 +21,9 @@ export default {
       title: '',
       text: '',
       file_path: '',
-      category_id: '',
+      categories_id: '',
+      topics_id: '',
+      users_id: '',
     })
     const handlecreateIdeas = async () => {
       try {
@@ -39,16 +42,20 @@ export default {
     }
   },
   methods: {
-        async getCategories() {
-            axios.get('/api/categories')    
-            .then((response) => { 
-                this.categories = response.data;
-            });
-        }
-    },
-    created() {
-        this.getCategories();
+    async getCategories() {
+      axios.get('/api/categories')
+        .then((response) => {
+          this.categories = response.data;
+        });
+      axios.get('/api/topics')
+        .then((response) => {
+          this.topics = response.data;
+        });
     }
+  },
+  created() {
+    this.getCategories();
+  }
 }
 </script>
 <template>
@@ -83,10 +90,14 @@ export default {
                   <input type="text" name="file_path" class="form-control" v-model="form.file_path" placeholder="">
                 </div>
                 <div class="form-group">
-                    <strong>Category</strong>
-                    <select class="form-select form-control" v-model="form.category_id">
-                        <option v-for="data in categories" :value="data.id">{{ data.name }}</option>
-                    </select>    
+                  <strong>Category</strong>
+                  <select class="form-select form-control" v-model="form.categories_id">
+                    <option v-for="data in categories" :value="data.id">{{ data.name }}</option>
+                  </select>
+                  <strong>Topic</strong>
+                  <select class="form-select form-control" v-model="form.topics_id">
+                    <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
+                  </select>
                 </div>
                 <button type="submit" class="btn btn-primary mt-2" @click.prevent="handlecreateIdeas">Create</button>
               </div>
