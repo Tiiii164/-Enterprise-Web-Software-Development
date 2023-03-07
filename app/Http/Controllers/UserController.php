@@ -48,17 +48,19 @@ class UserController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users,email',
                 'password' => 'required|confirmed|min:4',
-                'department_id' => 'required'
+                // 'department_id' => 'required'
             ]
         );
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->department_id = $request->department_id;
+        
+        // $user->department_id = $request->department_id;
         $user->save();
-
+        
         $role = Role::where('id', $request->role)->first();
+
         $user->roles()->attach($role);
         // $permission  = Permissions::where('id', $request->permission)->first();
         // $user->permissions()->attach($permission);
@@ -92,9 +94,11 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email')
+            'name' => $request->name,
+            'email' => $request->email,
         ]);
+        $user->roles()->detach($user->role_id);
+        $user->roles()->attach($request->role);
         return response()->json($user);
     }
 
