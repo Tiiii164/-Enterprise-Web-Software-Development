@@ -17,10 +17,7 @@ class Users extends Model
     protected $table = 'users';
     protected $primaryKey = 'id';
     //user has many ideas, comments,reacts,views
-    public function ideas()
-    {
-        return $this->hasMany(Ideas::class);
-    }
+    
     public function comments()
     {
         return $this->hasMany(Comments::class);
@@ -62,6 +59,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function ideas()
+    {
+        return $this->hasMany(Ideas::class);
+    }
     public function departments()
     {
         return $this->belongsToMany(Departments::class);

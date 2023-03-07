@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Role;
-use App\Models\Departments;
 use App\Models\Permission;
+use App\Models\Departments;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,6 +29,11 @@ class UserController extends Controller
                                  'roles' => $roles,
                                  'permissions' => $permissions,
                                  'departments' => $departments]);
+    }
+    public function count()
+    {
+        $users = User::withCount('ideas')->get();
+        return response()->json($users);
     }
     /**
      * Show the form for creating a new resource.
@@ -60,9 +65,11 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        //$user->departments_id = $request->departments_id;
 
         $user->save();
         
+        $user->ideas_count = $request->ideas_count;
         $user->roles()->attach(Role::where('id', $request->role)->first());
         $user->departments()->attach(Departments::where('id', $request->department)->first());
         return response('success');   
@@ -91,13 +98,39 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function showChangePassword()
+    {
+        return Inertia::render('ChangePassword');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $user = Auth::user();
+        if (!Hash::check($request->current_password, Auth::user()->password)) {
+            return response()->json([
+                'errors' => ['current_password' =>
+                ['The provided password does not match your current password.']]
+            ], 422);
+        }
+        $validatedData = $request->validate([
+            'current_password' => ['required'],
+            'new_password' => ['required', 'min:3', 'different:current_password'],
+            'confirm_password' => ['required', 'same:new_password'],
+        ]);
+        $user->update([
+            'password' => Hash::make($validatedData['new_password'])
+        ]);
+        return response()->json(['message' => 'Password updated successfully.']);
+    }
+    
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $user->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email')
-        ]);
+        $user->update($request->all());
+        $user->roles()->detach($user->role_id);
+        $user->roles()->attach($request->role);
+        $user->departments()->detach($user->department_id);
+        $user->departments()->attach($request->department);
         return response()->json($user);
     }
 

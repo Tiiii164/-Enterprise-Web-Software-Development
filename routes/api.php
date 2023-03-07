@@ -67,6 +67,7 @@ Route::post('/view/{ideasId}', [ViewsController::class, 'view']);
 
 //RolesController
 Route::controller(RolesController::class)->group(function () {
+    Route::get('roles', 'count');
     Route::get('/roles/RolesIndex', 'index');
     Route::get('/roles/edit/{id}', 'edit');
     Route::post('/roles/RolesCreate', 'store');
@@ -76,6 +77,7 @@ Route::controller(RolesController::class)->group(function () {
 
 //DepartmentsController
 Route::controller(DepartmentsController::class)->group(function () {
+    Route::get('departments', 'count');
     Route::get('/departments/DepartmentsIndex', 'index');
     Route::get('/departments/edit/{id}', 'edit');
     Route::post('/departments/DepartmentsCreate', 'store');
@@ -94,6 +96,7 @@ Route::controller(CategoriesController::class)->group(function () {
 });
 //UsersController
 Route::controller(UserController::class)->group(function () {
+    Route::get('users', 'count');
     Route::get('/users/UsersIndex', 'index');
     Route::get('/users/edit/{id}', 'edit');
     Route::post('/users/UsersCreate', 'store');
