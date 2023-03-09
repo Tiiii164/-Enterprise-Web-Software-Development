@@ -25,10 +25,12 @@ class UserController extends Controller
         $roles = Role::all();
         $permissions = Permission::all();
         $departments = Departments::all();
-        return response()->json(['users' => $users, 
-                                 'roles' => $roles,
-                                 'permissions' => $permissions,
-                                 'departments' => $departments]);
+        return response()->json([
+            'users' => $users,
+            'roles' => $roles,
+            'permissions' => $permissions,
+            'departments' => $departments
+        ]);
     }
     public function count()
     {
@@ -52,7 +54,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
+    {
         $validation = Validator::make(
             $request->all(),
             [
@@ -68,13 +70,13 @@ class UserController extends Controller
         //$user->departments_id = $request->departments_id;
 
         $user->save();
-        
+
         $user->ideas_count = $request->ideas_count;
         $user->roles()->attach(Role::where('id', $request->role)->first());
         $user->departments()->attach(Departments::where('id', $request->department)->first());
-        return response('success');   
-}
-                
+        return response('success');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -86,7 +88,7 @@ class UserController extends Controller
         return Inertia::render('UsersIndex');
     }
 
-    public function showUsersUpdate($id)
+    public function showUsersUpdate()
     {
         return Inertia::render('UsersUpdate');
     }
@@ -120,13 +122,32 @@ class UserController extends Controller
         $user->update([
             'password' => Hash::make($validatedData['new_password'])
         ]);
-        return response()->json(['message' => 'Password updated successfully.']);
+        return response()->json(['message' => 'Updated password successfully.']);
     }
-    
+
     public function update(Request $request, $id)
     {
+        $request->validate([
+            // 'name' => 'required|string|max:255',
+            // 'email' => 'required|string|email|max:255|unique:users,email',
+            'department' => 'required',
+            'role' => 'required',
+        ]);
+
         $user = User::find($id);
         $user->update($request->all());
+        // $user->roles()->detach($user->role_id);
+        // $user->roles()->attach($request->role);
+        // $user->departments()->detach($user->department_id);
+        // $user->departments()->attach($request->department);
+
+        $roleId = $request->input('role');
+        $user->roles()->sync($roleId);
+
+        $departmentId = $request->input('department');
+        $user->departments()->sync($departmentId);
+
+
         return response()->json($user);
     }
 

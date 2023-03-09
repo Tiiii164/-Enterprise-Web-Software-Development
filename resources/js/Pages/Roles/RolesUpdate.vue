@@ -20,23 +20,22 @@ export default {
   methods: {
     async showRoles() {
       try {
-        const response = await axios.patch(`/api/roles/RolesUpdate/${this.$route.params.id}`)
+        await axios.patch(`/api/roles/RolesUpdate/${this.$route.params.id}`)
         .then((res) => {
           const {name} = res.data
           this.role.name = name
-            });
-        console.log(response.data)
+        });
       } catch (error) {
         console.log(error);
       }
     },
     async updateRoles() {
       try {
-        const response = await axios.patch(`/api/roles/RolesUpdate/${this.$route.params.id}`, this.role)
+        await axios.patch(`/api/roles/RolesUpdate/${this.$route.params.id}`, this.role)
         .then((res) => {
+          alert("Updated Successfully.")
           this.$router.push('/RolesIndex')
             });
-        console.log(response.data)
       } catch (error) {
         console.log(error);
       }

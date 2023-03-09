@@ -18,8 +18,8 @@ use App\Models\Departments;
 //Custom function
 Route::get('/ShowProfile', function () {
     return Auth::user()->load('roles')
-                       ->load('permissions')
-                       ->load('departments');
+        ->load('permissions')
+        ->load('departments');
 });
 
 Route::get('/api/roles/RolesIndex', function () {
@@ -27,8 +27,11 @@ Route::get('/api/roles/RolesIndex', function () {
     return response()->json($roles);
 });
 //UserController
-Route::patch('UpdateProfile/{id}', [UserController::class, 'update']);
-Route::post('/ChangPassword', [UserController::class, 'changePassword']);
+Route::controller(UserController::class)->group(function () {
+    Route::patch('/UpdateProfile/{id}', 'update');
+    Route::post('/ChangePassword', 'changePassword');
+});
+
 
 //AuthController
 Route::controller(AuthController::class)->prefix('/auth/')->group(function () {

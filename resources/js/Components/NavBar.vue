@@ -55,7 +55,7 @@ export default {
               <router-link class="nav-link active nav-item1" to="/CategoriesIndex">Category</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active nav-item1" to="TopicsIndex">Submission</router-link>
+              <router-link class="nav-link active nav-item1" to="/TopicsIndex">Submission</router-link>
             </li>
             <li class="dropdown-item">
               <router-link class="nav-link active nav-item1" to="/DepartmentsIndex">Department</router-link>
