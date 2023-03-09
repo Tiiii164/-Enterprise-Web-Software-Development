@@ -120,7 +120,7 @@ export default {
         </div>
     </div>
 
-    <div>
+    <!-- <div>
 
         <h3>Comments</h3>
         <form>
@@ -137,6 +137,6 @@ export default {
                 </div>
             </div>
         </form>
-    </div>
+    </div> -->
     <TheFooter></TheFooter>
 </template>

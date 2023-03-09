@@ -14,7 +14,8 @@ export default {
       user: {
         email:"",
         name: "",
-        role:"",
+        // role:"",
+        // department:"",
         _method: "patch",
       },
       departments: [],   
@@ -22,21 +23,30 @@ export default {
     }
   },
   created() {
-    this.showUsers()
+    this.showUsers();
+    this.getUser();
+    // this.getDepartments();
   },
   methods: {
+    async getUser() {
+      axios.get('/api/users/UsersIndex')
+      .then(response => {
+        this.roles = response.data.roles,
+        this.departments = response.data.departments,
+        console.log(response.data)
+      })
+      .catch (error => {console.log(error)})
+    },
     async showUsers() {
       try {
-        const response = await axios.patch(`/api/users/UsersUpdate/${this.$route.params.id}`)
-        .then((res) => {
-          const {email} = res.data
-          this.user.email = email
-          const {name} = res.data
-          this.user.name = name
-          const {role} = res.data
-          this.user.role = role
+        await axios.patch(`/api/users/UsersUpdate/${this.$route.params.id}`)
+        .then((response) => {
+          const { email, name, role, department } = response.data;
+          this.user.email = email;
+          this.user.name = name;
+          this.user.role = role;
+          this.user.department = department;
             });
-        console.log(response.data)
       } catch (error) {
         console.log(error);
       }
@@ -44,34 +54,29 @@ export default {
   
     async updateUser() {
       try {
-        const response = await axios.patch(`/api/users/UsersUpdate/${this.$route.params.id}`, this.user)
+        await axios.patch(`/api/users/UsersUpdate/${this.$route.params.id}`, this.user)
         .then((res) => {
           this.$router.push('/UsersIndex')
             });
-        console.log(response.data)
       } catch (error) {
         console.log(error);
       }
     },
-    async getDepartments() {
-        axios.get('/api/departments/')    
-        .then((response) => { 
-          this.departments = response.data;
-    });
-  },
+  //   async getDepartments() {
+  //       axios.get('/api/departments/DepartmentsIndex')
+  //       .then((response) => { 
+  //         this.departments = response.data;
+  //   });
+  // },
   
-    async getRoles() {
-        axios.get('/api/roles/RolesIndex')
-        .then(response => {
-          this.roles = response.data;
-          console.log(response.data);
-    });
-  }
-},
-mounted() {
-    this.getRoles();
-    this.getDepartments();
-  },  
+  //   async getRoles() {
+  //       axios.get('/api/roles/RolesIndex')
+  //       .then(response => {
+  //         this.roles = response.data;
+  //         console.log(response.data);
+  //   });
+  // }
+},  
 }
 </script>
 <template>
@@ -99,11 +104,11 @@ mounted() {
                                   <strong>Name</strong>
                                   <input type="text" name="name" class="form-control" v-model="user.name">
                                   <label class="form-label" for="role">Role:</label>
-                                  <select class="form-select form-control" v-model="user.role">
+                                  <select class="form-select form-control" name="role" v-model="user.role">
                                     <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
                                   </select>
                                   <label class="form-label">Departments: </label>
-                                  <select class="form-select form-control" v-model="user.department">
+                                  <select class="form-select form-control" name="department" v-model="user.department">
                                     <option v-for="department in departments" :value="department.id">{{ department.name }}</option>
                                   </select>
                             </div>
