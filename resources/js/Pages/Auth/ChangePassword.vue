@@ -1,5 +1,11 @@
 <script>
+import NavBar from '@/Components/NavBar.vue';
+import TheFooter from '@/Components/TheFooter.vue';
 export default {
+  components: {
+      NavBar,
+      TheFooter,
+    },
   data() {
     return {
       currentPassword: '',
@@ -16,7 +22,7 @@ export default {
         return;
       }
       
-      axios.post('/api/ChangPassword', {
+      axios.post('/api/ChangePassword', {
         current_password: this.currentPassword,
         new_password: this.newPassword,
         confirm_password: this.confirmPassword,
@@ -44,9 +50,10 @@ export default {
     },
   },
 };
-</script>  
+</script>
 
 <template>
+  <NavBar></NavBar>
     <div>
       <h1>Change Password</h1>
       <div v-if="error" class="alert alert-danger">{{ error }}</div>
@@ -71,4 +78,5 @@ export default {
             </div>
       </form>
     </div>
+    <TheFooter></TheFooter>
   </template>

@@ -1,7 +1,6 @@
 <script>
 import NavBar from '@/Components/NavBar.vue';
 import TheFooter from '@/Components/TheFooter.vue';
-import axios from 'axios';
 export default {
   components: {
     NavBar,
@@ -10,36 +9,38 @@ export default {
   data() {
     return {
       department: {
-        name:"",
+        name: "",
         _method: "patch",
       }
     }
   },
-  mounted() {
+  created() {
     this.showDepartments()
   },
   methods: {
     async showDepartments() {
       try {
-        const response = await axios.patch(`/api/departments/DepartmentsUpdate/${this.$route.params.id}`)
+        await axios.patch(`/api/departments/DepartmentsUpdate/${this.$route.params.id}`)
         .then((res) => {
           const {name} = res.data
           this.department.name = name
         });
-        console.log(response.data)
       } catch (error) {
         console.log(error);
       }
     },
     async updateDepartments() {
+      try {
         await axios.patch(`/api/departments/DepartmentsUpdate/${this.$route.params.id}`, this.department)
         .then((res) => {
+          alert("Updated Successfully.")
           this.$router.push('/DepartmentsIndex')
-        }).catch (error => {
-          console.log(error);
-      })
+            });
+      } catch (error) {
+        console.log(error);
+      }
     }
-  },
+  }
 }
 </script>
 <template>

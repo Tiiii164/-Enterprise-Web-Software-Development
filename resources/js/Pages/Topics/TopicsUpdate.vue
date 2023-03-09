@@ -34,6 +34,7 @@ export default {
     async updateTopics() {
       const response = await axios.patch(`/api/topics/TopicsUpdate/${this.$route.params.id}`, this.topics)
         .then((res) => {
+          alert("Updated Successfully.")
           this.$router.push('/TopicsIndex')
         })
         .catch(error => {
