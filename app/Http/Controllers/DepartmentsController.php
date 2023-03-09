@@ -21,10 +21,9 @@ class DepartmentsController extends Controller
 
     public function count()
     {
-        $departments = Departments::withCount('users')->get();
-        // $departments = Departments::withCount(['users' => function() {
-        //     User::where('ideas_id')->where('user_id');
-        // }])->get();
+        $departments = Departments::withCount(['users' => function($query){
+            $query->has('ideas');
+        }])->get();
         return response()->json($departments);
     }
 

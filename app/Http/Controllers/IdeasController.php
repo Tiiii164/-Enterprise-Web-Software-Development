@@ -50,7 +50,17 @@ class IdeasController extends Controller
         $ideas->title = $request->input('title');
         $ideas->text = $request->input('text');
         $ideas->file_path = $request->input('file_path');
+        $ideas->categories_id = $request->input('categories_id');
+        $ideas->topics_id = $request->input('topics_id');
+        $ideas->user_id = Auth::user()->id;
         $ideas->save();
+
+        //Create a new comment for the idea
+        // $comments = new Comments();
+        // $comments->text = $request->input('comments_text');
+        // $comments->user_id = Auth::user()->id;
+        // $ideas->comments()->save($comments);
+
         return response()->json($ideas);
     }
 

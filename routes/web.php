@@ -67,7 +67,8 @@ Route::get('/IdeasIndex', [IdeasController::class, 'showIdeas']);
 Route::get('/IdeasCreate', [IdeasController::class, 'showIdeasCreate']);
 Route::get('/IdeasUpdate/{id}', [IdeasController::class, 'showIdeasUpdate']);
 Route::get('/IdeasShow/{id}', [IdeasController::class, 'showIdeasShow']);
-
+//comments
+// Route::post('/ideas/{idea}/comments', [CommentController::class, 'store'])->name('comments.store');
 //Role
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
 Route::get('/RolesCreate', [RolesController::class, 'showRolesCreate']);

@@ -146,8 +146,6 @@ class UserController extends Controller
 
         $departmentId = $request->input('department');
         $user->departments()->sync($departmentId);
-
-
         return response()->json($user);
     }
 

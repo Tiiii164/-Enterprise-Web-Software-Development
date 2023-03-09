@@ -41,6 +41,7 @@ Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
 
 //topics
 Route::controller(TopicsController::class)->group(function () {
+    Route::get('/topics', 'getTopics');
     Route::get('/topics/TopicsIndex', 'index');
     Route::get('/topics/edit/{id}', 'edit');
     Route::get('/topics/TopicsShow/{id}', 'inforTopics');
@@ -51,6 +52,7 @@ Route::controller(TopicsController::class)->group(function () {
 
 //Ideas
 Route::controller(IdeasController::class)->group(function () {
+
     Route::get('/ideas/IdeasIndex', 'index');
     Route::get('/ideas/edit/{id}', 'edit');
     Route::get('/ideas/IdeasShow/{id}', 'inforIdeas');

@@ -82,8 +82,8 @@ export default {
 <template>
   <NavBar></NavBar>
     <form >
-      <div class="container">
-        <div class="card">
+      <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
+        <div class="card categoriesindex">
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
@@ -97,7 +97,7 @@ export default {
             <div class="card-body">
                 <form @submit.prevent="updateUser">
                     <div class="row">
-                        <div class="col-md-6">
+                      <div class="col-md-6 catecenter" >
                             <div class="form-group">
                                   <strong>Mail</strong>
                                   <input type="text" name="email" class="form-control" v-model="user.email">
@@ -121,6 +121,10 @@ export default {
             </div>
         </div>
       </div>
+       <div>
+        <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
+    </div> 
     </form>
   <TheFooter></TheFooter>
-  </template>
+  </template> -->
+  
