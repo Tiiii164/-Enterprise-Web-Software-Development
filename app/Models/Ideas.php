@@ -37,6 +37,6 @@ class Ideas extends Model
     }
     public function users()
     {
-        return $this->belongsToMany(Users::class);
+        return $this->belongsTo(User::class);
     }
 }

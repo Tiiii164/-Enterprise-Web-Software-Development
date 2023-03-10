@@ -19,6 +19,14 @@ class DepartmentsController extends Controller
         return response()->json($departments);
     }
 
+    public function count()
+    {
+        $departments = Departments::withCount(['users' => function($query){
+            $query->has('ideas');
+        }])->get();
+        return response()->json($departments);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,6 +56,7 @@ class DepartmentsController extends Controller
         $department = new Departments();
         $department->name = $request->input('name');
         $department->save();
+        $department->users_count = $request->users_count;
         return response()->json($department);
     }
 
@@ -95,15 +104,9 @@ class DepartmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $departments = Departments::where('id', $id)
-        //     ->update([
-        //         'id' => $request->input('id'),
-        //         'name' => $request->input('name'),
-        //     ]);
-        //     return response()->json($departments);
-        $departments = Departments::find($id);
-        $departments->update($request->all());
-        return response()->json($departments);
+        $department = Departments::find($id);
+        $department->update($request->all());
+        return response()->json($department);
     }
 
     /**

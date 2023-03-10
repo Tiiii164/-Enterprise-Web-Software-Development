@@ -52,7 +52,7 @@ class IdeasController extends Controller
         $ideas->file_path = $request->input('file_path');
         $ideas->categories_id = $request->input('categories_id');
         $ideas->topics_id = $request->input('topics_id');
-        $ideas->users_id = Auth::user()->id;
+        $ideas->user_id = Auth::user()->id;
         $ideas->save();
 
         //Create a new comment for the idea

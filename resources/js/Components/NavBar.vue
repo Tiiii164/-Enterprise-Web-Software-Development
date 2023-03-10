@@ -37,7 +37,7 @@ export default {
 };
 </script>
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:grid;top:0;width:100%;z-index:1">
   <div class="container-fluid">
     <router-link class="navbar-brand" to="/">Idea</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" 
@@ -55,7 +55,7 @@ export default {
               <router-link class="nav-link active nav-item1" to="/CategoriesIndex">Category</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active nav-item1" to="TopicsIndex">Submission</router-link>
+              <router-link class="nav-link active nav-item1" to="/TopicsIndex">Submission</router-link>
             </li>
             <li class="dropdown-item">
               <router-link class="nav-link active nav-item1" to="/DepartmentsIndex">Department</router-link>
@@ -68,7 +68,7 @@ export default {
             </li>
           </ul>
         </li>
-        <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager') || roles.has('Staff')">
+        <li class="nav-item">
           <router-link class="nav-link active nav-item1" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
         <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager')">
