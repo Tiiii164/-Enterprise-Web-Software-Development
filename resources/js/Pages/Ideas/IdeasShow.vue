@@ -1,6 +1,12 @@
 <script>
+
 import NavBar from '@/Components/NavBar.vue';
 import TheFooter from '@/Components/TheFooter.vue';
+import { useRouter } from 'vue-router';
+//import { useRoute } from 'vue-router';
+import { reactive } from "vue";
+import axios from 'axios';
+
 export default {
     components: {
         NavBar,
@@ -13,9 +19,37 @@ export default {
     },
     created() {
         this.getIdeas();
-
     },
-    mounted() { },
+    //mounted() { },
+    setup() {
+        const router = useRouter();
+        //const route = useRoute();
+        const form = reactive({
+            text: '',
+        })
+        const handlecreateComments = async () => {
+            try {
+                // const response = await axios.post(`/api/ideas/IdeasShow/${this.$route.params.id}`, form)
+                const response = await axios.post(`/api/ideas/IdeasShow/${router.currentRoute.value.params.id}`, form)
+                    .then((res) => {
+
+                        router.push('/IdeasShow')
+
+                    })
+                location.reload();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        return {
+            form,
+            handlecreateComments,
+        }
+    },
+
+
+
+
     methods: {
         async getIdeas() {
             try {
@@ -30,6 +64,7 @@ export default {
                 console.log(error);
             }
         },
+
 
 
         async deleteIdeas(id) {
@@ -62,19 +97,9 @@ export default {
                                 <td>View</td>
                                 <td>Topic</td>
                                 <td>Category</td>
-
                             </tr>
                         </thead>
-
-                        <tbody class="catetbody">
-                            <!-- <tr v-for="ideas, topics, categories in ideas, ideas.topics, ideas.categories">
-                                                                                                                                <th>{{ ideas.title }}</th>
-                                                                                                                                <th>{{ ideas.text }}</th>
-                                                                                                                                <th>{{ ideas.file_path }}</th>
-                                                                                                                                <th>{{ topics.name }}</th>
-                                                                                                                                <th>{{ categories.name }}</th>
-                                                                                                                            </tr> -->
-                            <!-- ...... -->
+                        <tbody>
                             <tr v-for="ideas in ideas" :key="ideas.id">
                                 <th>{{ ideas.title }}</th>
                                 <th>{{ ideas.text }}</th>
@@ -82,18 +107,6 @@ export default {
                                 <th v-for="topics in ideas.topics" :key="topics.id">{{ topics.name }}</th>
                                 <th v-for="categories in ideas.categories" :key="categories.id">{{ categories.name }}</th>
                             </tr>
-
-
-                            <!-- -------- -->
-                            <!-- <tr v-for="views in ideas.views">
-                                                                                                                                                    <th>{{ views. }}</th>
-                                                                                                                                                </tr> -->
-                            <!-- <tr v-for="topics in ideas.topics" :key="ideas.id">
-                                                                                            <th>{{ topics.name }}</th>
-                                                                                        </tr>
-                                                                                        <tr v-for="categories in ideas.categories" :key="ideas.id">
-                                                                                                    <th>{{ categories.name }}</th>
-                                                                                                    </tr> -->
                         </tbody>
                     </div>
                     <div class="col-md-6 catecenter" >
@@ -119,24 +132,36 @@ export default {
             </div>
         </div>
     </div>
-
-    <!-- <div>
-
-        <h3>Comments</h3>
-        <form>
-            <div class="row">
-                <div class="col-md-6">
-
-                    <div class="form-group">
-                        <strong>Comment</strong>
-                        <input type="text" name="text" class="form-control" v-model="form.text" placeholder="Enter Comment">
+    <form @submit.prevent="handlecreateComments" method="post">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Create new Ideas</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <router-link to="/TopicsIndex" class="btn btn-primary float-end">Back to list</router-link>
+                        </div>
                     </div>
-
-
-                    <button type="submit" class="btn btn-primary mt-2" @click.prevent="">Create</button>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <strong>Comment</strong>
+                                    <input type="text" name="comments" class="form-control" v-model="form.text"
+                                        placeholder="Enter Comments">
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2"
+                                    @click.prevent="handlecreateComments">Create</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
-    </div> -->
+        </div>
+    </form>
     <TheFooter></TheFooter>
 </template>
