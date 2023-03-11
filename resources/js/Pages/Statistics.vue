@@ -71,66 +71,68 @@ export default {
 </script>
 <template>
     <NavBar></NavBar>
-    <div class="container text-center mt-5">
-        <div class="row" style="height: 100%;">
-            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-              <div><h4>Departments with Ideas</h4></div>
-                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
-                    <div class="d-flex justify-content-between border-bottom">
-                        <div>{{ department.name }}</div>
-                        <div>{{ department.ideas_count }}</div>                     
-                    </div>
-                </div>
+      <div class="d-flex flex-wrap justify-content-center" style="position:absolute;z-index:1;padding-bottom:100px">
+        <div class="row" style="width: 100%;">
+          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+            <h4>Departments with Ideas</h4>
+            <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+              <div class="d-flex justify-content-between border-bottom">
+                <div>{{ department.name }}</div>
+                <div>{{ department.ideas_count }}</div>
+              </div>
             </div>
-            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-              <div><h4>Percentage of Ideas</h4></div>
-                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
-                      <div class="d-flex justify-content-between border-bottom">
-                        <div>{{ department.name }}</div>                        
-                        <div>{{ parseFloat(department.ideas_count / ideas.length * 100).toFixed(1) }} %</div>                     
-                      </div>
-                </div>
+          </div>
+          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+            <h4>Percentage of Ideas</h4>
+            <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+              <div class="d-flex justify-content-between border-bottom">
+                <div>{{ department.name }}</div>
+                <div>{{ parseFloat(department.ideas_count / ideas.length * 100).toFixed(1) }} %</div>
+              </div>
             </div>
-            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-                <div><h4>Departments with Contributors</h4></div>
-                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
-                    <div class="d-flex justify-content-between border-bottom">
-                        <div>{{ department.name }}</div>
-                        <div>{{ department.users_count }}</div>                     
-                    </div>
-                </div>
+          </div>
+          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+            <h4>Departments with Contributors</h4>
+            <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+              <div class="d-flex justify-content-between border-bottom">
+                <div>{{ department.name }}</div>
+                <div>{{ department.users_count }}</div>
+              </div>
             </div>
+          </div>
         </div>
-        <br>
-        <div class="row" style="height: 100%;">
-            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-              <div><h4>Users with Ideas</h4></div>
-              <div v-for="(user) in user.slice(0,5)" :key="user" style="height: 50px;">
-                  <div class="d-flex justify-content-between border-bottom">
-                      <div>{{ user.name }}</div>
-                      <div>{{ user.ideas_count }}</div>                     
-                  </div>
+        <div class="row" style="width: 100%;">
+          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+            <h4>Users with Ideas</h4>
+            <div v-for="(user) in user.slice(0,5)" :key="user" style="height: 50px;">
+              <div class="d-flex justify-content-between border-bottom">
+                <div>{{ user.name }}</div>
+                <div>{{ user.ideas_count }}</div>
               </div>
             </div>
-            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-              <div><h4>Roles with Users</h4></div>
-              <div v-for="(role) in roles.slice(0,5)" :key="role" style="height: 50px;">
-                  <div class="d-flex justify-content-between border-bottom">
-                      <div>{{ role.name }}</div>
-                      <div>{{ role.users_count }}</div>
-                  </div>
+          </div>
+          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+            <h4>Roles with Users</h4>
+            <div v-for="(role) in roles.slice(0,5)" :key="role" style="height: 50px;">
+              <div class="d-flex justify-content-between border-bottom">
+                <div>{{ role.name }}</div>
+                <div>{{ role.users_count }}</div>
               </div>
             </div>
-            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-              <div><h4>Ideas with most Views</h4></div>
-              <div v-for="(idea) in sortedViews(ideas)" :key="idea" style="height: 50px;">
-                  <div class="d-flex justify-content-between border-bottom">
-                      <div>{{ idea.title }}</div>
-                      <div>{{ idea.views_count }}</div>
-                  </div>
+          </div>
+          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+            <h4>Ideas with most Views</h4>
+            <div v-for="(idea) in sortedViews(ideas)" :key="idea" style="height: 50px;">
+              <div class="d-flex justify-content-between border-bottom">
+                <div>{{ idea.title }}</div>
+                <div>{{ idea.views_count }}</div>
               </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
+    <div class="background-container">
+      <img src="../../css/login.jpg" alt="" class="backgroundsu" style=" width: 100%;height: 100%;object-fit: cover;z-index:-1">
+  </div>
     <TheFooter></TheFooter>
 </template>

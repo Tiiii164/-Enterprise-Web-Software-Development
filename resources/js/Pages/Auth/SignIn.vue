@@ -97,7 +97,7 @@ export default {
           </div>
         </div>
         <div>
-          <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsi" style="width:100%">
+          <img src="../../../css/login.jpg" alt="" class="backgroundsi vh-100" style="width:100%">
         </div>
       </div>
 </template>
