@@ -10,8 +10,10 @@ use App\Http\Controllers\IdeasController;
 use App\Http\Controllers\ReactsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
+use App\Models\Comments;
 use App\Models\User;
 use App\Models\Departments;
 
@@ -27,8 +29,11 @@ Route::get('/api/roles/RolesIndex', function () {
     return response()->json($roles);
 });
 //UserController
-Route::patch('UpdateProfile/{id}', [UserController::class, 'update']);
-Route::post('/ChangPassword', [UserController::class, 'changePassword']);
+Route::controller(UserController::class)->group(function () {
+    Route::patch('/UpdateProfile/{id}', 'update');
+    Route::post('/ChangePassword', 'changePassword');
+});
+
 
 //AuthController
 Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
@@ -45,6 +50,10 @@ Route::controller(TopicsController::class)->group(function () {
     Route::post('/topics/TopicsCreate', 'store');
     Route::patch('/topics/TopicsUpdate/{id}', 'update');
     Route::delete('/topics/delete/{id}', 'destroy');
+});
+//comments
+Route::controller(CommentsController::class)->group(function () {
+    Route::post('/ideas/IdeasShow/{id}', 'store');
 });
 
 //Ideas

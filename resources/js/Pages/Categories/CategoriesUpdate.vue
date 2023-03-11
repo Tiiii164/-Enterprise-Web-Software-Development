@@ -20,23 +20,22 @@ export default {
   methods: {
     async showCategory() {
       try {
-        const response = await axios.patch(`/api/categories/CategoriesUpdate/${this.$route.params.id}`)
+        await axios.patch(`/api/categories/CategoriesUpdate/${this.$route.params.id}`)
         .then((res) => {
           const { name } = res.data
           this.category.name = name
         });
-        console.log(response.data)
       } catch (error) {
         console.log(error);
       }
     },
     async updateCategory() {
       try {
-        const response = await axios.patch(`/api/categories/CategoriesUpdate/${this.$route.params.id}`, this.category)
+        await axios.patch(`/api/categories/CategoriesUpdate/${this.$route.params.id}`, this.category)
         .then((res) => {
+          alert("Updated Successfully.")
           this.$router.push('/CategoriesIndex')
             });
-        console.log(response.data)
       } catch (error) {
         console.log(error);
       }

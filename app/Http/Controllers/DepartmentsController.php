@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Departments;
-use App\Models\User;
 use Inertia\Inertia;
 
 class DepartmentsController extends Controller
@@ -107,15 +106,9 @@ class DepartmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $departments = Departments::where('id', $id)
-        //     ->update([
-        //         'id' => $request->input('id'),
-        //         'name' => $request->input('name'),
-        //     ]);
-        //     return response()->json($departments);
-        $departments = Departments::find($id);
-        $departments->update($request->all());
-        return response()->json($departments);
+        $department = Departments::find($id);
+        $department->update($request->all());
+        return response()->json($department);
     }
 
     /**

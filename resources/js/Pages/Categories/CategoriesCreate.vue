@@ -52,7 +52,7 @@ export default {
                       <div class="col-md-6 catecenter" >
                             <div class="form-group">
                                 <strong>Name</strong>
-                                <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter role name">
+                                <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter category's name">
                             </div>
                             <button type="submit" class="btn btn-primary mt-2"  @click.prevent="handlecreateCategory">Create</button>
                         </div>

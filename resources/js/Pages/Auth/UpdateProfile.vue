@@ -14,7 +14,7 @@ export default {
       },
     }
   },
-  mounted() {
+  created() {
     this.showProfileInfo()
   },
   methods: {
@@ -35,7 +35,7 @@ export default {
         const response = 
         await axios.patch(`/api/UpdateProfile/${this.$route.params.id}`, this.profile)
         .then((res) => {
-          alert("Update Name Successfully.")
+          alert("Updated Successfully.")
           this.$router.push('/ShowProfile')
             });
         console.log(response.data)
@@ -49,6 +49,7 @@ export default {
 
 <template>
   <NavBar></NavBar>
+  <form>
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -78,5 +79,6 @@ export default {
             </div>
         </div>
       </div>
+    </form>
   <TheFooter></TheFooter>
 </template>
