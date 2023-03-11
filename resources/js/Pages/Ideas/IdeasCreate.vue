@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       ideas: [],
-      users: [],
+      user: [],
       topics: [],
       categories: [],
     }

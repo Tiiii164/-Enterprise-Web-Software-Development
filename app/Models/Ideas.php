@@ -11,7 +11,7 @@ class Ideas extends Model
     protected $table = 'ideas';
     protected $primaryKey = 'id';
     //protected $fillable = ['text','file-path'];
-    protected $fillable = ['title', 'text', 'file_path', 'users_id', 'topics_id', 'categories_id'];
+    protected $fillable = ['title', 'text', 'file_path', 'user_id', 'topics_id', 'categories_id'];
 
     //idea has many views, comments, reacts
     public function views()

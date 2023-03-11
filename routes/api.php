@@ -20,8 +20,9 @@ use App\Models\Departments;
 //Custom function
 Route::get('/ShowProfile', function () {
     return Auth::user()->load('roles')
-        ->load('permissions')
-        ->load('departments');
+                        ->load('permissions')
+                        ->load('departments')
+                        ->load('ideas');
 });
 
 Route::get('/api/roles/RolesIndex', function () {
@@ -107,10 +108,10 @@ Route::controller(CategoriesController::class)->group(function () {
 });
 //UsersController
 Route::controller(UserController::class)->group(function () {
-    Route::get('users', 'count');
-    Route::get('/users/UsersIndex', 'index');
-    Route::get('/users/edit/{id}', 'edit');
-    Route::post('/users/UsersCreate', 'store');
-    Route::patch('/users/UsersUpdate/{id}', 'update');
-    Route::delete('/users/delete/{id}', 'destroy');
+    Route::get('user', 'count');
+    Route::get('/user/UsersIndex', 'index');
+    Route::get('/user/edit/{id}', 'edit');
+    Route::post('/user/UsersCreate', 'store');
+    Route::patch('/user/UsersUpdate/{id}', 'update');
+    Route::delete('/user/delete/{id}', 'destroy');
 });
