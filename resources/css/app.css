@@ -36,8 +36,7 @@ html{
 .footer2 .img2{
     font-family: cursive;
 }
-.footer{
- 
+.footer {
     justify-content: center;
     flex-wrap: wrap;
     display: flex;
@@ -46,7 +45,8 @@ html{
     bottom: 0;
     width: 100%;
     background-color: #DCDCDC;
-}
+  
+  }
 .img1 {
     position: relative;
 }
