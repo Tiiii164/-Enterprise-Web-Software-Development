@@ -54,7 +54,7 @@ export default {
       }
     },
     async getDepartments() {
-        axios.get('/api/departments/')    
+        axios.get('/api/departments/DepartmentsIndex')    
         .then((response) => { 
           this.departments = response.data;
     });
@@ -121,5 +121,4 @@ mounted() {
     </div> 
     </form>
   <TheFooter></TheFooter>
-  </template> -->
-  
+  </template>

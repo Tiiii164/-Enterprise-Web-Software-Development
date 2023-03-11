@@ -77,8 +77,9 @@ class LaratrustSetupTables extends Migration
             $table->unsignedBigInteger('likes_count')->default(0);
             $table->unsignedBigInteger('dislikes_count')->default(0);
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('categories_id')->constrained('categories');
             $table->foreignId('topics_id')->constrained('topics');
+            $table->foreignId('departments_id')->constrained('departments');
+            $table->foreignId('categories_id')->constrained('categories');
         });
 
         // Create table for storing comments

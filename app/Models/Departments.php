@@ -19,4 +19,8 @@ class Departments extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    public function ideas()
+    {
+        return $this->hasMany(Ideas::class);
+    }
 }

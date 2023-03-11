@@ -32,7 +32,7 @@ class UserController extends Controller
     }
     public function count()
     {
-        $users = User::withCount('ideas')->get();
+        $users = User::withCount('ideas')->has('ideas', '>', 0)->get();
         return response()->json($users);
     }
     /**
@@ -65,13 +65,11 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        //$user->departments_id = $request->departments_id;
 
         $user->save();
         
-        $user->ideas_count = $request->ideas_count;
         $user->roles()->attach(Role::where('id', $request->role)->first());
-        $user->departments()->attach(Departments::where('id', $request->department)->first());
+        $user->departments()->attach(Departments::where('id', $request->department)->first()->id);
         return response('success');   
 }
                 

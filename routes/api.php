@@ -49,7 +49,7 @@ Route::controller(TopicsController::class)->group(function () {
 
 //Ideas
 Route::controller(IdeasController::class)->group(function () {
-
+    Route::get('ideas', 'countIdeas');
     Route::get('/ideas/IdeasIndex', 'index');
     Route::get('/ideas/edit/{id}', 'edit');
     Route::get('/ideas/IdeasShow/{id}', 'inforIdeas');
