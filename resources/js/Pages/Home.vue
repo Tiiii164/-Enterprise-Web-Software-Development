@@ -33,7 +33,7 @@ export default {
 } 
 </script>
 <template>
-  <div>
+  <div style="padding-bottom:60px">
   <NavBar></NavBar>
     <div style="width:100%;position:absolute" class="welcomeuser">
       <div class="jumbotron mt-5">
