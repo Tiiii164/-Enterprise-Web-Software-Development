@@ -21,12 +21,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles', 'departments')->get();
+        $user = User::with('roles', 'departments')->get();
         $roles = Role::all();
         $permissions = Permission::all();
         $departments = Departments::all();
         return response()->json([
-            'users' => $users,
+            'user' => $user,
             'roles' => $roles,
             'permissions' => $permissions,
             'departments' => $departments
@@ -34,8 +34,8 @@ class UserController extends Controller
     }
     public function count()
     {
-        $users = User::withCount('ideas')->has('ideas', '>', 0)->get();
-        return response()->json($users);
+        $user = User::withCount('ideas')->has('ideas', '>', 0)->get();
+        return response()->json($user);
     }
     /**
      * Show the form for creating a new resource.
@@ -59,7 +59,7 @@ class UserController extends Controller
             $request->all(),
             [
                 'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users,email',
+                'email' => 'required|string|email|max:255|unique:user,email',
                 'password' => 'required|confirmed|min:3',
             ]
         );
@@ -127,7 +127,7 @@ class UserController extends Controller
     {
         $request->validate([
             // 'name' => 'required|string|max:255',
-            // 'email' => 'required|string|email|max:255|unique:users,email',
+            // 'email' => 'required|string|email|max:255|unique:user,email',
             'department' => 'required',
             'role' => 'required',
         ]);

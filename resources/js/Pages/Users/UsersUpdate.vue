@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     async getUser() {
-      axios.get('/api/users/UsersIndex')
+      axios.get('/api/user/UsersIndex')
       .then(response => {
         this.roles = response.data.roles,
         this.departments = response.data.departments,
@@ -39,7 +39,7 @@ export default {
     },
     async showUsers() {
       try {
-        await axios.patch(`/api/users/UsersUpdate/${this.$route.params.id}`)
+        await axios.patch(`/api/user/UsersUpdate/${this.$route.params.id}`)
         .then((response) => {
           const { email, name, role, department } = response.data;
           this.user.email = email;
@@ -54,7 +54,7 @@ export default {
   
     async updateUser() {
       try {
-        await axios.patch(`/api/users/UsersUpdate/${this.$route.params.id}`, this.user)
+        await axios.patch(`/api/user/UsersUpdate/${this.$route.params.id}`, this.user)
         .then((res) => {
           this.$router.push('/UsersIndex')
             });

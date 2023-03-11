@@ -24,7 +24,7 @@ export default {
           department: '',
     })
     const createUser = async() => {
-        axios.post('/api/users/UsersCreate', form)
+        axios.post('/api/user/UsersCreate', form)
         .then(response => {
         console.log(response);
         router.push('/UsersIndex');

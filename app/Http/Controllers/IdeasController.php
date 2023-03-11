@@ -60,7 +60,9 @@ class IdeasController extends Controller
         $ideas->categories_id = $request->input('categories_id');
         $ideas->topics_id = $request->input('topics_id');
         $ideas->user_id = Auth::user()->id;
-        $ideas->departments_id = DB::table('departments_user')->where('user_id', Auth::user()->id)->value('departments_id');
+        $ideas->departments_id = DB::table('departments_user')
+                                    ->where('user_id', Auth::user()->id)
+                                    ->value('departments_id');
         $ideas->save();
 
         //Create a new comment for the idea
