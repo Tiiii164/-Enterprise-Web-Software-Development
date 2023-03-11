@@ -19,7 +19,7 @@
         </div>
         <div class="card evaluation">
           <div class="evaluationmb" style="text-align:center">
-              <h5>Number of Users</h5>
+              <h5>Number of user</h5>
               <h3>11111</h3>
           </div>
         </div>

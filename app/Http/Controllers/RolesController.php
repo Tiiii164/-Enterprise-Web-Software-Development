@@ -47,7 +47,7 @@ class RolesController extends Controller
         $role = new Role();
         $role->name = $request->input('name');
         $role->save();
-        $role->users_count = $request->users_count;  
+        $role->user_count = $request->user_count;  
         return response()->json($role);
     }
 

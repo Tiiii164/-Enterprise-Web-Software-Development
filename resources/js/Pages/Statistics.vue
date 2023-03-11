@@ -8,7 +8,7 @@ export default {
     },
     data() {
     return {
-      users: [],
+      user: [],
       roles: [],
       ideas: [],
       departments: [],
@@ -23,8 +23,8 @@ export default {
   methods: {
     async countIdeas_User() {
       try {
-        const response = await axios.get('/api/users');
-        this.users = response.data;
+        const response = await axios.get('/api/user');
+        this.user = response.data;
       } catch (error) {
         console.log(error);
       }
@@ -105,7 +105,7 @@ export default {
         <div class="row" style="height: 100%;">
             <div class="col-sm-4 .col-md-6 .col-lg-12 border">
               <div><h4>Users with Ideas</h4></div>
-              <div v-for="(user) in users.slice(0,5)" :key="user" style="height: 50px;">
+              <div v-for="(user) in user.slice(0,5)" :key="user" style="height: 50px;">
                   <div class="d-flex justify-content-between border-bottom">
                       <div>{{ user.name }}</div>
                       <div>{{ user.ideas_count }}</div>                     

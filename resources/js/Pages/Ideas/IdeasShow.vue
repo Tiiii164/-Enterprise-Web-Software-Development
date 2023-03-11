@@ -1,9 +1,7 @@
 <script>
-
 import NavBar from '@/Components/NavBar.vue';
 import TheFooter from '@/Components/TheFooter.vue';
 import { useRouter } from 'vue-router';
-//import { useRoute } from 'vue-router';
 import { reactive } from "vue";
 import axios from 'axios';
 
@@ -26,6 +24,7 @@ export default {
         //const route = useRoute();
         const form = reactive({
             text: '',
+            ideas_id: '',
         })
         const handlecreateComments = async () => {
             try {

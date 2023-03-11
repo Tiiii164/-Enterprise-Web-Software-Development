@@ -12,32 +12,14 @@ use Illuminate\Database\Eloquent\Model;
 use Laratrust\Traits\LaratrustUserTrait;
 
 //model
-class Users extends Model
-{
-    protected $table = 'users';
-    protected $primaryKey = 'id';
-    //user has many ideas, comments,reacts,views
-    public function comments()
-    {
-        return $this->hasMany(Comments::class);
-    }
-    public function views()
-    {
-        return $this->hasMany(Views::class);
-    }
-    public function reacts()
-    {
-        return $this->hasMany(Reacts::class);
-    }
-}
-
-
 //authentication
 class User extends Authenticatable
 {
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'user';
+    protected $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
      *
@@ -58,6 +40,19 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    //user has many ideas, comments,reacts,views
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
+    public function views()
+    {
+        return $this->hasMany(Views::class);
+    }
+    public function reacts()
+    {
+        return $this->hasMany(Reacts::class);
+    }
     public function ideas()
     {
         return $this->hasMany(Ideas::class);
