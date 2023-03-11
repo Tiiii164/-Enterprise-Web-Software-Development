@@ -100,20 +100,7 @@ export default {
                     <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
                   </select>
                 </div>
-                <div>
-                  <!-- Button to trigger the modal -->
-                  <button type="submit" class="btn btn-primary mt-2" @click="showModal">Create</button>
-              
-                  <!-- Modal content -->
-                  <div v-if="isModalVisible" class="modal">
-                    <div class="modal-content">
-                      <span class="close" @click="hideModal">&times;</span>
-                      <h2>Terms and Conditions</h2>
-                      <p>Here is where you would display your terms and conditions text.</p>
-                      <button class="btn btn-primary" @click="agreeToTerms">Agree</button>
-                    </div>
-                  </div>
-                </div>
+                <button type="submit" class="btn btn-primary mt-2" @click.prevent="handlecreateIdeas">Create</button>
               </div>
             </div>
           </form>
@@ -121,7 +108,7 @@ export default {
       </div>
     </div>
     <div>
-      <img src="../../../css/login.jpg" alt="" class="vh-100 backgroundsu" style=" width:100%">
+      <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
   </div>
   </form>
   <TheFooter></TheFooter>
