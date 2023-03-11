@@ -13,8 +13,8 @@ html{
     height: 50px;
     display: flex;
     align-items: center;
-   justify-content: center;
-   z-index: 1;
+    justify-content: center;
+    z-index: 1;
 }
 .footer1 .img1{
     margin: 10px;
@@ -37,8 +37,12 @@ html{
     font-family: cursive;
 }
 .footer{
-    position: fixed;
-    left: 0;
+ 
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+    position: relative;
+    height: auto;
     bottom: 0;
     width: 100%;
     background-color: #DCDCDC;
@@ -214,9 +218,7 @@ input{
     margin:0 !important;
 }
 @media (min-width:1000px) {
-    .homehtml{
-        height: 4060px;
-    }
+    
     .signup {
       margin-right: 300px;
       width: 400px;
@@ -303,9 +305,7 @@ input{
     }
 }
 @media only screen and (max-width:1000px) {
-    .homehtml{
-        height: 4220px;
-    }
+   
     .backgroundsu {
       height: 1000px;
     }
@@ -362,11 +362,11 @@ input{
     }
     .universitycollab{
         height: 200px;
-        width: 360px;
+        width: 318px;
     }
     .greenwichimg{
         height: 200px;
-        width: 360px;
+        width: 318px;
         margin-top: 50px;
     }
     .gwtext{
