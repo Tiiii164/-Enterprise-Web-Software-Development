@@ -71,7 +71,7 @@ export default {
         <li class="nav-item">
           <router-link class="nav-link active nav-item1" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
-        <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager')">
+        <li class="nav-item" v-if="roles.has('Admin')">
           <router-link class="nav-link active nav-item1" aria-current="page" to="/Statistics">Statistics</router-link>
         </li>
       </ul>

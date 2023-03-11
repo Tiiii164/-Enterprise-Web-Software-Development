@@ -36,7 +36,7 @@ class LaratrustSeeder extends Seeder
                 'name' => $key,
             ]);
             $departments = \App\Models\Departments::firstOrCreate([
-                'name' => 'All',
+                'name' => 'IT',
             ]);
             $permissions = [];
 

@@ -126,5 +126,4 @@ export default {
     </div> 
     </form>
   <TheFooter></TheFooter>
-  </template> -->
-  
+  </template>
