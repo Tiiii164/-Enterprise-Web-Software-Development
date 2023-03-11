@@ -11,6 +11,7 @@ use App\Models\Categories;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class IdeasController extends Controller
 {
@@ -26,6 +27,12 @@ class IdeasController extends Controller
         return response()->json(['ideas' => $ideas, 'topics' => $topics]);
         // $ideas = Ideas::all();
         // return response()->json($ideas);
+    }
+
+    public function countIdeas() 
+    {
+        $ideas = Ideas::withCount('views')->get();
+        return response()->json($ideas);
     }
 
     /**
@@ -53,6 +60,7 @@ class IdeasController extends Controller
         $ideas->categories_id = $request->input('categories_id');
         $ideas->topics_id = $request->input('topics_id');
         $ideas->user_id = Auth::user()->id;
+        $ideas->departments_id = DB::table('departments_user')->where('user_id', Auth::user()->id)->value('departments_id');
         $ideas->save();
 
         //Create a new comment for the idea

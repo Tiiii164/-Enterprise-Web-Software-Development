@@ -11,8 +11,9 @@ export default {
   data() {
     return {
       ideas: [],
-      categories: [],
+      users: [],
       topics: [],
+      categories: [],
     }
   },
   setup() {
@@ -24,6 +25,7 @@ export default {
       categories_id: '',
       topics_id: '',
       user_id: '',
+      departments_id: '',
     })
     const handlecreateIdeas = async () => {
       try {
@@ -31,7 +33,6 @@ export default {
           .then((res) => {
             router.push('/IdeasIndex')
           })
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }

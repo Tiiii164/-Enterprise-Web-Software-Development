@@ -10,16 +10,18 @@ export default {
     return {
       users: [],
       roles: [],
+      ideas: [],
       departments: [],
     }
   },
   created() {
-    this.getUser();
-    this.getRole();
-    this.getDepartment();
+    this.countRole();
+    this.countIdeas();
+    this.countIdeas_User();
+    this.countDepartments();
   },
   methods: {
-    async getUser() {
+    async countIdeas_User() {
       try {
         const response = await axios.get('/api/users');
         this.users = response.data;
@@ -27,7 +29,7 @@ export default {
         console.log(error);
       }
     },
-    async getRole() {
+    async countRole() {
       try {
         const response = await axios.get('/api/roles');
         this.roles = response.data;
@@ -35,7 +37,7 @@ export default {
         console.log(error);
       }
     },
-    async getDepartment() {
+    async countDepartments() {
       try {
         const response = await axios.get('/api/departments');
         this.departments = response.data;
@@ -43,42 +45,90 @@ export default {
         console.log(error);
       }
     },
-  }
+    async countIdeas() {
+      try {
+        const response = await axios.get('/api/ideas/IdeasIndex');
+        this.ideas = response.data.ideas
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async mostViews() {
+      try {
+        const response = await axios.get('/api/ideas/');
+        this.ideas = response.data.ideas
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    sortedViews: function(arr) {
+        return arr.slice(0, 5).sort(function(a, b) {
+        return b.views_count - a.views_count;
+      });
+    }
+  },
 }
 </script>
 <template>
     <NavBar></NavBar>
     <div class="container text-center mt-5">
-        <div class="row ">
+        <div class="row" style="height: 100%;">
             <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-                <h4>Departments with Users</h4>
-                <div v-for="department in departments" :key="department">
-                    <div class="d-flex justify-content-between">
+              <div><h4>Departments with Ideas</h4></div>
+                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+                    <div class="d-flex justify-content-between border-bottom">
+                        <div>{{ department.name }}</div>
+                        <div>{{ department.ideas_count }}</div>                     
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+              <div><h4>Percentage of Ideas</h4></div>
+                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+                      <div class="d-flex justify-content-between border-bottom">
+                        <div>{{ department.name }}</div>                        
+                        <div>{{ parseFloat(department.ideas_count / ideas.length * 100).toFixed(1) }} %</div>                     
+                      </div>
+                </div>
+            </div>
+            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+                <div><h4>Departments with Contributors</h4></div>
+                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+                    <div class="d-flex justify-content-between border-bottom">
                         <div>{{ department.name }}</div>
                         <div>{{ department.users_count }}</div>                     
                     </div>
-                    <hr class="hr" />
                 </div>
             </div>
+        </div>
+        <br>
+        <div class="row" style="height: 100%;">
             <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-                <h4>Roles with Users</h4>
-                <div v-for="role in roles" :key="role">
-                    <div class="d-flex justify-content-between">
-                        <div>{{ role.name }}</div>
-                        <div>{{ role.users_count }}</div>
-                    </div>
-                    <hr class="hr" />
-                </div>
+              <div><h4>Users with Ideas</h4></div>
+              <div v-for="(user) in users.slice(0,5)" :key="user" style="height: 50px;">
+                  <div class="d-flex justify-content-between border-bottom">
+                      <div>{{ user.name }}</div>
+                      <div>{{ user.ideas_count }}</div>                     
+                  </div>
+              </div>
             </div>
             <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-                <h4>Users with Ideas</h4>
-                <div v-for="user in users" :key="user">
-                    <div class="d-flex justify-content-between">
-                        <div>{{ user.name }}</div>
-                        <div>{{ user.ideas_count }}</div>                     
-                    </div>
-                    <hr class="hr" />
-                </div>
+              <div><h4>Roles with Users</h4></div>
+              <div v-for="(role) in roles.slice(0,5)" :key="role" style="height: 50px;">
+                  <div class="d-flex justify-content-between border-bottom">
+                      <div>{{ role.name }}</div>
+                      <div>{{ role.users_count }}</div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-4 .col-md-6 .col-lg-12 border">
+              <div><h4>Ideas with most Views</h4></div>
+              <div v-for="(idea) in sortedViews(ideas)" :key="idea" style="height: 50px;">
+                  <div class="d-flex justify-content-between border-bottom">
+                      <div>{{ idea.title }}</div>
+                      <div>{{ idea.views_count }}</div>
+                  </div>
+              </div>
             </div>
         </div>
     </div>

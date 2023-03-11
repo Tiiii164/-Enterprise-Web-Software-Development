@@ -39,4 +39,8 @@ class Ideas extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function departments()
+    {
+        return $this->belongsTo(Departments::class);
+    }
 }
