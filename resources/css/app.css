@@ -8,7 +8,6 @@ html{
     height: 100%;
 }
 
-
 .footer1{
     height: 50px;
     display: flex;
@@ -36,7 +35,7 @@ html{
 .footer2 .img2{
     font-family: cursive;
 }
-.footer {
+/* .footer {
     justify-content: center;
     flex-wrap: wrap;
     display: flex;
@@ -45,7 +44,7 @@ html{
     width: 100%;
     background-color: #DCDCDC;
     z-index: 2;
-  }
+  } */
 .img1 {
     position: relative;
 }
@@ -240,7 +239,7 @@ input{
         height: 800px;
     }
     .backgroundsu{
-        height: 800px;
+        height: 100%;
     }
     .welcomeuser{
         margin-top: 100px;

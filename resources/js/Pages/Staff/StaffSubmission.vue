@@ -32,8 +32,8 @@ export default {
 </script>
 <template>
   <NavBar></NavBar>
-  <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
-    <div class="card categoriesindex">
+  <div class="container text-center mt-5 position-absolute start-50 translate-middle-x" >
+    <div class="card bg-transparent">
       <div class="card-header">
         <div class="row">
           <div class="col-md-6 catecenter">

@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">
+    <div class="position-absolute start-50 translate-middle-x">
         <div class="footer1">
             <div class="img1">
                 <a href="https://www.facebook.com/" target="_blank"><img src="../../css/facebook.png" width="30" height="30"></a>
