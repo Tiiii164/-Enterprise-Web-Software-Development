@@ -8,7 +8,6 @@ html{
     height: 100%;
 }
 
-
 .footer1{
     height: 50px;
     display: flex;
@@ -36,13 +35,18 @@ html{
 .footer2 .img2{
     font-family: cursive;
 }
-.footer {
+
+/* .footer {
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
     position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #DCDCDC;
     z-index: 2;
-  }
+  } */
+  
 .img1 {
     position: relative;
 }
@@ -237,7 +241,6 @@ input{
         height: 100%;
     }
     .backgroundsu{
-        
         top: 0;
         left: 0;
         width: 100%;
