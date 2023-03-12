@@ -120,13 +120,16 @@ export default {
                 <span style="margin-left:5px">I agree to the </span>
                 <span style="text-decoration:underline;cursor:pointer;" @click="showTermsAndConditions">terms and conditions</span>
               </div>
-                <div v-if="showDialog">
-                  <!-- Your dialog content here -->
-                  <div class="card" style="align-items:center">
-                    <h1>term and condition</h1>
-                    <button class="btn btn-primary" style="width:20%" @click="hideTermsAndConditions">Close</button>
-                  </div>
+              <div v-if="showDialog" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80%;height:50%">
+                <!-- Your dialog content here -->
+                <div class="card" style="display: flex; justify-content: space-between;">
+                  <h1 style="text-align:center">Terms and Conditions</h1>
+
+                  <div style="justify-content:center;align-items:center;display:flex">
+                  <button class="btn btn-primary" style="width:100px;" @click="hideTermsAndConditions">Close</button>
                 </div>
+                </div>
+              </div>
               </div>
               <button type="submit" class="btn btn-primary mt-2" :disabled="!form.termsAndConditions" @click.prevent="handleCreateIdeas()">Create</button>
             </div>
