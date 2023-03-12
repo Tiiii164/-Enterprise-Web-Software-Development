@@ -120,7 +120,7 @@ export default {
                 <span style="margin-left:5px">I agree to the </span>
                 <span style="text-decoration:underline;cursor:pointer;" @click="showTermsAndConditions">terms and conditions</span>
               </div>
-              <div v-if="showDialog" class="dialog-container" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:70%;">
+              <div v-if="showDialog" class="dialog-container" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:100%;">
                 <!-- Your dialog content here -->
                 <div class="card dialog" style="display: flex; flex-direction: column;">
                   <h1 style="text-align:center">Terms and Conditions</h1>
