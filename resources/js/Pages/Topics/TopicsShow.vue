@@ -48,6 +48,7 @@ export default {
 }
 </script>
 <template>
+    <div style="padding-bottom:60px">
     <NavBar></NavBar>
     <div class="" style="position:absolute;width:100%;justify-content:center;text-align:center">
         <h1>List of Ideas</h1>
@@ -112,7 +113,8 @@ export default {
         </div>
     </div>
     <div>
-        <img src="../../../css/login.jpg" alt="" class="vh-100 backgroundsu" style=" width:100%">
+        <img src="../../../css/login.jpg" alt="" class=" backgroundsu" style=" width:100%;height:100%">
     </div>
+</div>
     <TheFooter></TheFooter>
 </template>

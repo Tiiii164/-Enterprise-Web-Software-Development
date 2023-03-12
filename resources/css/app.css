@@ -35,6 +35,7 @@ html{
 .footer2 .img2{
     font-family: cursive;
 }
+
 /* .footer {
     justify-content: center;
     flex-wrap: wrap;
@@ -45,6 +46,7 @@ html{
     background-color: #DCDCDC;
     z-index: 2;
   } */
+  
 .img1 {
     position: relative;
 }
@@ -236,10 +238,14 @@ input{
         margin-top: 200px;
     }
     .backgroundsi{
-        height: 800px;
+        height: 100%;
     }
     .backgroundsu{
+        top: 0;
+        left: 0;
+        width: 100%;
         height: 100%;
+        object-fit: cover;
     }
     .welcomeuser{
         margin-top: 100px;
@@ -258,7 +264,8 @@ input{
     }
     .categoriesindex{
         margin-top: 50px;
-        width: 1300px;
+        width: 80%;
+        height: 100%;
     }
     .catebutton{
         float: right;
@@ -317,13 +324,14 @@ input{
     margin-top: 20px;
    }
     .backgroundsu {
-      height: auto;
+      height: 100%;
+      object-fit: cover;
     }
     .signup{
         margin-right: 50px;
     }
     .backgroundsi{
-        height: auto;
+        height: 100%;
     }
     
     .signin{
@@ -359,6 +367,8 @@ input{
     .categoriesindex{
         margin-top: 50px;
         justify-content: center;
+        height: 100%;
+        width: 100%;
     }
     .catecenter{
         text-align: center;

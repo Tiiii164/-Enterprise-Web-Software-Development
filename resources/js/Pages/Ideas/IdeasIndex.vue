@@ -59,7 +59,7 @@ export default {
 
 <template>
   <NavBar></NavBar>
-  <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
+  <div class="" style="position:absolute;width:100%;justify-content:center;display:flex;">
     <div class="card categoriesindex">
       <div class="card-header">
         <div class="row">
@@ -112,8 +112,8 @@ export default {
       </div>
     </div>
   </div>
-  <div>
-    <img src="../../../css/login.jpg" alt="" class="vh-100 backgroundsu" style=" width:100%">
-</div>
+  <div style="height: 100%;">
+    <img src="../../../css/login.jpg" alt="" class="backgroundsu" style="width:100%; height:100%; object-fit: cover;">
+  </div>
   <TheFooter></TheFooter>
 </template>

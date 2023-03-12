@@ -82,7 +82,39 @@ export default {
 </script>
 <template>
     <NavBar></NavBar>
-    <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
+    <div style="position:absolute;width:100%;justify-content:center;">
+        <form @submit.prevent="handlecreateComments" method="post"> 
+            <div style="width:100%;display:flex;justify-content:center">
+                <div class="card categoriesindex">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>Create new Ideas</h3>
+                            </div>
+                            <div class="col-md-6">
+                                <router-link to="/TopicsIndex" class="btn btn-primary float-end">Back to list</router-link>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <strong>Comment</strong>
+                                        <input type="text" name="comments" class="form-control" v-model="form.text"
+                                            placeholder="Enter Comments">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-2"
+                                        @click.prevent="handlecreateComments">Create</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </form>
+    <div class="" style="width:100%;display:flex;justify-content:center" >
         <div class="card categoriesindex">
             <div class="card-header">
                 <div class="row">
@@ -131,36 +163,10 @@ export default {
             </div>
         </div>
     </div>
-    <form @submit.prevent="handlecreateComments" method="post">
-        <div class="container">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h3>Create new Ideas</h3>
-                        </div>
-                        <div class="col-md-6">
-                            <router-link to="/TopicsIndex" class="btn btn-primary float-end">Back to list</router-link>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <strong>Comment</strong>
-                                    <input type="text" name="comments" class="form-control" v-model="form.text"
-                                        placeholder="Enter Comments">
-                                </div>
-                                <button type="submit" class="btn btn-primary mt-2"
-                                    @click.prevent="handlecreateComments">Create</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </form>
+   
+</div>
+    <div>
+        <img src="../../../css/login.jpg" alt="" class=" backgroundsu" style=" width:100%;">
+    </div>
     <TheFooter></TheFooter>
 </template>
