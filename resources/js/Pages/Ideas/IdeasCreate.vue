@@ -36,15 +36,26 @@ export default {
       termsAndConditions: false,
     });
     const handleCreateIdeas = async () => {
-      try {
-        const response = await axios.post('/api/ideas/IdeasCreate', form)
-          .then((res) => {
-            router.push('/IdeasIndex')
-          })
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  try {
+    const response = await axios.post('/api/ideas/IdeasCreate', form);
+    router.push('/IdeasIndex');
+    const customAlert = document.createElement('div');
+    customAlert.classList.add('custom-alert');
+    customAlert.innerHTML = `
+      <div class="custom-alert-content">
+        <h3>Idea created successfully!</h3>
+        <button class="custom-alert-button">OK</button>
+      </div>
+    `;
+    document.body.appendChild(customAlert);
+    const customAlertButton = customAlert.querySelector('.custom-alert-button');
+    customAlertButton.addEventListener('click', () => {
+      customAlert.remove();
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
     return {
       form,
       handleCreateIdeas,
@@ -75,6 +86,7 @@ export default {
 </script>
 <template>
   <NavBar></NavBar>
+  
   <form @submit.prevent="handleCreateIdeas" method="post">
     <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
       <div class="card categoriesindex">
