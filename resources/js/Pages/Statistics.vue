@@ -71,8 +71,9 @@ export default {
 </script>
 <template>
     <NavBar></NavBar>
-      <div class="d-flex flex-wrap justify-content-center" style="position:absolute;z-index:1;padding-bottom:100px">
-        <div class="row" style="width: 100%;">
+    <img src="../../css/login.jpg" alt="" class="img-fluid" style=" width: 100%;z-index:-1">
+      <div class="container text-center mt-5 position-absolute top-50 start-50 translate-middle" style="z-index:1;">
+        <div class="row">
           <div class="col-sm-4 .col-md-6 .col-lg-12 border">
             <h4>Departments with Ideas</h4>
             <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
@@ -101,7 +102,8 @@ export default {
             </div>
           </div>
         </div>
-        <div class="row" style="width: 100%;">
+        <br>
+        <div class="row">
           <div class="col-sm-4 .col-md-6 .col-lg-12 border">
             <h4>Users with Ideas</h4>
             <div v-for="(user) in user.slice(0,5)" :key="user" style="height: 50px;">
@@ -131,8 +133,5 @@ export default {
           </div>
         </div>
       </div>
-    <div class="background-container">
-      <img src="../../css/login.jpg" alt="" class="backgroundsu" style=" width: 100%;height: 100%;object-fit: cover;z-index:-1">
-  </div>
     <TheFooter></TheFooter>
 </template>
