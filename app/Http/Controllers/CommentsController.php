@@ -28,20 +28,21 @@ class CommentsController extends Controller
         // } else {
         //     $comments->ideas_id = request()->route('ideas_id');
         // }
-    
-    // public function store(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'text' => 'required|string',
-    //         'ideas_id' => 'required|integer',
-    //     ]);
 
-    //     $comments = new Comments();
-    //     $comments->text = $validatedData['text'];
-    //     $comments->user_id = Auth::user()->id;
-    //     $comments->ideas_id = $validatedData['ideas_id'];
-    //     $comments->save();
+        // public function store(Request $request)
+        // {
+        //     $validatedData = $request->validate([
+        //         'text' => 'required|string',
+        //         'ideas_id' => 'required|integer',
+        //     ]);
 
-    //     return response()->json($comments);
-    // }
+        //     $comments = new Comments();
+        //     $comments->text = $validatedData['text'];
+        //     $comments->user_id = Auth::user()->id;
+        //     $comments->ideas_id = $validatedData['ideas_id'];
+        //     $comments->save();
+
+        //     return response()->json($comments);
+        // }
+    }
 }
