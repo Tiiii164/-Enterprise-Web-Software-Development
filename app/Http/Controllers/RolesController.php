@@ -17,6 +17,12 @@ class RolesController extends Controller
     {
         $roles = Role::all();
         return response()->json($roles);
+    }
+
+    public function count()
+    {
+        $roles = Role::withCount('users')->get();
+        return response()->json($roles);
         //return Inertia::render('RolesIndex')->with('roles', $roles);
     }
 
@@ -41,6 +47,7 @@ class RolesController extends Controller
         $role = new Role();
         $role->name = $request->input('name');
         $role->save();
+        $role->user_count = $request->user_count;  
         return response()->json($role);
     }
 

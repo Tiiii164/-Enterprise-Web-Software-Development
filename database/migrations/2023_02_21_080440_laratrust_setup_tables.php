@@ -50,13 +50,18 @@ class LaratrustSetupTables extends Migration
             $table->timestamps();
         });
 
-        // Create table for storing users
-        Schema::create('users', function (Blueprint $table) {
+        // DB::table('departments')->insert([
+        //     'name' => 'IT',
+        // ]);
+        
+        // Create table for storing user
+        Schema::create('user', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            //$table->foreignId('departments_id')->constrained('departments');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -71,18 +76,19 @@ class LaratrustSetupTables extends Migration
             $table->unsignedBigInteger('views_count')->default(0);
             $table->unsignedBigInteger('likes_count')->default(0);
             $table->unsignedBigInteger('dislikes_count')->default(0);
-            $table->foreignId('users_id')->constrained('users');
-            $table->foreignId('categories_id')->constrained('categories');
+            $table->foreignId('user_id')->constrained('user');
             $table->foreignId('topics_id')->constrained('topics');
+            $table->foreignId('departments_id')->constrained('departments');
+            $table->foreignId('categories_id')->constrained('categories');
         });
 
         // Create table for storing comments
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('text');
-            $table->timestamps();
-            $table->foreignId('users_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('user');
             $table->foreignId('ideas_id')->constrained('ideas');
+            $table->timestamps();
         });
 
         // Create table for storing reacts
@@ -91,11 +97,11 @@ class LaratrustSetupTables extends Migration
             $table->boolean('like')->nullable();
             $table->boolean('dislike')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('users_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('ideas_id');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
             $table->foreign('ideas_id')->references('id')->on('ideas')->onDelete('cascade');
-            $table->unique(['users_id', 'ideas_id']);
+            $table->unique(['user_id', 'ideas_id']);
         });
 
         // Create table for storing views
@@ -103,42 +109,29 @@ class LaratrustSetupTables extends Migration
             $table->id();
             $table->boolean('isView')->nullable();
             $table->timestamps();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('user');
             $table->foreignId('ideas_id')->constrained('ideas');
         });
         
         Schema::create('departments_user', function (Blueprint $table) {
             $table->unsignedBigInteger('departments_id');
             $table->unsignedBigInteger('user_id');
-            // $table->string('user_type');
-
-            // $table->foreign('departments_id')->references('id')->on('departments')
-            //     ->onUpdate('cascade')->onDelete('cascade');
 
             $table->primary(['user_id', 'departments_id']);
         });
 
-        // Create table for associating roles to users and teams (Many To Many Polymorphic)
+        // Create table for associating roles to user and teams (Many To Many Polymorphic)
         Schema::create('role_user', function (Blueprint $table) {
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('user_id');
-            // $table->string('user_type');
-
-            // $table->foreign('role_id')->references('id')->on('roles')
-            //     ->onUpdate('cascade')->onDelete('cascade');
 
             $table->primary(['user_id', 'role_id']);
         });
 
-        // Create table for associating permissions to users (Many To Many Polymorphic)
+        // Create table for associating permissions to user (Many To Many Polymorphic)
         Schema::create('permission_user', function (Blueprint $table) {
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('user_id');
-            // $table->string('user_type');
-
-            // $table->foreign('permission_id')->references('id')->on('permissions')
-            //     ->onUpdate('cascade')->onDelete('cascade');
-
             $table->primary(['user_id', 'permission_id']);
         });
 
@@ -146,11 +139,6 @@ class LaratrustSetupTables extends Migration
         Schema::create('permission_role', function (Blueprint $table) {
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('role_id');
-
-            // $table->foreign('permission_id')->references('id')->on('permissions')
-            //     ->onUpdate('cascade')->onDelete('cascade');
-            // $table->foreign('role_id')->references('id')->on('roles')
-            //     ->onUpdate('cascade')->onDelete('cascade');
 
             $table->primary(['permission_id', 'role_id']);
         });
@@ -181,7 +169,7 @@ class LaratrustSetupTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('user');
 
         Schema::dropIfExists('permission_user');
         Schema::dropIfExists('permissions');

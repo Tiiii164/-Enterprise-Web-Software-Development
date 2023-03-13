@@ -8,7 +8,7 @@ export default {
   },
   data() {
     return {
-      users: [],
+      user: [],
       roles: [],
       departments: [],
     }
@@ -18,9 +18,9 @@ export default {
   },
   methods: {
     getUser() {
-      axios.get('/api/users/UsersIndex')
+      axios.get('/api/user/UsersIndex')
       .then(response => {
-        this.users = response.data.users,
+        this.user = response.data.user,
         this.roles = response.data.roles,
         this.departments = response.data.departments,
         console.log(response.data)
@@ -30,7 +30,7 @@ export default {
     async deleteUser(id) {
       if (confirm("Are you sure you want to delete this user?")) {
         try {
-          const response = await axios.delete(`/api/users/delete/${id}`);
+          const response = await axios.delete(`/api/user/delete/${id}`);
           console.log(response.data);
           this.getUser();
         } catch (error) {
@@ -69,7 +69,7 @@ export default {
                         </tr>
                     </thead>
                     <tbody class="catetbody">
-                            <tr v-for="(user, index) in users" :key="index">
+                            <tr v-for="(user, index) in user" :key="index">
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>

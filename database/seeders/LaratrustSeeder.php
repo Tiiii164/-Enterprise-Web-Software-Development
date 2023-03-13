@@ -36,7 +36,7 @@ class LaratrustSeeder extends Seeder
                 'name' => $key,
             ]);
             $departments = \App\Models\Departments::firstOrCreate([
-                'name' => 'All',
+                'name' => 'IT',
             ]);
             $permissions = [];
 
@@ -60,7 +60,7 @@ class LaratrustSeeder extends Seeder
             // Attach all permissions to the role
             $roles->permissions()->sync($permissions);
 
-            if (Config::get('laratrust_seeder.create_users')) {
+            if (Config::get('laratrust_seeder.create_user')) {
                 $this->command->info("Creating '{$key}' user");
                 // Create default user for each role
                 $user = \App\Models\User::create([
@@ -77,7 +77,7 @@ class LaratrustSeeder extends Seeder
     }
 
     /**
-     * Truncates all the laratrust tables and the users table
+     * Truncates all the laratrust tables and the user table
      *
      * @return  void
      */
@@ -95,9 +95,9 @@ class LaratrustSeeder extends Seeder
             DB::table('roles')->truncate();
             DB::table('permissions')->truncate();
             
-            if (Config::get('laratrust_seeder.create_users')) {
-                $usersTable = (new \App\Models\User)->getTable();
-                DB::table($usersTable)->truncate();
+            if (Config::get('laratrust_seeder.create_user')) {
+                $userTable = (new \App\Models\User)->getTable();
+                DB::table($userTable)->truncate();
             }
         }
 

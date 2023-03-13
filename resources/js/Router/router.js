@@ -32,6 +32,7 @@ import IdeasShow from "../Pages/Ideas/IdeasShow.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
+import ChangePassword from "../Pages/Auth/ChangePassword.vue"
 //statistics
 import Statistics from "../Pages/Statistics.vue"
 const router = createRouter({
@@ -66,6 +67,11 @@ const router = createRouter({
         path: '/UpdateProfile/:id',
         name: 'UpdateProfile',
         component: UpdateProfile,
+    },
+    {
+        path: '/ChangePassword',
+        name: 'ChangePassword',
+        component: ChangePassword,
     },
     //role
     {

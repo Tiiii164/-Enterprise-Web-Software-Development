@@ -11,8 +11,9 @@ export default {
   data() {
     return {
       ideas: [],
-      categories: [],
+      user: [],
       topics: [],
+      categories: [],
     }
   },
   setup() {
@@ -23,7 +24,8 @@ export default {
       file_path: '',
       categories_id: '',
       topics_id: '',
-      users_id: '',
+      user_id: '',
+      departments_id: '',
     })
     const handlecreateIdeas = async () => {
       try {
@@ -31,7 +33,6 @@ export default {
           .then((res) => {
             router.push('/IdeasIndex')
           })
-        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -61,22 +62,22 @@ export default {
 <template>
   <NavBar></NavBar>
   <form @submit.prevent="handlecreateIdeas" method="post">
-    <div class="container">
-      <div class="card">
+    <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
+      <div class="card categoriesindex">
         <div class="card-header">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 catecenter" >
               <h3>Create new Ideas</h3>
             </div>
-            <div class="col-md-6">
-              <router-link to="/TopicsIndex" class="btn btn-primary float-end">Back to list</router-link>
+            <div class="col-md-6 catecenter" >
+              <router-link to="/TopicsIndex" class="btn btn-primary catebutton">Back to list</router-link>
             </div>
           </div>
         </div>
         <div class="card-body">
           <form>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6 catecenter" >
                 <div class="form-group">
                   <strong>Title</strong>
                   <input type="text" name="title" class="form-control" v-model="form.title" placeholder="Enter Title">
@@ -106,6 +107,9 @@ export default {
         </div>
       </div>
     </div>
+    <div>
+      <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
+  </div>
   </form>
   <TheFooter></TheFooter>
 </template>

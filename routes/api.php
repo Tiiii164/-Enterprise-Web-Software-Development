@@ -20,8 +20,9 @@ use App\Models\Departments;
 //Custom function
 Route::get('/ShowProfile', function () {
     return Auth::user()->load('roles')
-        ->load('permissions')
-        ->load('departments');
+                        ->load('permissions')
+                        ->load('departments')
+                        ->load('ideas');
 });
 
 Route::get('/api/roles/RolesIndex', function () {
@@ -29,8 +30,11 @@ Route::get('/api/roles/RolesIndex', function () {
     return response()->json($roles);
 });
 //UserController
-Route::patch('UpdateProfile/{id}', [UserController::class, 'update']);
-Route::post('/ChangPassword', [UserController::class, 'changePassword']);
+Route::controller(UserController::class)->group(function () {
+    Route::patch('/UpdateProfile/{id}', 'update');
+    Route::post('/ChangePassword', 'changePassword');
+});
+
 
 //AuthController
 Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
@@ -55,6 +59,7 @@ Route::controller(CommentsController::class)->group(function () {
 
 //Ideas
 Route::controller(IdeasController::class)->group(function () {
+    Route::get('ideas', 'countIdeas');
     Route::get('/ideas/IdeasIndex', 'index');
     Route::get('/ideas/edit/{id}', 'edit');
     Route::get('/ideas/IdeasShow/{id}', 'inforIdeas');
@@ -74,6 +79,7 @@ Route::post('/view/{ideasId}', [ViewsController::class, 'view']);
 
 //RolesController
 Route::controller(RolesController::class)->group(function () {
+    Route::get('roles', 'count');
     Route::get('/roles/RolesIndex', 'index');
     Route::get('/roles/edit/{id}', 'edit');
     Route::post('/roles/RolesCreate', 'store');
@@ -83,6 +89,7 @@ Route::controller(RolesController::class)->group(function () {
 
 //DepartmentsController
 Route::controller(DepartmentsController::class)->group(function () {
+    Route::get('departments', 'count');
     Route::get('/departments/DepartmentsIndex', 'index');
     Route::get('/departments/edit/{id}', 'edit');
     Route::post('/departments/DepartmentsCreate', 'store');
@@ -101,9 +108,10 @@ Route::controller(CategoriesController::class)->group(function () {
 });
 //UsersController
 Route::controller(UserController::class)->group(function () {
-    Route::get('/users/UsersIndex', 'index');
-    Route::get('/users/edit/{id}', 'edit');
-    Route::post('/users/UsersCreate', 'store');
-    Route::patch('/users/UsersUpdate/{id}', 'update');
-    Route::delete('/users/delete/{id}', 'destroy');
+    Route::get('user', 'count');
+    Route::get('/user/UsersIndex', 'index');
+    Route::get('/user/edit/{id}', 'edit');
+    Route::post('/user/UsersCreate', 'store');
+    Route::patch('/user/UsersUpdate/{id}', 'update');
+    Route::delete('/user/delete/{id}', 'destroy');
 });

@@ -14,6 +14,7 @@ html{
     display: flex;
     align-items: center;
    justify-content: center;
+   z-index: 1;
 }
 .footer1 .img1{
     margin: 10px;
@@ -213,6 +214,9 @@ input{
     margin:0 !important;
 }
 @media (min-width:1000px) {
+    .homehtml{
+        height: 4060px;
+    }
     .signup {
       margin-right: 300px;
       width: 400px;
@@ -249,8 +253,59 @@ input{
     .catebutton{
         float: right;
     }
+    .evaluation{
+        padding:20px;
+        margin:40px;
+        background-color: #DC3545 !important;
+        color: white;
+    }
+    .universitycollab{
+        width: 1000px;
+        height: 667px;
+    }
+    .greenwichimg{
+        width: 600px;
+        height: 400px;
+    }
+    .gwtext{
+        width:500px;
+        margin-right: 100px;
+        margin-top: 100px;
+    }
+    .greenwichmodify{
+        display: flex;
+        justify-content: center;
+    }
+    .janebar{
+        display: flex;
+    }
+    .jane{
+        margin-left: 50px;
+        width: 45%;
+        margin-top: 50px;
+     
+    }
+    .janediv{
+        width: 45%;
+        margin-top: 50px;
+    }
+    .janeimg{
+        width: 750px;
+        height: 400px;
+    }
+    .atgreenwich{
+        margin-top: 70px;
+    }
+    .janeharrington{
+        color:white;
+        float:right;
+        margin-right:60px;
+    }
 }
 @media only screen and (max-width:1000px) {
+    .homehtml{
+        height: 4220px;
+    }
     .backgroundsu {
       height: 1000px;
     }
@@ -297,5 +352,37 @@ input{
     }
     .catecenter{
         text-align: center;
+    }
+    .evaluationmb h5,h3{
+        font-size: 16px;
+    }
+    .evaluation {
+        background-color: #DC3545 !important;
+        color: white;
+    }
+    .universitycollab{
+        height: 200px;
+        width: 360px;
+    }
+    .greenwichimg{
+        height: 200px;
+        width: 360px;
+        margin-top: 50px;
+    }
+    .gwtext{
+        width: 230px;
+        margin-left: 80px;
+        justify-content: center;
+        align-items: center;
+    }
+    .janeharrington{
+        color:white;
+        text-align: center;
+        padding: 20px;
+        font-size: 12px;
+    }
+    .janeimg{
+        height: 300px;
+        width: 100%;
     }
   }
