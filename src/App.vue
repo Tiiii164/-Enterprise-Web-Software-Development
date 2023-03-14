@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-app>
     <v-app-bar
       app
@@ -57,4 +57,4 @@ export default {
     //
   }),
 };
-</script>
+</script> -->

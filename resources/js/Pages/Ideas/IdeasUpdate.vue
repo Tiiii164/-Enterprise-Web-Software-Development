@@ -45,47 +45,44 @@ export default {
 </script>
 <template>
   <NavBar></NavBar>
-  <form>
-    <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
-      <div class="card categoriesindex">
-        <div class="card-header">
-          <div class="row">
-            <div class="col-md-6 catecenter" >
+  <div class="backgroundsu">
+    <form>
+      <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
+        <div class="card border-light">
+          <div class="card-header border-light">
+            <div class=" d-grid d-md-flex justify-content-md-between">
+              <div class="justify-content-md-start">
               <h3>Edit Topics</h3>
             </div>
-            <div class="col-md-6">
+            <div class="justify-content-md-end">
               <router-link to="/TopicsIndex" class="btn btn-primary catebutton">Back to list</router-link>
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body border-light">
           <form @submit.prevent="updateTopics">
-            <div class="row">
-              <div class="col-md-6 catecenter" >
+            <div class="mb-3 row">              
                 <div class="form-group">
                   <strong>Topic Name</strong>
-                  <input type="text" name="name" v-model="topics.name" class="form-control">
+                  <input type="text" name="name" v-model="topics.name" class="form-control w-50">
                 </div>
                 <div class="form-group">
                   <strong>Closure Date</strong>
-                  <input type="date" name="closure_date" v-model="topics.closure_date" class="form-control">
+                  <input type="date" name="closure_date" v-model="topics.closure_date" class="form-control w-50">
                 </div>
                 <div class="form-group">
                   <strong>Final Closure Date</strong>
-                  <input type="date" name="final_closure_date" v-model="topics.final_closure_date" class="form-control">
+                  <input type="date" name="final_closure_date" v-model="topics.final_closure_date" class="form-control w-50">
                 </div>
                 <div class="form-group">
                   <button class="btn btn-primary mt-2" type="submit">Update</button>
                 </div>
-              </div>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <div>
-      <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
-  </div>
   </form>
+  </div>
   <TheFooter></TheFooter>
 </template>
