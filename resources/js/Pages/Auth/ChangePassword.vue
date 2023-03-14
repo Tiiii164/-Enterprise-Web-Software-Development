@@ -53,30 +53,52 @@ export default {
 </script>
 
 <template>
-  <NavBar></NavBar>
-    <div>
-      <h1>Change Password</h1>
-      <div v-if="error" class="alert alert-danger">{{ error }}</div>
-      <div v-if="success" class="alert alert-success">{{ success }}</div>
-      <form>
-        <div class="form-group">
-          <label for="currentPassword">Current Password</label>
-          <input type="password" class="form-control" v-model="currentPassword" id="currentPassword">
+<NavBar></NavBar>
+  <div class="backgroundsu">
+    <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
+      <div class="card border-light">
+        <div class="card-header border-light">
+          <div class="d-grid d-md-flex justify-content-md-between">
+            <div class="justify-content-md-start">
+              <h3>Change Password</h3>
+            </div>
+            <div class="justify-content-md-end">
+              <div v-if="error" class="alert alert-danger">{{ error }}</div>
+              <div v-if="success" class="alert alert-success">{{ success }}</div>            
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="newPassword">New Password</label>
-          <input type="password" class="form-control" v-model="newPassword" id="newPassword">
-        </div>
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password</label>
-          <input type="password" class="form-control" v-model="confirmPassword" id="confirmPassword">
-        </div>
-        <button type="button" class="btn btn-primary" @click="changePassword">Change Password</button>
-        <div>
-              <router-link :to="'/ShowProfile'" 
-              class="btn btn-primary mt-2">Back To User Page</router-link>
+        <div class="card-body border-light">
+          <form>
+            <div class="mb-3 row">
+              <div class="form-group">
+              <label for="currentPassword">Current Password</label>
+              <input type="password" class="form-control" v-model="currentPassword" id="currentPassword">
+            </div>
+            <div class="form-group">
+              <label for="newPassword">New Password</label>
+              <input type="password" class="form-control" v-model="newPassword" id="newPassword">
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" class="form-control" v-model="confirmPassword" id="confirmPassword">
+            </div>
+            <div class="d-grid d-md-flex justify-content-md-between">
+              <div class="justify-content-md-start mt-2">
+                <button type="button" class="btn btn-primary" @click="changePassword">Change Password</button>
+              </div>
+              <div class="justify-content-md-end mt-2">
+                <router-link :to="'/ShowProfile'" 
+                class="btn btn-primary">Back To User Page</router-link>
+              </div>
+            </div>
             </div>
       </form>
+        </div>
+      </div>
     </div>
-    <TheFooter></TheFooter>
+      <!--
+       -->
+  </div>
+<TheFooter></TheFooter>
   </template>

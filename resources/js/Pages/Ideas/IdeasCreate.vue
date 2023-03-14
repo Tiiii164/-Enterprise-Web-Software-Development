@@ -86,45 +86,55 @@ export default {
 </script>
 <template>
   <NavBar></NavBar>
-  
-  <form @submit.prevent="handleCreateIdeas" method="post">
-    <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
-      <div class="card categoriesindex">
-        <div class="card-header">
-          <div class="row">
-            <div class="col-md-6 catecenter">
-              <h3>Create new Ideas</h3>
+  <div class="backgroundsu">
+    <form @submit.prevent="handleCreateIdeas" method="post">
+      <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
+        <div class="card border-light">
+          <div class="card-header border-light">
+            <div class="d-grid d-md-flex justify-content-md-between">
+              <div class="justify-content-md-start">
+                <h3>Create new Ideas</h3>
+              </div>
+              <div class="justify-content-md-end">
+                <router-link to="/TopicsIndex" class="btn btn-primary catebutton">Back to list</router-link>
+              </div>
             </div>
-            <div class="col-md-6 catecenter">
-              <router-link to="/TopicsIndex" class="btn btn-primary catebutton">Back to list</router-link>
+        </div>
+        <div class="card-body border-light">
+          <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label"><strong>Title</strong></label>
+            <div class="col-sm-11">
+                <input type="text" name="title" class="form-control" v-model="form.title" placeholder="Enter Title">
             </div>
           </div>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6 catecenter">
-              <div class="form-group">
-                <strong>Title</strong>
-                <input type="text" name="title" class="form-control" v-model="form.title" placeholder="Enter Title">
-              </div>
-              <div class="form-group">
-                <strong>Text</strong>
-                <input type="text" name="text" class="form-control" v-model="form.text" placeholder="Enter Idea">
-              </div>
-              <div class="form-group">
-                <strong>File Path</strong>
-                <input type="text" name="file_path" class="form-control" v-model="form.file_path" placeholder="">
-              </div>
-              <div class="form-group">
-                <strong>Category</strong>
-                <select class="form-select form-control" v-model="form.categories_id">
-                  <option v-for="data in categories" :value="data.id">{{ data.name }}</option>
-                </select>
-                <strong>Topic</strong>
-                <select class="form-select form-control" v-model="form.topics_id">
-                  <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
-                </select>
-              </div>
+          <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label"><strong>Text</strong></label>
+            <div class="col-sm-11">
+                <input type="text" name="title" class="form-control" v-model="form.text" placeholder="Enter Idea">
+            </div> 
+          </div>
+          <div class="mb-3 row">
+                <label class="col-sm-1 col-form-label"><strong>File Path</strong></label>
+                <div class="col-sm-11">
+                  <input type="text" name="file_path" class="form-control" v-model="form.file_path" placeholder="">
+                </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label"><strong>Category</strong></label>
+                <div class="col-sm-11">
+                  <select class="form-select form-control" v-model="form.categories_id">
+                    <option v-for="data in categories" :value="data.id">{{ data.name }}</option>
+                  </select>
+                </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-sm-1 col-form-label"><strong>Topic</strong></label>
+                <div class="col-sm-11">
+                  <select class="form-select form-control" v-model="form.topics_id">
+                    <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
+                  </select>
+                </div>
+          </div>
               <div>
                 <div>
                 <label>
@@ -142,16 +152,12 @@ export default {
                   </div>
                 </div>
               </div>
-              </div>
-              <button type="submit" class="btn btn-primary mt-2" :disabled="!form.termsAndConditions" @click.prevent="handleCreateIdeas()">Create</button>
             </div>
+            <button type="submit" class="btn btn-primary mt-2" :disabled="!form.termsAndConditions" @click.prevent="handleCreateIdeas()">Create</button>
           </div>
         </div>
       </div>
-    </div>
-    <div>
-      <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
-    </div>
   </form>
+  </div>
   <TheFooter></TheFooter>
 </template>

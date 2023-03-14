@@ -73,48 +73,68 @@ export default {
 }
 </script>
 <template>
-    <div class="login&logout" style="width:auto">
-      <div class="row1 signup" style="position:absolute;width:auto">
-        <div class="col-md-16">
-          <div class="">
-            <div class="card-body">
-              <h4 class="card-title">START FOR FREE</h4>
-              <h4 class="card-title1">Create new account.</h4>
-              <p class="list-disc text-red-400" v-if="typeof errors === 'string'">{{errors}}</p>
-              <form method="post" @submit.prevent="handleSignUp">
-                <div class="mb-3">
-                  <label for="name" class="form-label">Name: </label>
-                  <input type="text" name="name" v-model="form.name" id="username" class="form-control" placeholder=" Enter Name" plain>
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email: </label>
-                  <input type="text" name="email" v-model="form.email" id="email" class="form-control" placeholder=" Enter Email" plain>
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password: </label>
-                  <input type="password" name="password" v-model="form.password" id="password" class="form-control" placeholder=" Enter Password" plain>
-                </div>
-                <div class="mb-3">
-                  <label for="password_confirm" class="form-label">Confirm Password: </label>
-                  <input type="password" name="password_confirmation" v-model="form.password_confirmation" class="form-control" id="password_confirm" placeholder=" Confirm Password">
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Departments: </label>
-                  <select class="form-select form-control" v-model="form.department">
-                    <option v-for="department in departments" :value="department.id">{{ department.name }}</option>
-                  </select>
-                </div>
-                <div class="d-flex" style="width:auto">
-                  <router-link class="buttoncss ml-6" to="/signin">Sign In</router-link>
-                  <button type="submit" class="buttoncss ml-6">Sign Up</button>
-                </div>
-              </form>
+<section class="vh-100">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 text-black">
+        <div class="px-5 ms-xl-4">
+          <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
+          <span class="h1 fw-bold mb-0">Logo</span>
+        </div>
+        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+          <form method="post" @submit.prevent="handleSignUp" id="signInForm" style="width: 23rem;">
+            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign Up</h3>
+            <p class="list-disc text-danger" v-if="typeof errors === 'string'">{{ errors }}</p>
+            <div class="form-outline mb-2">
+                <label class="form-label">Name </label>
+                <input type="text" name="name" v-model="form.name" id="username" class="form-control form-control-lg" plain>
             </div>
-          </div>
+            <div class="form-outline mb-2">
+                <label class="form-label">Email address</label>
+                <input type="email" name="email" v-model="form.email" id="email" class="form-control form-control-lg" plain>
+                <span id="emailError" style="color:red;"></span>
+            </div>
+            <div class="form-outline mb-2">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" v-model="form.password" id="password" class="form-control form-control-lg" plain>
+                <span id="passwordError" style="color:red;"></span>
+            </div>
+            <div class="form-outline mb-2">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" name="password_confirm" v-model="form.password_confirmation" id="password_confirm" class="form-control form-control-lg" plain>
+            </div>
+            <div class="form-outline mb-2">
+                <label class="form-label">Departments</label>
+                <select v-model="form.department" class="form-select form-control form-control-lg" plain>
+                    <option v-for="department in departments" :value="department.id">{{ department.name }}</option>
+                </select>
+            </div>
+            <div class="pt-1 mb-2">
+              <button type="submit" class="btn btn-info btn-lg btn-block">Sign up</button>
+            </div>
+            <p>Already have account? <router-link class="link-info" to="/signin">Sign In here </router-link></p>
+          </form>
         </div>
       </div>
-      <div>
-        <img src="../../../css/login.jpg" alt="" class="vh-100 backgroundsu" style="width:100%">
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <img src="../../../css/UoGI.jpg"
+          alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
       </div>
     </div>
-  </template>
+  </div>
+</section>
+</template>
+<style>
+.bg-image-vertical {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+}
+@media (min-width: 1000px) {
+  .h-custom-2 {
+    height: 80%;
+  }
+}
+</style>

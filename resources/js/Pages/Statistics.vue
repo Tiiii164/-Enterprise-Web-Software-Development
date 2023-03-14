@@ -70,68 +70,102 @@ export default {
 }
 </script>
 <template>
-    <NavBar></NavBar>
-    <img src="../../css/login.jpg" alt="" class="img-fluid" style=" width: 100%;z-index:-1">
-      <div class="container text-center mt-5 position-absolute top-50 start-50 translate-middle" style="z-index:1;">
+  <NavBar></NavBar>
+    <div class="statistics backgroundsu">
+      <div class="container text-center mt-5 position-absolute start-50 translate-middle-x">
         <div class="row">
-          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-            <h4>Departments with Ideas</h4>
-            <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
-              <div class="d-flex justify-content-between border-bottom">
-                <div>{{ department.name }}</div>
-                <div>{{ department.ideas_count }}</div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-3 rounded-3">
+            <div class="col card">
+              <div class="card-body">
+                <h4 class="card-title text-light">Departments with Ideas</h4>
+                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+                  <div class="d-flex justify-content-between border-bottom text-light">
+                    <div>{{ department.name }}</div>
+                    <div>{{ department.ideas_count }}</div>
+                </div>
+              </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-            <h4>Percentage of Ideas</h4>
-            <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
-              <div class="d-flex justify-content-between border-bottom">
-                <div>{{ department.name }}</div>
-                <div>{{ parseFloat(department.ideas_count / ideas.length * 100).toFixed(1) }} %</div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-3 rounded-3">
+            <div class="col card">
+              <div class="card-body">
+                <h4 class="card-title text-light">Percentage of Ideas</h4>
+                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+                  <div class="d-flex justify-content-between border-bottom border-light text-light">
+                    <div>{{ department.name }}</div>
+                    <div>{{ parseFloat(department.ideas_count / ideas.length * 100).toFixed(1) }} %</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-            <h4>Departments with Contributors</h4>
-            <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
-              <div class="d-flex justify-content-between border-bottom">
-                <div>{{ department.name }}</div>
-                <div>{{ department.users_count }}</div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-3 rounded-3">
+            <div class="col card">
+              <div class="card-body">
+                <h4 class="card-title text-light">Departments with Users</h4>
+                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+                  <div class="d-flex justify-content-between border-bottom border-light text-light">
+                    <div>{{ department.name }}</div>
+                    <div>{{ department.users_count }}</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-            <h4>Users with Ideas</h4>
-            <div v-for="(user) in user.slice(0,5)" :key="user" style="height: 50px;">
-              <div class="d-flex justify-content-between border-bottom">
-                <div>{{ user.name }}</div>
-                <div>{{ user.ideas_count }}</div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-3 rounded-3">
+            <div class="col card">
+              <div class="card-body">
+                <h4 class="card-title text-light">Users with Ideas</h4>
+                <div v-for="(user) in user.slice(0,5)" :key="user" style="height: 50px;">
+                  <div class="d-flex justify-content-between border-bottom border-light text-light">
+                    <div>{{ user.name }}</div>
+                    <div>{{ user.ideas_count }}</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-            <h4>Roles with Users</h4>
-            <div v-for="(role) in roles.slice(0,5)" :key="role" style="height: 50px;">
-              <div class="d-flex justify-content-between border-bottom">
-                <div>{{ role.name }}</div>
-                <div>{{ role.users_count }}</div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-3 rounded-3">
+            <div class="col card">
+              <div class="card-body">
+                <h4 class="card-title text-light">Roles with Users</h4>
+                <div v-for="(role) in roles.slice(0,5)" :key="role" style="height: 50px;">
+                  <div class="d-flex justify-content-between border-bottom border-light text-light">
+                    <div>{{ role.name }}</div>
+                    <div>{{ role.users_count }}</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-4 .col-md-6 .col-lg-12 border">
-            <h4>Ideas with most Views</h4>
-            <div v-for="(idea) in sortedViews(ideas)" :key="idea" style="height: 50px;">
-              <div class="d-flex justify-content-between border-bottom">
-                <div>{{ idea.title }}</div>
-                <div>{{ idea.views_count }}</div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-3 rounded-3">
+            <div class="col card">
+              <div class="card-body">
+                <h4 class="card-title text-light">Ideas with most Views</h4>
+                <div v-for="(idea) in sortedViews(ideas)" :key="idea" style="height: 50px;">
+                  <div class="d-flex justify-content-between border-bottom border-light text-light">
+                    <div>{{ idea.title }}</div>
+                    <div>{{ idea.views_count }}</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    <TheFooter></TheFooter>
+    </div>
+  <TheFooter></TheFooter>
 </template>
+<style>
+@media screen and (max-width: 1000px) {
+  .statistics.backgroundsu{
+    height: 300vh; 
+  }
+}
+.col {
+  --bs-bg-opacity: 0.1;
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  border: 1px solid white;
+}
+</style>

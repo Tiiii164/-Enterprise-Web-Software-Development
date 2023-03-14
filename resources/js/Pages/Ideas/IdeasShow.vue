@@ -81,92 +81,120 @@ export default {
 }
 </script>
 <template>
-    <NavBar></NavBar>
-    <div style="position:absolute;width:100%;justify-content:center;">
-        <form @submit.prevent="handlecreateComments" method="post"> 
-            <div style="width:100%;display:flex;justify-content:center">
-                <div class="card categoriesindex">
+<NavBar></NavBar>
+    <div class=" backgroundsu">
+        <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
+            <form @submit.prevent="handlecreateComments" method="post"> 
+                <div class="card border-light">
                     <div class="card-header">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>Create new Ideas</h3>
-                            </div>
-                            <div class="col-md-6">
-                                <router-link to="/TopicsIndex" class="btn btn-primary float-end">Back to list</router-link>
-                            </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm mx-auto">
+                                <thead class="text-light text-align-center justify-content-center">
+                                    <tr>
+                                        <th>
+                                            <div class="d-grid d-md-flex justify-content-md-start pb-3">
+                                                <h3>Create new Ideas</h3>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="d-grid d-md-flex justify-content-md-end pb-3">
+                                                <router-link to="/TopicsIndex" class="btn btn-primary">Back to list</router-link>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                     <div class="card-body">
                         <form>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <strong>Comment</strong>
+                            <div class="mb-3 row">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-form-label"><h4>Comment</h4></label>
+                                    <div class="col-sm-10">
                                         <input type="text" name="comments" class="form-control" v-model="form.text"
-                                            placeholder="Enter Comments">
+                                        placeholder="Enter Comments">
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-2"
-                                        @click.prevent="handlecreateComments">Create</button>
                                 </div>
                             </div>
+                            <button type="submit" class="btn btn-primary mt-2"
+                                @click.prevent="handlecreateComments">Create
+                            </button>
                         </form>
                     </div>
                 </div>
-            </div>
-        </form>
-    <div class="" style="width:100%;display:flex;justify-content:center" >
-        <div class="card categoriesindex">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6 catecenter" >
-                        <thead style="text-align:center;align-items:center;justify-content:center">
-                            <h3>Details</h3>
-                            <tr>
-                                <td>Tiltle</td>
-                                <td>Content</td>
-                                <td>File Path</td>
-                                <td>View</td>
-                                <td>Topic</td>
-                                <td>Category</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="ideas in ideas" :key="ideas.id">
-                                <th>{{ ideas.title }}</th>
-                                <th>{{ ideas.text }}</th>
-                                <th>{{ ideas.file_path }}</th>
-                                <th v-for="topics in ideas.topics" :key="topics.id">{{ topics.name }}</th>
-                                <th v-for="categories in ideas.categories" :key="categories.id">{{ categories.name }}</th>
-                            </tr>
-                        </tbody>
-                    </div>
-                    <div class="col-md-6 catecenter" >
-                        <router-link to="/TopicsIndex" class="btn btn-primary float-end">Back to list</router-link>
+            </form>
+            <br>
+            <div class="card border-light">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm mx-auto border-light">
+                            <thead class="text-light text-align-center justify-content-center">
+                                <tr>
+                                    <td>Title</td>
+                                    <td>Content</td>
+                                    <td>File Path</td>
+                                    <td>View</td>
+                                    <td>Topic</td>
+                                    <td>Category</td>
+                                </tr>
+                            </thead>
+                            <tbody class="text-light text-align-center justify-content-center">
+                                <tr v-for="ideas in ideas" :key="ideas.id">
+                                    <td>{{ ideas.title }}</td>
+                                    <td>{{ ideas.text }}</td>
+                                    <td>{{ ideas.file_path }}</td>
+                                    <td></td>
+                                    <td>
+                                        <div v-for="topics in ideas.topics" :key="topics.id">
+                                            {{ topics.name }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div v-for="categories in ideas.categories" :key="categories.id">
+                                            {{ categories.name }}
+                                        </div> 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Text</th>
-                            <th>Created At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="comments in ideas.comments" :key="ideas.id">
-                            <td>{{ comments.text }}</td>
-                            <td>{{ comments.created_at }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <br>
+            <div class="card border-light">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm mx-auto border-light">
+                            <thead class="text-light text-align-center justify-content-center">
+                                <tr>
+                                    <th>
+                                        <div class="d-grid d-md-flex justify-content-md-start pb-3">
+                                            <h3>Details</h3>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="d-grid d-md-flex justify-content-md-end pb-3">
+                                            <router-link to="/TopicsIndex" class="btn btn-primary">Back to list</router-link>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Text</th>
+                                    <th>Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-light">
+                                <tr v-for="comments in ideas.comments" :key="ideas.id">
+                                    <td>{{ comments.text }}</td>
+                                    <td>{{ comments.created_at }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
+        </div>          
     </div>
-   
-</div>
-    <div>
-        <img src="../../../css/login.jpg" alt="" class=" backgroundsu" style=" width:100%;">
-    </div>
-    <TheFooter></TheFooter>
+<TheFooter></TheFooter>
 </template>

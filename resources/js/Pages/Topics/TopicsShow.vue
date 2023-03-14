@@ -48,11 +48,11 @@ export default {
 }
 </script>
 <template>
-    <div style="padding-bottom:60px">
-    <NavBar></NavBar>
-    <div class="" style="position:absolute;width:100%;justify-content:center;text-align:center">
-        <h1>List of Ideas</h1>
-        <div class="row">
+  <NavBar></NavBar>
+    <div class="topicShow backgroundsu">
+        <div class="container text-center mt-5 position-absolute start-50 translate-middle-x text-light">
+            <h1>List of Ideas</h1>
+        <div class="row mb-3">
             <div class="col-4">
                 <dt>Ideas of Topic: </dt>
                 <dt>Closure Date: </dt>
@@ -68,53 +68,58 @@ export default {
             <div class="card-body col-2" style="display:flex;justify-content:center;width:100%">
                 <router-link to="/IdeasCreate" class="btn btn-primary catebutton">Add new Ideas</router-link>
             </div>
-            <div class="card-body">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Title</th>
-                            <th>Text</th>
-                            <th>File Path</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
-                            <th>Views</th>
-                            <th>Like</th>
-                            <th>Dislike</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(ideas, index) in topics.ideas" :key="ideas.id">
-                            <td>{{ index + 1 }}</td>
-                            <td>{{ ideas.title }}</td>
-                            <td>{{ ideas.text }}</td>
-                            <td>{{ ideas.file_path }}</td>
-                            <td>{{ ideas.created_at }}</td>
-                            <td>{{ ideas.updated_at }}</td>
-                            <td>{{ ideas.views_count }}</td>
-                            <td>{{ ideas.likes_count }}</td>
-                            <td>{{ ideas.dislikes_count }}</td>
-                            <td>
-                                <div>
-                                    <router-link :to="'/IdeasShow/' + ideas.id" class="btn btn-success"
-                                        @click="viewIdea(ideas.id)">View
-                                        Detail</router-link>
-                                    <!-- <button class="btn btn-success" @click="viewIdea(ideas.id)">View Details </button> -->
-                                    <button class="btn btn-danger" @click="likeIdea(ideas.id)">Like</button>
-                                    <button class="btn btn-danger" @click="dislikeIdea(ideas.id)">Dislike</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="card-body border-light">
+                <div class="table-responsive">
+                    <table class="table table-sm mx-auto border-light">
+                        <thead class="text-light text-align-center justify-content-center">
+                            <tr>
+                                <th>No</th>
+                                <th>Title</th>
+                                <!-- <th>Text</th>
+                                <th>File Path</th>
+                                <th>Created At</th>
+                                <th>Updated At</th> -->
+                                <th>Views</th>
+                                <th>Like</th>
+                                <th>Dislike</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="catetbody text-light">
+                            <tr v-for="(ideas, index) in topics.ideas" :key="ideas.id">
+                                <td>{{ index + 1 }}</td>
+                                <td>{{ ideas.title }}</td>
+                                <!-- <td>{{ ideas.text }}</td>
+                                <td>{{ ideas.file_path }}</td>
+                                <td>{{ ideas.created_at }}</td>
+                                <td>{{ ideas.updated_at }}</td> -->
+                                <td>{{ ideas.views_count }}</td>
+                                <td>{{ ideas.likes_count }}</td>
+                                <td>{{ ideas.dislikes_count }}</td>
+                                <td>
+                                    <div class="d-grid d-md-flex justify-content-md-center">
+                                        <router-link :to="'/IdeasShow/' + ideas.id" class="btn btn-success me-md-2"
+                                            @click="viewIdea(ideas.id)">View
+                                            Detail</router-link>
+                                        <!-- <button class="btn btn-success" @click="viewIdea(ideas.id)">View Details </button> -->
+                                        <button class="btn btn-danger me-md-2" @click="likeIdea(ideas.id)">Like</button>
+                                        <button class="btn btn-danger" @click="dislikeIdea(ideas.id)">Dislike</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <div>
-        <img src="../../../css/login.jpg" alt="" class=" backgroundsu" style=" width:100%;height:100%">
     </div>
 </div>
     <TheFooter></TheFooter>
 </template>
+<style>
+@media screen and (max-width: 1000px) {
+    .topicShow.backgroundsu {
+        height: 150vh; 
+    }
+}
+</style>
