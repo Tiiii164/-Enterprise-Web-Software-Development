@@ -81,49 +81,60 @@ export default {
 </script>
 <template>
   <NavBar></NavBar>
-    <form >
-      <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
-        <div class="card categoriesindex">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Edit user</h3>
-                    </div>
-                    <div class="col-md-6">
-                        <router-link to="/UsersIndex" class="btn btn-primary float-end">Back to list</router-link>
-                    </div>
-                </div>
+  <div class="backgroundsu">
+    <form>
+      <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
+        <div class="card border-light">
+          <div class="card-header border-light">
+            <div class=" d-grid d-md-flex justify-content-md-between">
+              <div class="justify-content-md-start">
+                <h3>Edit user</h3>
+              </div>
+              <div class="justify-content-md-end">
+                <router-link to="/UsersIndex" class="btn btn-primary">Back to list</router-link>
+              </div>
             </div>
-            <div class="card-body">
+            </div>
+            <div class="card-body border-light">
                 <form @submit.prevent="updateUser">
-                    <div class="row">
-                      <div class="col-md-6 catecenter" >
+                    <div class="mb-3 row">
                             <div class="form-group">
-                                  <strong>Mail</strong>
-                                  <input type="text" name="email" class="form-control" v-model="user.email">
-                                  <strong>Name</strong>
-                                  <input type="text" name="name" class="form-control" v-model="user.name">
-                                  <label class="form-label" for="role">Role:</label>
+                              <label class="col-sm-2 col-form-label"><h4>Email</h4></label>
+                              <div class="col-sm-10">
+                                <input type="text" name="email" class="form-control" v-model="user.email">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-2 col-form-label"><h4>Name</h4></label>
+                              <div class="col-sm-10">
+                                <input type="text" name="name" class="form-control" v-model="user.name">                              
+                              </div>
+                            </div>
+                            <div class="form-group">  
+                                <label class="col-sm-2 col-form-label" for="role"><h4>Role:</h4></label>
+                                <div class="col-sm-10">
                                   <select class="form-select form-control" name="role" v-model="user.role">
                                     <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
                                   </select>
-                                  <label class="form-label">Departments: </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-form-label"><h4>Departments:</h4></label>
+                                <div class="col-sm-10">
                                   <select class="form-select form-control" name="department" v-model="user.department">
                                     <option v-for="department in departments" :value="department.id">{{ department.name }}</option>
                                   </select>
+                                </div>
+                              </div>
+                            <div class="d-grid d-md-flex justify-content-md-end">
+                                <button class="btn btn-primary mt-2" type="submit">Update</button>
                             </div>
-                            <div class="form-group">
-                              <button class="btn btn-primary mt-2" type="submit">Update</button>
-                            </div>
-                          </div>
                       </div>
                   </form>
             </div>
         </div>
       </div>
-       <div>
-        <img src="../../../css/login.jpg" alt="" class="vh-100 backgroundsu" style=" width:100%">
-    </div> 
     </form>
+  </div>
   <TheFooter></TheFooter>
   </template>

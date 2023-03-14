@@ -5,7 +5,7 @@
 
 html{
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 
 .footer1{
@@ -76,6 +76,10 @@ html{
     font-weight: bold;
     font-size: 20px;
 }
+.card{
+    --bs-bg-opacity: 0.1;
+    background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+}
 .card-title{
     color: grey !important;
     font-weight: bold;
@@ -105,10 +109,7 @@ input{
     font-weight: bold !important;
     font-size: 20px !important;
 }
-.form-control{
-    display: flex;
-    margin-left: 20px;
-}
+
 .buttoncss {
     text-align: center;
     width: auto;
@@ -241,11 +242,10 @@ input{
         height: 100%;
     }
     .backgroundsu{
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        background-image: url("./backgroundImg.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
     }
     .welcomeuser{
         margin-top: 100px;
@@ -324,8 +324,10 @@ input{
     margin-top: 20px;
    }
     .backgroundsu {
-      height: 100%;
-      object-fit: cover;
+        background-image: url("./backgroundImg.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
     }
     .signup{
         margin-right: 50px;
