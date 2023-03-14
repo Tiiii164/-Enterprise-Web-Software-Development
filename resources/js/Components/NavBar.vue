@@ -39,7 +39,9 @@ export default {
 <template>
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:sticky;top:0;width:100%;z-index:2;">
   <div class="container-fluid">
-    <router-link class="navbar-brand" to="/">Idea</router-link>
+    <router-link class="navbar-brand" to="/">
+      <img src="../../css/logo.png" alt="Logo">
+    </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" 
       aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -61,10 +63,10 @@ export default {
               <router-link class="nav-link active nav-item1" to="/DepartmentsIndex">Department</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active" to="/RolesIndex">Role</router-link>
+              <router-link class="nav-link active nav-item1" to="/RolesIndex">Role</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active" to="/UsersIndex">User</router-link>
+              <router-link class="nav-link active nav-item1" to="/UsersIndex">User</router-link>
             </li>
           </ul>
         </li>

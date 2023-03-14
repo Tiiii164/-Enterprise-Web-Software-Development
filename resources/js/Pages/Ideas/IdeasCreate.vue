@@ -4,11 +4,12 @@ import NavBar from '@/Components/NavBar.vue';
 import TheFooter from '@/Components/TheFooter.vue';
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-
+import DialogText from '@/Components/DialogText.vue'
 export default {
   components: {
     NavBar,
     TheFooter,
+    DialogText
   },
   data() {
     return {
@@ -35,15 +36,26 @@ export default {
       termsAndConditions: false,
     });
     const handleCreateIdeas = async () => {
-      try {
-        const response = await axios.post('/api/ideas/IdeasCreate', form)
-          .then((res) => {
-            router.push('/IdeasIndex')
-          })
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  try {
+    const response = await axios.post('/api/ideas/IdeasCreate', form);
+    router.push('/IdeasIndex');
+    const customAlert = document.createElement('div');
+    customAlert.classList.add('custom-alert');
+    customAlert.innerHTML = `
+      <div class="custom-alert-content">
+        <h3>Idea created successfully!</h3>
+        <button class="custom-alert-button">OK</button>
+      </div>
+    `;
+    document.body.appendChild(customAlert);
+    const customAlertButton = customAlert.querySelector('.custom-alert-button');
+    customAlertButton.addEventListener('click', () => {
+      customAlert.remove();
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
     return {
       form,
       handleCreateIdeas,
@@ -131,13 +143,13 @@ export default {
                 <span style="margin-left:5px">I agree to the </span>
                 <span style="text-decoration:underline;cursor:pointer;" @click="showTermsAndConditions">terms and conditions</span>
               </div>
-              <div v-if="showDialog" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80%;height:50%">
+              <div v-if="showDialog" class="dialog-container" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:100%;">
                 <!-- Your dialog content here -->
-                <div class="card" style="display: flex; justify-content: space-between;">
-                  <h1 style="text-align:center">Terms and Conditions</h1>
+                <div class="card dialog" style="display: flex; flex-direction: column;">
+                 <DialogText></DialogText>
                   <div style="justify-content:center;align-items:center;display:flex">
-                  <button class="btn btn-primary" style="width:100px;" @click="hideTermsAndConditions">Close</button>
-                </div>
+                    <button class="btn btn-primary" style="width:100px;" @click="hideTermsAndConditions">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
