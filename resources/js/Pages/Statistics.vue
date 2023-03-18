@@ -116,11 +116,11 @@ export default {
           <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-3 rounded-3">
             <div class="col card">
               <div class="card-body">
-                <h4 class="card-title text-light">Users with Ideas</h4>
-                <div v-for="(user) in user.slice(0,5)" :key="user" style="height: 50px;">
+                <h4 class="card-title text-light">Roles with Users</h4>
+                <div v-for="(role) in roles.slice(0,5)" :key="role" style="height: 50px;">
                   <div class="d-flex justify-content-between border-bottom border-light text-light">
-                    <div>{{ user.name }}</div>
-                    <div>{{ user.ideas_count }}</div>
+                    <div>{{ role.name }}</div>
+                    <div>{{ role.users_count }}</div>
                   </div>
                 </div>
               </div>
@@ -129,11 +129,11 @@ export default {
           <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-3 rounded-3">
             <div class="col card">
               <div class="card-body">
-                <h4 class="card-title text-light">Roles with Users</h4>
-                <div v-for="(role) in roles.slice(0,5)" :key="role" style="height: 50px;">
+                <h4 class="card-title text-light">Users with Ideas</h4>
+                <div v-for="(user) in user.slice(0,5)" :key="user" style="height: 50px;">
                   <div class="d-flex justify-content-between border-bottom border-light text-light">
-                    <div>{{ role.name }}</div>
-                    <div>{{ role.users_count }}</div>
+                    <div>{{ user.name }}</div>
+                    <div>{{ user.ideas_count }}</div>
                   </div>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default {
 <style>
 @media screen and (max-width: 1000px) {
   .statistics.backgroundsu{
-    height: 300vh; 
+    height: 250vh; 
   }
 }
 .col {

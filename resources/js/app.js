@@ -13,9 +13,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
 import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faPen)
+library.add(faPen, faTrash, faThumbsUp, faThumbsDown)
 
 createApp(App)
   .use(router)

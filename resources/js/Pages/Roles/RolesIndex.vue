@@ -69,8 +69,8 @@ export default {
                                 <td>{{ role.name }}</td>
                                 <td>
                                   <div class="d-grid d-md-flex justify-content-md-center">
-                                      <router-link :to="'/RolesUpdate/' + role.id" class="btn btn-primary me-md-2">Edit</router-link>
-                                      <button class="btn btn-danger" @click.prevent="deleteRole(role.id)">Delete</button>
+                                      <router-link :to="'/RolesUpdate/' + role.id" class="btn btn-primary me-md-2"><font-awesome-icon icon="fa-solid fa-pen" /></router-link>
+                                      <button class="btn btn-danger" @click.prevent="deleteRole(role.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
                                     </div>
                                 </td>
                             </tr>

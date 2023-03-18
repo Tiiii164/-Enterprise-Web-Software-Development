@@ -108,8 +108,8 @@ export default {
               <td>{{ ideas.updated_at }}</td>
               <td>
                 <div class="d-grid d-md-flex justify-content-md-center">
-                  <router-link :to="'/IdeasUpdate/' + ideas.id" class="btn btn-primary me-md-2">Edit</router-link>
-                  <button class="btn btn-danger" @click.prevent="deleteIdeas(ideas.id)">Delete</button>
+                  <router-link :to="'/IdeasUpdate/' + ideas.id" class="btn btn-primary me-md-2"><font-awesome-icon icon="fa-solid fa-pen" /></router-link>
+                  <button class="btn btn-danger" @click.prevent="deleteIdeas(ideas.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
                 </div>
               </td>
             </tr>

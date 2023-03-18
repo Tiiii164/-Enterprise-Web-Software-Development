@@ -12,13 +12,13 @@ export default {
     },
     data() {
         return {
-            ideas: [],
+            ideas: {},
+            topics: [],
+            comments: [],
+            categories: [],
         }
     },
-    created() {
-        this.getIdeas();
-    },
-    //mounted() { },
+    
     setup() {
         const router = useRouter();
         //const route = useRoute();
@@ -46,26 +46,19 @@ export default {
         }
     },
 
-
-
-
     methods: {
         async getIdeas() {
             try {
                 const response = await axios.get(`/api/ideas/IdeasShow/${this.$route.params.id}`)
-                this.ideas = response.data;
-                this.topics = response.data;
-                this.views = response.data;
-                this.comments = response.data;
-                this.categories = response.data;
+                    this.ideas = response.data;
+                    this.topics = response.data;
+                    this.comments = response.data;
+                    this.categories = response.data;
                 console.log(response.data);
             } catch (error) {
                 console.log(error);
             }
         },
-
-
-
         async deleteIdeas(id) {
             if (confirm("Are you sure you want to delete this Idea?")) {
                 try {
@@ -77,12 +70,15 @@ export default {
                 }
             }
         }
+    },
+    created() {
+        this.getIdeas();
     }
 }
 </script>
 <template>
 <NavBar></NavBar>
-    <div class=" backgroundsu">
+    <div class="ideasShow backgroundsu">
         <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
             <form @submit.prevent="handlecreateComments" method="post"> 
                 <div class="card border-light">
@@ -139,20 +135,20 @@ export default {
                                     <td>Category</td>
                                 </tr>
                             </thead>
-                            <tbody class="text-light text-align-center justify-content-center">
-                                <tr v-for="ideas in ideas" :key="ideas.id">
-                                    <td>{{ ideas.title }}</td>
-                                    <td>{{ ideas.text }}</td>
-                                    <td>{{ ideas.file_path }}</td>
-                                    <td></td>
+                            <tbody class="text-light text-align-center justify-content-center" >
+                                <tr v-for="idea in ideas" :key="idea.id">
+                                    <td>{{ idea.title }}</td>
+                                    <td>{{ idea.text }}</td>
+                                    <td>{{ idea.file_path }}</td>
+                                    <td>{{ idea.views_count }}</td>
                                     <td>
-                                        <div v-for="topics in ideas.topics" :key="topics.id">
-                                            {{ topics.name }}
+                                        <div>
+                                            {{ ideas.topics.name }}
                                         </div>
                                     </td>
                                     <td>
-                                        <div v-for="categories in ideas.categories" :key="categories.id">
-                                            {{ categories.name }}
+                                        <div>
+                                            {{ ideas.categories.name }}
                                         </div> 
                                     </td>
                                 </tr>
@@ -185,9 +181,9 @@ export default {
                                 </tr>
                             </thead>
                             <tbody class="text-light">
-                                <tr v-for="comments in ideas.comments" :key="ideas.id">
-                                    <td>{{ comments.text }}</td>
-                                    <td>{{ comments.created_at }}</td>
+                                <tr v-for="comment in ideas.comments" :key="ideas.id">
+                                    <td>{{ comment.text }}</td>
+                                    <td>{{ comment.created_at }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -198,3 +194,15 @@ export default {
     </div>
 <TheFooter></TheFooter>
 </template>
+<style>
+@media screen and (min-width: 1000px) {
+    .ideasShow.backgroundsu {
+        height: 250vh; 
+    }
+}
+@media screen and (max-width: 1000px) {
+    .ideasShow.backgroundsu {
+        height: 250vh; 
+    }
+}
+</style>
