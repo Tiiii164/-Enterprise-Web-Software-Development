@@ -15,7 +15,6 @@ export default {
     created() {
         this.getTopics();
     },
-    mounted() { },
     methods: {
         async getTopics() {
             try {
@@ -98,12 +97,12 @@ export default {
                                 <td>{{ ideas.dislikes_count }}</td>
                                 <td>
                                     <div class="d-grid d-md-flex justify-content-md-center">
-                                        <router-link :to="'/IdeasShow/' + ideas.id" class="btn btn-success me-md-2"
+                                        <router-link :to="'/IdeasShow/' + ideas.id" class="btn btn-success m-1"
                                             @click="viewIdea(ideas.id)">View
                                             Detail</router-link>
                                         <!-- <button class="btn btn-success" @click="viewIdea(ideas.id)">View Details </button> -->
-                                        <button class="btn btn-danger me-md-2" @click="likeIdea(ideas.id)">Like</button>
-                                        <button class="btn btn-danger" @click="dislikeIdea(ideas.id)">Dislike</button>
+                                        <button class="btn btn-info m-1" @click="likeIdea(ideas.id)"><font-awesome-icon icon="fa-solid fa-thumbs-up" /></button>
+                                        <button class="btn btn-danger m-1" @click="dislikeIdea(ideas.id)"><font-awesome-icon icon="fa-solid fa-thumbs-down" /></button>
                                     </div>
                                 </td>
                             </tr>
@@ -119,7 +118,7 @@ export default {
 <style>
 @media screen and (max-width: 1000px) {
     .topicShow.backgroundsu {
-        height: 150vh; 
+        height: 250vh; 
     }
 }
 </style>
