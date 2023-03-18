@@ -64,9 +64,9 @@ export default {
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Department</th>
+                            <th class="d-none d-md-table-cell">Email</th>
+                            <th class="d-none d-md-table-cell">Role</th>
+                            <th class="d-none d-md-table-cell">Department</th>
                             <th>Action</th>
                         </tr>
                       </thead>
@@ -74,17 +74,17 @@ export default {
                               <tr v-for="(user, index) in user" :key="index">
                                   <td>{{ index + 1 }}</td>
                                   <td>{{ user.name }}</td>
-                                  <td>{{ user.email }}</td>
-                                  <td v-for="role in user.roles" >
-                                    <td style="text-center;justify-content:center;align-items:center;display:flex">{{ role.name }}</td>
+                                  <td class="d-none d-md-table-cell">{{ user.email }}</td>
+                                  <td v-for="role in user.roles" class="d-none d-md-table-cell">
+                                    <div class="text-align-center justify-content-center">{{ role.name }}</div>
                                   </td>
-                                  <td v-for="department in user.departments" :key="department.id">
-                                    <td style="text-center;justify-content:center;align-items:center;display:flex">{{ department.name }}</td>
+                                  <td v-for="department in user.departments" :key="department.id" class="d-none d-md-table-cell">
+                                    <div class="text-align-center justify-content-center">{{ department.name }}</div>
                                   </td>
                                   <td>
                                     <div>
-                                      <router-link :to="'/UsersUpdate/' + user.id" class="btn btn-primary me-md-2">Edit</router-link>
-                                      <button class="btn btn-danger" @click.prevent="deleteUser(user.id)">Delete</button>
+                                      <router-link :to="'/UsersUpdate/' + user.id" class="btn btn-primary me-2"><font-awesome-icon icon="fa-solid fa-pen" /></router-link>
+                                      <button class="btn btn-danger" @click.prevent="deleteUser(user.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
                                     </div>
                                   </td>
                               </tr>
