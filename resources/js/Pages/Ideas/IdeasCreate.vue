@@ -88,22 +88,21 @@ export default {
       console.error('No topics found');
     }
   });
-}
+},
+  showTermsAndConditions() {
+        this.showDialog = true;
+      },
+      hideTermsAndConditions() {
+        this.showDialog = false;
+      },
+},
+  created() {
+    this.getCategories();
   },
   created() {
     this.getCategories();
     this.getTopics();
   }
-    showTermsAndConditions() {
-      this.showDialog = true;
-    },
-    hideTermsAndConditions() {
-      this.showDialog = false;
-    },
-  },
-  created() {
-    this.getCategories();
-  },
 }
 </script>
 <template>

@@ -51,40 +51,33 @@ export default {
 </script>
 <template>
   <NavBar></NavBar>
-  <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
-    <div class="card categoriesindex">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6 catecenter">
-                        <h3>Manage users </h3>
-                    </div>
-                    <div class="col-md-6 catecenter">
-                        <router-link to="/UsersIndex" class="btn btn-primary float-end">Back to list</router-link>
-                    </div>
+  <div class="backgroundsu">
+    <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
+      <div class="card border-light">
+        <div class="card-header border-light">
+          <div class="d-grid d-md-flex justify-content-md-between">
+              <div class="justify-content-md-start">
+                <h3>Users Details</h3>
+              </div>
+              <div class="justify-content-md-end">
+                  <router-link to="/UsersIndex" class="btn btn-primary">Back to list</router-link>
+              </div>
+          </div>
+        </div>
+        <div class="card-body border-light">
+            <div class="container overflow-hidden card-body" v-for="(user, index) in user" :key="index">
+              <div class="mb-3 row">
+                <div class="form-group">
+                  <div class="p-2 border card mb-3"><h5>Name: {{ user.name }}</h5></div>
+                  <div class="p-2 border card mb-3"><h5>Email: {{ user.email }}</h5></div>
+                  <div class="p-2 border card mb-3" v-for="role in user.roles"><h5>Role: {{ role.name }}</h5></div>
+                  <div class="p-2 border card mb-3" v-for="department in user.departments"><h5>Department: {{ department.name }}</h5></div>
                 </div>
+              </div>
             </div>
-            <div class="card-body">
-                <div class="container overflow-hidden card-body" v-for="(user, index) in user" :key="index">
-                 <div class="row gy-5">
-                   <div class="col-9">
-                     <div class="p-2 border bg-light card"><h5>Name: {{ user.name }}</h5></div>
-                   </div>
-                   <div class="col-9">
-                     <div class="p-2 border bg-light card"><h5>Email: {{ user.email }}</h5></div>
-                   </div>
-                   <div class="col-9">
-                     <div class="p-2 border bg-light card" v-for="role in user.roles"><h5>Role: {{ role.name }}</h5></div>
-                   </div>
-                   <div class="col-9">
-                     <div class="p-2 border bg-light card" v-for="department in user.departments"><h5>Department: {{ department.name }}</h5></div>
-                   </div>
-                 </div>
-               </div>
-            </div> 
+        </div> 
         </div>
     </div>
-    <div>
-      <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
   </div>
   <TheFooter></TheFooter>
 </template>

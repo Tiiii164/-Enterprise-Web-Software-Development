@@ -90,9 +90,8 @@ export default {
                                   </td>
                                   <td>
                                     <div>
-                                      <router-link :to="'/UsersShow/' + user.id" class="btn btn-success"
-                                          @click="viewUsers(user.id)">View
-                                          Detail</router-link>
+                                      <router-link :to="'/UsersShow/' + user.id" class="btn btn-success  me-2"
+                                          @click="viewUsers(user.id)"><font-awesome-icon icon="fa-solid fa-book" /></router-link>
                                       <router-link :to="'/UsersUpdate/' + user.id" class="btn btn-primary me-2"><font-awesome-icon icon="fa-solid fa-pen" /></router-link>
                                       <button class="btn btn-danger" @click.prevent="deleteUser(user.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
                                     </div>

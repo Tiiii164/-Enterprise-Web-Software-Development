@@ -123,48 +123,47 @@ const router = createRouter({
         component: CategoriesUpdate,
     },
     //topics
-        {
-            path: '/topicsCreate',
-            name: 'TopicsCreate',
-            component: TopicsCreate,
-        },
-        {
-            path: '/topicsIndex',
-            name: 'TopicsIndex',
-            component: TopicsIndex,
-        },
-        {
-            path: '/topicsUpdate/:id',
-            name: 'TopicsUpdate',
-            component: TopicsUpdate,
-        },
-        {
-            path: '/TopicsShow/:id',
-            name: 'TopicsShow',
-            component: TopicsShow,
-        },
-
-        //Ideas
-        {
-            path: '/ideasCreate',
-            name: 'IdeasCreate',
-            component: IdeasCreate,
-        },
-        {
-            path: '/ideasIndex',
-            name: 'IdeasIndex',
-            component: IdeasIndex,
-        },
-        {
-            path: '/ideasUpdate/:id',
-            name: 'IdeasUpdate',
-            component: IdeasUpdate,
-        },
-        {
-            path: '/IdeasShow/:id',
-            name: 'IdeasShow',
-            component: IdeasShow,
-        },
+    {
+        path: '/topicsCreate',
+        name: 'TopicsCreate',
+        component: TopicsCreate,
+    },
+    {
+        path: '/topicsIndex',
+        name: 'TopicsIndex',
+        component: TopicsIndex,
+    },
+    {
+        path: '/topicsUpdate/:id',
+        name: 'TopicsUpdate',
+        component: TopicsUpdate,
+    },
+    {
+        path: '/TopicsShow/:id',
+        name: 'TopicsShow',
+        component: TopicsShow,
+    },
+    //Ideas
+    {
+        path: '/ideasCreate',
+        name: 'IdeasCreate',
+        component: IdeasCreate,
+    },
+    {
+        path: '/ideasIndex',
+        name: 'IdeasIndex',
+        component: IdeasIndex,
+    },
+    {
+        path: '/ideasUpdate/:id',
+        name: 'IdeasUpdate',
+        component: IdeasUpdate,
+    },
+    {
+        path: '/IdeasShow/:id',
+        name: 'IdeasShow',
+        component: IdeasShow,
+    },
     //user
     {
         path: '/UsersIndex',
