@@ -40,45 +40,46 @@ export default {
 
 <template>
   <NavBar></NavBar>
-  <div class="" style="position:absolute;width:100%;justify-content:center;display:flex">
-        <div class="card categoriesindex">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6 catecenter">
-                        <h3>Manage Departments</h3>
-                    </div>
-                    <div class="col-md-6 catecenter">
-                        <router-link to="/DepartmentsCreate" class="btn btn-primary catebutton">Add new Departments</router-link>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-               <table class="table table-bordered mx-auto">
-                    <thead style="text-align:center;align-items:center;justify-content:center">
-                        <tr>
-                            <th>No.</th>
-                            <th>Name</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="catetbody">
-                            <tr v-for="(department, index) in departments" :key="index">
-                                <td>{{ index + 1 }}</td>
-                                <td>{{ department.name }}</td>
-                                <td>
-                                    <div>
-                                      <router-link :to="'/DepartmentsUpdate/' + department.id" class="btn btn-primary">Edit</router-link>
-                                      <button class="btn btn-danger" @click.prevent="deleteDepartment(departments.id)">Delete</button>
+  <div class="backgroundsu">
+    <div class="container text-center mt-5 position-absolute start-50 translate-middle-x text-light">
+          <div class="card border-light">
+            <div class="card-header border-light">
+                <div class="d-grid d-md-flex justify-content-md-between m-2">
+                    <div class="d-grid d-md-flex justify-content-md-start">
+                          <h3>Manage Departments</h3>
+                      </div>
+                      <div class="d-grid d-md-flex justify-content-md-end">
+                        <router-link to="/DepartmentsCreate" class="btn btn-primary">Add new Departments</router-link>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-body border-light">
+                <div class="table-responsive">
+                  <table class="table table-sm mx-auto border-light">
+                      <thead class="text-light text-align-center justify-content-center">
+                          <tr>
+                              <th>No.</th>
+                              <th>Name</th>
+                              <th>Action</th>
+                          </tr>
+                      </thead>
+                      <tbody class="catetbody text-light">
+                              <tr v-for="(department, index) in departments" :key="index">
+                                  <td>{{ index + 1 }}</td>
+                                  <td>{{ department.name }}</td>
+                                  <td>
+                                    <div class="d-grid d-md-flex justify-content-md-center">
+                                      <router-link :to="'/DepartmentsUpdate/' + department.id" class="btn btn-primary me-md-2"><font-awesome-icon icon="fa-solid fa-pen" /></router-link>
+                                      <button class="btn btn-danger" @click.prevent="deleteDepartment(departments.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
                                     </div>
-                                </td>
-                            </tr>
-                    </tbody>
-                </table> 
-            </div> 
-        </div>
-    </div>
-    <div>
-      <img src="../../../css/login.jpg" alt="" class="mh-100 backgroundsu" style=" width:100%">
+                                  </td>
+                              </tr>
+                      </tbody>
+                  </table> 
+                </div>
+              </div> 
+          </div>
+      </div>
   </div>
   <TheFooter></TheFooter>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <div class="card" style="background-color:#2D3791;color:white;margin-top:40px;display:flex;justify-content:center;align-items:center;">
+    <div class="card card-header" style="margin-top:40px;display:flex;justify-content:center;align-items:center;">
         <section class="" >
             <h2 style="text-align:center">What's happening at the university?</h2>
             <h3 style="text-align:center">News</h3>
@@ -28,34 +28,34 @@
                 <p>The University of Greenwich and Plumpton College are collaborating on a validation partnership.</p>
             </div>
         </section>
-</div>
-<div class="card" style="background-color:#EDF2F9;display:flex;">
-    <section>
-        <div class="greenwichmodify" style="margin-top:50px">
-            <div class="gwtext">
-                <h1 style="color:#2D3791;">Alumni Network</h1>
-                <span style="color:#2D3791;font-size:24px;font-weight:bold">Let's continue to write pride Greenwich</span>
-                <div>
-                    <h6>Greenwich Vietnam's student and alumni community is growing with more than 20,000 students from 12 countries around the world. With a global network of more than 260,000 students and alumni in more than 30 countries. Let's continue to write Greenwich pride together.</h6>
+    </div>
+    <div class="card" style="background-color:#EDF2F9;display:flex;">
+        <section>
+            <div class="greenwichmodify" style="margin-top:50px">
+                <div class="gwtext">
+                    <h1 style="color:#2D3791;">Alumni Network</h1>
+                    <span style="color:#2D3791;font-size:24px;font-weight:bold">Let's continue to write pride Greenwich</span>
+                    <div>
+                        <h6>Greenwich Vietnam's student and alumni community is growing with more than 20,000 students from 12 countries around the world. With a global network of more than 260,000 students and alumni in more than 30 countries. Let's continue to write Greenwich pride together.</h6>
+                    </div>
                 </div>
+                <div style="display:flex;justify-content:center">
+                <img src="https://greenwich.edu.vn/wp-content/uploads/2022/11/DSC02721-1024x684.jpg" alt="" class="greenwichimg">
             </div>
-            <div style="display:flex;justify-content:center">
-            <img src="https://greenwich.edu.vn/wp-content/uploads/2022/11/DSC02721-1024x684.jpg" alt="" class="greenwichimg">
+            </div>
+        </section>
+    </div>
+    <div class="janebar">
+        <div class="card jane" style="">
+            <div style="padding:30px">
+                <p class="atgreenwich">“At the University of Greenwich, students not only focus on the theoretical and practical aspects of their field of study, but they also develop essential career skills. Good communication skills, critical thinking, teamwork, and problem solving are all characteristic qualities of Greenwich students. These are skills that are increasingly in demand by employers.”</p>
+            </div>
+            <div>
+                <h6 class="janeharrington">GS. Jane Harrington - Rector of the University of Greenwich (United Kingdom)</h6>
+            </div>
         </div>
-        </div>
-    </section>
-</div>
-<div class="janebar">
-    <div class="card jane" style="background-color:#2D3791;">
-        <div style="padding:30px;color:white">
-            <p class="atgreenwich">“At the University of Greenwich, students not only focus on the theoretical and practical aspects of their field of study, but they also develop essential career skills. Good communication skills, critical thinking, teamwork, and problem solving are all characteristic qualities of Greenwich students. These are skills that are increasingly in demand by employers.”</p>
-        </div>
-        <div>
-            <h6 class="janeharrington">GS. Jane Harrington - Rector of the University of Greenwich (United Kingdom)</h6>
+        <div class="janediv">
+            <img src="https://greenwich.edu.vn/wp-content/uploads/2021/01/a8a1a68f6d739d2dc462-1536x892.jpg" alt="" class="janeimg">
         </div>
     </div>
-    <div class="janediv">
-        <img src="https://greenwich.edu.vn/wp-content/uploads/2021/01/a8a1a68f6d739d2dc462-1536x892.jpg" alt="" class="janeimg">
-    </div>
-</div>
 </template>

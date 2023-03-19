@@ -1,6 +1,6 @@
 <template>
-    <div style="height:270px">
-    <div class="" style="text-align:center;margin-top:40px">
+    <div>
+      <div class="" style="text-align:center;margin-top:40px">
         <h1>Student's evaluation results</h1>
         <h5>(Results are judged based on great experiences at the site)</h5>
       </div>
