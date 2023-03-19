@@ -91,6 +91,25 @@ class UserController extends Controller
         return Inertia::render('UsersUpdate');
     }
 
+    public function showUsersShow()
+    {
+        return Inertia::render('UsersShow');
+    }
+
+    public function inforUsers($id)
+    {
+        $user = User::with('roles', 'departments')->find($id);
+        $roles = $user->roles;
+$permissions = $user->permissions;
+$departments = $user->departments;
+        return response()->json([
+            'user' => $user,
+            'roles' => $roles,
+            'permissions' => $permissions,
+            'departments' => $departments
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *

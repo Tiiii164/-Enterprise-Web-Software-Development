@@ -79,3 +79,4 @@ Route::get('/RolesUpdate/{id}', [RolesController::class, 'showRolesUpdate']);
 Route::get('/UsersIndex', [UserController::class, 'showUsers']);
 Route::get('/UsersCreate', [UserController::class, 'showUsersCreate']);
 Route::get('/UsersUpdate/{id}', [UserController::class, 'showUsersUpdate']);
+Route::get('/UsersShow/{id}', [UserController::class, 'showUsersShow']);

@@ -6,6 +6,8 @@ export default {
     NavBar,
     TheFooter
   },
+
+  
   data() {
     return {
       user: [],
@@ -37,7 +39,12 @@ export default {
           console.log(error);
         }
       }
-    }
+    },
+    async viewUsers(userId) {
+            const response = await axios.post(`/api/view/${userId}`);
+            console.log(response.data.message);
+            location.reload();
+        }
   
   },
 }
@@ -80,6 +87,9 @@ export default {
                                   <td style="text-center;justify-content:center;align-items:center;display:flex">{{ department.name }}</td>
                                 </td>
                                 <div>
+                                  <router-link :to="'/UsersShow/' + user.id" class="btn btn-success"
+                                        @click="viewUsers(user.id)">View
+                                        Detail</router-link>
                                   <router-link :to="'/UsersUpdate/' + user.id" class="btn btn-primary">Edit</router-link>
                                   <button class="btn btn-danger" @click.prevent="deleteUser(user.id)">Delete</button>
                                 </div>
