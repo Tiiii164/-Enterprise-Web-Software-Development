@@ -10,7 +10,7 @@ export default {
   
   data() {
     return {
-      user: [],
+      user: [], // initialize as empty array instead of object
       roles: [],
       departments: [],
     }
@@ -22,7 +22,7 @@ export default {
     getUser(id) {
   axios.get(`/api/user/UsersShow/${this.$route.params.id}`)
     .then(response => {
-      this.user = [response.data.user],
+      this.user = [response.data.user], // set user as array with one element
       this.roles = response.data.roles,
       this.departments = response.data.departments,
       console.log(response.data)
@@ -64,36 +64,22 @@ export default {
                 </div>
             </div>
             <div class="card-body">
-              <table class="table table-bordered mx-auto">
-                <thead style="text-align:center;align-items:center;justify-content:center">
-                        <tr>
-                            
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Department</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="catetbody">
-                            <tr v-for="(user, index) in user" :key="index">
-                                
-                                <td>{{ user.name }}</td>
-                                <td>{{ user.email }}</td>
-                                <td v-for="role in user.roles" >
-                                  <td style="text-center;justify-content:center;align-items:center;display:flex">{{ role.name }}</td>
-                                </td>
-                                <td v-for="department in user.departments" :key="department.id">
-                                  <td style="text-center;justify-content:center;align-items:center;display:flex">{{ department.name }}</td>
-                                </td>
-                                <div>
-                                  
-                                  <router-link :to="'/UsersUpdate/' + user.id" class="btn btn-primary">Edit</router-link>
-                                  <button class="btn btn-danger" @click.prevent="deleteUser(user.id)">Delete</button>
-                                </div>
-                            </tr>
-                    </tbody>
-                </table> 
+                <div class="container overflow-hidden card-body" v-for="(user, index) in user" :key="index">
+                 <div class="row gy-5">
+                   <div class="col-9">
+                     <div class="p-2 border bg-light card"><h5>Name: {{ user.name }}</h5></div>
+                   </div>
+                   <div class="col-9">
+                     <div class="p-2 border bg-light card"><h5>Email: {{ user.email }}</h5></div>
+                   </div>
+                   <div class="col-9">
+                     <div class="p-2 border bg-light card" v-for="role in user.roles"><h5>Role: {{ role.name }}</h5></div>
+                   </div>
+                   <div class="col-9">
+                     <div class="p-2 border bg-light card" v-for="department in user.departments"><h5>Department: {{ department.name }}</h5></div>
+                   </div>
+                 </div>
+               </div>
             </div> 
         </div>
     </div>
