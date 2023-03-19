@@ -111,6 +111,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('user', 'count');
     Route::get('/user/UsersIndex', 'index');
     Route::get('/user/edit/{id}', 'edit');
+    Route::get('/user/UsersShow/{id}', 'inforUsers');
     Route::post('/user/UsersCreate', 'store');
     Route::patch('/user/UsersUpdate/{id}', 'update');
     Route::delete('/user/delete/{id}', 'destroy');

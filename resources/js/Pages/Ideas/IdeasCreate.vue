@@ -72,6 +72,28 @@ export default {
           this.topics = response.data;
         });
     },
+    getTopics() {
+  axios.get('/api/topics/TopicsIndex').then(response => {
+    if (response.data.topics) {
+      this.topics = response.data.topics;
+      console.log(response.data);
+
+      const currentTime = new Date();
+      this.topics.forEach(topic => {
+        const deadline = new Date(topic.closure_date);
+        console.log('Deadline:', deadline);
+        console.log('Current time:', currentTime);
+      });
+    } else {
+      console.error('No topics found');
+    }
+  });
+}
+  },
+  created() {
+    this.getCategories();
+    this.getTopics();
+  }
     showTermsAndConditions() {
       this.showDialog = true;
     },
@@ -134,6 +156,8 @@ export default {
                     <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
                   </select>
                 </div>
+                <button type="submit" class="btn btn-primary mt-2" v-if="topics.deadline < topics.currentTime" @click.prevent="handlecreateIdeas">Create</button>
+                <div v-else>Deadline has passed</div>
           </div>
               <div>
                 <div>

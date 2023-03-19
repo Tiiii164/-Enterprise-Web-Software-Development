@@ -19,6 +19,7 @@ import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
 import UsersCreate from"../Pages/Users/UsersCreate.vue"
 import UsersIndex from "../Pages/Users/UsersIndex.vue"
 import UsersUpdate from "../Pages/Users/UsersUpdate.vue"
+import UsersShow from "../Pages/Users/UsersShow.vue"
 //Topics
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
@@ -179,6 +180,11 @@ const router = createRouter({
         path: '/UsersUpdate/:id',
         name: 'UsersUpdate',
         component: UsersUpdate,
+    },
+    {
+        path: '/UsersShow/:id',
+        name: 'UsersShow',
+        component: UsersShow,
     },
     //Statistics
     {
