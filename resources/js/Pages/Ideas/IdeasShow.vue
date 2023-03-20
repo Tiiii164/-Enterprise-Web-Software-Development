@@ -10,12 +10,25 @@ export default {
         NavBar,
         TheFooter
     },
+    computed: {
+  isDeadlinePassed() {
+    if (this.topics.length > 0) {
+      return this.topics.some(topic => {
+        const deadline = new Date(topic.final_closure_date);
+        return deadline < this.currentTime;
+      });
+    }
+    return false;
+  },
+},
+
     data() {
         return {
             ideas: {},
             topics: [],
             comments: [],
             categories: [],
+            currentTime: new Date(),
         }
     },
     
@@ -69,10 +82,31 @@ export default {
                     console.log(error);
                 }
             }
-        }
+        },
+        getTopics() {
+  axios.get('/api/topics/TopicsIndex').then(response => {
+    if (response.data) {
+      this.topics = response.data;
+      console.log(response.data);
+
+      const currentTime = new Date();
+      this.topics.forEach(topic => {
+        const deadline = new Date(topic.final_closure_date);
+        console.log('Deadline:', deadline);
+        console.log('Current time:', currentTime);
+        
+       
+      });
+    } else {
+      console.error('No topics found');
+    }
+  });
+},
+        
     },
     created() {
         this.getIdeas();
+        this.getTopics();
     }
 }
 </script>
@@ -113,9 +147,14 @@ export default {
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-2"
-                                @click.prevent="handlecreateComments">Create
-                            </button>
+                            <div class="text-danger" v-if="isDeadlinePassed">
+                                <h5>The deadline has passed</h5>
+                            </div>
+                            <div v-else>
+                              <button type="submit" class="btn btn-primary mt-2"
+                                  @click.prevent="handlecreateComments">Create
+                              </button>
+                            </div>
                         </form>
                     </div>
                 </div>
