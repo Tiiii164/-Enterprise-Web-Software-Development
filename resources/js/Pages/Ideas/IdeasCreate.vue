@@ -11,12 +11,23 @@ export default {
     TheFooter,
     DialogText
   },
+
+  computed: {
+    isDeadlinePassed() {
+      return this.topics.some(topic => {
+        const deadline = new Date(topic.closure_date);
+        return deadline < this.currentTime;
+      });
+    },
+  },
+
   data() {
     return {
       ideas: [],
       user: [],
       topics: [],
       categories: [],
+      currentTime: new Date(),
       form: {
         termsAndConditions: false
       },
@@ -73,22 +84,25 @@ export default {
         });
     },
     getTopics() {
-      axios.get('/api/topics/TopicsIndex').then(response => {
-        if (response.data.topics) {
-          this.topics = response.data.topics;
-          console.log(response.data);
+  axios.get('/api/topics/TopicsIndex').then(response => {
+    if (response.data) {
+      this.topics = response.data;
+      console.log(response.data);
 
-          const currentTime = new Date();
-          this.topics.forEach(topic => {
-            const deadline = new Date(topic.closure_date);
-            console.log('Deadline:', deadline);
-            console.log('Current time:', currentTime);
-          });
-        } else {
-          console.error('No topics found');
-        }
+      const currentTime = new Date();
+      this.topics.forEach(topic => {
+        const deadline = new Date(topic.closure_date);
+        console.log('Deadline:', deadline);
+        console.log('Current time:', currentTime);
+        
+       
       });
-    },
+    } else {
+      console.error('No topics found');
+    }
+  });
+},
+
     showTermsAndConditions() {
       this.showDialog = true;
     },
@@ -114,7 +128,7 @@ export default {
                 <h3>Create new Ideas</h3>
               </div>
               <div class="justify-content-md-end">
-                <router-link to="/TopicsIndex" class="btn btn-primary catebutton">Back to list</router-link>
+                <router-link to="/IdeasIndex" class="btn btn-primary catebutton">Back to list</router-link>
               </div>
             </div>
         </div>
@@ -172,8 +186,14 @@ export default {
                 </div>
               </div>
             </div>
-              <button type="submit" class="btn btn-primary mt-2" v-if="topics.deadline < topics.currentTime" @click.prevent="handlecreateIdeas">Create</button>
-              <div v-else>Deadline has passed</div>
+             <div class="text-danger" v-if="isDeadlinePassed">
+    <h5>The deadline has passed</h5>
+  </div>
+  <div v-else>
+    <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
+      Submit
+    </button>
+  </div>
           </div>
         </div>
       </div>
