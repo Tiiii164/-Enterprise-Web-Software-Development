@@ -12,9 +12,15 @@ class Topics extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'closure_date', 'final_closure_date'];
     public $timestamps = false;
-    //one Category has many Foods
+
     public function ideas()
     {
         return $this->hasMany(Ideas::class);
     }
+
+    public function isDeadlinePassed()
+    {
+        return now() > $this->closure_date;
+    }
+
 }

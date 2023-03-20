@@ -4,24 +4,18 @@ import './bootstrap';
 import { createApp } from 'vue';
 import router from '../js/Router/router'
 import App from './Layouts/App.vue'
+import { createVuetify } from 'vuetify';
+import 'vuetify/styles'
+import * as components from 'vuetify/lib/components/index.mjs'
+import * as directives from 'vuetify/lib/directives/index.mjs'
 import 'bootstrap/dist/js/bootstrap.js'
-/* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
 
-/* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-/* import specific icons */
-import { faPen } from '@fortawesome/free-solid-svg-icons'
-import { faBook } from '@fortawesome/free-solid-svg-icons'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
-import { faThumbsDown } from '@fortawesome/free-solid-svg-icons'
-
-/* add icons to the library */
-library.add(faPen, faBook, faTrash, faThumbsUp, faThumbsDown)
+const vuetify = createVuetify({
+  components,
+  directives
+})
 
 createApp(App)
   .use(router)
-  .component('font-awesome-icon', FontAwesomeIcon)
+  .use(vuetify)
   .mount('#app');
