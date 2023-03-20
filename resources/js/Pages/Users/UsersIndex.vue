@@ -57,7 +57,7 @@ export default {
               <div class="card-header border-light">
                 <div class="d-grid d-md-flex justify-content-md-between m-2">
                     <div class="d-grid d-md-flex justify-content-md-start">
-                          <h3>Manage users</h3>
+                          <h3>Manage Users</h3>
                       </div>
                       <div class="d-grid d-md-flex justify-content-md-end">
                         <router-link to="/UsersCreate" class="btn btn-primary">Add new user</router-link>
