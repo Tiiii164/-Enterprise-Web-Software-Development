@@ -84,19 +84,16 @@ export default {
         });
     },
     getTopics() {
-  axios.get('/api/topics/TopicsIndex').then(response => {
-    if (response.data) {
-      this.topics = response.data;
-      console.log(response.data);
-
-      const currentTime = new Date();
-      this.topics.forEach(topic => {
-        const deadline = new Date(topic.closure_date);
-        console.log('Deadline:', deadline);
-        console.log('Current time:', currentTime);
-        
-       
-      });
+      axios.get('/api/topics/TopicsIndex').then(response => {
+        if (response.data) {
+          this.topics = response.data;
+          console.log(response.data);
+          const currentTime = new Date();
+          this.topics.forEach(topic => {
+            const deadline = new Date(topic.closure_date);
+            console.log('Deadline:', deadline);
+            console.log('Current time:', currentTime); 
+        });
     } else {
       console.error('No topics found');
     }
@@ -187,13 +184,13 @@ export default {
               </div>
             </div>
              <div class="text-danger" v-if="isDeadlinePassed">
-    <h5>The deadline has passed</h5>
-  </div>
-  <div v-else>
-    <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
-      Submit
-    </button>
-  </div>
+              <h5>The deadline has passed</h5>
+            </div>
+            <div v-else>
+              <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </div>
