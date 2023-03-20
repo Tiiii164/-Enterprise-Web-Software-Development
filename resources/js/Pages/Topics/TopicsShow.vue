@@ -100,7 +100,7 @@ export default {
                                         <router-link :to="'/IdeasShow/' + ideas.id" class="btn btn-success m-1"
                                             @click="viewIdea(ideas.id)"><font-awesome-icon icon="fa-solid fa-book" /></router-link>
                                         <!-- <button class="btn btn-success" @click="viewIdea(ideas.id)">View Details </button> -->
-                                        <button class="btn btn-info m-1" @click="likeIdea(ideas.id)"><font-awesome-icon icon="fa-solid fa-thumbs-up" /></button>
+                                        <button class="btn text-light btn-info m-1" @click="likeIdea(ideas.id)"><font-awesome-icon icon="fa-solid fa-thumbs-up" /></button>
                                         <button class="btn btn-danger m-1" @click="dislikeIdea(ideas.id)"><font-awesome-icon icon="fa-solid fa-thumbs-down" /></button>
                                     </div>
                                 </td>

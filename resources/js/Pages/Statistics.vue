@@ -160,7 +160,7 @@ export default {
 <style>
 @media screen and (max-width: 1000px) {
   .statistics.backgroundsu{
-    height: 250vh; 
+    height: 500vh; 
   }
 }
 .col {
