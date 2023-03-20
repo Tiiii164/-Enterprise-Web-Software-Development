@@ -36,29 +36,29 @@ export default {
       termsAndConditions: false,
     });
     const handleCreateIdeas = async () => {
-  try {
-    const response = await axios.post('/api/ideas/IdeasCreate', form);
-    router.push('/IdeasIndex');
-    const customAlert = document.createElement('div');
-    customAlert.classList.add('custom-alert');
-    customAlert.innerHTML = `
-      <div class="custom-alert-content">
-        <h3>Idea created successfully!</h3>
-        <button class="custom-alert-button">OK</button>
-      </div>
-    `;
-    document.body.appendChild(customAlert);
-    const customAlertButton = customAlert.querySelector('.custom-alert-button');
-    customAlertButton.addEventListener('click', () => {
-      customAlert.remove();
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
-    return {
-      form,
-      handleCreateIdeas,
+      try {
+        const response = await axios.post('/api/ideas/IdeasCreate', form);
+        router.push('/IdeasIndex');
+        const customAlert = document.createElement('div');
+        customAlert.classList.add('custom-alert');
+        customAlert.innerHTML = `
+          <div class="custom-alert-content">
+            <h3>Idea created successfully!</h3>
+            <button class="custom-alert-button">OK</button>
+          </div>
+        `;
+        document.body.appendChild(customAlert);
+        const customAlertButton = customAlert.querySelector('.custom-alert-button');
+        customAlertButton.addEventListener('click', () => {
+          customAlert.remove();
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+      return {
+        form,
+        handleCreateIdeas,
     };
   },
   methods: {
@@ -72,16 +72,34 @@ export default {
           this.topics = response.data;
         });
     },
+    getTopics() {
+      axios.get('/api/topics/TopicsIndex').then(response => {
+        if (response.data.topics) {
+          this.topics = response.data.topics;
+          console.log(response.data);
+
+          const currentTime = new Date();
+          this.topics.forEach(topic => {
+            const deadline = new Date(topic.closure_date);
+            console.log('Deadline:', deadline);
+            console.log('Current time:', currentTime);
+          });
+        } else {
+          console.error('No topics found');
+        }
+      });
+    },
     showTermsAndConditions() {
       this.showDialog = true;
     },
     hideTermsAndConditions() {
       this.showDialog = false;
     },
-  },
+},
   created() {
     this.getCategories();
-  },
+    this.getTopics();
+  }
 }
 </script>
 <template>
@@ -134,6 +152,7 @@ export default {
                     <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
                   </select>
                 </div>
+                
           </div>
               <div>
                 <div>
@@ -153,7 +172,8 @@ export default {
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-2" :disabled="!form.termsAndConditions" @click.prevent="handleCreateIdeas()">Create</button>
+              <button type="submit" class="btn btn-primary mt-2" v-if="topics.deadline < topics.currentTime" @click.prevent="handlecreateIdeas">Create</button>
+              <div v-else>Deadline has passed</div>
           </div>
         </div>
       </div>

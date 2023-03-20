@@ -15,13 +15,11 @@ export default {
   created() {
     this.getTopics();
   },
-  mounted() { },
   methods: {
     async getTopics() {
       try {
         const response = await axios.get('/api/topics/TopicsIndex');
         this.topics = response.data;
-
         console.log(response.data);
       } catch (error) {
         console.log(error);
@@ -55,19 +53,32 @@ export default {
                 </tr>
               </thead>
               <tbody class="catetbody text-light border-light">
-                <tr v-for="(topics, index) in topics" :key="index">
+                <tr v-for="(topics, index) in topics" :key="index" >
                   <td>{{ index + 1 }}</td>
                   <td>{{ topics.name }}</td>
                   <td>{{ topics.closure_date }}</td>
                   <td>{{ topics.final_closure_date }}</td>
                   <td>
                     <div class="d-grid d-md-flex justify-content-md-center">
-                        <router-link :to="'/TopicsShow/' + topics.id" class="btn btn-primary me-md-2">View Ideas</router-link>
+                        <router-link :to="'/TopicsShow/' + topics.id" class="btn btn-success me-md-2">View Ideas</router-link>
                         <button class="btn btn-primary me-md-2">Export Zip</button>
-                        <button class="btn btn-danger" >Export Excel</button>
+                        <button class="btn btn-primary" >Export Excel</button>
                     </div>
                   </td>
                 </tr>
+                <!-- <tr v-for="(topics, index) in topics" :key="index" class="bg-danger" >
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ topics.name }}</td>
+                  <td>{{ topics.closure_date }}</td>
+                  <td>{{ topics.final_closure_date }}</td>
+                  <td>
+                    <div class="d-grid d-md-flex justify-content-md-center">
+                        <router-link :to="'/TopicsShow/' + topics.id" class="btn btn-success me-md-2">View Ideas</router-link>
+                        <button class="btn btn-primary me-md-2">Export Zip</button>
+                        <button class="btn btn-primary" >Export Excel</button>
+                    </div>
+                  </td>
+                </tr> -->
               </tbody>
             </table>
           </div>
