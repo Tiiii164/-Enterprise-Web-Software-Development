@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Ideas;
 use App\Models\Topics;
-use App\Models\Reacts;
-use App\Models\Views;
-use App\Models\Comments;
-use App\Models\Categories;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewIdea;
 
 class IdeasController extends Controller
 {
@@ -29,7 +27,7 @@ class IdeasController extends Controller
         // return response()->json($ideas);
     }
 
-    public function countIdeas() 
+    public function countIdeas()
     {
         $ideas = Ideas::withCount('views')->get();
         return response()->json($ideas);
@@ -61,16 +59,13 @@ class IdeasController extends Controller
         $ideas->topics_id = $request->input('topics_id');
         $ideas->user_id = Auth::user()->id;
         $ideas->departments_id = DB::table('departments_user')
-                                    ->where('user_id', Auth::user()->id)
-                                    ->value('departments_id');
+            ->where('user_id', Auth::user()->id)
+            ->value('departments_id');
         $ideas->save();
 
-        //Create a new comment for the idea
-        // $comments = new Comments();
-        // $comments->text = $request->input('comments_text');
-        // $comments->user_id = Auth::user()->id;
-        // $ideas->comments()->save($comments);
-
+        $user = Auth::user();
+        Mail::to('pnu2410@gmail.com')
+            ->send(new NewIdea($user, $ideas));
         return response()->json($ideas);
     }
 
