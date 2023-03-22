@@ -6,6 +6,7 @@ import router from '../js/Router/router'
 import App from './Layouts/App.vue'
 import 'bootstrap/dist/js/bootstrap.js'
 /* import font awesome icon component */
+import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons (solid)*/
