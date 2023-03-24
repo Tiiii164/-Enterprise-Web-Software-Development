@@ -77,9 +77,8 @@ export default {
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-6 text-black">
-        <div class="px-5 ms-xl-4">
-          <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
-          <span class="h1 fw-bold mb-0">Logo</span>
+        <div class="navbar-brand text-center mt-4 start-50">
+          <img src="../../../css/logoUoG.png" alt="Logo">
         </div>
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
           <form method="post" @submit.prevent="handleSignUp" id="signInForm" style="width: 23rem;">
@@ -110,7 +109,7 @@ export default {
                 </select>
             </div>
             <div class="pt-1 mb-2">
-              <button type="submit" class="btn btn-info btn-lg btn-block">Sign up</button>
+              <button type="submit" class="btn btn-info btn-lg btn-block text-light">Sign up</button>
             </div>
             <p>Already have account? <router-link class="link-info" to="/signin">Sign In here </router-link></p>
           </form>
