@@ -63,7 +63,7 @@ export default {
     },
     sortedViews: function(arr) {
         return arr.slice(0, 5).sort(function(a, b) {
-        return b.views_count - a.views_count;
+          return b.views_count - a.views_count;
       });
     }
   },
@@ -82,8 +82,8 @@ export default {
                   <div class="d-flex justify-content-between border-bottom text-light">
                     <div>{{ department.name }}</div>
                     <div>{{ department.ideas_count }}</div>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
@@ -160,7 +160,7 @@ export default {
 <style>
 @media screen and (max-width: 1000px) {
   .statistics.backgroundsu{
-    height: 500vh; 
+    height: 350vh; 
   }
 }
 .col {
