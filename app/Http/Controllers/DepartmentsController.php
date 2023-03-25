@@ -35,8 +35,9 @@ class DepartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showDepartmentsCreate()
+    public function showDepartmentsCreate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('DepartmentsCreate');
     }
 
@@ -68,8 +69,9 @@ class DepartmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDepartments()
+    public function showDepartments(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('DepartmentsIndex');
     }
 
@@ -79,8 +81,9 @@ class DepartmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDepartmentsUpdate($id)
+    public function showDepartmentsUpdate($id, Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('DepartmentsUpdate');
     }
 

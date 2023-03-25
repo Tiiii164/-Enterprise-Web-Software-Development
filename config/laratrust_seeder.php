@@ -13,16 +13,23 @@ return [
 
     'roles_structure' => [
         'Staff' => [
-            'ideas' => 'c,r,u,d',
+            'ideas' => 'c,r,u'
         ],
         'Manager' => [
+            'user' => 'c,r,u,d',
             'ideas' => 'c,r,u,d',
+            'topics' => 'c,r,u,d',
+            'category' => 'c,r,u,d',
+            'departments' => 'c,r,u,d',
         ],
         'Admin' => [
             'user' => 'c,r,u,d',
             'roles' => 'c,r,u,d',
-            'permissions' => 'c,r,u,d',
             'ideas' => 'c,r,u,d',
+            'topics' => 'c,r,u,d',
+            'category' => 'c,r,u,d',
+            'permissions' => 'c,r,u,d',
+            'departments' => 'c,r,u,d',
         ]
     ],
 

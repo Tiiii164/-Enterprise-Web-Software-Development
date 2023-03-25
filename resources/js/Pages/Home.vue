@@ -52,12 +52,8 @@ export default {
         </div>
       </div>
     </div>
-    <div>
-      <evaluationStudent></evaluationStudent>
-    </div>
-    <div>
-      <universityGreenwich></universityGreenwich>
-    </div>
+    <evaluationStudent></evaluationStudent>
+    <universityGreenwich></universityGreenwich>
   </div>
   <theFooter></theFooter>
 </template>
