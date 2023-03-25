@@ -20,11 +20,11 @@ export default {
           name: '',
           email: '',
           password: '',
-          department_id: '',
           role: '',
+          department: '',
     })
     const createUser = async() => {
-        axios.post('/api/users/UsersCreate', form)
+        axios.post('/api/user/UsersCreate', form)
         .then(response => {
         console.log(response);
         router.push('/UsersIndex');
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     async getDepartments() {
-        axios.get('/api/departments/')    
+        axios.get('/api/departments/DepartmentsIndex')    
         .then((response) => { 
           this.departments = response.data;
     });
@@ -49,7 +49,6 @@ export default {
         axios.get('/api/roles/RolesIndex')
         .then(response => {
           this.roles = response.data;
-          console.log(response.data);
     });
   }, 
 },
@@ -61,46 +60,48 @@ export default {
 </script>
 <template>
     <NavBar></NavBar>
+    <div class="backgroundsu">
       <form method="POST">
-        <div class="container">
-          <div class="card">
-              <div class="card-header">
-                  <div class="row">
-                      <div class="col-md-6">
-                          <h3>Create new User</h3>
-                      </div>
-                      <div class="col-md-6">
-                          <router-link to="/UsersIndex" class="btn btn-primary float-end">Back to list</router-link>
-                      </div>
-                  </div>
+        <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
+          <div class="card border-light">
+            <div class="card-header border-light">
+              <div class="d-grid d-md-flex justify-content-md-between">
+                <div class="justify-content-md-start">
+                  <h3>Create new User</h3>
+                </div>
+                <div class="justify-content-md-end">
+                  <router-link to="/UsersIndex" class="btn btn-primary catebutton">Back to list</router-link>
+                </div>
               </div>
-              <div class="card-body">
+            </div>
+              <div class="card-body border-light">
                   <form action="{{route('user.store')}}" method="POST">
-                      <div class="row">
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                  <strong>Mail</strong>
-                                  <input type="text" name="email" class="form-control" v-model="form.email" placeholder="Enter mail">
-                                  <strong>Name</strong>
-                                  <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter name">
-                                  <strong>Pass</strong>
-                                  <input type="password" name="password" class="form-control" v-model="form.password" placeholder="Enter pass">
-                                  <label class="form-label" for="role">Role:</label>
-                                  <select class="form-select form-control" v-model="form.role">
-                                    <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
-                                  </select>
-                                  <label class="form-label">Departments: </label>
-                                  <select class="form-select form-control" v-model="form.department_id">
-                                      <option v-for="data in departments" :value="data.id">{{ data.name }}</option>
-                                  </select>
-                              </div>
-                              <button type="submit" class="btn btn-primary mt-2"  @click.prevent="createUser">Create</button>
+                    <div class="mb-3 row">
+                        <div class="form-group">
+                          <label><strong>Mail</strong></label>
+                            <input type="text" name="email" class="form-control" v-model="form.email" placeholder="Enter mail">
+                          <label><strong>Name</strong></label>
+                            <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter name">
+                          <label><strong>Pass</strong></label>
+                            <input type="password" name="password" class="form-control" v-model="form.password" placeholder="Enter pass">
+                          <label class="form-label" for="role"><strong>Role:</strong></label>
+                            <select class="form-select form-control" v-model="form.role">
+                              <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
+                            </select>
+                          <label class="form-label"><strong>Departments:</strong></label>
+                            <select class="form-select form-control" v-model="form.department">
+                              <option v-for="department in departments" :value="department.id">{{ department.name }}</option>
+                            </select>
                           </div>
-                      </div>
+                    </div>
+                    <div class="d-grid d-md-flex justify-content-md-end">
+                      <button type="submit" class="btn btn-primary mt-2"  @click.prevent="createUser">Create</button>                          
+                    </div>
                   </form>
               </div>
           </div>
         </div>
       </form>
+    </div>
       <TheFooter></TheFooter>
   </template>

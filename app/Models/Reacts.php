@@ -10,10 +10,11 @@ class Reacts extends Model
     use HasFactory;
     protected $table = 'reacts';
     protected $primaryKey = 'id';
+    public $timestamps = false;
     //react belongs to user, idea 
     public function users()
     {
-        return $this->belongsTo(Users::class);
+        return $this->belongsTo(User::class);
     }
     public function ideas()
     {

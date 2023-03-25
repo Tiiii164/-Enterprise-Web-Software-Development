@@ -20,23 +20,22 @@ export default {
   methods: {
     async showRoles() {
       try {
-        const response = await axios.patch(`/api/roles/RolesUpdate/${this.$route.params.id}`)
+        await axios.patch(`/api/roles/RolesUpdate/${this.$route.params.id}`)
         .then((res) => {
           const {name} = res.data
           this.role.name = name
-            });
-        console.log(response.data)
+        });
       } catch (error) {
         console.log(error);
       }
     },
     async updateRoles() {
       try {
-        const response = await axios.patch(`/api/roles/RolesUpdate/${this.$route.params.id}`, this.role)
+        await axios.patch(`/api/roles/RolesUpdate/${this.$route.params.id}`, this.role)
         .then((res) => {
+          alert("Updated Successfully.")
           this.$router.push('/RolesIndex')
             });
-        console.log(response.data)
       } catch (error) {
         console.log(error);
       }
@@ -46,36 +45,36 @@ export default {
 </script>
 <template>
   <NavBar></NavBar>
-    <form >
-      <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Edit Roles</h3>
-                    </div>
-                    <div class="col-md-6">
-                        <router-link to="/RolesIndex" class="btn btn-primary float-end">Back to list</router-link>
-                    </div>
-                </div>
+  <div class="backgroundsu">
+    <form>
+      <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
+        <div class="card border-light">
+          <div class="card-header border-light">
+            <div class=" d-grid d-md-flex justify-content-md-between">
+              <div class="justify-content-md-start">
+                <h3>Edit Roles</h3>
+              </div>
+              <div class="justify-content-md-end">
+                <router-link to="/RolesIndex" class="btn btn-primary">Back to list</router-link>
+              </div>
             </div>
-            <div class="card-body">
-                <form @submit.prevent="updateRoles">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <strong>Role Name</strong>
-                                <input type="text" name="name" v-model="role.name" class="form-control">
-                            </div>
-                            <div class="form-group">
-                              <button class="btn btn-primary mt-2" type="submit">Update</button>
-                            </div>
-                          </div>
-                      </div>
-                  </form>
+          </div>
+          <div class="card-body border-light">
+            <form @submit.prevent="updateRoles">
+              <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label"><h4>Role Name</h4></label>
+                <div class="col-sm-10">
+                  <input type="text" name="name" v-model="role.name" class="form-control">
+                </div>
+              </div>
+              <div class="d-grid d-md-flex justify-content-md-end">
+                <button class="btn btn-primary mt-2" type="submit">Update</button>
+              </div>
+            </form>
             </div>
         </div>
       </div>
     </form>
+  </div>
   <TheFooter></TheFooter>
   </template>

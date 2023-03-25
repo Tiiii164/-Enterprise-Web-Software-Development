@@ -41,42 +41,46 @@ export default {
 
 <template>
   <NavBar></NavBar>
-  <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Manage categories</h3>
+  <div class="backgroundsu">
+    <div class="container text-center mt-5 position-absolute start-50 translate-middle-x text-light">
+          <div class="card border-light">
+              <div class="card-header border-light">
+                <div class="d-grid d-md-flex justify-content-md-between m-2">
+                    <div class="d-grid d-md-flex justify-content-md-start">
+                      <h3 class="">Manage Categories</h3>
                     </div>
-                    <div class="col-md-6">
-                        <router-link to="/CategoriesCreate" class="btn btn-primary float-end">Add new category</router-link>
+                    <div class="d-grid d-md-flex justify-content-md-end">
+                      <router-link to="/CategoriesCreate" class="btn btn-primary">Add new category</router-link>
                     </div>
-                </div>
-            </div>
-            <div class="card-body">
-               <table class="table table-bordered">
-                    <thead>
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-sm mx-auto border-light">
+                      <thead class="text-light text-align-center justify-content-center">
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
                             <th>Action</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                            <tr v-for="(category, index) in categories" :key="index">
-                                <td>{{ index + 1 }}</td>
-                                <td>{{ category.name }}</td>
-                                <td>
-                                    <div>
-                                      <router-link :to="'/CategoriesUpdate/' + category.id" class="btn btn-primary">Edit</router-link>
-                                      <button class="btn btn-danger" @click.prevent="deleteCategory(category.id)">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                    </tbody>
-                </table> 
-            </div> 
-        </div>
+                      </thead>
+                      <tbody class="catetbody text-light">
+                              <tr v-for="(category, index) in categories" :key="index">
+                                  <td>{{ index + 1 }}</td>
+                                  <td>{{ category.name }}</td>
+                                  <td>
+                                      <div class="d-grid d-md-flex justify-content-md-center">
+                                        <router-link :to="'/CategoriesUpdate/' + category.id" class="btn btn-primary m-1 me-md-2"><font-awesome-icon icon="fa-solid fa-pen" /></router-link>
+                                        <button class="btn btn-danger m-1" @click.prevent="deleteCategory(category.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
+                                      </div>
+                                  </td>
+                              </tr>
+                      </tbody>
+                  </table> 
+                </div>
+              </div> 
+          </div>
+      </div>
     </div>
-  <TheFooter></TheFooter>
+<TheFooter></TheFooter>
 </template>

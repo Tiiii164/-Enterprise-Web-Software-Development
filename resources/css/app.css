@@ -5,15 +5,30 @@
 
 html{
     width: 100%;
-    height: 100%;
+    height: auto;
 }
-
-
+a {
+    text-decoration: none !important;
+    color: inherit ;
+}
+a:hover {
+    cursor: pointer !important;
+    color: white !important;
+}
+a:active {
+    color: gray !important;
+}
+.navbar-brand img {
+    max-height: 60px;
+    margin-right: 10px;
+    margin-left: 20px;
+  }
 .footer1{
-    height: 100px;
+    height: 50px;
     display: flex;
     align-items: center;
-   justify-content: center;
+    justify-content: center;
+    z-index: 1;
 }
 .footer1 .img1{
     margin: 10px;
@@ -24,7 +39,7 @@ html{
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 70px;
+    height: 30px;
 }
 .footer2 .text2{
     margin-top: 4px;
@@ -35,18 +50,23 @@ html{
 .footer2 .img2{
     font-family: cursive;
 }
-.footer{
+
+/* .footer {
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
     position: fixed;
-    left: 0;
     bottom: 0;
     width: 100%;
     background-color: #DCDCDC;
-}
+    z-index: 2;
+  } */
+  
 .img1 {
     position: relative;
-  }
+}
   
-  .img1::before {
+.img1::before {
     background: #C0C0C0;
     content: "";
     inset: 0;
@@ -55,24 +75,49 @@ html{
     transform-origin: right;
     transition: transform 0.5s ease-in-out;
     z-index: -1;
-  }
+}
   
-  .img1:hover::before {
+.img1:hover::before {
     transform: scaleX(1);
     transform-origin: left;
     border-radius: 10px 10px;
-  }
+}
         /* SignIn&SignOut */
 
 .row1{
-    margin-top: 200px;
+    
     color: white;
     right: 0;
     font-weight: bold;
     font-size: 20px;
 }
+.btnValid {
+    color: #77DD77;
+  }
+.btnWarning {
+    color: #fdfd96;
+}
+.btnExpired {
+    color: #FF6961;
+}
+.btn-success {
+    background-color: #14af3c !important;
+    border: none !important;
+}
+.btn-info {
+    background-color: #2f74ed !important;
+    border: none !important;
+}
+.btn-danger {
+    background-color: #ef3535 !important;
+    border: none !important;
+}
+.card{
+    --bs-bg-opacity: 0.1;
+    background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+}
 .card-title{
-    color: black !important;
+    color: grey !important;
     font-weight: bold;
 }
 .card-title1{
@@ -88,26 +133,19 @@ html{
 .nav-item1:hover{
     color: black !important;
 }
-input{
-    border: none !important;
-    outline: none !important;
-    
-}
+
+
 input::placeholder{
     color: black!important;
-    font-weight: bold;
-    font-size: 20px;
-  }
+}
 
 input{
+    outline: none;
     color: black!important;
     font-weight: bold !important;
     font-size: 20px !important;
 }
-.border{
-    display: flex;
-    margin-left: 20px;
-}
+
 .buttoncss {
     text-align: center;
     width: auto;
@@ -158,9 +196,186 @@ input{
 .dropdown-menu {
     margin: 0!important;
 }
-@media (min-width:800px) {
+.textuser{
+    color: black;
+    font-weight:900;
+    font-family: cursive;
+}
+.textuser1{
+    color: #DC3545 !important;
+}
+.background2{
+    opacity: 0.5;
+    z-index: 1;
+}
+.welcomeUser{
+    z-index: 0;
+}
+.cateth{
+    text-align: center;
+}
+.catetbody{
+    text-align: center;
+}
+.currentuser{
+    font-family: cursive;
+    text-decoration: none;
+}
+.currenthover{
+    display: flex;
+    position: relative;
+    font-family: cursive;
+    text-decoration: none;
+    z-index: 1;
+}
+.currenthover::before {
+    background: grey;
+    content: "";
+    inset: 0;
+    position:absolute;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease-in-out;
+    z-index: -1;
+}
+
+.currenthover:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+.currenthover::after{
+    z-index: 1;
+}
+.currentuser1{
+    font-family: cursive;
+    font-weight: bold;
+    padding-right:2px;
+    align-items:center;
+    text-align:center;
+    justify-content:center;
+    margin:0 !important;
+}
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .dialog {
+    position: relative;
+    max-width: 800px;
+    width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+  }
+  
+  .dialog h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .dialog h4 {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .dialog p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .dialog button {
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .dialog button:hover {
+    background-color: #0062cc;
+  }
+  .alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  .custom-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .custom-alert-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+  
+  .custom-alert-content h3 {
+    margin: 0 0 10px;
+  }
+  
+  .custom-alert-button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .alert.success {
+    background-color: #4CAF50;
+  }
+  
+  .alert.info {
+    background-color: #2196F3;
+  }
+  
+  .alert.warning {
+    background-color: #ff9800;
+  }
+@media (min-width:1000px) {
+    .row1{
+        margin-top: 100px;
+    }
     .signup {
-      margin-right: 200px ;
+      margin-right: 300px;
       width: 400px;
     }
     .signin{
@@ -168,26 +383,189 @@ input{
         margin-top: 200px;
     }
     .backgroundsi{
-        height: 800px;
+        height: 100%;
     }
     .backgroundsu{
-        height: 800px;
+        background-image: url("./backgroundImg.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
+    }
+    .homeText {
+        margin-top: 6rem;
+    }
+    .homeImage {
+        background-image: linear-gradient(rgba(250,250,250, 0.5),
+        rgba(250,250,250, 0.6)), url("../css/background1.jpg");
+        background-size: 100% 100%; 
+        background-repeat: no-repeat; 
+        background-position: center;
+        height: 60vh;  
+    }
+    .welcomeuser{
+        margin-top: 100px;
+    }
+    .textuser{
+        font-size:40px !important;
+    }
+    .textuser1{
+        font-size:40px !important;
+    }
+    .welcometext{
+        font-size: 40px;
+        display: flex;
+        font-weight:900;
+        font-family: cursive;
+    }
+    .categoriesindex{
+        margin-top: 50px;
+        width: 80%;
+        height: 100%;
+    }
+    .catebutton{
+        float: right;
+    }
+    .evaluation{
+        background-color: #DC3545 !important;
+        color: white;
+    }
+    .universitycollab{
+        width: 60%;
+        height: 100%;
+    }
+    .greenwichimg{
+        width: 100%;
+        height: auto;
+    }
+    .gwtext{
+        width:500px;
+        margin-right: 100px;
+    }
+    .greenwichmodify{
+        display: flex;
+        justify-content: center;
+    }
+    .janebar{
+        display: flex;
+    }
+    .jane{
+        margin-left: 50px;
+        width: 45%;
+        margin-top: 50px;
+     
+    }
+    .janediv{
+        width: 45%;
+        margin-top: 50px;
+    }
+    .janeimg{
+        width: 750px;
+        height: 400px;
+    }
+    .atgreenwich{
+        margin-top: 70px;
+    }
+    .janeharrington{
+        float:right;
+        margin-right:60px;
     }
 }
-@media only screen and (max-width:640px) {
+@media only screen and (max-width:1000px) {
+   .row1{
+    margin-top: 20px;
+   }
     .backgroundsu {
-      height: 1000px;
+        background-image: url("./backgroundImg.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 200vh;
     }
     .signup{
-        justify-content: center;
-        align-items: center;
+        margin-right: 50px;
     }
     .backgroundsi{
-        height: 1000px;
+        height: 100%;
     }
     
     .signin{
         justify-content: center;
         align-items: center;
+    }
+    .hellotext{
+        font-size: 20px;
+    }
+    .footer2{
+        height: 50px;
+    }
+    .background2{
+        height: 300px;
+        width: auto;
+    }
+    .homeImage {
+        background-image: url("../css/UoG_mobile.jpeg");
+        background-size: 100% 100%; 
+        background-repeat: no-repeat; 
+        background-position: center;
+        height: 80vh;  
+    }
+    .homeText {
+        background-color:rgba(250,250,250, 0.6);
+        margin-top: 9rem;
+    }
+    .welcometext{
+        font-size: 25px;
+        margin: 0 !important;
+        font-weight:900;
+        font-family: cursive;
+    }
+    .greenwich{
+        margin-top: 8px;
+        font-size: 18px !important;
+    }
+    .textuser{
+        font-size:30px !important;
+    }
+    .textuser1{
+        font-size:30px !important;
+    }
+    .categoriesindex{
+        margin-top: 50px;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+    .catecenter{
+        text-align: center;
+    }
+    .evaluationmb h5,h3{
+        font-size: 16px;
+    }
+    .evaluation {
+        margin-top: 10px !important;
+        background-color: #DC3545 !important;
+        color: white;
+    }
+    .universitycollab{
+        height: 200px;
+        width: 318px;
+    }
+    .greenwichimg{
+        width: 100%;
+        height: auto;
+    }
+    .gwtext{
+        width: 230px;
+        margin-left: 80px;
+        justify-content: center;
+        align-items: center;
+    }
+    .janeharrington{
+        text-align: center;
+        padding: 20px;
+        font-size: 12px;
+    }
+    .janeimg{
+        height: 300px;
+        width: 100%;
     }
   }

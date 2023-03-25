@@ -3,12 +3,14 @@ import NavBar from '@/Components/NavBar.vue';
 import TheFooter from '@/Components/TheFooter.vue';
 export default {
   components: {
-    NavBar, TheFooter,
-  },
+      NavBar,
+      TheFooter,
+    },
   data() {
     return {
       CurrentUser: {},
       roles: new Set(),
+      departments: new Set(),
     }
 },
   created() {
@@ -19,9 +21,11 @@ export default {
       axios.get('/api/ShowProfile')
         .then(response => { 
           this.CurrentUser = response.data
-          console.log(this.CurrentUser)
           this.CurrentUser.roles.forEach(r => {
             this.roles.add(r.name);
+          })
+          this.CurrentUser.departments.forEach(d => {
+            this.departments.add(d.name);
           })
         }
       )
@@ -33,28 +37,43 @@ export default {
 </script>
 <template>
   <NavBar></NavBar>
-  <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>User Info</h3>
-                    </div>
-                </div>
-            </div>
+  <div class="backgroundsu">
+    <div class="container text-center mt-5 position-absolute start-50 translate-middle-x">
+      <div class="card border-light">
             <div class="card-body">
-               <table class="table table-bordered">
-                <div>
-                  <p>Name: {{ CurrentUser.name }}</p>
-                  <p>Email: {{ CurrentUser.email }}</p>
-                  <div v-for="role in roles" :key="role">Role Name: {{ role }}</div>
-                </div>
-                    <div>
-                        <router-link :to="'/UpdateProfile/' + CurrentUser.id" class="btn btn-primary mt-2">Edit</router-link>
-                    </div>
+              <div class="table-responsive">
+                <table class="table table-sm mx-auto border-light">
+                  <thead class="text-light text-align-center justify-content-center">
+                        <tr>
+                            <th>Name:</th>
+                            <th>Email:</th>
+                            <th>Role:</th>
+                            <th>Departments:</th>
+                        </tr>
+                    </thead>
+                    <tbody class="catetbody text-light">
+                            <tr>
+                                <td>{{ CurrentUser.name }} 
+                                  <span class="ms-2">
+                                    <router-link :to="'/UpdateProfile/' + CurrentUser.id">
+                                      <font-awesome-icon icon="fa-solid fa-pen" />
+                                    </router-link>
+                                  </span>
+                                </td>
+                                <td>{{ CurrentUser.email }}</td>
+                                <td v-for="role in roles" :key="role">{{ role }}</td>
+                                <td v-for="department in departments" :key="department">{{ department }}</td>
+                            </tr>
+                    </tbody>
                 </table> 
-            </div> 
+              </div>
+            </div>
+            <div class="mb-4">
+              <router-link :to="'/ChangePassword'" 
+              class="btn btn-primary mt-2">Change Password</router-link>
+            </div>
         </div>
     </div>
-  <TheFooter></TheFooter>
+  </div>
+<TheFooter></TheFooter>
 </template>

@@ -3,27 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Departments;
 use Inertia\Inertia;
 
 class DepartmentsController extends Controller
 {
-    public function index()
-    {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
         $departments = Departments::all();
         return response()->json($departments);
     }
 
-    public function getDepartments()
+    public function count()
     {
-        $data = Departments::get();
-   
-        return response()->json($data);
+        $departments = Departments::withCount(['ideas'=>function($q){
+            $q->has('departments', '>', 0);
+        }, 'users' => function($q){
+            $q->has('ideas', '>', 0);
+        }])->get();
+        return response()->json($departments);
     }
 
     /**
@@ -31,8 +35,9 @@ class DepartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showDepartmentsCreate()
+    public function showDepartmentsCreate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('DepartmentsCreate');
     }
 
@@ -52,10 +57,10 @@ class DepartmentsController extends Controller
      */
     public function store(Request $request)
     {
-        $departments = new Departments();
-        $departments->name = $request->input('name');
-        $departments->save();
-        return response()->json($departments);
+        $department = new Departments();
+        $department->name = $request->input('name');
+        $department->save();
+        return response()->json($department);
     }
 
     /**
@@ -64,8 +69,9 @@ class DepartmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDepartments()
+    public function showDepartments(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('DepartmentsIndex');
     }
 
@@ -75,8 +81,9 @@ class DepartmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDepartmentsUpdate($id)
+    public function showDepartmentsUpdate($id, Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('DepartmentsUpdate');
     }
 
@@ -102,15 +109,9 @@ class DepartmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $departments = Departments::where('id', $id)
-        //     ->update([
-        //         'id' => $request->input('id'),
-        //         'name' => $request->input('name'),
-        //     ]);
-        //     return response()->json($departments);
-        $departments = Departments::find($id);
-        $departments->update($request->all());
-        return response()->json($departments);
+        $department = Departments::find($id);
+        $department->update($request->all());
+        return response()->json($department);
     }
 
     /**

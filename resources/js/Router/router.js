@@ -19,6 +19,7 @@ import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
 import UsersCreate from"../Pages/Users/UsersCreate.vue"
 import UsersIndex from "../Pages/Users/UsersIndex.vue"
 import UsersUpdate from "../Pages/Users/UsersUpdate.vue"
+import UsersShow from "../Pages/Users/UsersShow.vue"
 //Topics
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
@@ -32,6 +33,7 @@ import IdeasShow from "../Pages/Ideas/IdeasShow.vue"
 //profile
 import ShowProfile from "../Pages/Auth/ShowProfile.vue"
 import UpdateProfile from "../Pages/Auth/UpdateProfile.vue"
+import ChangePassword from "../Pages/Auth/ChangePassword.vue"
 //statistics
 import Statistics from "../Pages/Statistics.vue"
 const router = createRouter({
@@ -66,6 +68,11 @@ const router = createRouter({
         path: '/UpdateProfile/:id',
         name: 'UpdateProfile',
         component: UpdateProfile,
+    },
+    {
+        path: '/ChangePassword',
+        name: 'ChangePassword',
+        component: ChangePassword,
     },
     //role
     {
@@ -116,48 +123,47 @@ const router = createRouter({
         component: CategoriesUpdate,
     },
     //topics
-        {
-            path: '/topicsCreate',
-            name: 'TopicsCreate',
-            component: TopicsCreate,
-        },
-        {
-            path: '/topicsIndex',
-            name: 'TopicsIndex',
-            component: TopicsIndex,
-        },
-        {
-            path: '/topicsUpdate/:id',
-            name: 'TopicsUpdate',
-            component: TopicsUpdate,
-        },
-        {
-            path: '/TopicsShow/:id',
-            name: 'TopicsShow',
-            component: TopicsShow,
-        },
-
-        //Ideas
-        {
-            path: '/ideasCreate',
-            name: 'IdeasCreate',
-            component: IdeasCreate,
-        },
-        {
-            path: '/ideasIndex',
-            name: 'IdeasIndex',
-            component: IdeasIndex,
-        },
-        {
-            path: '/ideasUpdate/:id',
-            name: 'IdeasUpdate',
-            component: IdeasUpdate,
-        },
-        {
-            path: '/IdeasShow/:id',
-            name: 'IdeasShow',
-            component: IdeasShow,
-        },
+    {
+        path: '/topicsCreate',
+        name: 'TopicsCreate',
+        component: TopicsCreate,
+    },
+    {
+        path: '/topicsIndex',
+        name: 'TopicsIndex',
+        component: TopicsIndex,
+    },
+    {
+        path: '/topicsUpdate/:id',
+        name: 'TopicsUpdate',
+        component: TopicsUpdate,
+    },
+    {
+        path: '/TopicsShow/:id',
+        name: 'TopicsShow',
+        component: TopicsShow,
+    },
+    //Ideas
+    {
+        path: '/ideasCreate',
+        name: 'IdeasCreate',
+        component: IdeasCreate,
+    },
+    {
+        path: '/ideasIndex',
+        name: 'IdeasIndex',
+        component: IdeasIndex,
+    },
+    {
+        path: '/ideasUpdate/:id',
+        name: 'IdeasUpdate',
+        component: IdeasUpdate,
+    },
+    {
+        path: '/IdeasShow/:id',
+        name: 'IdeasShow',
+        component: IdeasShow,
+    },
     //user
     {
         path: '/UsersIndex',
@@ -173,6 +179,11 @@ const router = createRouter({
         path: '/UsersUpdate/:id',
         name: 'UsersUpdate',
         component: UsersUpdate,
+    },
+    {
+        path: '/UsersShow/:id',
+        name: 'UsersShow',
+        component: UsersShow,
     },
     //Statistics
     {

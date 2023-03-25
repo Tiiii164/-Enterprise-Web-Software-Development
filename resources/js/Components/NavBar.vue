@@ -37,9 +37,11 @@ export default {
 };
 </script>
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:sticky;top:0;width:100%;z-index:2;">
   <div class="container-fluid">
-    <router-link class="navbar-brand" to="/">Idea</router-link>
+    <router-link class="navbar-brand" to="/">
+      <img src="../../css/logo.png" alt="Logo">
+    </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" 
       aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -55,31 +57,31 @@ export default {
               <router-link class="nav-link active nav-item1" to="/CategoriesIndex">Category</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active nav-item1" to="TopicsIndex">Submission</router-link>
+              <router-link class="nav-link active nav-item1" to="/TopicsIndex">Submission</router-link>
             </li>
             <li class="dropdown-item">
               <router-link class="nav-link active nav-item1" to="/DepartmentsIndex">Department</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active" to="/RolesIndex">Role</router-link>
+              <router-link class="nav-link active nav-item1" to="/RolesIndex">Role</router-link>
             </li>
             <li class="dropdown-item">
-              <router-link class="nav-link active" to="/UsersIndex">User</router-link>
+              <router-link class="nav-link active nav-item1" to="/UsersIndex">User</router-link>
             </li>
           </ul>
         </li>
-        <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager') || roles.has('Staff')">
+        <li class="nav-item">
           <router-link class="nav-link active nav-item1" aria-current="page" to="/StaffSubmission">Staff Submission</router-link>
         </li>
-        <li class="nav-item" v-if="roles.has('Admin')|| roles.has('Manager')">
+        <li class="nav-item" v-if="roles.has('Admin')">
           <router-link class="nav-link active nav-item1" aria-current="page" to="/Statistics">Statistics</router-link>
         </li>
       </ul>
       <div class="d-flex">
-        <span class="capitalize">Hello 
-          <router-link class="text-primary user_link me-2" to="/ShowProfile">{{ currentUser.name }} 
+        <span class="currentuser" style="font-weight:bold;display:flex;align-items:center;text-align:center"><h6 class="currentuser1">Hello,</h6>  
+          <router-link class="text-primary currenthover" style="margin-right:10px;width:auto" to="/ShowProfile">{{ currentUser.name }}!
           </router-link>
-          <button type="button" class="btn btn-danger" @click="handleLogout">Logout</button>
+          <button type="button" class="btn btn-danger currentuser" style="font-weight:bold;display:flex" @click="handleLogout">Logout</button>
         </span>
       </div>
     </div>

@@ -59,56 +59,66 @@ export default {
 
 <template>
   <NavBar></NavBar>
-  <div class="container">
-    <div class="card">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-md-6">
-            <div v-for="topic in topics" :key="topic.id">
-              <thead>
-                <tr>
-                  <th>Ideas of the topic: {{ topic.name }}</th>
-                  <th>Closure Date: {{ topic.closure_date }}</th>
-                </tr>
-              </thead>
-            </div>
+  <div class="backgroundsu">
+    <div class="container text-center mt-5 position-absolute start-50 translate-middle-x text-light">
+      <div class="card border-light">
+          <div class="card-header">
+              <div class="table-responsive">
+                <table class="table mx-auto border-light">
+                  <thead class="text-align-center justify-content-center text-light">
+                    <tr>
+                      <th>
+                        <div v-for="topic in topics" :key="topic.id">
+                          <div class="d-grid d-md-flex justify-content-md-start">
+                            <i> Ideas of the topic: {{ topic.name }} (Closure Date: {{ topic.closure_date }}) </i>
+                          </div>
+                        </div>
+                      </th>
+                      <th>
+                        <div class="d-grid d-md-flex justify-content-md-end">
+                          <router-link to="/IdeasCreate" class="btn btn-primary">Add new Ideas</router-link>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
           </div>
-          <div class="col-md-6">
-            <router-link to="/IdeasCreate" class="btn btn-primary float-end">Add new Ideas</router-link>
-          </div>
-        </div>
-      </div>
       <div class="card-body">
-        <table class="table table-bordered">
-          <thead>
+        <div class="table-responsive">
+          <table class="table table-sm mx-auto border-light">
+          <thead class="text-light text-align-center justify-content-center">
             <tr>
               <th>No</th>
+              <th>Title</th>
               <th>Text</th>
               <th>File Path</th>
               <th>Created At</th>
               <th>Updated At</th>
-
+              <th></th>
             </tr>
           </thead>
-          <tbody>
-            <tr v-for="(ideas, index) in ideas" :key="index">
+          <tbody class="catetbody text-light">
+            <tr v-for="(ideas, index) in ideas.slice(0,5)" :key="index">
               <td>{{ index + 1 }}</td>
               <td>{{ ideas.text }}</td>
+              <td>{{ ideas.title }}</td>
               <td>{{ ideas.file_path }}</td>
               <td>{{ ideas.created_at }}</td>
               <td>{{ ideas.updated_at }}</td>
-
               <td>
-                <div>
-                  <router-link :to="'/IdeasUpdate/' + ideas.id" class="btn btn-primary">Edit</router-link>
-                  <button class="btn btn-danger" @click.prevent="deleteIdeas(ideas.id)">Delete</button>
+                <div class="d-grid d-md-flex justify-content-md-center">
+                  <router-link :to="'/IdeasUpdate/' + ideas.id" class="btn btn-primary me-md-2"><font-awesome-icon icon="fa-solid fa-pen" /></router-link>
+                  <button class="btn btn-danger" @click.prevent="deleteIdeas(ideas.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   </div>
+</div>
   <TheFooter></TheFooter>
 </template>

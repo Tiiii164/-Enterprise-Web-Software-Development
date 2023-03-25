@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Topics;
@@ -20,14 +21,19 @@ class TopicsController extends Controller
         $topics = Topics::all();
         return response()->json($topics);
     }
-
+    public function getTopics()
+    {
+        $dataTopics = Topics::get();
+        return response()->json($dataTopics);
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function showTopicsCreate()
+    public function showTopicsCreate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('TopicsCreate');
     }
 
@@ -53,8 +59,9 @@ class TopicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showTopics()
+    public function showTopics(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('TopicsIndex');
     }
 
@@ -64,15 +71,18 @@ class TopicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showTopicsUpdate($id)
+    public function showTopicsUpdate($id, Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('TopicsUpdate');
     }
 
-    public function showTopicsShow()
+    public function showTopicsShow(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('TopicsShow');
     }
+
     public function inforTopics($id)
     {
         $topics = Topics::with('ideas')->find($id);

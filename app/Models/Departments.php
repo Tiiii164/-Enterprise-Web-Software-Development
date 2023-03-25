@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Departments extends Model
 {
     use HasFactory;
-    public $timestamps=false;
+    
     protected $fillable = [
         "id",
         "name",
@@ -17,6 +17,10 @@ class Departments extends Model
     protected $primaryKey = 'id';
     public function users()
     {
-        return $this->hasMany(Users::class);
+        return $this->belongsToMany(User::class);
+    }
+    public function ideas()
+    {
+        return $this->hasMany(Ideas::class);
     }
 }

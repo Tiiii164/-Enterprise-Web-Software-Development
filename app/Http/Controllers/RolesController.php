@@ -17,6 +17,12 @@ class RolesController extends Controller
     {
         $roles = Role::all();
         return response()->json($roles);
+    }
+
+    public function count()
+    {
+        $roles = Role::withCount('users')->get();
+        return response()->json($roles);
         //return Inertia::render('RolesIndex')->with('roles', $roles);
     }
 
@@ -25,8 +31,9 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showRolesCreate()
+    public function showRolesCreate(Request $request)
     {
+        $request->user()->authorizeRoles(['Admin']);
         return Inertia::render('RoleCreate');
     }
 
@@ -41,6 +48,7 @@ class RolesController extends Controller
         $role = new Role();
         $role->name = $request->input('name');
         $role->save();
+        $role->user_count = $request->user_count;  
         return response()->json($role);
     }
 
@@ -50,8 +58,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showRoles()
+    public function showRoles(Request $request)
     {
+        $request->user()->authorizeRoles(['Admin']);
         return Inertia::render('RolesIndex');
     }
 
@@ -61,8 +70,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showRolesUpdate($id)
+    public function showRolesUpdate(Request $request)
     {
+        $request->user()->authorizeRoles(['Admin']);
         return Inertia::render('RolesUpdate');
     }
 
