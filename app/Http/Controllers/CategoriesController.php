@@ -13,8 +13,9 @@ class CategoriesController extends Controller
         $categories = Categories::all();
         return response()->json($categories);
     }
-    public function showCategoriesCreate()
+    public function showCategoriesCreate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('CategoriesCreate');
     }
 
@@ -32,13 +33,15 @@ class CategoriesController extends Controller
         return response()->json($categories);
     }
 
-    public function showCategories()
+    public function showCategories(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('CategoriesIndex');
     }
 
-    public function showCategoriesUpdate($id)
+    public function showCategoriesUpdate($id, Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('CategoriesUpdate');
     }
 
