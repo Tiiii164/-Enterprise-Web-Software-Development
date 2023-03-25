@@ -64,6 +64,7 @@ class IdeasController extends Controller
         $ideas->save();
 
         $user = Auth::user();
+
         Mail::to('anhkhoa431996@gmail.com')
             ->send(new NewIdea($user, $ideas));
         return response()->json($ideas);
