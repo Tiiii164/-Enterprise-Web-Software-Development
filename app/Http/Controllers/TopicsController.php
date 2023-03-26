@@ -21,6 +21,11 @@ class TopicsController extends Controller
         $topics = Topics::all();
         return response()->json($topics);
     }
+    public function getTopicsId()
+    {
+        $topicsId = Topics::getId();
+        return response()->json($topicsId);
+    }
     public function getTopics()
     {
         $dataTopics = Topics::get();

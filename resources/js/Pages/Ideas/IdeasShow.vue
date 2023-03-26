@@ -11,16 +11,16 @@ export default {
         TheFooter
     },
     computed: {
-  isDeadlinePassed() {
-    if (this.topics.length > 0) {
-      return this.topics.some(topic => {
-        const deadline = new Date(topic.final_closure_date);
-        return deadline < this.currentTime;
-      });
-    }
-    return false;
-  },
-},
+        isDeadlinePassed() {
+            if (this.topics.length > 0) {
+                return this.topics.some(topic => {
+                    const deadline = new Date(topic.final_closure_date);
+                    return deadline < this.currentTime;
+                });
+            }
+            return false;
+        },
+    },
 
     data() {
         return {
@@ -31,7 +31,7 @@ export default {
             currentTime: new Date(),
         }
     },
-    
+
     setup() {
         const router = useRouter();
         //const route = useRoute();
@@ -44,14 +44,15 @@ export default {
                 // const response = await axios.post(`/api/ideas/IdeasShow/${this.$route.params.id}`, form)
                 const response = await axios.post(`/api/ideas/IdeasShow/${router.currentRoute.value.params.id}`, form)
                     .then((res) => {
-
-                        router.push('/IdeasShow')
+                        // router.push(`/IdeasShow/${router.currentRoute.value.params.id}`)
+                        router.push(`/IdeasShow/${route.params.ideas_id}`)
 
                     })
-                location.reload();
+
             } catch (error) {
                 console.error(error);
             }
+            location.reload(true);
         }
         return {
             form,
@@ -63,10 +64,10 @@ export default {
         async getIdeas() {
             try {
                 const response = await axios.get(`/api/ideas/IdeasShow/${this.$route.params.id}`)
-                    this.ideas = response.data;
-                    this.topics = response.data;
-                    this.comments = response.data;
-                    this.categories = response.data;
+                this.ideas = response.data;
+                this.topics = response.data;
+                this.comments = response.data;
+                this.categories = response.data;
                 console.log(response.data);
             } catch (error) {
                 console.log(error);
@@ -84,37 +85,37 @@ export default {
             }
         },
         getTopics() {
-  axios.get('/api/topics/TopicsIndex').then(response => {
-    if (response.data) {
-      this.topics = response.data;
-      console.log(response.data);
+            axios.get('/api/topics/TopicsIndex').then(response => {
+                if (response.data) {
+                    this.topics = response.data;
+                    console.log(response.data);
 
-      const currentTime = new Date();
-      this.topics.forEach(topic => {
-        const deadline = new Date(topic.final_closure_date);
-        console.log('Deadline:', deadline);
-        console.log('Current time:', currentTime);
-        
-       
-      });
-    } else {
-      console.error('No topics found');
-    }
-  });
-},
-        
+                    const currentTime = new Date();
+                    this.topics.forEach(topic => {
+                        const deadline = new Date(topic.final_closure_date);
+                        console.log('Deadline:', deadline);
+                        console.log('Current time:', currentTime);
+
+
+                    });
+                } else {
+                    console.error('No topics found');
+                }
+            });
+        },
+
     },
     created() {
         this.getIdeas();
-        this.getTopics();
+        //this.getTopics();
     }
 }
 </script>
 <template>
-<NavBar></NavBar>
+    <NavBar></NavBar>
     <div class="ideasShow backgroundsu">
         <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
-            <form @submit.prevent="handlecreateComments" method="post"> 
+            <form @submit.prevent="handlecreateComments" method="post">
                 <div class="card border-light">
                     <div class="card-header">
                         <div class="table-responsive">
@@ -128,7 +129,8 @@ export default {
                                         </th>
                                         <th>
                                             <div class="d-grid d-md-flex justify-content-md-end pb-3">
-                                                <router-link to="/TopicsIndex" class="btn btn-primary">Back to list</router-link>
+                                                <router-link to="/TopicsIndex" class="btn btn-primary">Back to
+                                                    list</router-link>
                                             </div>
                                         </th>
                                     </tr>
@@ -140,10 +142,12 @@ export default {
                         <form>
                             <div class="mb-3 row">
                                 <div class="form-group">
-                                    <label class="col-sm-2 col-form-label"><h4>Comment</h4></label>
+                                    <label class="col-sm-2 col-form-label">
+                                        <h4>Comment</h4>
+                                    </label>
                                     <div class="col-sm-10">
                                         <input type="text" name="comments" class="form-control" v-model="form.text"
-                                        placeholder="Enter Comments">
+                                            placeholder="Enter Comments">
                                     </div>
                                 </div>
                             </div>
@@ -151,9 +155,9 @@ export default {
                                 <h5>The deadline has passed</h5>
                             </div>
                             <div v-else>
-                              <button type="submit" class="btn btn-primary mt-2"
-                                  @click.prevent="handlecreateComments">Create
-                              </button>
+                                <button type="submit" class="btn btn-primary mt-2"
+                                    @click.prevent="handlecreateComments">Create
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -170,32 +174,61 @@ export default {
                                     <td>Content</td>
                                     <td>File Path</td>
                                     <td>View</td>
-                                    <td>Topic</td>
-                                    <td>Category</td>
                                 </tr>
                             </thead>
-                            <tbody class="text-light text-align-center justify-content-center" >
-                                <tr v-for="idea in ideas" :key="idea.id">
+                            <tbody class="text-light text-align-center justify-content-center">
+                                <tr v-for="idea in ideas">
                                     <td>{{ idea.title }}</td>
                                     <td>{{ idea.text }}</td>
                                     <td>{{ idea.file_path }}</td>
-                                    <td>{{ idea.views_count }}</td>
-                                    <td>
-                                        <div>
-                                            {{ ideas.topics.name }}
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            {{ ideas.categories.name }}
-                                        </div> 
-                                    </td>
+                                    <td>{{ idea.views_count }}</td> 
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+
+
+            <div class="card border-light">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm mx-auto border-light">
+                            <thead class="text-light text-align-center justify-content-center">
+                                <tr>
+                                    <td>Topic</td>
+                                </tr>
+                            </thead>
+                            <tbody class="text-light text-align-center justify-content-center">
+                                <tr>
+                                    {{ ideas.topics.name }}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-light">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm mx-auto border-light">
+                            <thead class="text-light text-align-center justify-content-center">
+                                <tr>
+                                    <td>Category</td>
+                                </tr>
+                            </thead>
+                            <tbody class="text-light text-align-center justify-content-center">
+                                <tr>
+                                    {{ ideas.categories.name }}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
             <br>
             <div class="card border-light">
                 <div class="card-body">
@@ -210,7 +243,8 @@ export default {
                                     </th>
                                     <th>
                                         <div class="d-grid d-md-flex justify-content-md-end pb-3">
-                                            <router-link to="/TopicsIndex" class="btn btn-primary">Back to list</router-link>
+                                            <router-link to="/TopicsIndex" class="btn btn-primary">Back to
+                                                list</router-link>
                                         </div>
                                     </th>
                                 </tr>
@@ -229,19 +263,20 @@ export default {
                     </div>
                 </div>
             </div>
-        </div>          
+        </div>
     </div>
-<TheFooter></TheFooter>
+    <TheFooter></TheFooter>
 </template>
 <style>
 @media screen and (min-width: 1000px) {
     .ideasShow.backgroundsu {
-        height: 250vh; 
+        height: 250vh;
     }
 }
+
 @media screen and (max-width: 1000px) {
     .ideasShow.backgroundsu {
-        height: 250vh; 
+        height: 250vh;
     }
 }
 </style>

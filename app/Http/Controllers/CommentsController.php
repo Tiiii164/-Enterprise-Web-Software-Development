@@ -16,8 +16,9 @@ class CommentsController extends Controller
     {
         $comments = new Comments();
         $comments->text = $request->input('text');
-        $comments->users_id = Auth::user()->id;
+        $comments->user_id = Auth::user()->id;
         $comments->ideas_id = $ideas_id;
+        $comments->save();
         //$comments->ideas_id = Comments::where('users_id', Auth::user()->id)->value('ideas_id');
 
         //$comments->ideas_id = Comments::where('ideas_id');
@@ -42,7 +43,7 @@ class CommentsController extends Controller
         //     $comments->ideas_id = $validatedData['ideas_id'];
         //     $comments->save();
 
-        //     return response()->json($comments);
+        return response()->json($comments);
         // }
     }
 }
