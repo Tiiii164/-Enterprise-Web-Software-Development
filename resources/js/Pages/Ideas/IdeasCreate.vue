@@ -201,17 +201,17 @@ export default {
                 </div>
               </div>
             </div>
-            <!-- <div class="text-danger" v-if="isDeadlinePassed">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <h5>The deadline has passed</h5>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div v-else>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Submit
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+             <!-- <div class="text-danger" v-if="isDeadlinePassed">
+              <h5>The deadline has passed</h5>
+            </div>
+            <div v-else>
+              <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
+                Submit
+              </button>
+            </div> -->
             <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
-              Submit
-            </button>
+                Submit
+              </button>
           </div>
         </div>
       </div>

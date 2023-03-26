@@ -42,8 +42,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showUsersCreate()
+    public function showUsersCreate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersCreate');
     }
 
@@ -81,18 +82,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showUsers()
+    public function showUsers(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersIndex');
     }
 
-    public function showUsersUpdate()
+    public function showUsersUpdate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersUpdate');
     }
 
-    public function showUsersShow()
+    public function showUsersShow(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersShow');
     }
 
@@ -100,12 +104,10 @@ class UserController extends Controller
     {
         $user = User::with('roles', 'departments')->find($id);
         $roles = $user->roles;
-$permissions = $user->permissions;
-$departments = $user->departments;
+        $departments = $user->departments;
         return response()->json([
             'user' => $user,
             'roles' => $roles,
-            'permissions' => $permissions,
             'departments' => $departments
         ]);
     }

@@ -73,8 +73,8 @@ export default {
                 <td>{{ topics.final_closure_date }}</td>
                 <td>
                   <div class="d-grid d-md-flex justify-content-md-center">
-                    <router-link :to="'/TopicsUpdate/' + topics.id" class="btn btn-primary me-md-2"><font-awesome-icon icon="fa-solid fa-pen" /></router-link>
-                    <button class="btn btn-danger" @click.prevent="deleteTopics(topics.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
+                    <router-link :to="'/TopicsUpdate/' + topics.id" class="btn btn-primary m-1 me-md-2"><font-awesome-icon icon="fa-solid fa-pen" /></router-link>
+                    <button class="btn btn-danger m-1" @click.prevent="deleteTopics(topics.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
                   </div>
                 </td>
               </tr>
