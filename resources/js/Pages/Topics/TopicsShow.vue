@@ -66,7 +66,7 @@ export default {
 
             <div class="card" style="display:flex">
                 <div class="card-body col-2" style="display:flex;justify-content:center;width:100%">
-                    <router-link :to="'/IdeasCreate/' + topics.topics.id" class="btn btn-primary catebutton">Add new
+                    <router-link :to="'/IdeasCreate/' + topics.id" class="btn btn-primary ">Add new
                         Ideas</router-link>
                 </div>
                 <div class="card-body border-light">
@@ -77,9 +77,9 @@ export default {
                                     <th>No</th>
                                     <th>Title</th>
                                     <!-- <th>Text</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th>File Path</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th>Created At</th>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <th>Updated At</th> -->
+                                    <th>File Path</th>
+                                    <th>Created At</th>
+                                    <th>Updated At</th> -->
                                     <th>Views</th>
                                     <th>Like</th>
                                     <th>Dislike</th>
@@ -91,9 +91,9 @@ export default {
                                     <td>{{ index + 1 }}</td>
                                     <td>{{ ideas.title }}</td>
                                     <!-- <td>{{ ideas.text }}</td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td>{{ ideas.file_path }}</td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td>{{ ideas.created_at }}</td>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <td>{{ ideas.updated_at }}</td> -->
+                                    <td>{{ ideas.file_path }}</td>
+                                    <td>{{ ideas.created_at }}</td>
+                                    <td>{{ ideas.updated_at }}</td> -->
                                     <td>{{ ideas.views_count }}</td>
                                     <td>{{ ideas.likes_count }}</td>
                                     <td>{{ ideas.dislikes_count }}</td>

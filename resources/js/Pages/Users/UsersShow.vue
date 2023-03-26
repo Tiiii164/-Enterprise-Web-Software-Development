@@ -17,7 +17,7 @@ export default {
     this.getUser();
   },
   methods: {
-    getUser(id) {
+    getUser() {
   axios.get(`/api/user/UsersShow/${this.$route.params.id}`)
     .then(response => {
       this.user = [response.data.user], // set user as array with one element

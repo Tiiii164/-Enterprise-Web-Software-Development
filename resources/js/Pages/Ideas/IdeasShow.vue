@@ -24,7 +24,7 @@ export default {
 
     data() {
         return {
-            ideas: {},
+            ideas: [],
             topics: [],
             comments: [],
             categories: [],
@@ -39,7 +39,7 @@ export default {
             text: '',
             ideas_id: '',
         })
-        const handlecreateComments = async () => {
+        const handleCreateComments = async () => {
             try {
                 // const response = await axios.post(`/api/ideas/IdeasShow/${this.$route.params.id}`, form)
                 const response = await axios.post(`/api/ideas/IdeasShow/${router.currentRoute.value.params.id}`, form)
@@ -56,23 +56,22 @@ export default {
         }
         return {
             form,
-            handlecreateComments,
+            handleCreateComments,
         }
     },
 
     methods: {
-        async getIdeas() {
-            try {
-                const response = await axios.get(`/api/ideas/IdeasShow/${this.$route.params.id}`)
-                this.ideas = response.data;
-                this.topics = response.data;
-                this.comments = response.data;
-                this.categories = response.data;
-                console.log(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-        },
+        getIdeas() {
+            axios.get(`/api/ideas/IdeasShow/${this.$route.params.id}`)
+            .then(response => {
+                this.ideas = [response.data.ideas];
+                this.topics = response.data.topics;
+                this.comments = response.data.comments;
+                this.categories = response.data.categories;
+                console.log(response.data)
+            })
+            .catch (error => {console.log(error)})
+        }, 
         async deleteIdeas(id) {
             if (confirm("Are you sure you want to delete this Idea?")) {
                 try {
@@ -95,76 +94,30 @@ export default {
                         const deadline = new Date(topic.final_closure_date);
                         console.log('Deadline:', deadline);
                         console.log('Current time:', currentTime);
-
-
                     });
                 } else {
                     console.error('No topics found');
                 }
             });
         },
-
+        getCategory() {
+            axios.get('/api/categories/CategoriesIndex').then(response => {
+                this.categories = response.data;                
+            });
+        },
     },
     created() {
         this.getIdeas();
-        //this.getTopics();
+        this.getTopics();
+        this.getCategory();
     }
 }
 </script>
 <template>
     <NavBar></NavBar>
     <div class="ideasShow backgroundsu">
-        <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
-            <form @submit.prevent="handlecreateComments" method="post">
-                <div class="card border-light">
-                    <div class="card-header">
-                        <div class="table-responsive">
-                            <table class="table table-sm mx-auto">
-                                <thead class="text-light text-align-center justify-content-center">
-                                    <tr>
-                                        <th>
-                                            <div class="d-grid d-md-flex justify-content-md-start pb-3">
-                                                <h3>Create new Ideas</h3>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="d-grid d-md-flex justify-content-md-end pb-3">
-                                                <router-link to="/TopicsIndex" class="btn btn-primary">Back to
-                                                    list</router-link>
-                                            </div>
-                                        </th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="mb-3 row">
-                                <div class="form-group">
-                                    <label class="col-sm-2 col-form-label">
-                                        <h4>Comment</h4>
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="comments" class="form-control" v-model="form.text"
-                                            placeholder="Enter Comments">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-danger" v-if="isDeadlinePassed">
-                                <h5>The deadline has passed</h5>
-                            </div>
-                            <div v-else>
-                                <button type="submit" class="btn btn-primary mt-2"
-                                    @click.prevent="handlecreateComments">Create
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </form>
-            <br>
-            <div class="card border-light">
+        <div class="container  mt-5 position-absolute start-50 translate-middle-x text-light">
+            <div class="card border-light mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-sm mx-auto border-light">
@@ -174,6 +127,8 @@ export default {
                                     <td>Content</td>
                                     <td>File Path</td>
                                     <td>View</td>
+                                    <td>Topic</td>
+                                    <td>Category</td>
                                 </tr>
                             </thead>
                             <tbody class="text-light text-align-center justify-content-center">
@@ -182,6 +137,8 @@ export default {
                                     <td>{{ idea.text }}</td>
                                     <td>{{ idea.file_path }}</td>
                                     <td>{{ idea.views_count }}</td> 
+                                    <td v-for="topic in topics">{{ topic.name }}</td>
+                                    <td v-for="category in categories">{{ category.name }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -189,47 +146,40 @@ export default {
                 </div>
             </div>
 
-
-            <div class="card border-light">
+            <div class="card border-light mb-4">
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-sm mx-auto border-light">
-                            <thead class="text-light text-align-center justify-content-center">
-                                <tr>
-                                    <td>Topic</td>
-                                </tr>
-                            </thead>
-                            <tbody class="text-light text-align-center justify-content-center">
-                                <tr>
-                                    {{ ideas.topics.name }}
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <form @submit.prevent="handleCreateComments" method="post">
+                        <div class="mb-3 row">
+                            <div class="form-group">
+                                <label class="col-sm-2 col-form-label">
+                                    <h4>Comment</h4>
+                                </label>
+                                <span class="col-sm-10">
+                                    <input type="text" name="comments" class="form-control" v-model="form.text"
+                                        placeholder="Enter Comments">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-grid d-md-flex justify-content-md-between">
+                            <div class="justify-content-md-start pb-3">
+                                <div class="text-danger" v-if="isDeadlinePassed">
+                                    <h5>The deadline has passed</h5>
+                                </div>
+                                <div v-else>
+                                    <button type="submit" class="btn btn-primary mt-2"
+                                        @click.prevent="handleCreateComments">Create
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="justify-content-md-end pb-3">
+                                <router-link to="/TopicsIndex" class="btn btn-primary">Back to
+                                    list</router-link>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-
-            <div class="card border-light">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-sm mx-auto border-light">
-                            <thead class="text-light text-align-center justify-content-center">
-                                <tr>
-                                    <td>Category</td>
-                                </tr>
-                            </thead>
-                            <tbody class="text-light text-align-center justify-content-center">
-                                <tr>
-                                    {{ ideas.categories.name }}
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-
-            <br>
+            
             <div class="card border-light">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -242,10 +192,6 @@ export default {
                                         </div>
                                     </th>
                                     <th>
-                                        <div class="d-grid d-md-flex justify-content-md-end pb-3">
-                                            <router-link to="/TopicsIndex" class="btn btn-primary">Back to
-                                                list</router-link>
-                                        </div>
                                     </th>
                                 </tr>
                                 <tr>
@@ -254,7 +200,7 @@ export default {
                                 </tr>
                             </thead>
                             <tbody class="text-light">
-                                <tr v-for="comment in ideas.comments" :key="ideas.id">
+                                <tr v-for="comment in comments" :key="ideas.id">
                                     <td>{{ comment.text }}</td>
                                     <td>{{ comment.created_at }}</td>
                                 </tr>
