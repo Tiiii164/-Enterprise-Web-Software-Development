@@ -16,7 +16,7 @@ import CategoriesCreate from "../Pages/Categories/CategoriesCreate.vue"
 import CategoriesIndex from "../Pages/Categories/CategoriesIndex.vue"
 import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
 //user
-import UsersCreate from"../Pages/Users/UsersCreate.vue"
+import UsersCreate from "../Pages/Users/UsersCreate.vue"
 import UsersIndex from "../Pages/Users/UsersIndex.vue"
 import UsersUpdate from "../Pages/Users/UsersUpdate.vue"
 import UsersShow from "../Pages/Users/UsersShow.vue"
@@ -39,159 +39,159 @@ import Statistics from "../Pages/Statistics.vue"
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-    {
-        path: '/',
-        name: 'Home',
-        component: Home,
-    },
-    {
-        path: '/signup',
-        name: 'Sign Up',
-        component: SignUp
-    },
-    {
-        path: '/signin',
-        name: 'Sign In',
-        component: SignIn,
-    },
-    {
-        path: '/StaffSubmission',
-        name: 'Staff Submission',
-        component: StaffSub,
-    },
-    {
-        path: '/ShowProfile',
-        name: 'ShowProfile',
-        component: ShowProfile,
-    },
-    {
-        path: '/UpdateProfile/:id',
-        name: 'UpdateProfile',
-        component: UpdateProfile,
-    },
-    {
-        path: '/ChangePassword',
-        name: 'ChangePassword',
-        component: ChangePassword,
-    },
-    //role
-    {
-        path: '/RolesIndex',
-        name: 'RolesIndex',
-        component: RolesIndex,
-    },
-    {
-        path: '/RolesCreate',
-        name: 'RolesCreate',
-        component: RolesCreate,
-    },
-    {
-        path: '/RolesUpdate/:id',
-        name: 'RolesUpdate',
-        component: RolesUpdate,
-    },
-    //department
-    {
-        path: '/DepartmentsIndex',
-        name: 'DepartmentsIndex',
-        component: DepartmentsIndex,
-    },
-    {
-        path: '/DepartmentsCreate',
-        name: 'DepartmentsCreate',
-        component: DepartmentsCreate,
-    },
-    {
-        path: '/DepartmentsUpdate/:id',
-        name: 'DepartmentsUpdate',
-        component: DepartmentsUpdate,
-    },
-    //category
-    {
-        path: '/CategoriesIndex',
-        name: 'CategoriesIndex',
-        component: CategoriesIndex,
-    },
-    {
-        path: '/CategoriesCreate',
-        name: 'CategoriesCreate',
-        component: CategoriesCreate,
-    },
-    {
-        path: '/CategoriesUpdate/:id',
-        name: 'CategoriesUpdate',
-        component: CategoriesUpdate,
-    },
-    //topics
-    {
-        path: '/topicsCreate',
-        name: 'TopicsCreate',
-        component: TopicsCreate,
-    },
-    {
-        path: '/topicsIndex',
-        name: 'TopicsIndex',
-        component: TopicsIndex,
-    },
-    {
-        path: '/topicsUpdate/:id',
-        name: 'TopicsUpdate',
-        component: TopicsUpdate,
-    },
-    {
-        path: '/TopicsShow/:id',
-        name: 'TopicsShow',
-        component: TopicsShow,
-    },
-    //Ideas
-    {
-        path: '/ideasCreate',
-        name: 'IdeasCreate',
-        component: IdeasCreate,
-    },
-    {
-        path: '/ideasIndex',
-        name: 'IdeasIndex',
-        component: IdeasIndex,
-    },
-    {
-        path: '/ideasUpdate/:id',
-        name: 'IdeasUpdate',
-        component: IdeasUpdate,
-    },
-    {
-        path: '/IdeasShow/:id',
-        name: 'IdeasShow',
-        component: IdeasShow,
-    },
-    //user
-    {
-        path: '/UsersIndex',
-        name: 'UsersIndex',
-        component: UsersIndex,
-    },
-    {
-        path: '/UsersCreate',
-        name: 'UsersCreate',
-        component: UsersCreate,
-    },
-    {
-        path: '/UsersUpdate/:id',
-        name: 'UsersUpdate',
-        component: UsersUpdate,
-    },
-    {
-        path: '/UsersShow/:id',
-        name: 'UsersShow',
-        component: UsersShow,
-    },
-    //Statistics
-    {
-        path: '/Statistics',
-        name: 'Statistics',
-        component: Statistics,
-    },
-]
+        {
+            path: '/',
+            name: 'Home',
+            component: Home,
+        },
+        {
+            path: '/signup',
+            name: 'Sign Up',
+            component: SignUp
+        },
+        {
+            path: '/signin',
+            name: 'Sign In',
+            component: SignIn,
+        },
+        {
+            path: '/StaffSubmission',
+            name: 'Staff Submission',
+            component: StaffSub,
+        },
+        {
+            path: '/ShowProfile',
+            name: 'ShowProfile',
+            component: ShowProfile,
+        },
+        {
+            path: '/UpdateProfile/:id',
+            name: 'UpdateProfile',
+            component: UpdateProfile,
+        },
+        {
+            path: '/ChangePassword',
+            name: 'ChangePassword',
+            component: ChangePassword,
+        },
+        //role
+        {
+            path: '/RolesIndex',
+            name: 'RolesIndex',
+            component: RolesIndex,
+        },
+        {
+            path: '/RolesCreate',
+            name: 'RolesCreate',
+            component: RolesCreate,
+        },
+        {
+            path: '/RolesUpdate/:id',
+            name: 'RolesUpdate',
+            component: RolesUpdate,
+        },
+        //department
+        {
+            path: '/DepartmentsIndex',
+            name: 'DepartmentsIndex',
+            component: DepartmentsIndex,
+        },
+        {
+            path: '/DepartmentsCreate',
+            name: 'DepartmentsCreate',
+            component: DepartmentsCreate,
+        },
+        {
+            path: '/DepartmentsUpdate/:id',
+            name: 'DepartmentsUpdate',
+            component: DepartmentsUpdate,
+        },
+        //category
+        {
+            path: '/CategoriesIndex',
+            name: 'CategoriesIndex',
+            component: CategoriesIndex,
+        },
+        {
+            path: '/CategoriesCreate',
+            name: 'CategoriesCreate',
+            component: CategoriesCreate,
+        },
+        {
+            path: '/CategoriesUpdate/:id',
+            name: 'CategoriesUpdate',
+            component: CategoriesUpdate,
+        },
+        //topics
+        {
+            path: '/topicsCreate',
+            name: 'TopicsCreate',
+            component: TopicsCreate,
+        },
+        {
+            path: '/topicsIndex',
+            name: 'TopicsIndex',
+            component: TopicsIndex,
+        },
+        {
+            path: '/topicsUpdate/:id',
+            name: 'TopicsUpdate',
+            component: TopicsUpdate,
+        },
+        {
+            path: '/TopicsShow/:id',
+            name: 'TopicsShow',
+            component: TopicsShow,
+        },
+        //Ideas
+        {
+            path: '/ideasCreate/:topics_id',
+            name: 'IdeasCreate',
+            component: IdeasCreate,
+        },
+        {
+            path: '/ideasIndex',
+            name: 'IdeasIndex',
+            component: IdeasIndex,
+        },
+        {
+            path: '/ideasUpdate/:id',
+            name: 'IdeasUpdate',
+            component: IdeasUpdate,
+        },
+        {
+            path: '/IdeasShow/:id',
+            name: 'IdeasShow',
+            component: IdeasShow,
+        },
+        //user
+        {
+            path: '/UsersIndex',
+            name: 'UsersIndex',
+            component: UsersIndex,
+        },
+        {
+            path: '/UsersCreate',
+            name: 'UsersCreate',
+            component: UsersCreate,
+        },
+        {
+            path: '/UsersUpdate/:id',
+            name: 'UsersUpdate',
+            component: UsersUpdate,
+        },
+        {
+            path: '/UsersShow/:id',
+            name: 'UsersShow',
+            component: UsersShow,
+        },
+        //Statistics
+        {
+            path: '/Statistics',
+            name: 'Statistics',
+            component: Statistics,
+        },
+    ]
 })
 
 function isAuthenticated() {
@@ -201,7 +201,7 @@ function isAuthenticated() {
 router.beforeEach((to, from, next) => {
 
     if (to.path !== '/signup' && to.path !== '/signin' && !isAuthenticated()) {
-        return next({path: '/signup'})
+        return next({ path: '/signup' })
 
     }
     return next()
