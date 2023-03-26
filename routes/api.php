@@ -20,9 +20,9 @@ use App\Models\Departments;
 //Custom function
 Route::get('/ShowProfile', function () {
     return Auth::user()->load('roles')
-                        ->load('permissions')
-                        ->load('departments')
-                        ->load('ideas');
+        ->load('permissions')
+        ->load('departments')
+        ->load('ideas');
 });
 
 Route::get('/api/roles/RolesIndex', function () {
@@ -51,6 +51,8 @@ Route::controller(TopicsController::class)->group(function () {
     Route::post('/topics/TopicsCreate', 'store');
     Route::patch('/topics/TopicsUpdate/{id}', 'update');
     Route::delete('/topics/delete/{id}', 'destroy');
+
+    // Route::get('/ideas/IdeasCreate', 'getTopicsId');
 });
 //comments
 Route::controller(CommentsController::class)->group(function () {
@@ -63,7 +65,9 @@ Route::controller(IdeasController::class)->group(function () {
     Route::get('/ideas/IdeasIndex', 'index');
     Route::get('/ideas/edit/{id}', 'edit');
     Route::get('/ideas/IdeasShow/{id}', 'inforIdeas');
-    Route::post('/ideas/IdeasCreate', 'store');
+
+    Route::post('/ideas/IdeasCreate/{topics_id}', 'store');
+    //Route::post('/ideas/IdeasCreate', 'store');
     Route::patch('/ideas/IdeasUpdate/{id}', 'update');
     Route::delete('/ideas/delete/{id}', 'destroy');
 });

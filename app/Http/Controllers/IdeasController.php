@@ -29,7 +29,7 @@ class IdeasController extends Controller
         // return response()->json($ideas);
     }
 
-    public function countIdeas() 
+    public function countIdeas()
     {
         $ideas = Ideas::withCount('views')->get();
         return response()->json($ideas);
@@ -51,26 +51,21 @@ class IdeasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $topics_id)
     {
         $ideas = new Ideas();
         $ideas->title = $request->input('title');
         $ideas->text = $request->input('text');
-        $ideas->file_path = $request->input('file_path');
         $ideas->categories_id = $request->input('categories_id');
-        $ideas->topics_id = $request->input('topics_id');
+        $ideas->file_path = $request->input('file_path');
+        $ideas->topics_id = $topics_id;
+        //$ideas->topics_id = $topics_id;
+        // $ideas->topics_id = $topics_id->id;
         $ideas->user_id = Auth::user()->id;
         $ideas->departments_id = DB::table('departments_user')
-                                    ->where('user_id', Auth::user()->id)
-                                    ->value('departments_id');
+            ->where('user_id', Auth::user()->id)
+            ->value('departments_id');
         $ideas->save();
-
-        //Create a new comment for the idea
-        // $comments = new Comments();
-        // $comments->text = $request->input('comments_text');
-        // $comments->user_id = Auth::user()->id;
-        // $ideas->comments()->save($comments);
-
         return response()->json($ideas);
     }
 

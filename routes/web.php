@@ -64,7 +64,8 @@ Route::get('/TopicsShow/{id}', [TopicsController::class, 'showTopicsShow']);
 
 //Ideas
 Route::get('/IdeasIndex', [IdeasController::class, 'showIdeas']);
-Route::get('/IdeasCreate', [IdeasController::class, 'showIdeasCreate']);
+Route::get('/IdeasCreate/{topics_id}', [IdeasController::class, 'showIdeasCreate']);
+// Route::get('/IdeasCreate', [IdeasController::class, 'showIdeasCreate']);
 Route::get('/IdeasUpdate/{id}', [IdeasController::class, 'showIdeasUpdate']);
 Route::get('/IdeasShow/{id}', [IdeasController::class, 'showIdeasShow']);
 //comments
