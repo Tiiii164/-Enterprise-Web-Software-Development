@@ -40,13 +40,14 @@ export default {
   },
   methods: {
     async getDepartments() {
-        axios.get('/api/departments/DepartmentsIndex')    
+        axios.get('/api/departments/DepartmentsSelect')    
         .then((response) => { 
           this.departments = response.data;
+          console.log(response.data);
     });
   },
     async getRoles() {
-        axios.get('/api/roles/RolesIndex')
+        axios.get('/api/roles/RolesSelect')
         .then(response => {
           this.roles = response.data;
     });

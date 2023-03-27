@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,6 +15,11 @@ class RolesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        return Resource::collection(Role::paginate(5));
+    }
+
+    public function showSelect()
     {
         $roles = Role::all();
         return response()->json($roles);
