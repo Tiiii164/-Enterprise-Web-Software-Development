@@ -27,7 +27,6 @@ export default {
       .then(res => res.json())
       .then(res => {
         this.user = res.data;
-        // this.user = res.data.user,
         this.roles = res.data.roles,
         this.departments = res.data.departments,
         console.log(res.data)
@@ -46,6 +45,7 @@ export default {
       this.pagination = pagination;
      
     },
+
     // getUser() {
     //   axios.get("/api/user/UsersIndex")
     //   .then(response => {
@@ -56,17 +56,18 @@ export default {
     //   })
     //   .catch (error => {console.log(error)})
     // },
-    // async deleteUser(id) {
-    //   if (confirm("Are you sure you want to delete this user?")) {
-    //     try {
-    //       const response = await axios.delete(`/api/user/delete/${id}`);
-    //       console.log(response.data);
-    //       this.getUser();
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   }
-    // },
+
+    async deleteUser(id) {
+      if (confirm("Are you sure you want to delete this user?")) {
+        try {
+          const response = await axios.delete(`/api/user/delete/${id}`);
+          console.log(response.data);
+          this.getUser();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    },
     // async viewUsers(userId) {
     //         const response = await axios.post(`/api/view/${userId}`);
     //         console.log(response.data.message);

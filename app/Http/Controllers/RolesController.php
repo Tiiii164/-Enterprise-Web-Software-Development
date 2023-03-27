@@ -16,9 +16,13 @@ class RolesController extends Controller
      */
     public function index()
     {
-        // $roles = Role::all();
-        // return response()->json($roles);
         return Resource::collection(Role::paginate(5));
+    }
+
+    public function showSelect()
+    {
+        $roles = Role::all();
+        return response()->json($roles);
     }
 
     public function count()

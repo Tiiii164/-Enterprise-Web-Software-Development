@@ -24,6 +24,12 @@ class TopicsController extends Controller
         // return response()->json([$topics, $topicsPage]);
         return Resource::collection(Topics::paginate(5));
     }
+    public function showSelect()
+    {
+        $topics = Topics::all();
+        $topicsPage = Resource::collection(Topics::paginate());
+        return response()->json([$topics, $topicsPage]);
+    }
     public function getTopics()
     {
         $dataTopics = Topics::get();

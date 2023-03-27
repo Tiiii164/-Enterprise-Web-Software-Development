@@ -15,13 +15,18 @@ class DepartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-        // $departments = Departments::all();
-        // return response()->json($departments);
         return Resource::collection(Departments::paginate(5));
     }
 
+    public function showSelect()
+    {
+        $departments = Departments::all();
+        return response()->json($departments);
+    }
+    
     public function count()
     {
         $departments = Departments::withCount(['ideas'=>function($q){

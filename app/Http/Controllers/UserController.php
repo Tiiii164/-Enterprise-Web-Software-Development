@@ -22,17 +22,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $user = User::with('roles', 'departments')->get();
+        // // $user = User::with('roles', 'departments')->get();
         // $roles = Role::all();
-        // $permissions = Permission::all();
         // $departments = Departments::all();
         // return response()->json([
         //     'user' => $user,
         //     'roles' => $roles,
-        //     'permissions' => $permissions,
         //     'departments' => $departments
         // ]);
-        return Resource::collection(User::paginate(5));
+        $roles = Role::all();
+        $departments = Departments::all();
+        return Resource::collection(User::with('roles', 'departments')->paginate(5));
     }
     public function count()
     {

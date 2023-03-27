@@ -29,6 +29,13 @@ class IdeasController extends Controller
         // return response()->json($ideas);
     }
 
+    public function showSelect()
+    {   
+        $ideas = Ideas::with('topics')->get();
+        $topics = Topics::all();
+        return response()->json(['ideas' => $ideas, 'topics' => $topics]);
+    }
+
     public function countIdeas()
     {
         $ideas = Ideas::withCount('views')->get();

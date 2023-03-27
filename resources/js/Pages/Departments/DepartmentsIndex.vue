@@ -47,17 +47,17 @@ export default {
     //     console.log(error);
     //   }
     // },
-    // async deleteDepartment(id) {
-    //   if (confirm("Are you sure you want to delete this department?")) {
-    //     try {
-    //       const response = await axios.delete(`/api/departments/delete/${id}`);
-    //       console.log(response.data);
-    //       this.getDepartment();
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   }
-    // }
+    async deleteDepartment(id) {
+      if (confirm("Are you sure you want to delete this department?")) {
+        try {
+          const response = await axios.delete(`/api/departments/delete/${id}`);
+          console.log(response.data);
+          this.getDepartment();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
   },
 }
 </script>
@@ -94,7 +94,7 @@ export default {
                                   <td>
                                     <div class="d-grid d-md-flex justify-content-md-center">
                                       <router-link :to="'/DepartmentsUpdate/' + department.id" class="btn btn-primary m-1 me-md-2"><font-awesome-icon icon="fa-solid fa-pen" /></router-link>
-                                      <button class="btn btn-danger m-1" @click.prevent="deleteDepartment(departments.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
+                                      <button class="btn btn-danger m-1" @click.prevent="deleteDepartment(department.id)"><font-awesome-icon icon="fa-solid fa-trash" /></button>
                                     </div>
                                   </td>
                               </tr>

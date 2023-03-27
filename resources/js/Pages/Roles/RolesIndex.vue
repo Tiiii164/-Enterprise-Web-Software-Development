@@ -47,17 +47,17 @@ export default {
     //     console.log(error);
     //   }
     // },
-    // async deleteRole(id) {
-    //   if (confirm("Are you sure you want to delete this role?")) {
-    //     try {
-    //       const response = await axios.delete(`/api/roles/delete/${id}`);
-    //       console.log(response.data);
-    //       this.getRole();
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   }
-    // }
+    async deleteRole(id) {
+      if (confirm("Are you sure you want to delete this role?")) {
+        try {
+          const response = await axios.delete(`/api/roles/delete/${id}`);
+          console.log(response.data);
+          this.getRole();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
   },
 }
 </script>
