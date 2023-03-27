@@ -10,6 +10,7 @@ export default {
     return {
       ideas: [],
       topics: [],
+      pagination:{},
     }
   },
   created() {
@@ -17,14 +18,25 @@ export default {
     //this.getTopics();
   },
   methods: {
-    getIdeas() {
-      axios.get('/api/ideas/IdeasIndex').then(response => {
+    getIdeas(page_url) {
+      axios.get('page_url').then(response => {
+        let vm = this;
+        page_url = page_url || '/api/ideas/IdeasIndex';
         this.ideas = response.data.ideas
         this.topics = response.data.topics;
         console.log(response.data);
-
+        vm.makePagination(res.meta, res.links);
         // console.log(topics[idea.topic_id].name);
       })
+    },
+    makePagination:function(meta,links){
+      let pagination = {
+        currentPage: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev
+      }
+      this.pagination = pagination;
     },
     getTopics() {
       axios.get('/api/topics/TopicsIndex').then(response => {
@@ -99,7 +111,7 @@ export default {
             </tr>
           </thead>
           <tbody class="catetbody text-light">
-            <tr v-for="(ideas, index) in ideas.slice(0,5)" :key="index">
+            <tr v-for="(ideas, index) in ideas" :key="index">
               <td>{{ index + 1 }}</td>
               <td>{{ ideas.text }}</td>
               <td>{{ ideas.title }}</td>
@@ -115,6 +127,21 @@ export default {
             </tr>
           </tbody>
         </table>
+        <nav aria-label="Page navigation example" style="display:flex;justify-content:center;width:100%">
+          <ul class="pagination">
+            <li class="page-item" v-bind:class="[{ disabled: !pagination.prev_page_url }]">
+              <a class="page-link" href="#" @click="getIdeas(pagination.prev_page_url)" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item" v-bind:class="[{ disabled: !pagination.next_page_url }]">
+              <a class="page-link" href="#"  @click="getIdeas(pagination.next_page_url)" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
         </div>
       </div>
     </div>
