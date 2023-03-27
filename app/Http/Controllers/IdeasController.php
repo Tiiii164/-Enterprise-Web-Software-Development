@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\IdeasResource;
+use App\Http\Resources\Resource;
 use App\Models\Ideas;
 use App\Models\Topics;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ class IdeasController extends Controller
         $ideas = Ideas::with('topics')->get();
         $topics = Topics::all();
         // return response()->json(['ideas' => $ideas, 'topics' => $topics]);
-        return IdeasResource::collection(Ideas::paginate());
+        return Resource::collection(Ideas::paginate());
         // $ideas = Ideas::all();
         // return response()->json($ideas);
     }

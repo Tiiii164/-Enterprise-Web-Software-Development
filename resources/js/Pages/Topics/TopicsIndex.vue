@@ -16,13 +16,36 @@ export default {
   },
   mounted() { },
   methods: {
-    async getTopics() {
-      try {
-        const response = await axios.get('/api/topics/TopicsIndex');
-        this.topics = response.data;
-      } catch (error) {
-        console.log(error);
+    // async getTopics() {
+    //   try {
+    //     const response = await axios.get('/api/topics/TopicsIndex');
+    //     this.topics = response.data;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
+    getTopics: function(page_url){
+      let vm = this;
+      page_url = page_url || '/api/topics/TopicsIndex';
+      fetch(page_url)
+      .then(res => res.json())
+      .then(res => {
+        this.topics = res.data;
+        console.log(res.data)
+        vm.makePagination(res.meta, res.links);
+       console.log([res.meta, res.links])
+       
+      })
+    },
+    makePagination:function(meta,links){
+      let pagination = {
+        currentPage: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev
       }
+      this.pagination = pagination;
+     
     },
     async deleteTopics(id) {
       if (confirm("Are you sure you want to delete this Topic?")) {
