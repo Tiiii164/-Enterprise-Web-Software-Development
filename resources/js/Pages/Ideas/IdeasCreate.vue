@@ -89,13 +89,6 @@ export default {
         if (response.data) {
           this.topics = response.data;
           console.log(response.data);
-          const currentTime = new Date();
-          this.topics.forEach(topic => {
-            const deadline = new Date(topic.closure_date);
-            console.log('Topic ID: ', topic.id);
-            console.log('Deadline:', deadline);
-            console.log('Current time:', currentTime);
-          });
         } else {
           console.error('No topics found');
         }
@@ -169,12 +162,11 @@ export default {
             </div>
             <div class="mb-3 row">
               <!-- <label class="col-sm-1 col-form-label"><strong>Topic</strong></label>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="col-sm-11">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <select class="form-select form-control" v-model="form.id">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </select>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </div> -->
-
+              <div class="col-sm-11">
+                <select class="form-select form-control" v-model="form.id">
+                  <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
+                </select>
+              </div> -->
             </div>
             <div>
               <div>
