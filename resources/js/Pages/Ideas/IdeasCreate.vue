@@ -85,7 +85,7 @@ export default {
         });
     },
     getTopics() {
-      axios.get('/api/topics/TopicsIndex').then(response => {
+      axios.get('/api/topics/TopicsSelect').then(response => {
         if (response.data) {
           this.topics = response.data;
           console.log(response.data);
@@ -123,12 +123,11 @@ export default {
                 <router-link to="/IdeasIndex" class="btn btn-primary catebutton">Back to list</router-link>
               </div>
             </div>
-          </div>
-
-          <div class="card-body border-light">
-            <div class="mb-3 row">
-              <label class="col-sm-1 col-form-label"><strong>Title</strong></label>
-              <div class="col-sm-11">
+        </div>
+        <div class="card-body border-light">
+          <div class="mb-3 row">
+            <label class="col-sm-12 col-form-label"><strong>Title</strong></label>
+            <div class="col-sm-12">
                 <input type="text" name="title" class="form-control" v-model="form.title" placeholder="Enter Title">
               </div>
             </div>

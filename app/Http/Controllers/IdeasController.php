@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use App\Models\Ideas;
 use App\Models\Topics;
 use Illuminate\Http\Request;
@@ -20,12 +21,20 @@ class IdeasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $ideas = Ideas::with('topics')->get();
+        $topics = Topics::all();
+        // return response()->json(['ideas' => $ideas, 'topics' => $topics]);
+        return Resource::collection(Ideas::paginate());
+        // $ideas = Ideas::all();
+        // return response()->json($ideas);
+    }
+
+    public function showSelect()
+    {   
         $ideas = Ideas::with('topics')->get();
         $topics = Topics::all();
         return response()->json(['ideas' => $ideas, 'topics' => $topics]);
-        // $ideas = Ideas::all();
-        // return response()->json($ideas);
     }
 
     public function countIdeas()

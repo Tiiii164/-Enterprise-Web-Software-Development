@@ -8,7 +8,8 @@ export default {
   },
   data() {
     return {
-      topics: []
+      topics: [],
+      pagination:{},
     }
   },
   created() {
@@ -16,13 +17,36 @@ export default {
   },
   mounted() { },
   methods: {
-    async getTopics() {
-      try {
-        const response = await axios.get('/api/topics/TopicsIndex');
-        this.topics = response.data;
-      } catch (error) {
-        console.log(error);
+    // async getTopics() {
+    //   try {
+    //     const response = await axios.get('/api/topics/TopicsIndex');
+    //     this.topics = response.data;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
+    getTopics: function(page_url){
+      let vm = this;
+      page_url = page_url || '/api/topics/TopicsIndex';
+      fetch(page_url)
+      .then(res => res.json())
+      .then(res => {
+        this.topics = res.data;
+        console.log(res.data)
+        vm.makePagination(res.meta, res.links);
+       console.log([res.meta, res.links])
+       
+      })
+    },
+    makePagination:function(meta,links){
+      let pagination = {
+        currentPage: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev
       }
+      this.pagination = pagination;
+     
     },
     async deleteTopics(id) {
       if (confirm("Are you sure you want to delete this Topic?")) {
@@ -80,6 +104,21 @@ export default {
               </tr>
             </tbody>
           </table>
+          <nav aria-label="Page navigation example" style="display:flex;justify-content:center;width:100%">
+            <ul class="pagination">
+              <li class="page-item" v-bind:class="[{ disabled: !pagination.prev_page_url }]">
+                <a class="page-link" href="#" @click="getTopics(pagination.prev_page_url)" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item disabled"><a class="page-link" href="#">{{ pagination.currentPage }} - {{ pagination.last_page }}</a></li>
+              <li class="page-item" v-bind:class="[{ disabled: !pagination.next_page_url }]">
+                <a class="page-link" href="#"  @click="getTopics(pagination.next_page_url)" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
           </div>
         </div>
       </div>

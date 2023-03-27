@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use App\Models\Topics;
 use App\Models\Reacts;
 use App\Models\Ideas;
@@ -18,8 +19,16 @@ class TopicsController extends Controller
      */
     public function index()
     {
+        // $topics = Topics::all();
+        // $topicsPage = Resource::collection(Topics::paginate());
+        // return response()->json([$topics, $topicsPage]);
+        return Resource::collection(Topics::paginate(5));
+    }
+    public function showSelect()
+    {
         $topics = Topics::all();
-        return response()->json($topics);
+        $topicsPage = Resource::collection(Topics::paginate());
+        return response()->json([$topics, $topicsPage]);
     }
     public function getTopicsId()
     {
