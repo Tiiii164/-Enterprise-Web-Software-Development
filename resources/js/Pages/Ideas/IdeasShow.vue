@@ -137,8 +137,8 @@ export default {
                                     <td>{{ idea.text }}</td>
                                     <td>{{ idea.file_path }}</td>
                                     <td>{{ idea.views_count }}</td> 
-                                    <td v-for="topic in topics">{{ topic.name }}</td>
-                                    <td v-for="category in categories">{{ category.name }}</td>
+                                    <td>{{ idea.topics.name }}</td>
+                                    <td>{{ idea.categories.name }}</td>
                                 </tr>
                             </tbody>
                         </table>

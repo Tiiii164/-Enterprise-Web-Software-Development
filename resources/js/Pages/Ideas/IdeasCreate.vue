@@ -42,16 +42,15 @@ export default {
       text: '',
       file_path: '',
       categories_id: '',
-      topics_id: '',
       user_id: '',
       departments_id: '',
       termsAndConditions: false,
     });
     const handleCreateIdeas = async () => {
       try {
-        const response = await axios.post(`/api/ideas/IdeasCreate/${route.params.topics_id}`, form);
-        //const response = await axios.post(`/api/ideas/IdeasCreate/`, form);
-        router.push(`/TopicsShow/${route.params.topics_id}`);
+        const response = await axios.post(`/api/ideas/IdeasCreate/Topic/${route.params.id}`, form);
+        //const response = await axios.post(`/api/ideas/IdeasCreate/Topic/`, form);
+        router.push(`/TopicsShow/${route.params.id}`);
         const customAlert = document.createElement('div');
         customAlert.classList.add('custom-alert');
         customAlert.innerHTML = `
@@ -79,14 +78,10 @@ export default {
     onFileSelect(event) {
       this.form.file_path = event.target.files[0];
     },
-    async getCategories() {
+    getCategories() {
       axios.get('/api/categories')
         .then((response) => {
           this.categories = response.data;
-        });
-      axios.get('/api/topics')
-        .then((response) => {
-          this.topics = response.data;
         });
     },
     getTopics() {
@@ -94,13 +89,6 @@ export default {
         if (response.data) {
           this.topics = response.data;
           console.log(response.data);
-          const currentTime = new Date();
-          this.topics.forEach(topic => {
-            const deadline = new Date(topic.closure_date);
-            console.log('Deadline:', deadline);
-            console.log('Current time:', currentTime);
-            console.log(topic.id);
-          });
         } else {
           console.error('No topics found');
         }
@@ -159,7 +147,7 @@ export default {
             <div class="mb-3 row">
               <label class="col-sm-1 col-form-label"><strong>File Path</strong></label>
               <div class="col-sm-11">
-                <input type="file" name="file_path" class="form-control-file" v-on:change="onFileSelect" accept=".txt"
+                <input type="file" name="file_path" class="form-control-file form-control" v-on:change="onFileSelect" accept=".txt"
                   placeholder="">
               </div>
             </div>
@@ -174,12 +162,11 @@ export default {
             </div>
             <div class="mb-3 row">
               <!-- <label class="col-sm-1 col-form-label"><strong>Topic</strong></label>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="col-sm-11">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <select class="form-select form-control" v-model="form.topics_id">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </select>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </div> -->
-
+              <div class="col-sm-11">
+                <select class="form-select form-control" v-model="form.id">
+                  <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
+                </select>
+              </div> -->
             </div>
             <div>
               <div>

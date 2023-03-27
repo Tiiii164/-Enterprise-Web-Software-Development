@@ -53,7 +53,7 @@ class IdeasController extends Controller
 
 
 
-    public function store(Request $request, $topics_id)
+    public function store(Request $request, $id)
     {
         $ideas = new Ideas();
         $ideas->title = $request->input('title');
@@ -62,7 +62,8 @@ class IdeasController extends Controller
         // Chuyển đổi mảng file_path thành chuỗi với hàm implode()
         $ideas->file_path = implode($request->input('file_path'));
         // $ideas->file_path = $request->input('file_path');
-        $ideas->topics_id = $topics_id;
+        // $ideas->topics_id = DB::table('ideas')->value('topics_id');
+        $ideas->topics_id = $id;
         $ideas->user_id = Auth::user()->id;
         $ideas->departments_id = DB::table('departments_user')
             ->where('user_id', Auth::user()->id)
