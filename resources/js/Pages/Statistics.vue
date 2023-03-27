@@ -163,6 +163,11 @@ export default {
     height: 350vh; 
   }
 }
+@media (min-width: 1000px) {
+  .statistics.backgroundsu{
+    height: 110vh; 
+  }
+}
 .col {
   --bs-bg-opacity: 0.1;
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;

@@ -19,14 +19,15 @@ export default {
   },
   methods: {
     getIdeas(page_url) {
-      axios.get('page_url').then(response => {
-        let vm = this;
-        page_url = page_url || '/api/ideas/IdeasIndex';
-        this.ideas = response.data.ideas
-        this.topics = response.data.topics;
-        console.log(response.data);
-        vm.makePagination(res.meta, res.links);
-        // console.log(topics[idea.topic_id].name);
+      let vm = this;
+      page_url = page_url || '/api/ideas/IdeasIndex';
+      fetch(page_url)
+      .then(res => res.json())
+      .then(res => {
+      this.ideas = res.data.ideas
+      this.topics = res.data.topics;
+      console.log(res.data);
+      vm.makePagination(res.meta, res.links);
       })
     },
     makePagination:function(meta,links){
@@ -39,19 +40,13 @@ export default {
       this.pagination = pagination;
     },
     getTopics() {
-      axios.get('/api/topics/TopicsIndex').then(response => {
+      axios.get('/api/topics/showSelect').then(response => {
         this.topics = response.data.topics
         console.log(response.data);
 
 
       })
     },
-    // getTopics() {
-    //   axios.get('/api/topics/TopicsIndex').then(response => {
-    //     this.topics = response.data.topics
-    //     console.log(response.data);
-    //   })
-    // },
 
     async deleteIdeas(id) {
       if (confirm("Are you sure you want to delete this Idea?")) {
@@ -86,11 +81,11 @@ export default {
                           </div>
                         </div>
                       </th>
-                      <th>
+                      <!-- <th>
                         <div class="d-grid d-md-flex justify-content-md-end">
-                          <router-link to="/IdeasCreate" class="btn btn-primary">Add new Ideas</router-link>
+                          <router-link to="/IdeasCreate/Topci" class="btn btn-primary">Add new Ideas</router-link>
                         </div>
-                      </th>
+                      </th> -->
                     </tr>
                   </thead>
                 </table>

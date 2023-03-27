@@ -84,7 +84,8 @@ export default {
             }
         },
         getTopics() {
-            axios.get('/api/topics/TopicsIndex').then(response => {
+            axios.get('/api/topics/TopicsSelect')
+            .then(response => {
                 if (response.data) {
                     this.topics = response.data;
                     console.log(response.data);

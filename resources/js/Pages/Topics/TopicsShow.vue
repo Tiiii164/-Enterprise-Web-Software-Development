@@ -60,7 +60,7 @@ export default {
                                     <td>ID: </td>
                                     <td>Ideas of Topic: </td>
                                     <td>Closure Date: </td>
-                                    <td>Closure Date: </td>
+                                    <td>Final Closure Date: </td>
                                     <td>Action: </td>
                                 </tr>
                             </thead>

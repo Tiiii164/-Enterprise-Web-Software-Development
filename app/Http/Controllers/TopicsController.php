@@ -27,8 +27,7 @@ class TopicsController extends Controller
     public function showSelect()
     {
         $topics = Topics::all();
-        $topicsPage = Resource::collection(Topics::paginate());
-        return response()->json([$topics, $topicsPage]);
+        return response()->json($topics);
     }
     public function getTopicsId()
     {

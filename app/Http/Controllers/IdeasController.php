@@ -22,12 +22,8 @@ class IdeasController extends Controller
      */
     public function index()
     {   
-        $ideas = Ideas::with('topics')->get();
         $topics = Topics::all();
-        // return response()->json(['ideas' => $ideas, 'topics' => $topics]);
-        return Resource::collection(Ideas::paginate());
-        // $ideas = Ideas::all();
-        // return response()->json($ideas);
+        return Resource::collection(Ideas::with('topics')->paginate(5));
     }
 
     public function showSelect()
