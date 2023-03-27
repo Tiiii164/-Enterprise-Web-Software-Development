@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Departments;
@@ -16,8 +17,9 @@ class DepartmentsController extends Controller
      */
     public function index()
     {
-        $departments = Departments::all();
-        return response()->json($departments);
+        // $departments = Departments::all();
+        // return response()->json($departments);
+        return Resource::collection(Departments::paginate(5));
     }
 
     public function count()

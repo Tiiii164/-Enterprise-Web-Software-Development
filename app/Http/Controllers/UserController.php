@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -21,16 +22,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::with('roles', 'departments')->get();
-        $roles = Role::all();
-        $permissions = Permission::all();
-        $departments = Departments::all();
-        return response()->json([
-            'user' => $user,
-            'roles' => $roles,
-            'permissions' => $permissions,
-            'departments' => $departments
-        ]);
+        // $user = User::with('roles', 'departments')->get();
+        // $roles = Role::all();
+        // $permissions = Permission::all();
+        // $departments = Departments::all();
+        // return response()->json([
+        //     'user' => $user,
+        //     'roles' => $roles,
+        //     'permissions' => $permissions,
+        //     'departments' => $departments
+        // ]);
+        return Resource::collection(User::paginate(5));
     }
     public function count()
     {

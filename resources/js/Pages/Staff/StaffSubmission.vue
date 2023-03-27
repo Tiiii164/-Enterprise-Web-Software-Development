@@ -134,13 +134,13 @@ export default {
           <nav aria-label="Page navigation example" style="display:flex;justify-content:center;width:100%">
             <ul class="pagination">
               <li class="page-item" v-bind:class="[{ disabled: !pagination.prev_page_url }]">
-                <a class="page-link" href="#" @click="getIdeas(pagination.prev_page_url)" aria-label="Previous">
+                <a class="page-link" href="#" @click="getTopics(pagination.prev_page_url)" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
-              <li class="page-item disabled"><a class="page-link" href="#">{{ pagination.current_page }} - {{ pagination.last_page }}</a></li>
+              <li class="page-item disabled"><a class="page-link" href="#">{{ pagination.currentPage }} - {{ pagination.last_page }}</a></li>
               <li class="page-item" v-bind:class="[{ disabled: !pagination.next_page_url }]">
-                <a class="page-link" href="#"  @click="getIdeas(pagination.next_page_url)" aria-label="Next">
+                <a class="page-link" href="#"  @click="getTopics(pagination.next_page_url)" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                 </a>
               </li>

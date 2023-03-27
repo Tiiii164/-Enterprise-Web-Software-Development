@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,8 +16,9 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        return response()->json($roles);
+        // $roles = Role::all();
+        // return response()->json($roles);
+        return Resource::collection(Role::paginate(5));
     }
 
     public function count()

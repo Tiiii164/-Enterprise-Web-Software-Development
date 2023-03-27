@@ -22,7 +22,7 @@ class TopicsController extends Controller
         // $topics = Topics::all();
         // $topicsPage = Resource::collection(Topics::paginate());
         // return response()->json([$topics, $topicsPage]);
-        return Resource::collection(Topics::paginate());
+        return Resource::collection(Topics::paginate(5));
     }
     public function getTopics()
     {
