@@ -66,7 +66,7 @@ Route::controller(IdeasController::class)->group(function () {
     Route::get('/ideas/edit/{id}', 'edit');
     Route::get('/ideas/IdeasShow/{id}', 'inforIdeas');
 
-    Route::post('/ideas/IdeasCreate/{topics_id}', 'store');
+    Route::post('/ideas/IdeasCreate/Topic/{id}', 'store');
     //Route::post('/ideas/IdeasCreate', 'store');
     Route::patch('/ideas/IdeasUpdate/{id}', 'update');
     Route::delete('/ideas/delete/{id}', 'destroy');

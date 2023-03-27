@@ -145,7 +145,7 @@ const router = createRouter({
         },
         //Ideas
         {
-            path: '/ideasCreate/:topics_id',
+            path: '/ideasCreate/Topic/:id',
             name: 'IdeasCreate',
             component: IdeasCreate,
         },
