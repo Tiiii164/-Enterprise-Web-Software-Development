@@ -30,6 +30,11 @@ class TopicsController extends Controller
         $topicsPage = Resource::collection(Topics::paginate());
         return response()->json([$topics, $topicsPage]);
     }
+    public function getTopicsId()
+    {
+        $topicsId = Topics::getId();
+        return response()->json($topicsId);
+    }
     public function getTopics()
     {
         $dataTopics = Topics::get();

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewIdea;
 
@@ -58,14 +59,20 @@ class IdeasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+
+
+    public function store(Request $request, $id)
     {
         $ideas = new Ideas();
         $ideas->title = $request->input('title');
         $ideas->text = $request->input('text');
-        $ideas->file_path = $request->input('file_path');
         $ideas->categories_id = $request->input('categories_id');
-        $ideas->topics_id = $request->input('topics_id');
+        // Chuyển đổi mảng file_path thành chuỗi với hàm implode()
+        $ideas->file_path = implode($request->input('file_path'));
+        // $ideas->file_path = $request->input('file_path');
+        // $ideas->topics_id = DB::table('ideas')->value('topics_id');
+        $ideas->topics_id = $id;
         $ideas->user_id = Auth::user()->id;
         $ideas->departments_id = DB::table('departments_user')
             ->where('user_id', Auth::user()->id)
@@ -129,6 +136,8 @@ class IdeasController extends Controller
         $topics = $ideas->topics;
         $categories = $ideas->categories;
         $views = $ideas->views;
+        // return response()->json(['ideas' => $ideas, 'views' => $views, 'comments' => $comments]);
+
         return response()->json(['ideas' => $ideas, 'topics' => $topics, 'categories' => $categories, 'views' => $views, 'comments' => $comments]);
     }
     /**
