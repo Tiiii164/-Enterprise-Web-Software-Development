@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use App\Models\Ideas;
 use App\Models\Topics;
-use App\Models\Reacts;
-use App\Models\Views;
-use App\Models\Comments;
-use App\Models\Categories;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewIdea;
 
 class IdeasController extends Controller
 {
@@ -20,16 +20,19 @@ class IdeasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index($id)
+    {   
+        return Resource::collection(Ideas::where('topics_id', '=', $id)->paginate(5));
+    }
+
+    public function showSelect()
+    {   
         $ideas = Ideas::with('topics')->get();
         $topics = Topics::all();
         return response()->json(['ideas' => $ideas, 'topics' => $topics]);
-        // $ideas = Ideas::all();
-        // return response()->json($ideas);
     }
 
-    public function countIdeas() 
+    public function countIdeas()
     {
         $ideas = Ideas::withCount('views')->get();
         return response()->json($ideas);
@@ -51,26 +54,30 @@ class IdeasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+
+
+    public function store(Request $request, $id)
     {
         $ideas = new Ideas();
         $ideas->title = $request->input('title');
         $ideas->text = $request->input('text');
-        $ideas->file_path = $request->input('file_path');
         $ideas->categories_id = $request->input('categories_id');
-        $ideas->topics_id = $request->input('topics_id');
+        // Chuyển đổi mảng file_path thành chuỗi với hàm implode()
+        $ideas->file_path = implode($request->input('file_path'));
+        // $ideas->file_path = $request->input('file_path');
+        // $ideas->topics_id = DB::table('ideas')->value('topics_id');
+        $ideas->topics_id = $id;
         $ideas->user_id = Auth::user()->id;
         $ideas->departments_id = DB::table('departments_user')
-                                    ->where('user_id', Auth::user()->id)
-                                    ->value('departments_id');
+            ->where('user_id', Auth::user()->id)
+            ->value('departments_id');
         $ideas->save();
 
-        //Create a new comment for the idea
-        // $comments = new Comments();
-        // $comments->text = $request->input('comments_text');
-        // $comments->user_id = Auth::user()->id;
-        // $ideas->comments()->save($comments);
+        $user = Auth::user();
 
+        Mail::to('anhkhoa431996@gmail.com')
+            ->send(new NewIdea($user, $ideas));
         return response()->json($ideas);
     }
 
@@ -124,6 +131,8 @@ class IdeasController extends Controller
         $topics = $ideas->topics;
         $categories = $ideas->categories;
         $views = $ideas->views;
+        // return response()->json(['ideas' => $ideas, 'views' => $views, 'comments' => $comments]);
+
         return response()->json(['ideas' => $ideas, 'topics' => $topics, 'categories' => $categories, 'views' => $views, 'comments' => $comments]);
     }
     /**

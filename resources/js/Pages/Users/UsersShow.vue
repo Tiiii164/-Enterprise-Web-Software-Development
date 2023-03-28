@@ -6,8 +6,6 @@ export default {
     NavBar,
     TheFooter
   },
-
-  
   data() {
     return {
       user: [], // initialize as empty array instead of object
@@ -19,7 +17,7 @@ export default {
     this.getUser();
   },
   methods: {
-    getUser(id) {
+    getUser() {
   axios.get(`/api/user/UsersShow/${this.$route.params.id}`)
     .then(response => {
       this.user = [response.data.user], // set user as array with one element
@@ -68,10 +66,10 @@ export default {
             <div class="container overflow-hidden card-body" v-for="(user, index) in user" :key="index">
               <div class="mb-3 row">
                 <div class="form-group">
-                  <div class="p-2 border card mb-3"><h5>Name: {{ user.name }}</h5></div>
-                  <div class="p-2 border card mb-3"><h5>Email: {{ user.email }}</h5></div>
-                  <div class="p-2 border card mb-3" v-for="role in user.roles"><h5>Role: {{ role.name }}</h5></div>
-                  <div class="p-2 border card mb-3" v-for="department in user.departments"><h5>Department: {{ department.name }}</h5></div>
+                  <div class="p-2 border-bottom mb-3"><h5>Name: {{ user.name }}</h5></div>
+                  <div class="p-2 border-bottom mb-3"><h5>Email: {{ user.email }}</h5></div>
+                  <div class="p-2 border-bottom mb-3" v-for="role in user.roles"><h5>Role: {{ role.name }}</h5></div>
+                  <div class="p-2 border-bottom mb-3" v-for="department in user.departments"><h5>Department: {{ department.name }}</h5></div>
                 </div>
               </div>
             </div>

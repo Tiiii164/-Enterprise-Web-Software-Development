@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use Illuminate\Http\Request;
 use App\Models\Categories;
 use Inertia\Inertia;
@@ -10,11 +11,13 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Categories::all();
-        return response()->json($categories);
+        // $categories = Categories::all();
+        // return response()->json($categories);
+        return Resource::collection(Categories::paginate(5));
     }
-    public function showCategoriesCreate()
+    public function showCategoriesCreate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('CategoriesCreate');
     }
 
@@ -32,13 +35,15 @@ class CategoriesController extends Controller
         return response()->json($categories);
     }
 
-    public function showCategories()
+    public function showCategories(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('CategoriesIndex');
     }
 
-    public function showCategoriesUpdate($id)
+    public function showCategoriesUpdate($id, Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('CategoriesUpdate');
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -21,16 +22,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::with('roles', 'departments')->get();
+        // // $user = User::with('roles', 'departments')->get();
+        // $roles = Role::all();
+        // $departments = Departments::all();
+        // return response()->json([
+        //     'user' => $user,
+        //     'roles' => $roles,
+        //     'departments' => $departments
+        // ]);
         $roles = Role::all();
-        $permissions = Permission::all();
         $departments = Departments::all();
-        return response()->json([
-            'user' => $user,
-            'roles' => $roles,
-            'permissions' => $permissions,
-            'departments' => $departments
-        ]);
+        return Resource::collection(User::with('roles', 'departments')->paginate(5));
     }
     public function count()
     {
@@ -42,8 +44,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showUsersCreate()
+    public function showUsersCreate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersCreate');
     }
 
@@ -81,18 +84,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showUsers()
+    public function showUsers(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersIndex');
     }
 
-    public function showUsersUpdate()
+    public function showUsersUpdate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersUpdate');
     }
 
-    public function showUsersShow()
+    public function showUsersShow(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersShow');
     }
 
@@ -100,12 +106,10 @@ class UserController extends Controller
     {
         $user = User::with('roles', 'departments')->find($id);
         $roles = $user->roles;
-$permissions = $user->permissions;
-$departments = $user->departments;
+        $departments = $user->departments;
         return response()->json([
             'user' => $user,
             'roles' => $roles,
-            'permissions' => $permissions,
             'departments' => $departments
         ]);
     }
