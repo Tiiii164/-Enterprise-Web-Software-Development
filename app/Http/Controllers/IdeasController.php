@@ -20,10 +20,9 @@ class IdeasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {   
-        $topics = Topics::all();
-        return Resource::collection(Ideas::with('topics')->paginate(5));
+        return Resource::collection(Ideas::where('topics_id', '=', $id)->paginate(5));
     }
 
     public function showSelect()

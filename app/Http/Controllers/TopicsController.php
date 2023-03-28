@@ -19,9 +19,6 @@ class TopicsController extends Controller
      */
     public function index()
     {
-        // $topics = Topics::all();
-        // $topicsPage = Resource::collection(Topics::paginate());
-        // return response()->json([$topics, $topicsPage]);
         return Resource::collection(Topics::paginate(5));
     }
     public function showSelect()
@@ -99,8 +96,7 @@ class TopicsController extends Controller
     public function inforTopics($id)
     {
         $topics = Topics::with('ideas')->find($id);
-        $ideas = $topics->ideas;
-
+        $ideas = Topics::with('ideas')->find($id)->ideas;
         return response()->json(['ideas' => $ideas, 'topics' => $topics]);
     }
 
