@@ -32,20 +32,21 @@ export default {
       axios.get('/api/user/UsersIndex')
       .then(response => {
         this.roles = response.data.roles,
-        this.departments = response.data.departments,
-        console.log(response.data)
+        this.departments = response.data.departments
+        //console.log(response.data)
       })
       .catch (error => {console.log(error)})
     },
     async showUsers() {
       try {
         await axios.patch(`/api/user/UsersUpdate/${this.$route.params.id}`)
-        .then((response) => {
-          const { email, name, role, department } = response.data;
+        .then(response => {
+          console.log(response.data.roles[0]);
+          const { email, name, roles, departments } = response.data;
           this.user.email = email;
           this.user.name = name;
-          this.user.role = role;
-          this.user.department = department;
+          this.user.role = roles[0].id;
+          this.user.department = departments[0].id;
             });
       } catch (error) {
         console.log(error);

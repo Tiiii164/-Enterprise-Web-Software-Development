@@ -13,11 +13,13 @@ export default {
   },
 
   computed: {
+    chosenTopic() {
+      return this.topics.find(topic => topic.id === this.form.topics_id);
+    },
     isDeadlinePassed() {
-      return this.topics.some(topic => {
-        const deadline = new Date(topic.closure_date);
-        return deadline < this.currentTime;
-      });
+      if (!this.chosenTopic) return false; // if no topic is chosen, return false
+      const deadline = new Date(this.chosenTopic.closure_date);
+      return deadline < this.currentTime;
     },
   },
 
@@ -29,6 +31,13 @@ export default {
       categories: [],
       currentTime: new Date(),
       form: {
+        title: '',
+        text: '',
+        file_path: '',
+        categories_id: '',
+        topics_id: '',
+        user_id: '',
+        departments_id: '',
         termsAndConditions: false
       },
       showDialog: false,
@@ -84,24 +93,15 @@ export default {
         });
     },
     getTopics() {
-  axios.get('/api/topics/TopicsIndex').then(response => {
-    if (response.data) {
-      this.topics = response.data;
-      console.log(response.data);
-
-      const currentTime = new Date();
-      this.topics.forEach(topic => {
-        const deadline = new Date(topic.closure_date);
-        console.log('Deadline:', deadline);
-        console.log('Current time:', currentTime);
-        
-       
+      axios.get('/api/topics/TopicsIndex').then(response => {
+        if (response.data) {
+          this.topics = response.data;
+          console.log(response.data);
+        } else {
+          console.error('No topics found');
+        }
       });
-    } else {
-      console.error('No topics found');
-    }
-  });
-},
+    },
 
     showTermsAndConditions() {
       this.showDialog = true;
@@ -186,8 +186,8 @@ export default {
                 </div>
               </div>
             </div>
-             <div class="text-danger" v-if="isDeadlinePassed">
-    <h5>The deadline has passed</h5>
+             <div v-if="isDeadlinePassed">
+    <h5 class="text-danger">The deadline has passed</h5>
   </div>
   <div v-else>
     <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">

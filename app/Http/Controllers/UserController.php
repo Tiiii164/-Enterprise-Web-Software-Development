@@ -147,11 +147,11 @@ $departments = $user->departments;
         $request->validate([
             // 'name' => 'required|string|max:255',
             // 'email' => 'required|string|email|max:255|unique:user,email',
-            'department' => 'required',
-            'role' => 'required',
+            //'department' => 'required',
+            //'role' => 'required',
         ]);
 
-        $user = User::find($id);
+        $user = User::with('roles', 'departments')->find($id);
         $user->update($request->all());
         // $user->roles()->detach($user->role_id);
         // $user->roles()->attach($request->role);
