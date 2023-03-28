@@ -67,6 +67,8 @@ Route::get('/IdeasIndex', [IdeasController::class, 'showIdeas']);
 Route::get('/IdeasCreate', [IdeasController::class, 'showIdeasCreate']);
 Route::get('/IdeasUpdate/{id}', [IdeasController::class, 'showIdeasUpdate']);
 Route::get('/IdeasShow/{id}', [IdeasController::class, 'showIdeasShow']);
+Route::get('/ExportExcel/{id}', [IdeasController::class, 'exportExcel']);
+Route::get('/ExportZIP/{id}', [IdeasController::class, 'exportZIP']);
 //comments
 //Route::post('/ideas/{idea}/comments', [CommentController::class, 'store'])->name('comments.store');
 
