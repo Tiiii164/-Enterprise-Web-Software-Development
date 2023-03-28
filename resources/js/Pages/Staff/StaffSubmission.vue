@@ -9,23 +9,59 @@ export default {
   data() {
     return {
       topics: [],
-
+      pagination:{},
     }
   },
   created() {
     this.getTopics();
   },
   methods: {
-    async getTopics() {
-      try {
-        const response = await axios.get('/api/topics/TopicsIndex');
-        this.topics = response.data;
-        console.log(response.data);
-        const currentTime = new Date();
-        console.log('Current Time: ', currentTime)
-      } catch (error) {
-        console.log(error);
+    // async getTopics(page_url) {
+    //   try {
+    //     const response = await axios.get('page_url');
+    //     let vm = this;
+    //     page_url = page_url || '/api/topics/TopicsIndex';
+    //     this.topics = response.data;
+    //     console.log(response.data);
+    //     vm.makePagination(res.meta, res.links);
+    //     const currentTime = new Date();
+    //     console.log('Current Time: ', currentTime)
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
+    // getTopics(page_url) {
+    //   axios.get('page_url').then(response => {
+    //     let vm = this;
+    //     page_url = page_url || '/api/topics/TopicsIndex';
+    //     this.ideas = response.data;
+    //     console.log(response.data);
+    //     vm.makePagination(res.meta, res.links);
+    //     // console.log(topics[idea.topic_id].name);
+    //   })
+    // },
+    getTopics: function(page_url){
+      let vm = this;
+      page_url = page_url || '/api/topics/TopicsIndex';
+      fetch(page_url)
+      .then(res => res.json())
+      .then(res => {
+        this.topics = res.data;
+        console.log(res.data)
+        vm.makePagination(res.meta, res.links);
+       console.log([res.meta, res.links])
+       
+      })
+    },
+    makePagination:function(meta,links){
+      let pagination = {
+        currentPage: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev
       }
+      this.pagination = pagination;
+     
     },
   },
 }
@@ -95,6 +131,21 @@ export default {
               </tr>
             </tbody>
           </table>
+          <nav aria-label="Page navigation example" style="display:flex;justify-content:center;width:100%">
+            <ul class="pagination">
+              <li class="page-item" v-bind:class="[{ disabled: !pagination.prev_page_url }]">
+                <a class="page-link" href="#" @click="getTopics(pagination.prev_page_url)" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item disabled"><a class="page-link" href="#">{{ pagination.currentPage }} - {{ pagination.last_page }}</a></li>
+              <li class="page-item" v-bind:class="[{ disabled: !pagination.next_page_url }]">
+                <a class="page-link" href="#"  @click="getTopics(pagination.next_page_url)" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
