@@ -106,6 +106,12 @@ export default {
                 this.categories = response.data;                
             });
         },
+        sortComments: function(arr) {
+            return arr.sort(function(a, b) {
+                    return new Date(b.created_at) - new Date(a.created_at);
+                }
+            );
+        }
     },
     created() {
         this.getIdeas();
@@ -201,7 +207,7 @@ export default {
                                 </tr>
                             </thead>
                             <tbody class="text-light">
-                                <tr v-for="comment in comments" :key="ideas.id">
+                                <tr v-for="comment in sortComments(comments)" :key="ideas.id">
                                     <td>{{ comment.text }}</td>
                                     <td>{{ comment.created_at }}</td>
                                 </tr>

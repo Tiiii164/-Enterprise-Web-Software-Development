@@ -64,7 +64,7 @@ Route::controller(CommentsController::class)->group(function () {
 Route::controller(IdeasController::class)->group(function () {
     Route::get('ideas', 'countIdeas');
     Route::get('/ideas/IdeasSelect', 'showSelect');
-    Route::get('/ideas/IdeasIndex', 'index');
+    Route::get('/ideas/IdeasIndex/{id}', 'index');
     Route::get('/ideas/edit/{id}', 'edit');
     Route::get('/ideas/IdeasShow/{id}', 'inforIdeas');
 
