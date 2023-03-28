@@ -13,11 +13,13 @@ export default {
   },
 
   computed: {
+    chosenTopic() {
+      return this.topics.find(topic => topic.id === this.form.topics_id);
+    },
     isDeadlinePassed() {
-      return this.topics.some(topic => {
-        const deadline = new Date(topic.closure_date);
-        return deadline < this.currentTime;
-      });
+      if (!this.chosenTopic) return false; // if no topic is chosen, return false
+      const deadline = new Date(this.chosenTopic.closure_date);
+      return deadline < this.currentTime;
     },
   },
 
@@ -29,6 +31,13 @@ export default {
       categories: [],
       currentTime: new Date(),
       form: {
+        title: '',
+        text: '',
+        file_path: '',
+        categories_id: '',
+        topics_id: '',
+        user_id: '',
+        departments_id: '',
         termsAndConditions: false
       },
       showDialog: false,
@@ -187,17 +196,14 @@ export default {
                 </div>
               </div>
             </div>
-             <!-- <div class="text-danger" v-if="isDeadlinePassed">
-              <h5>The deadline has passed</h5>
+            <div v-if="isDeadlinePassed">
+              <h5 class="text-danger">The deadline has passed</h5>
             </div>
             <div v-else>
               <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
                 Submit
               </button>
-            </div> -->
-            <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
-                Submit
-              </button>
+            </div>
           </div>
         </div>
       </div>
