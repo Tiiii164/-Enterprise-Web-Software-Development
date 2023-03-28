@@ -181,7 +181,7 @@ export default {
                                     <td>{{ idea.title }}</td>
                                     <td>{{ idea.text }}</td>
                                     <td>{{ idea.file_path }}</td>
-                                    <td>{{ idea.views_count }}</td> 
+                                    <td>{{ idea.views_count }}</td>
                                 </tr>
                             </tbody>
                         </table>
