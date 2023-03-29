@@ -16,20 +16,6 @@ export default {
     this.getTopics();
   },
   methods: {
-    // async getTopics(page_url) {
-    //   try {
-    //     const response = await axios.get('page_url');
-    //     let vm = this;
-    //     page_url = page_url || '/api/topics/TopicsIndex';
-    //     this.topics = response.data;
-    //     console.log(response.data);
-    //     vm.makePagination(res.meta, res.links);
-    //     const currentTime = new Date();
-    //     console.log('Current Time: ', currentTime)
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
     // getTopics(page_url) {
     //   axios.get('page_url').then(response => {
     //     let vm = this;

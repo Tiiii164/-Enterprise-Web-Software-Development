@@ -62,8 +62,8 @@ export default {
           <div class="card-body border-light">
             <form @submit.prevent="updateRoles">
               <div class="mb-3 row">
-                <label class="col-sm-2 col-form-label"><h4>Role Name</h4></label>
-                <div class="col-sm-10">
+                <label class="col-sm-12 col-form-label"><h4>Role Name</h4></label>
+                <div class="col-sm-12">
                   <input type="text" name="name" v-model="role.name" class="form-control">
                 </div>
               </div>

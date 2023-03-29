@@ -43,7 +43,6 @@ export default {
         axios.get('/api/departments/DepartmentsSelect')    
         .then((response) => { 
           this.departments = response.data;
-          console.log(response.data);
     });
   },
     async getRoles() {

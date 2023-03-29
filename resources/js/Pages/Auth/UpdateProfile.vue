@@ -12,19 +12,30 @@ export default {
         name: "",
         _method: "patch",
       },
+      roles: [],
+      departments: [],   
     }
   },
   created() {
+    this.getUser();
     this.showProfileInfo()
   },
   methods: {
+    async getUser() {
+      axios.get('/api/user/UsersSelect')
+      .then(response => {
+        this.roles = response.data.roles,
+        this.departments = response.data.departments
+      })
+      .catch (error => {console.log(error)})
+    },
     async showProfileInfo() {
       try {
-        const response = await axios.patch(`/api/UpdateProfile/${this.$route.params.id}`)
-        .then((res) => {
-          const {name} = res.data
-          this.profile.name = name
-            });
+        const response = await axios.get(`/api/Profile/${this.$route.params.id}`)
+        const { name, roles, departments } = response.data;
+        this.profile.name = name
+        this.profile.role = roles[0].id;
+        this.profile.department = departments[0].id;
         console.log(response.data)
       } catch (error) {
         console.log(error);
@@ -67,8 +78,8 @@ export default {
             <form @submit.prevent="updateProfile">
               <div class="mb-3 row">
                 <div class="form-group">
-                  <label class="col-sm-2 col-form-label"><h4>Your Name</h4></label>
-                  <div class="col-sm-10">
+                  <label class="col-sm-12 col-form-label"><h4>Your Name</h4></label>
+                  <div class="col-sm-12">
                     <input type="text" name="email" v-model="profile.name" class="form-control">                  
                   </div>
                 </div>

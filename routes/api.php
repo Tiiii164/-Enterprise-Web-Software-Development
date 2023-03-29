@@ -31,6 +31,7 @@ Route::get('/api/roles/RolesIndex', function () {
 });
 //UserController
 Route::controller(UserController::class)->group(function () {
+    Route::get('/Profile/{id}', 'edit');
     Route::patch('/UpdateProfile/{id}', 'update');
     Route::post('/ChangePassword', 'changePassword');
 });
@@ -118,7 +119,8 @@ Route::controller(CategoriesController::class)->group(function () {
 Route::controller(UserController::class)->group(function () {
     Route::get('user', 'count');
     Route::get('/user/UsersIndex', 'index');
-    Route::get('/user/edit/{id}', 'edit');
+    Route::get('/user/UsersSelect', 'showSelect');
+    Route::get('/user/UsersEdit/{id}', 'edit');
     Route::get('/user/UsersShow/{id}', 'inforUsers');
     Route::post('/user/UsersCreate', 'store');
     Route::patch('/user/UsersUpdate/{id}', 'update');

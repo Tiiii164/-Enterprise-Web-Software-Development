@@ -50,8 +50,8 @@ export default {
             <div class="card-body border-light">
                 <form action="{{route('categories.store')}}" method="POST">
                     <div class="mb-3 row">
-                        <label class="col-sm-2 col-form-label"><h4>Name</h4></label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-12 col-form-label"><h4>Name</h4></label>
+                        <div class="col-sm-12">
                           <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter Category name">
                         </div>
                     </div>
