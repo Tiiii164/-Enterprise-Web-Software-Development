@@ -55,7 +55,7 @@ export default {
                             <tr>
                                 <td>{{ CurrentUser.name }} 
                                   <span class="ms-2">
-                                    <router-link :to="'/UpdateProfile/' + CurrentUser.id">
+                                    <router-link :to="'/Profile/' + CurrentUser.id">
                                       <font-awesome-icon icon="fa-solid fa-pen" />
                                     </router-link>
                                   </span>

@@ -65,8 +65,8 @@ const router = createRouter({
             component: ShowProfile,
         },
         {
-            path: '/UpdateProfile/:id',
-            name: 'UpdateProfile',
+            path: '/Profile/:id',
+            name: 'Profile',
             component: UpdateProfile,
         },
         {

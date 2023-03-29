@@ -94,14 +94,15 @@ export default {
         });
     },
     getTopics() {
-      axios.get('/api/topics/TopicsSelect').then(response => {
-        if (response.data) {
-          this.topics = response.data;
-          console.log(response.data);
-        } else {
-          console.error('No topics found');
-        }
-      });
+      axios.get('/api/topics/TopicsSelect')
+        .then(response => {
+          if (response.data) {
+            this.topics = response.data;
+            console.log(response.data);
+          } else {
+            console.error('No topics found');
+          }
+        });
     },
 
     showTermsAndConditions() {

@@ -72,7 +72,7 @@ class TopicsController extends Controller
     public function showTopics(Request $request)
     {
         $request->user()->authorizeRoles(['Manager', 'Admin']);
-        return Inertia::render('TopicsIndex');
+        return Inertia::render('TopicsIndex', 'StaffSubmission');
     }
 
     /**
@@ -96,7 +96,7 @@ class TopicsController extends Controller
     public function inforTopics($id)
     {
         $topics = Topics::with('ideas')->find($id);
-        $ideas = Topics::with('ideas')->find($id)->ideas;
+        $ideas = $topics->ideas;
         return response()->json(['ideas' => $ideas, 'topics' => $topics]);
     }
 

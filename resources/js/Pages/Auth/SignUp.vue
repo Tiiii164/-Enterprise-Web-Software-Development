@@ -61,7 +61,7 @@ export default {
     },
     methods: {
         async getDepartments() {
-            axios.get('/api/departments/DepartmentsIndex')    
+            axios.get('/api/departments/DepartmentsSelect')    
             .then((response) => { 
                 this.departments = response.data;
             });

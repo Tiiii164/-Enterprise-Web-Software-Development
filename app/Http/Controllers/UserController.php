@@ -22,17 +22,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        // // $user = User::with('roles', 'departments')->get();
-        // $roles = Role::all();
-        // $departments = Departments::all();
-        // return response()->json([
-        //     'user' => $user,
-        //     'roles' => $roles,
-        //     'departments' => $departments
-        // ]);
         $roles = Role::all();
         $departments = Departments::all();
         return Resource::collection(User::with('roles', 'departments')->paginate(5));
+    }
+    public function showSelect()
+    {
+        $user = User::with('roles', 'departments')->get();
+        $roles = Role::all();
+        $departments = Departments::all();
+        return response()->json([
+            'user' => $user,
+            'roles' => $roles,
+            'departments' => $departments
+        ]);
     }
     public function count()
     {
@@ -146,27 +149,25 @@ class UserController extends Controller
         return response()->json(['message' => 'Updated password successfully.']);
     }
 
+    public function edit($id)
+    {
+        $user = User::with('roles', 'departments')->find($id);
+        return response()->json($user);
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate([
-            // 'name' => 'required|string|max:255',
-            // 'email' => 'required|string|email|max:255|unique:user,email',
-            //'department' => 'required',
-            //'role' => 'required',
+            'role' => 'required',
+            'department' => 'required',
         ]);
 
         $user = User::with('roles', 'departments')->find($id);
         $user->update($request->all());
-        // $user->roles()->detach($user->role_id);
-        // $user->roles()->attach($request->role);
-        // $user->departments()->detach($user->department_id);
-        // $user->departments()->attach($request->department);
+        
+        $user->roles()->sync(Role::where('id', $request->role)->first());
+        $user->departments()->sync(Departments::where('id', $request->department)->first());
 
-        $roleId = $request->input('role');
-        $user->roles()->sync($roleId);
-
-        $departmentId = $request->input('department');
-        $user->departments()->sync($departmentId);
         return response()->json($user);
     }
 
