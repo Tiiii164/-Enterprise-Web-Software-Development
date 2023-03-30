@@ -81,6 +81,8 @@ class IdeasController extends Controller
             $file->storeAs($destination_path, $file_name);
             $file_path = $destination_path . "/" . $file_name;
             $ideas->file_path = $file_path;
+        } else {
+            $ideas->file_path = $request->input('file_path');
         }
         $ideas->topics_id = $topics_id;
         $ideas->user_id = Auth::user()->id;
