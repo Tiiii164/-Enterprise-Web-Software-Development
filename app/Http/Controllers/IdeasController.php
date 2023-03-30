@@ -16,7 +16,6 @@ use ZipArchive;
 use File;
 use Zip;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewIdea;
 
@@ -64,7 +63,7 @@ class IdeasController extends Controller
 
 
 
-    public function store(Request $request, $id)
+    public function store(Request $request, $topics_id)
     {
         $ideas = new Ideas();
         $ideas->title = $request->input('title');
@@ -80,7 +79,7 @@ class IdeasController extends Controller
             $destination_path = 'public/' . $topics_id;
             $file_name = $file->getClientOriginalName() . time();
             $file->storeAs($destination_path, $file_name);
-            $file_path = $destination_path . $file_name;
+            $file_path = $destination_path . "/" . $file_name;
             $ideas->file_path = $file_path;
         }
         $ideas->topics_id = $topics_id;
