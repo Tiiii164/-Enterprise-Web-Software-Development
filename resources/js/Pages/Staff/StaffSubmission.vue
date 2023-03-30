@@ -16,16 +16,6 @@ export default {
     this.getTopics();
   },
   methods: {
-    // getTopics(page_url) {
-    //   axios.get('page_url').then(response => {
-    //     let vm = this;
-    //     page_url = page_url || '/api/topics/TopicsIndex';
-    //     this.ideas = response.data;
-    //     console.log(response.data);
-    //     vm.makePagination(res.meta, res.links);
-    //     // console.log(topics[idea.topic_id].name);
-    //   })
-    // },
     getTopics: function(page_url){
       let vm = this;
       page_url = page_url || '/api/topics/TopicsIndex';

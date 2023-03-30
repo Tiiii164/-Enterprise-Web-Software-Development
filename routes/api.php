@@ -45,7 +45,7 @@ Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
 
 //topics
 Route::controller(TopicsController::class)->group(function () {
-    Route::get('/topics', 'getTopics');
+    Route::get('/ideas/IdeasCreate/Topic/{id}', 'getTopics');
     Route::get('/topics/TopicsSelect', 'showSelect');
     Route::get('/topics/TopicsIndex', 'index');
     Route::get('/topics/edit/{id}', 'edit');

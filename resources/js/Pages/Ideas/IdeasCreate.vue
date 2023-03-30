@@ -12,16 +12,16 @@ export default {
     DialogText
   },
 
-  computed: {
-    chosenTopic() {
-      return this.topics.find(topic => topic.id === this.form.topics_id);
-    },
-    isDeadlinePassed() {
-      if (!this.chosenTopic) return false; // if no topic is chosen, return false
-      const deadline = new Date(this.chosenTopic.closure_date);
-      return deadline < this.currentTime;
-    },
-  },
+  // computed: {
+  //   chosenTopic() {
+  //     return this.topics.find(topic => topic.id === this.form.topics_id);
+  //   },
+  //   isDeadlinePassed() {
+  //     if (!this.chosenTopic) return false; // if no topic is chosen, return false
+  //     const deadline = new Date(this.chosenTopic.closure_date);
+  //     return deadline < this.currentTime;
+  //   },
+  // },
 
   data() {
     return {
@@ -29,7 +29,7 @@ export default {
       user: [],
       topics: [],
       categories: [],
-      currentTime: new Date(),
+      // currentTime: new Date(),
       form: {
         title: '',
         text: '',
@@ -93,16 +93,15 @@ export default {
           this.categories = response.data;
         });
     },
-    getTopics() {
-      axios.get('/api/topics/TopicsSelect')
-        .then(response => {
-          if (response.data) {
-            this.topics = response.data;
-            console.log(response.data);
-          } else {
-            console.error('No topics found');
-          }
-        });
+    async getTopics() {
+      try {
+        const response = await axios.get(`/api/ideas/IdeasCreate/Topic/${this.$route.params.id}`)
+        const {closure_date} = response.data;
+        this.topics.closure_date = closure_date;
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     showTermsAndConditions() {
@@ -197,7 +196,8 @@ export default {
                 </div>
               </div>
             </div>
-            <div v-if="isDeadlinePassed">
+            <div v-if="Date.now() > new Date(this.topics.closure_date)">
+            <!-- <div v-if="isDeadlinePassed"> -->
               <h5 class="text-danger">The deadline has passed</h5>
             </div>
             <div v-else>
