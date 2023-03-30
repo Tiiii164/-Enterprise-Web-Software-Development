@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -21,14 +22,18 @@ class UserController extends Controller
      */
     public function index()
     {
+        $roles = Role::all();
+        $departments = Departments::all();
+        return Resource::collection(User::with('roles', 'departments')->paginate(5));
+    }
+    public function showSelect()
+    {
         $user = User::with('roles', 'departments')->get();
         $roles = Role::all();
-        $permissions = Permission::all();
         $departments = Departments::all();
         return response()->json([
             'user' => $user,
             'roles' => $roles,
-            'permissions' => $permissions,
             'departments' => $departments
         ]);
     }
@@ -42,8 +47,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showUsersCreate()
+    public function showUsersCreate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersCreate');
     }
 
@@ -81,18 +87,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showUsers()
+    public function showUsers(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersIndex');
     }
 
-    public function showUsersUpdate()
+    public function showUsersUpdate(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersUpdate');
     }
 
-    public function showUsersShow()
+    public function showUsersShow(Request $request)
     {
+        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('UsersShow');
     }
 
@@ -100,12 +109,10 @@ class UserController extends Controller
     {
         $user = User::with('roles', 'departments')->find($id);
         $roles = $user->roles;
-$permissions = $user->permissions;
-$departments = $user->departments;
+        $departments = $user->departments;
         return response()->json([
             'user' => $user,
             'roles' => $roles,
-            'permissions' => $permissions,
             'departments' => $departments
         ]);
     }
@@ -142,27 +149,25 @@ $departments = $user->departments;
         return response()->json(['message' => 'Updated password successfully.']);
     }
 
+    public function edit($id)
+    {
+        $user = User::with('roles', 'departments')->find($id);
+        return response()->json($user);
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate([
-            // 'name' => 'required|string|max:255',
-            // 'email' => 'required|string|email|max:255|unique:user,email',
-            'department' => 'required',
             'role' => 'required',
+            'department' => 'required',
         ]);
 
-        $user = User::find($id);
+        $user = User::with('roles', 'departments')->find($id);
         $user->update($request->all());
-        // $user->roles()->detach($user->role_id);
-        // $user->roles()->attach($request->role);
-        // $user->departments()->detach($user->department_id);
-        // $user->departments()->attach($request->department);
+        
+        $user->roles()->sync(Role::where('id', $request->role)->first());
+        $user->departments()->sync(Departments::where('id', $request->department)->first());
 
-        $roleId = $request->input('role');
-        $user->roles()->sync($roleId);
-
-        $departmentId = $request->input('department');
-        $user->departments()->sync($departmentId);
         return response()->json($user);
     }
 

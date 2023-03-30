@@ -12,14 +12,16 @@ export default {
     DialogText
   },
 
-  computed: {
-    isDeadlinePassed() {
-      return this.topics.some(topic => {
-        const deadline = new Date(topic.closure_date);
-        return deadline < this.currentTime;
-      });
-    },
-  },
+  // computed: {
+  //   chosenTopic() {
+  //     return this.topics.find(topic => topic.id === this.form.topics_id);
+  //   },
+  //   isDeadlinePassed() {
+  //     if (!this.chosenTopic) return false; // if no topic is chosen, return false
+  //     const deadline = new Date(this.chosenTopic.closure_date);
+  //     return deadline < this.currentTime;
+  //   },
+  // },
 
   data() {
     return {
@@ -27,8 +29,15 @@ export default {
       user: [],
       topics: [],
       categories: [],
-      currentTime: new Date(),
+      // currentTime: new Date(),
       form: {
+        title: '',
+        text: '',
+        file_path: '',
+        categories_id: '',
+        topics_id: '',
+        user_id: '',
+        departments_id: '',
         termsAndConditions: false
       },
       showDialog: false,
@@ -42,7 +51,6 @@ export default {
       text: '',
       file_path: '',
       categories_id: '',
-      topics_id: '',
       user_id: '',
       departments_id: '',
       termsAndConditions: false,
@@ -52,7 +60,7 @@ export default {
         const config = {
           headers: { 'content-type': 'multipart/form-data' }
         }
-        const response = await axios.post(`/api/ideas/IdeasCreate/${route.params.topics_id}`, form, config);
+        const response = await axios.post(`/api/ideas/IdeasCreate/Topic/${route.params.id}`, form, config);
         //const response = await axios.post(`/api/ideas/IdeasCreate/`, form);
         router.push(`/TopicsShow/${route.params.topics_id}`);
         const customAlert = document.createElement('div');
@@ -82,32 +90,21 @@ export default {
     onFileSelect(event) {
       this.form.file_path = event.target.files[0];
     },
-    async getCategories() {
+    getCategories() {
       axios.get('/api/categories')
         .then((response) => {
           this.categories = response.data;
         });
-      axios.get('/api/topics')
-        .then((response) => {
-          this.topics = response.data;
-        });
     },
-    getTopics() {
-      axios.get('/api/topics/TopicsIndex').then(response => {
-        if (response.data) {
-          this.topics = response.data;
-          console.log(response.data);
-          const currentTime = new Date();
-          this.topics.forEach(topic => {
-            const deadline = new Date(topic.closure_date);
-            console.log('Deadline:', deadline);
-            console.log('Current time:', currentTime);
-            console.log(topic.id);
-          });
-        } else {
-          console.error('No topics found');
-        }
-      });
+    async getTopics() {
+      try {
+        const response = await axios.get(`/api/ideas/IdeasCreate/Topic/${this.$route.params.id}`)
+        const {closure_date} = response.data;
+        this.topics.closure_date = closure_date;
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     showTermsAndConditions() {
@@ -135,21 +132,20 @@ export default {
                 <h3>Create new Ideas</h3>
               </div>
               <div class="justify-content-md-end">
-                <router-link to="/IdeasIndex" class="btn btn-primary catebutton">Back to list</router-link>
+                <router-link to="/TopicsIndex" class="btn btn-primary catebutton">Back to list</router-link>
               </div>
             </div>
-          </div>
-
-          <div class="card-body border-light">
-            <div class="mb-3 row">
-              <label class="col-sm-1 col-form-label"><strong>Title</strong></label>
-              <div class="col-sm-11">
+        </div>
+        <div class="card-body border-light">
+          <div class="mb-3 row">
+            <label class="col-sm-12 col-form-label"><strong>Title</strong></label>
+            <div class="col-sm-12">
                 <input type="text" name="title" class="form-control" v-model="form.title" placeholder="Enter Title">
               </div>
             </div>
             <div class="mb-3 row">
-              <label class="col-sm-1 col-form-label"><strong>Text</strong></label>
-              <div class="col-sm-11">
+              <label class="col-sm-12 col-form-label"><strong>Text</strong></label>
+              <div class="col-sm-12">
                 <input type="text" name="title" class="form-control" v-model="form.text" placeholder="Enter Idea">
               </div>
             </div>
@@ -160,16 +156,16 @@ export default {
                                                                                                     </div>
                                                                                                   </div> -->
             <div class="mb-3 row">
-              <label class="col-sm-1 col-form-label"><strong>File Path</strong></label>
-              <div class="col-sm-11">
-                <input type="file" name="file_path" class="form-control-file" v-on:change="onFileSelect" accept=".txt"
+              <label class="col-sm-12 col-form-label"><strong>File Path</strong></label>
+              <div class="col-sm-12">
+                <input type="file" name="file_path" class="form-control-file form-control" v-on:change="onFileSelect" accept=".txt"
                   placeholder="">
               </div>
             </div>
 
             <div class="mb-3 row">
-              <label class="col-sm-1 col-form-label"><strong>Category</strong></label>
-              <div class="col-sm-11">
+              <label class="col-sm-12 col-form-label"><strong>Category</strong></label>
+              <div class="col-sm-12">
                 <select class="form-select form-control" v-model="form.categories_id">
                   <option v-for="data in categories" :value="data.id">{{ data.name }}</option>
                 </select>
@@ -177,12 +173,11 @@ export default {
             </div>
             <div class="mb-3 row">
               <!-- <label class="col-sm-1 col-form-label"><strong>Topic</strong></label>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-sm-11">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <select class="form-select form-control" v-model="form.topics_id">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </select>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
-
+              <div class="col-sm-11">
+                <select class="form-select form-control" v-model="form.id">
+                  <option v-for="data in topics" :value="data.id">{{ data.name }}</option>
+                </select>
+              </div> -->
             </div>
             <div>
               <div>
@@ -204,17 +199,15 @@ export default {
                 </div>
               </div>
             </div>
-            <!-- <div class="text-danger" v-if="isDeadlinePassed">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <h5>The deadline has passed</h5>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div v-else>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Submit
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div> -->
-            <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
-              Submit
-            </button>
+            <div v-if="Date.now() > new Date(this.topics.closure_date)">
+            <!-- <div v-if="isDeadlinePassed"> -->
+              <h5 class="text-danger">The deadline has passed</h5>
+            </div>
+            <div v-else>
+              <button type="submit" class="btn btn-primary btn-lg" :disabled="!form.termsAndConditions">
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,6 +15,11 @@ class RolesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        return Resource::collection(Role::paginate(5));
+    }
+
+    public function showSelect()
     {
         $roles = Role::all();
         return response()->json($roles);
@@ -31,8 +37,9 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showRolesCreate()
+    public function showRolesCreate(Request $request)
     {
+        $request->user()->authorizeRoles(['Admin']);
         return Inertia::render('RoleCreate');
     }
 
@@ -57,8 +64,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showRoles()
+    public function showRoles(Request $request)
     {
+        $request->user()->authorizeRoles(['Admin']);
         return Inertia::render('RolesIndex');
     }
 
@@ -68,8 +76,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showRolesUpdate()
+    public function showRolesUpdate(Request $request)
     {
+        $request->user()->authorizeRoles(['Admin']);
         return Inertia::render('RolesUpdate');
     }
 

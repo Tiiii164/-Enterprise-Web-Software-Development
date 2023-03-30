@@ -27,7 +27,7 @@ import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
 import TopicsShow from "../Pages/Topics/TopicsShow.vue"
 //Ideas
 import IdeasCreate from "../Pages/Ideas/IdeasCreate.vue"
-import IdeasIndex from "../Pages/Ideas/IdeasIndex.vue"
+// import IdeasIndex from "../Pages/Ideas/IdeasIndex.vue"
 import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
 import IdeasShow from "../Pages/Ideas/IdeasShow.vue"
 //profile
@@ -65,8 +65,8 @@ const router = createRouter({
             component: ShowProfile,
         },
         {
-            path: '/UpdateProfile/:id',
-            name: 'UpdateProfile',
+            path: '/Profile/:id',
+            name: 'Profile',
             component: UpdateProfile,
         },
         {
@@ -145,15 +145,15 @@ const router = createRouter({
         },
         //Ideas
         {
-            path: '/ideasCreate/:topics_id',
+            path: '/ideasCreate/Topic/:id',
             name: 'IdeasCreate',
             component: IdeasCreate,
         },
-        {
-            path: '/ideasIndex',
-            name: 'IdeasIndex',
-            component: IdeasIndex,
-        },
+        // {
+        //     path: '/ideasIndex',
+        //     name: 'IdeasIndex',
+        //     component: IdeasIndex,
+        // },
         {
             path: '/ideasUpdate/:id',
             name: 'IdeasUpdate',

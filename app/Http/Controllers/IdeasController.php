@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Resource;
 use App\Models\Ideas;
 use App\Models\Topics;
-use App\Models\Reacts;
-use App\Models\Views;
-use App\Models\Comments;
-use App\Models\Categories;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewIdea;
 
 class IdeasController extends Controller
 {
@@ -23,13 +21,16 @@ class IdeasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index($id)
+    {   
+        return Resource::collection(Ideas::where('topics_id', '=', $id)->paginate(5));
+    }
+
+    public function showSelect()
+    {   
         $ideas = Ideas::with('topics')->get();
         $topics = Topics::all();
         return response()->json(['ideas' => $ideas, 'topics' => $topics]);
-        // $ideas = Ideas::all();
-        // return response()->json($ideas);
     }
 
     public function countIdeas()
@@ -57,7 +58,7 @@ class IdeasController extends Controller
 
 
 
-    public function store(Request $request, $topics_id)
+    public function store(Request $request, $id)
     {
         $ideas = new Ideas();
         $ideas->title = $request->input('title');
@@ -66,6 +67,7 @@ class IdeasController extends Controller
         // Chuyển đổi mảng file_path thành chuỗi với hàm implode()
         // $ideas->file_path = implode($request->input('file_path'));
         // $ideas->file_path = $request->input('file_path');
+        
         // Handle file upload
         if ($request->hasFile('file_path')) {
             $file = $request->file('file_path');
@@ -81,6 +83,11 @@ class IdeasController extends Controller
             ->where('user_id', Auth::user()->id)
             ->value('departments_id');
         $ideas->save();
+
+        $user = Auth::user();
+
+        Mail::to('anhkhoa431996@gmail.com')
+            ->send(new NewIdea($user, $ideas));
         return response()->json($ideas);
     }
 

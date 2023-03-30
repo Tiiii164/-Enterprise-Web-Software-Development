@@ -94,6 +94,9 @@ a:active {
 .btnValid {
     color: #77DD77;
   }
+.btnWarning {
+    color: #fdfd96;
+}
 .btnExpired {
     color: #FF6961;
 }
@@ -203,9 +206,10 @@ input{
 }
 .background2{
     opacity: 0.5;
-}
-.welcomeuser{
     z-index: 1;
+}
+.welcomeUser{
+    z-index: 0;
 }
 .cateth{
     text-align: center;
@@ -387,6 +391,17 @@ input{
         background-repeat: no-repeat;
         height: 100vh;
     }
+    .homeText {
+        margin-top: 6rem;
+    }
+    .homeImage {
+        background-image: linear-gradient(rgba(250,250,250, 0.5),
+        rgba(250,250,250, 0.6)), url("../css/background1.jpg");
+        background-size: 100% 100%; 
+        background-repeat: no-repeat; 
+        background-position: center;
+        height: 60vh;  
+    }
     .welcomeuser{
         margin-top: 100px;
     }
@@ -411,23 +426,20 @@ input{
         float: right;
     }
     .evaluation{
-        padding:20px;
-        margin:40px;
         background-color: #DC3545 !important;
         color: white;
     }
     .universitycollab{
-        width: 1000px;
-        height: 667px;
+        width: 60%;
+        height: 100%;
     }
     .greenwichimg{
-        width: 600px;
-        height: 400px;
+        width: 100%;
+        height: auto;
     }
     .gwtext{
         width:500px;
         margin-right: 100px;
-        margin-top: 100px;
     }
     .greenwichmodify{
         display: flex;
@@ -454,7 +466,6 @@ input{
         margin-top: 70px;
     }
     .janeharrington{
-        color:white;
         float:right;
         margin-right:60px;
     }
@@ -467,7 +478,7 @@ input{
         background-image: url("./backgroundImg.png");
         background-size: cover;
         background-repeat: no-repeat;
-        height: 100vh;
+        height: 200vh;
     }
     .signup{
         margin-right: 50px;
@@ -489,6 +500,17 @@ input{
     .background2{
         height: 300px;
         width: auto;
+    }
+    .homeImage {
+        background-image: url("../css/UoG_mobile.jpeg");
+        background-size: 100% 100%; 
+        background-repeat: no-repeat; 
+        background-position: center;
+        height: 80vh;  
+    }
+    .homeText {
+        background-color:rgba(250,250,250, 0.6);
+        margin-top: 9rem;
     }
     .welcometext{
         font-size: 25px;
@@ -519,6 +541,7 @@ input{
         font-size: 16px;
     }
     .evaluation {
+        margin-top: 10px !important;
         background-color: #DC3545 !important;
         color: white;
     }
@@ -527,9 +550,8 @@ input{
         width: 318px;
     }
     .greenwichimg{
-        height: 200px;
-        width: 318px;
-        margin-top: 50px;
+        width: 100%;
+        height: auto;
     }
     .gwtext{
         width: 230px;
@@ -538,7 +560,6 @@ input{
         align-items: center;
     }
     .janeharrington{
-        color:white;
         text-align: center;
         padding: 20px;
         font-size: 12px;
