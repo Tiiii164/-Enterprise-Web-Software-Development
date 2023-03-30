@@ -71,7 +71,7 @@ class LaratrustSetupTables extends Migration
             $table->id();
             $table->string('title');
             $table->string('text');
-            $table->text('file_path');
+            $table->text('file_path')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('views_count')->default(0);
             $table->unsignedBigInteger('likes_count')->default(0);

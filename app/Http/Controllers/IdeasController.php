@@ -10,6 +10,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewIdea;
 
@@ -64,10 +65,19 @@ class IdeasController extends Controller
         $ideas->text = $request->input('text');
         $ideas->categories_id = $request->input('categories_id');
         // Chuyển đổi mảng file_path thành chuỗi với hàm implode()
-        $ideas->file_path = implode($request->input('file_path'));
+        // $ideas->file_path = implode($request->input('file_path'));
         // $ideas->file_path = $request->input('file_path');
-        // $ideas->topics_id = DB::table('ideas')->value('topics_id');
-        $ideas->topics_id = $id;
+        
+        // Handle file upload
+        if ($request->hasFile('file_path')) {
+            $file = $request->file('file_path');
+            $destination_path = 'public/' . $topics_id;
+            $file_name = $file->getClientOriginalName() . time();
+            $file->storeAs($destination_path, $file_name);
+            $file_path = $destination_path . $file_name;
+            $ideas->file_path = $file_path;
+        }
+        $ideas->topics_id = $topics_id;
         $ideas->user_id = Auth::user()->id;
         $ideas->departments_id = DB::table('departments_user')
             ->where('user_id', Auth::user()->id)

@@ -57,9 +57,12 @@ export default {
     });
     const handleCreateIdeas = async () => {
       try {
-        const response = await axios.post(`/api/ideas/IdeasCreate/Topic/${route.params.id}`, form);
-        //const response = await axios.post(`/api/ideas/IdeasCreate/Topic/`, form);
-        router.push(`/TopicsShow/${route.params.id}`);
+        const config = {
+          headers: { 'content-type': 'multipart/form-data' }
+        }
+        const response = await axios.post(`/api/ideas/IdeasCreate/Topic/${route.params.id}`, form, config);
+        //const response = await axios.post(`/api/ideas/IdeasCreate/`, form);
+        router.push(`/TopicsShow/${route.params.topics_id}`);
         const customAlert = document.createElement('div');
         customAlert.classList.add('custom-alert');
         customAlert.innerHTML = `
@@ -120,7 +123,7 @@ export default {
 <template>
   <NavBar></NavBar>
   <div class="backgroundsu">
-    <form @submit.prevent="handleCreateIdeas" method="post">
+    <form @submit.prevent="handleCreateIdeas" method="post" enctype="multipart/form-data">
       <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
         <div class="card border-light">
           <div class="card-header border-light">
@@ -147,11 +150,11 @@ export default {
               </div>
             </div>
             <!-- <div class="mb-3 row">
-                                                                                              <label class="col-sm-1 col-form-label"><strong>File Path</strong></label>
-                                                                                              <div class="col-sm-11">
-                                                                                                <input type="file" name="file_path" class="form-control-file" v-model="form.file_path" placeholder="">
-                                                                                              </div>
-                                                                                            </div> -->
+                                                                                                    <label class="col-sm-1 col-form-label"><strong>File Path</strong></label>
+                                                                                                    <div class="col-sm-11">
+                                                                                                      <input type="file" name="file_path" class="form-control-file" v-model="form.file_path" placeholder="">
+                                                                                                    </div>
+                                                                                                  </div> -->
             <div class="mb-3 row">
               <label class="col-sm-12 col-form-label"><strong>File Path</strong></label>
               <div class="col-sm-12">
