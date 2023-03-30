@@ -13,6 +13,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+
 
 class IdeasController extends Controller
 {
@@ -67,8 +69,8 @@ class IdeasController extends Controller
         // Handle file upload
         if ($request->hasFile('file_path')) {
             $file = $request->file('file_path');
-            $destination_path = 'uploads/';
-            $file_name = $file->getClientOriginalName();
+            $destination_path = 'public/' . $topics_id;
+            $file_name = $file->getClientOriginalName() . time();
             $file->storeAs($destination_path, $file_name);
             $file_path = $destination_path . $file_name;
             $ideas->file_path = $file_path;
@@ -78,7 +80,6 @@ class IdeasController extends Controller
         $ideas->departments_id = DB::table('departments_user')
             ->where('user_id', Auth::user()->id)
             ->value('departments_id');
-
         $ideas->save();
         return response()->json($ideas);
     }
