@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportExcel;
+use ZipArchive;
+use File;
+use Zip;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
@@ -157,6 +163,33 @@ class IdeasController extends Controller
         $ideas->delete();
         return response()->json(['message' => 'Idea deleted']);
     }
+    
+    public function exportExcel($id)
+    {
+        return Excel::download(new ExportExcel($id), 'Ideas.xlsx'); 
+    }
+
+    public function exportZIP($id)
+    {
+        $zip = new ZipArchive($id);
+
+        $fileName = 'Ideas.zip';
+
+        if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
+        {
+            $files = File::files(public_path('Zip_Ideas'));
+
+            foreach ($files as $key => $value) {
+                $file = basename($value);
+                $zip->addFile($value, $file);
+            }
+             
+            $zip->close();
+        }
+
+        return response()->download(public_path($fileName));
+    }
+
     // public function storeLike(Request $request)
     // {
     //     $user_id = Auth::id();

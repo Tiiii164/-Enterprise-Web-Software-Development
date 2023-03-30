@@ -73,6 +73,10 @@ Route::controller(IdeasController::class)->group(function () {
     //Route::post('/ideas/IdeasCreate', 'store');
     Route::patch('/ideas/IdeasUpdate/{id}', 'update');
     Route::delete('/ideas/delete/{id}', 'destroy');
+    Route::get('/ExportExcel/{id}', 'exportExcel');
+    Route::get('/ExportZIP/{id}', 'exportZIP');
+    Route::post('upload-file', 'uploadFile');
+    Route::post('remove-file', 'removeFile');
 });
 
 //Reacts

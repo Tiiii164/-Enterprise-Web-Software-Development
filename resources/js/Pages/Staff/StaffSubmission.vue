@@ -6,6 +6,14 @@ export default {
     NavBar,
     TheFooter
   },
+  methods: {
+    ExportExcel($id) {
+      window.location.href = '/api/ExportExcel/' + $id;
+    },
+    ExportZIP($id) {
+      window.location.href = '/api/ExportZIP/' + $id;
+    }
+},
   data() {
     return {
       topics: [],
@@ -100,9 +108,13 @@ export default {
                 <td>
                   <div>
                     <router-link :to="'/TopicsShow/' + topics.id" class="btnExpired me-md-4 "><span class="d-none d-md-inline">View Ideas</span> <font-awesome-icon icon="fa-solid fa-book" /></router-link>
-                    <a class="btnExpired me-md-4" ><span class="d-none d-md-inline">Export Excel</span> <font-awesome-icon icon="fa-solid fa-file-excel" /></a>
-                    <a class="btnExpired"><span class="d-none d-md-inline">Export Zip</span> <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" /></a>
-                  </div>
+                        <a type="button" :href="`/api/ExportExcel/`+ topics.id" download="Ideas.xlsx">
+                            <button @click="ExportExcel" class="btn btn-success me-2">Export Excel</button>
+                        </a>                    
+                        <a type="button" :href="`/api/ExportZIP/`+ topics.id" download="Ideas-zip.zip">
+                            <button @click="ExportZIP" class="btn btn-danger me-2">Export ZIP</button>
+                        </a>                  
+                    </div>
                 </td>
               </tr>
             </tbody>
