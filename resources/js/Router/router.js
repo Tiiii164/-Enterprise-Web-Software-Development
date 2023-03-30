@@ -16,9 +16,10 @@ import CategoriesCreate from "../Pages/Categories/CategoriesCreate.vue"
 import CategoriesIndex from "../Pages/Categories/CategoriesIndex.vue"
 import CategoriesUpdate from "../Pages/Categories/CategoriesUpdate.vue"
 //user
-import UsersCreate from"../Pages/Users/UsersCreate.vue"
+import UsersCreate from "../Pages/Users/UsersCreate.vue"
 import UsersIndex from "../Pages/Users/UsersIndex.vue"
 import UsersUpdate from "../Pages/Users/UsersUpdate.vue"
+import UsersShow from "../Pages/Users/UsersShow.vue"
 //Topics
 import TopicsCreate from "../Pages/Topics/TopicsCreate.vue"
 import TopicsIndex from "../Pages/Topics/TopicsIndex.vue"
@@ -26,7 +27,7 @@ import TopicsUpdate from "../Pages/Topics/TopicsUpdate.vue"
 import TopicsShow from "../Pages/Topics/TopicsShow.vue"
 //Ideas
 import IdeasCreate from "../Pages/Ideas/IdeasCreate.vue"
-import IdeasIndex from "../Pages/Ideas/IdeasIndex.vue"
+// import IdeasIndex from "../Pages/Ideas/IdeasIndex.vue"
 import IdeasUpdate from "../Pages/Ideas/IdeasUpdate.vue"
 import IdeasShow from "../Pages/Ideas/IdeasShow.vue"
 //profile
@@ -38,90 +39,90 @@ import Statistics from "../Pages/Statistics.vue"
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-    {
-        path: '/',
-        name: 'Home',
-        component: Home,
-    },
-    {
-        path: '/signup',
-        name: 'Sign Up',
-        component: SignUp
-    },
-    {
-        path: '/signin',
-        name: 'Sign In',
-        component: SignIn,
-    },
-    {
-        path: '/StaffSubmission',
-        name: 'Staff Submission',
-        component: StaffSub,
-    },
-    {
-        path: '/ShowProfile',
-        name: 'ShowProfile',
-        component: ShowProfile,
-    },
-    {
-        path: '/UpdateProfile/:id',
-        name: 'UpdateProfile',
-        component: UpdateProfile,
-    },
-    {
-        path: '/ChangePassword',
-        name: 'ChangePassword',
-        component: ChangePassword,
-    },
-    //role
-    {
-        path: '/RolesIndex',
-        name: 'RolesIndex',
-        component: RolesIndex,
-    },
-    {
-        path: '/RolesCreate',
-        name: 'RolesCreate',
-        component: RolesCreate,
-    },
-    {
-        path: '/RolesUpdate/:id',
-        name: 'RolesUpdate',
-        component: RolesUpdate,
-    },
-    //department
-    {
-        path: '/DepartmentsIndex',
-        name: 'DepartmentsIndex',
-        component: DepartmentsIndex,
-    },
-    {
-        path: '/DepartmentsCreate',
-        name: 'DepartmentsCreate',
-        component: DepartmentsCreate,
-    },
-    {
-        path: '/DepartmentsUpdate/:id',
-        name: 'DepartmentsUpdate',
-        component: DepartmentsUpdate,
-    },
-    //category
-    {
-        path: '/CategoriesIndex',
-        name: 'CategoriesIndex',
-        component: CategoriesIndex,
-    },
-    {
-        path: '/CategoriesCreate',
-        name: 'CategoriesCreate',
-        component: CategoriesCreate,
-    },
-    {
-        path: '/CategoriesUpdate/:id',
-        name: 'CategoriesUpdate',
-        component: CategoriesUpdate,
-    },
-    //topics
+        {
+            path: '/',
+            name: 'Home',
+            component: Home,
+        },
+        {
+            path: '/signup',
+            name: 'Sign Up',
+            component: SignUp
+        },
+        {
+            path: '/signin',
+            name: 'Sign In',
+            component: SignIn,
+        },
+        {
+            path: '/StaffSubmission',
+            name: 'Staff Submission',
+            component: StaffSub,
+        },
+        {
+            path: '/ShowProfile',
+            name: 'ShowProfile',
+            component: ShowProfile,
+        },
+        {
+            path: '/Profile/:id',
+            name: 'Profile',
+            component: UpdateProfile,
+        },
+        {
+            path: '/ChangePassword',
+            name: 'ChangePassword',
+            component: ChangePassword,
+        },
+        //role
+        {
+            path: '/RolesIndex',
+            name: 'RolesIndex',
+            component: RolesIndex,
+        },
+        {
+            path: '/RolesCreate',
+            name: 'RolesCreate',
+            component: RolesCreate,
+        },
+        {
+            path: '/RolesUpdate/:id',
+            name: 'RolesUpdate',
+            component: RolesUpdate,
+        },
+        //department
+        {
+            path: '/DepartmentsIndex',
+            name: 'DepartmentsIndex',
+            component: DepartmentsIndex,
+        },
+        {
+            path: '/DepartmentsCreate',
+            name: 'DepartmentsCreate',
+            component: DepartmentsCreate,
+        },
+        {
+            path: '/DepartmentsUpdate/:id',
+            name: 'DepartmentsUpdate',
+            component: DepartmentsUpdate,
+        },
+        //category
+        {
+            path: '/CategoriesIndex',
+            name: 'CategoriesIndex',
+            component: CategoriesIndex,
+        },
+        {
+            path: '/CategoriesCreate',
+            name: 'CategoriesCreate',
+            component: CategoriesCreate,
+        },
+        {
+            path: '/CategoriesUpdate/:id',
+            name: 'CategoriesUpdate',
+            component: CategoriesUpdate,
+        },
+        //topics
         {
             path: '/topicsCreate',
             name: 'TopicsCreate',
@@ -142,18 +143,17 @@ const router = createRouter({
             name: 'TopicsShow',
             component: TopicsShow,
         },
-
         //Ideas
         {
-            path: '/ideasCreate',
+            path: '/ideasCreate/Topic/:id',
             name: 'IdeasCreate',
             component: IdeasCreate,
         },
-        {
-            path: '/ideasIndex',
-            name: 'IdeasIndex',
-            component: IdeasIndex,
-        },
+        // {
+        //     path: '/ideasIndex',
+        //     name: 'IdeasIndex',
+        //     component: IdeasIndex,
+        // },
         {
             path: '/ideasUpdate/:id',
             name: 'IdeasUpdate',
@@ -164,29 +164,34 @@ const router = createRouter({
             name: 'IdeasShow',
             component: IdeasShow,
         },
-    //user
-    {
-        path: '/UsersIndex',
-        name: 'UsersIndex',
-        component: UsersIndex,
-    },
-    {
-        path: '/UsersCreate',
-        name: 'UsersCreate',
-        component: UsersCreate,
-    },
-    {
-        path: '/UsersUpdate/:id',
-        name: 'UsersUpdate',
-        component: UsersUpdate,
-    },
-    //Statistics
-    {
-        path: '/Statistics',
-        name: 'Statistics',
-        component: Statistics,
-    },
-]
+        //user
+        {
+            path: '/UsersIndex',
+            name: 'UsersIndex',
+            component: UsersIndex,
+        },
+        {
+            path: '/UsersCreate',
+            name: 'UsersCreate',
+            component: UsersCreate,
+        },
+        {
+            path: '/UsersUpdate/:id',
+            name: 'UsersUpdate',
+            component: UsersUpdate,
+        },
+        {
+            path: '/UsersShow/:id',
+            name: 'UsersShow',
+            component: UsersShow,
+        },
+        //Statistics
+        {
+            path: '/Statistics',
+            name: 'Statistics',
+            component: Statistics,
+        },
+    ]
 })
 
 function isAuthenticated() {
@@ -196,7 +201,7 @@ function isAuthenticated() {
 router.beforeEach((to, from, next) => {
 
     if (to.path !== '/signup' && to.path !== '/signin' && !isAuthenticated()) {
-        return next({path: '/signup'})
+        return next({ path: '/signup' })
 
     }
     return next()

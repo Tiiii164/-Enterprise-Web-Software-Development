@@ -72,9 +72,8 @@ export default {
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-6 text-black">
-        <div class="px-5 ms-xl-4">
-          
-          <span class="h1 fw-bold mb-0">Logo</span>
+        <div class="navbar-brand text-center mt-4 start-50">
+          <img src="../../../css/logoUoG.png" alt="Logo">
         </div>
         <p class="list-disc text-danger" v-if="typeof errors === 'string'">{{ errors }}</p>
         <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
@@ -91,7 +90,7 @@ export default {
               <span id="passwordError" style="color:red;"></span>
             </div>
             <div class="pt-1 mb-4">
-              <button type="submit" class="btn btn-info btn-lg btn-block">Sign in</button>
+              <button type="submit" class="btn btn-info btn-lg btn-block text-light">Sign in</button>
             </div>
             <p>Don't have an account? <router-link class="link-info" to="/signup">Sign Up here </router-link></p>
           </form>

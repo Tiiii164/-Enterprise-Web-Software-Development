@@ -57,21 +57,21 @@ export default {
             <form>
               <div class="mb-3 row">
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label"><h4>Name</h4></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-12 col-form-label"><h4>Name</h4></label>
+                    <div class="col-sm-12">
                       <input type="text" name="name" class="form-control" v-model="form.name" placeholder="Enter Topic">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label"><h4>Closure Date</h4></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-12 col-form-label"><h4>Closure Date</h4></label>
+                    <div class="col-sm-12">
                       <input type="date" name="name" class="form-control" v-model="form.closure_date"
                         placeholder="Enter Closure Date">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label"><h4>Final Closure Date</h4></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-12 col-form-label"><h4>Final Closure Date</h4></label>
+                    <div class="col-sm-12">
                       <input type="date" name="name" class="form-control" v-model="form.final_closure_date"
                         placeholder="Enter Final Closure Date">
                     </div>

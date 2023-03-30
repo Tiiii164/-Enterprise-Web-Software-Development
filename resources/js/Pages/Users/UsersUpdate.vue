@@ -14,8 +14,6 @@ export default {
       user: {
         email:"",
         name: "",
-        // role:"",
-        // department:"",
         _method: "patch",
       },
       departments: [],   
@@ -25,28 +23,29 @@ export default {
   created() {
     this.showUsers();
     this.getUser();
+    // this.getRoles();
     // this.getDepartments();
   },
   methods: {
     async getUser() {
-      axios.get('/api/user/UsersIndex')
+      axios.get('/api/user/UsersSelect')
       .then(response => {
         this.roles = response.data.roles,
-        this.departments = response.data.departments,
-        console.log(response.data)
+        this.departments = response.data.departments
+        //console.log(response.data)
       })
       .catch (error => {console.log(error)})
     },
     async showUsers() {
       try {
-        await axios.patch(`/api/user/UsersUpdate/${this.$route.params.id}`)
-        .then((response) => {
-          const { email, name, role, department } = response.data;
+        const response = await axios.get(`/api/user/UsersEdit/${this.$route.params.id}`)
+        const { email, name, roles, departments } = response.data;
           this.user.email = email;
           this.user.name = name;
-          this.user.role = role;
-          this.user.department = department;
-            });
+          this.user.role = roles[0].id;
+          this.user.department = departments[0].id;
+        //this.user = response.data.user;
+        console.log(response.data)
       } catch (error) {
         console.log(error);
       }
@@ -62,20 +61,20 @@ export default {
         console.log(error);
       }
     },
+  
+  //   async getRoles() {
+  //       axios.get('/api/roles/RolesSelect')
+  //       .then(response => {
+  //         this.roles = response.data;
+  //   });
+  // },
+
   //   async getDepartments() {
-  //       axios.get('/api/departments/DepartmentsIndex')
+  //       axios.get('/api/departments/DepartmentsSelect')
   //       .then((response) => { 
   //         this.departments = response.data;
   //   });
   // },
-  
-  //   async getRoles() {
-  //       axios.get('/api/roles/RolesIndex')
-  //       .then(response => {
-  //         this.roles = response.data;
-  //         console.log(response.data);
-  //   });
-  // }
 },  
 }
 </script>
@@ -99,28 +98,28 @@ export default {
                 <form @submit.prevent="updateUser">
                     <div class="mb-3 row">
                             <div class="form-group">
-                              <label class="col-sm-2 col-form-label"><h4>Email</h4></label>
-                              <div class="col-sm-10">
+                              <label class="col-sm-12 col-form-label"><h4>Email</h4></label>
+                              <div class="col-sm-12">
                                 <input type="text" name="email" class="form-control" v-model="user.email">
                               </div>
                             </div>
                             <div class="form-group">
-                              <label class="col-sm-2 col-form-label"><h4>Name</h4></label>
-                              <div class="col-sm-10">
+                              <label class="col-sm-12 col-form-label"><h4>Name</h4></label>
+                              <div class="col-sm-12">
                                 <input type="text" name="name" class="form-control" v-model="user.name">                              
                               </div>
                             </div>
                             <div class="form-group">  
-                                <label class="col-sm-2 col-form-label" for="role"><h4>Role:</h4></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-12 col-form-label"><h4>Role:</h4></label>
+                                <div class="col-sm-12">
                                   <select class="form-select form-control" name="role" v-model="user.role">
                                     <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
                                   </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 col-form-label"><h4>Departments:</h4></label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-12 col-form-label"><h4>Departments:</h4></label>
+                                <div class="col-sm-12">
                                   <select class="form-select form-control" name="department" v-model="user.department">
                                     <option v-for="department in departments" :value="department.id">{{ department.name }}</option>
                                   </select>

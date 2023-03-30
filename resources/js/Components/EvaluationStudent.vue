@@ -1,32 +1,32 @@
 <template>
-    <div>
+    <div class="card container mt-5 ">
       <div class="" style="text-align:center;margin-top:40px">
         <h1>Student's evaluation results</h1>
         <h5>(Results are judged based on great experiences at the site)</h5>
       </div>
-      <div class="" style="width:100%;height:100px;display:flex;align-items:center;justify-content:center;margin-top:40px">
-        <div class="card evaluation">
-                <div class="evaluationmb" style="text-align:center">
-                    <h5>Average Rating</h5>
-                    <h3>4.95/5</h3>
-                </div>
-        </div>
-        <div class="card evaluation">
-          <div class="evaluationmb" style="text-align:center">
-              <h5>Number of Reviews</h5>
-                <h3>9999</h3>
+      <div class="row d-flex justify-content-around mt-4 mb-4">
+        <div class="col-12 col-sm-6 col-md-2 card evaluation">
+          <div class="card-body">
+            <h5 class="text-center">Average Rating</h5>
+            <h3 class="text-center">4.95/5</h3>
           </div>
         </div>
-        <div class="card evaluation">
-          <div class="evaluationmb" style="text-align:center">
-              <h5>Number of user</h5>
-              <h3>11111</h3>
+        <div class="col-12 col-sm-6 col-md-2 card evaluation">
+          <div class="card-body">
+            <h5 class="text-center">Number of Reviews</h5>
+            <h3 class="text-center">9999</h3>
           </div>
         </div>
-        <div class="card evaluation">
-          <div class="evaluationmb" style="text-align:center">
-              <h5>Reliability by Experts</h5>
-              <h3>100%</h3>
+        <div class="col-12 col-sm-6 col-md-2 card evaluation">
+          <div class="card-body">
+            <h5 class="text-center">Number of user</h5>
+            <h3 class="text-center">11111</h3>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-2 card evaluation">
+          <div class="card-body">
+            <h5 class="text-center">Reliability by Experts</h5>
+            <h3 class="text-center">100%</h3>
           </div>
         </div>
       </div>

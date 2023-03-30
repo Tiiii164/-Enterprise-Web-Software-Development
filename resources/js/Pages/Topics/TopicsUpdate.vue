@@ -64,20 +64,20 @@ export default {
             <form @submit.prevent="updateTopics">
               <div class="mb-3 row">
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label"><h4>Topic Name</h4></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-12 col-form-label"><h4>Topic Name</h4></label>
+                    <div class="col-sm-12">
                       <input type="text" name="name" v-model="topics.name" class="form-control">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label"><h4>Closure Date</h4></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-12 col-form-label"><h4>Closure Date</h4></label>
+                    <div class="col-sm-12">
                       <input type="date" name="closure_date" v-model="topics.closure_date" class="form-control">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label"><h4>Final Closure Date</h4></label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-12 col-form-label"><h4>Final Closure Date</h4></label>
+                    <div class="col-sm-12">
                       <input type="date" name="final_closure_date" v-model="topics.final_closure_date" class="form-control">
                     </div>
                   </div>

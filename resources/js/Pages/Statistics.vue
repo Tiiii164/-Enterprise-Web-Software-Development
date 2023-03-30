@@ -47,7 +47,7 @@ export default {
     },
     async countIdeas() {
       try {
-        const response = await axios.get('/api/ideas/IdeasIndex');
+        const response = await axios.get('/api/ideas/IdeasSelect');
         this.ideas = response.data.ideas
       } catch (error) {
         console.log(error);
@@ -63,7 +63,7 @@ export default {
     },
     sortedViews: function(arr) {
         return arr.slice(0, 5).sort(function(a, b) {
-        return b.views_count - a.views_count;
+          return b.views_count - a.views_count;
       });
     }
   },
@@ -78,12 +78,12 @@ export default {
             <div class="col card">
               <div class="card-body">
                 <h4 class="card-title text-light">Departments with Ideas</h4>
-                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+                <div v-for="department in departments.slice(0, 5)" :key="department" style="height: 50px;">
                   <div class="d-flex justify-content-between border-bottom text-light">
                     <div>{{ department.name }}</div>
                     <div>{{ department.ideas_count }}</div>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default {
             <div class="col card">
               <div class="card-body">
                 <h4 class="card-title text-light">Percentage of Ideas</h4>
-                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+                <div v-for="department in departments.slice(0, 5)" :key="department" style="height: 50px;">
                   <div class="d-flex justify-content-between border-bottom border-light text-light">
                     <div>{{ department.name }}</div>
                     <div>{{ parseFloat(department.ideas_count / ideas.length * 100).toFixed(1) }} %</div>
@@ -104,23 +104,10 @@ export default {
             <div class="col card">
               <div class="card-body">
                 <h4 class="card-title text-light">Departments with Users</h4>
-                <div v-for="(department) in departments.slice(0,5)" :key="department" style="height: 50px;">
+                <div v-for="(department) in departments.slice(0, 5)" :key="department" style="height: 50px;">
                   <div class="d-flex justify-content-between border-bottom border-light text-light">
                     <div>{{ department.name }}</div>
                     <div>{{ department.users_count }}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-3 rounded-3">
-            <div class="col card">
-              <div class="card-body">
-                <h4 class="card-title text-light">Users with Ideas</h4>
-                <div v-for="(user) in user.slice(0,5)" :key="user" style="height: 50px;">
-                  <div class="d-flex justify-content-between border-bottom border-light text-light">
-                    <div>{{ user.name }}</div>
-                    <div>{{ user.ideas_count }}</div>
                   </div>
                 </div>
               </div>
@@ -134,6 +121,19 @@ export default {
                   <div class="d-flex justify-content-between border-bottom border-light text-light">
                     <div>{{ role.name }}</div>
                     <div>{{ role.users_count }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-3 rounded-3">
+            <div class="col card">
+              <div class="card-body">
+                <h4 class="card-title text-light">Users with Ideas</h4>
+                <div v-for="(user) in user.slice(0, 5)" :key="user" style="height: 50px;">
+                  <div class="d-flex justify-content-between border-bottom border-light text-light">
+                    <div>{{ user.name }}</div>
+                    <div>{{ user.ideas_count }}</div>
                   </div>
                 </div>
               </div>
@@ -161,6 +161,11 @@ export default {
 @media screen and (max-width: 1000px) {
   .statistics.backgroundsu{
     height: 300vh; 
+  }
+}
+@media (min-width: 1000px) {
+  .statistics.backgroundsu{
+    height: 110vh; 
   }
 }
 .col {

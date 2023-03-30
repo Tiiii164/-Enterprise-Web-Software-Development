@@ -43,7 +43,7 @@ Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->nam
 
 //Profile
 Route::get('/ShowProfile', [AuthController::class, 'showProfile'])->name('show-profile');
-Route::get('/UpdateProfile/{id}', [UserController::class, 'showUsersUpdate']);
+Route::get('/Profile/{id}', [UserController::class, 'showUsersUpdate']);
 Route::get('/ChangePassword', [UserController::class, 'showChangePassword']);
 
 //Department
@@ -57,6 +57,7 @@ Route::get('/CategoriesCreate', [CategoriesController::class, 'showCategoriesCre
 Route::get('/CategoriesUpdate/{id}', [CategoriesController::class, 'showCategoriesUpdate']);
 
 //Topics
+Route::get('/StaffSubmission', [TopicsController::class, 'showTopics']);
 Route::get('/TopicsIndex', [TopicsController::class, 'showTopics']);
 Route::get('/TopicsCreate', [TopicsController::class, 'showTopicsCreate']);
 Route::get('/TopicsUpdate/{id}', [TopicsController::class, 'showTopicsUpdate']);
@@ -64,13 +65,14 @@ Route::get('/TopicsShow/{id}', [TopicsController::class, 'showTopicsShow']);
 
 //Ideas
 Route::get('/IdeasIndex', [IdeasController::class, 'showIdeas']);
-Route::get('/IdeasCreate', [IdeasController::class, 'showIdeasCreate']);
+Route::get('/IdeasCreate/Topic/{id}', [IdeasController::class, 'showIdeasCreate']);
+// Route::get('/IdeasCreate', [IdeasController::class, 'showIdeasCreate']);
 Route::get('/IdeasUpdate/{id}', [IdeasController::class, 'showIdeasUpdate']);
 Route::get('/IdeasShow/{id}', [IdeasController::class, 'showIdeasShow']);
 Route::get('/ExportExcel/{id}', [IdeasController::class, 'exportExcel']);
 Route::get('/ExportZIP/{id}', [IdeasController::class, 'exportZIP']);
 //comments
-//Route::post('/ideas/{idea}/comments', [CommentController::class, 'store'])->name('comments.store');
+// Route::post('/ideas/{idea}/comments', [CommentController::class, 'store'])->name('comments.store');
 
 //Role
 Route::get('/RolesIndex', [RolesController::class, 'showRoles']);
@@ -81,3 +83,4 @@ Route::get('/RolesUpdate/{id}', [RolesController::class, 'showRolesUpdate']);
 Route::get('/UsersIndex', [UserController::class, 'showUsers']);
 Route::get('/UsersCreate', [UserController::class, 'showUsersCreate']);
 Route::get('/UsersUpdate/{id}', [UserController::class, 'showUsersUpdate']);
+Route::get('/UsersShow/{id}', [UserController::class, 'showUsersShow']);

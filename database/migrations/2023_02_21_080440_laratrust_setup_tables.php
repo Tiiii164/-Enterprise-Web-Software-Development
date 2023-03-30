@@ -53,7 +53,7 @@ class LaratrustSetupTables extends Migration
         // DB::table('departments')->insert([
         //     'name' => 'IT',
         // ]);
-        
+
         // Create table for storing user
         Schema::create('user', function (Blueprint $table) {
             $table->id();
@@ -71,7 +71,7 @@ class LaratrustSetupTables extends Migration
             $table->id();
             $table->string('title');
             $table->string('text');
-            $table->string('file_path');
+            $table->text('file_path')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('views_count')->default(0);
             $table->unsignedBigInteger('likes_count')->default(0);
@@ -112,7 +112,7 @@ class LaratrustSetupTables extends Migration
             $table->foreignId('user_id')->constrained('user');
             $table->foreignId('ideas_id')->constrained('ideas');
         });
-        
+
         Schema::create('departments_user', function (Blueprint $table) {
             $table->unsignedBigInteger('departments_id');
             $table->unsignedBigInteger('user_id');

@@ -20,9 +20,9 @@ use App\Models\Departments;
 //Custom function
 Route::get('/ShowProfile', function () {
     return Auth::user()->load('roles')
-                        ->load('permissions')
-                        ->load('departments')
-                        ->load('ideas');
+        ->load('permissions')
+        ->load('departments')
+        ->load('ideas');
 });
 
 Route::get('/api/roles/RolesIndex', function () {
@@ -31,6 +31,7 @@ Route::get('/api/roles/RolesIndex', function () {
 });
 //UserController
 Route::controller(UserController::class)->group(function () {
+    Route::get('/Profile/{id}', 'edit');
     Route::patch('/UpdateProfile/{id}', 'update');
     Route::post('/ChangePassword', 'changePassword');
 });
@@ -44,13 +45,16 @@ Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
 
 //topics
 Route::controller(TopicsController::class)->group(function () {
-    Route::get('/topics', 'getTopics');
+    Route::get('/ideas/IdeasCreate/Topic/{id}', 'getTopics');
+    Route::get('/topics/TopicsSelect', 'showSelect');
     Route::get('/topics/TopicsIndex', 'index');
     Route::get('/topics/edit/{id}', 'edit');
     Route::get('/topics/TopicsShow/{id}', 'inforTopics');
     Route::post('/topics/TopicsCreate', 'store');
     Route::patch('/topics/TopicsUpdate/{id}', 'update');
     Route::delete('/topics/delete/{id}', 'destroy');
+
+    // Route::get('/ideas/IdeasCreate', 'getTopicsId');
 });
 //comments
 Route::controller(CommentsController::class)->group(function () {
@@ -60,10 +64,13 @@ Route::controller(CommentsController::class)->group(function () {
 //Ideas
 Route::controller(IdeasController::class)->group(function () {
     Route::get('ideas', 'countIdeas');
-    Route::get('/ideas/IdeasIndex', 'index');
+    Route::get('/ideas/IdeasSelect', 'showSelect');
+    Route::get('/ideas/IdeasIndex/{id}', 'index');
     Route::get('/ideas/edit/{id}', 'edit');
     Route::get('/ideas/IdeasShow/{id}', 'inforIdeas');
-    Route::post('/ideas/IdeasCreate', 'store');
+
+    Route::post('/ideas/IdeasCreate/Topic/{id}', 'store');
+    //Route::post('/ideas/IdeasCreate', 'store');
     Route::patch('/ideas/IdeasUpdate/{id}', 'update');
     Route::delete('/ideas/delete/{id}', 'destroy');
     Route::get('/ExportExcel/{id}', 'exportExcel');
@@ -84,6 +91,7 @@ Route::post('/view/{ideasId}', [ViewsController::class, 'view']);
 //RolesController
 Route::controller(RolesController::class)->group(function () {
     Route::get('roles', 'count');
+    Route::get('/roles/RolesSelect', 'showSelect');
     Route::get('/roles/RolesIndex', 'index');
     Route::get('/roles/edit/{id}', 'edit');
     Route::post('/roles/RolesCreate', 'store');
@@ -94,6 +102,7 @@ Route::controller(RolesController::class)->group(function () {
 //DepartmentsController
 Route::controller(DepartmentsController::class)->group(function () {
     Route::get('departments', 'count');
+    Route::get('/departments/DepartmentsSelect', 'showSelect');
     Route::get('/departments/DepartmentsIndex', 'index');
     Route::get('/departments/edit/{id}', 'edit');
     Route::post('/departments/DepartmentsCreate', 'store');
@@ -114,7 +123,9 @@ Route::controller(CategoriesController::class)->group(function () {
 Route::controller(UserController::class)->group(function () {
     Route::get('user', 'count');
     Route::get('/user/UsersIndex', 'index');
-    Route::get('/user/edit/{id}', 'edit');
+    Route::get('/user/UsersSelect', 'showSelect');
+    Route::get('/user/UsersEdit/{id}', 'edit');
+    Route::get('/user/UsersShow/{id}', 'inforUsers');
     Route::post('/user/UsersCreate', 'store');
     Route::patch('/user/UsersUpdate/{id}', 'update');
     Route::delete('/user/delete/{id}', 'destroy');
