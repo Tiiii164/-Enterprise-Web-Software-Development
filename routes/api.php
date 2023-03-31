@@ -45,7 +45,7 @@ Route::controller(AuthController::class)->prefix('/auth/')->group(function () {
 
 //topics
 Route::controller(TopicsController::class)->group(function () {
-    Route::get('/topics', 'getTopics');
+    Route::get('/ideas/IdeasCreate/Topic/{id}', 'getTopics');
     Route::get('/topics/TopicsSelect', 'showSelect');
     Route::get('/topics/TopicsIndex', 'index');
     Route::get('/topics/edit/{id}', 'edit');
@@ -73,6 +73,10 @@ Route::controller(IdeasController::class)->group(function () {
     //Route::post('/ideas/IdeasCreate', 'store');
     Route::patch('/ideas/IdeasUpdate/{id}', 'update');
     Route::delete('/ideas/delete/{id}', 'destroy');
+    Route::get('/ExportExcel/{id}', 'exportExcel');
+    Route::get('/ExportZIP/{id}', 'exportZIP');
+    Route::post('upload-file', 'uploadFile');
+    Route::post('remove-file', 'removeFile');
 });
 
 //Reacts

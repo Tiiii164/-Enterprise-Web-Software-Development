@@ -12,16 +12,16 @@ export default {
     DialogText
   },
 
-  computed: {
-    chosenTopic() {
-      return this.topics.find(topic => topic.id === this.form.topics_id);
-    },
-    isDeadlinePassed() {
-      if (!this.chosenTopic) return false; // if no topic is chosen, return false
-      const deadline = new Date(this.chosenTopic.closure_date);
-      return deadline < this.currentTime;
-    },
-  },
+  // computed: {
+  //   chosenTopic() {
+  //     return this.topics.find(topic => topic.id === this.form.topics_id);
+  //   },
+  //   isDeadlinePassed() {
+  //     if (!this.chosenTopic) return false; // if no topic is chosen, return false
+  //     const deadline = new Date(this.chosenTopic.closure_date);
+  //     return deadline < this.currentTime;
+  //   },
+  // },
 
   data() {
     return {
@@ -29,7 +29,7 @@ export default {
       user: [],
       topics: [],
       categories: [],
-      currentTime: new Date(),
+      // currentTime: new Date(),
       form: {
         title: '',
         text: '',
@@ -57,9 +57,12 @@ export default {
     });
     const handleCreateIdeas = async () => {
       try {
-        const response = await axios.post(`/api/ideas/IdeasCreate/Topic/${route.params.id}`, form);
-        //const response = await axios.post(`/api/ideas/IdeasCreate/Topic/`, form);
-        router.push(`/TopicsShow/${route.params.id}`);
+        const config = {
+          headers: { 'content-type': 'multipart/form-data' }
+        }
+        const response = await axios.post(`/api/ideas/IdeasCreate/Topic/${route.params.id}`, form, config);
+        //const response = await axios.post(`/api/ideas/IdeasCreate/`, form);
+        router.push(`/TopicsShow/${route.params.topics_id}`);
         const customAlert = document.createElement('div');
         customAlert.classList.add('custom-alert');
         customAlert.innerHTML = `
@@ -93,16 +96,15 @@ export default {
           this.categories = response.data;
         });
     },
-    getTopics() {
-      axios.get('/api/topics/TopicsSelect')
-        .then(response => {
-          if (response.data) {
-            this.topics = response.data;
-            console.log(response.data);
-          } else {
-            console.error('No topics found');
-          }
-        });
+    async getTopics() {
+      try {
+        const response = await axios.get(`/api/ideas/IdeasCreate/Topic/${this.$route.params.id}`)
+        const {closure_date} = response.data;
+        this.topics.closure_date = closure_date;
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     showTermsAndConditions() {
@@ -121,7 +123,7 @@ export default {
 <template>
   <NavBar></NavBar>
   <div class="backgroundsu">
-    <form @submit.prevent="handleCreateIdeas" method="post">
+    <form @submit.prevent="handleCreateIdeas" method="post" enctype="multipart/form-data">
       <div class="container mt-5 position-absolute start-50 translate-middle-x text-light">
         <div class="card border-light">
           <div class="card-header border-light">
@@ -148,11 +150,11 @@ export default {
               </div>
             </div>
             <!-- <div class="mb-3 row">
-                                                                                              <label class="col-sm-1 col-form-label"><strong>File Path</strong></label>
-                                                                                              <div class="col-sm-11">
-                                                                                                <input type="file" name="file_path" class="form-control-file" v-model="form.file_path" placeholder="">
-                                                                                              </div>
-                                                                                            </div> -->
+                                                                                                    <label class="col-sm-1 col-form-label"><strong>File Path</strong></label>
+                                                                                                    <div class="col-sm-11">
+                                                                                                      <input type="file" name="file_path" class="form-control-file" v-model="form.file_path" placeholder="">
+                                                                                                    </div>
+                                                                                                  </div> -->
             <div class="mb-3 row">
               <label class="col-sm-12 col-form-label"><strong>File Path</strong></label>
               <div class="col-sm-12">
@@ -197,7 +199,8 @@ export default {
                 </div>
               </div>
             </div>
-            <div v-if="isDeadlinePassed">
+            <div v-if="Date.now() > new Date(this.topics.closure_date)">
+            <!-- <div v-if="isDeadlinePassed"> -->
               <h5 class="text-danger">The deadline has passed</h5>
             </div>
             <div v-else>

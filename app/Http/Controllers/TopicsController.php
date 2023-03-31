@@ -26,15 +26,15 @@ class TopicsController extends Controller
         $topics = Topics::all();
         return response()->json($topics);
     }
-    public function getTopicsId()
+    // public function getTopicsId($id)
+    // {
+    //     $topicsId = Topics::find($id)->get();
+    //     return response()->json($topicsId);
+    // }
+    public function getTopics($id)
     {
-        $topicsId = Topics::getId();
-        return response()->json($topicsId);
-    }
-    public function getTopics()
-    {
-        $dataTopics = Topics::get();
-        return response()->json($dataTopics);
+        $topics = Topics::find($id);
+        return response()->json($topics);
     }
     /**
      * Show the form for creating a new resource.
@@ -72,7 +72,7 @@ class TopicsController extends Controller
     public function showTopics(Request $request)
     {
         $request->user()->authorizeRoles(['Manager', 'Admin']);
-        return Inertia::render('TopicsIndex', 'StaffSubmission');
+        return Inertia::render('TopicsIndex');
     }
 
     /**

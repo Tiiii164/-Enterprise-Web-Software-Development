@@ -6,6 +6,14 @@ export default {
     NavBar,
     TheFooter
   },
+  methods: {
+    ExportExcel($id) {
+      window.location.href = '/api/ExportExcel/' + $id;
+    },
+    ExportZIP($id) {
+      window.location.href = '/api/ExportZIP/' + $id;
+    }
+},
   data() {
     return {
       topics: [],
@@ -16,16 +24,6 @@ export default {
     this.getTopics();
   },
   methods: {
-    // getTopics(page_url) {
-    //   axios.get('page_url').then(response => {
-    //     let vm = this;
-    //     page_url = page_url || '/api/topics/TopicsIndex';
-    //     this.ideas = response.data;
-    //     console.log(response.data);
-    //     vm.makePagination(res.meta, res.links);
-    //     // console.log(topics[idea.topic_id].name);
-    //   })
-    // },
     getTopics: function(page_url){
       let vm = this;
       page_url = page_url || '/api/topics/TopicsIndex';
@@ -83,9 +81,15 @@ export default {
                 <td class="btnValid">{{ topics.final_closure_date }}</td>
                 <td>
                   <div>
-                    <router-link :to="'/TopicsShow/' + topics.id" class="btnValid me-md-4 "><span class="d-none d-md-inline">View Ideas</span> <font-awesome-icon icon="fa-solid fa-book" /></router-link>
-                    <a class="btnValid me-md-4" ><span class="d-none d-md-inline">Export Excel</span> <font-awesome-icon icon="fa-solid fa-file-excel" /></a>
-                    <a class="btnValid"><span class="d-none d-md-inline">Export Zip</span> <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" /></a>
+                    <router-link :to="'/TopicsShow/' + topics.id" class="btnValid me-md-4 ">
+                        <span class="d-none d-md-inline">View Topics</span> <font-awesome-icon icon="fa-solid fa-book" />
+                    </router-link>
+                    <a type="button" :href="`/api/ExportExcel/`+ topics.id" download="Ideas.xlsx" class="btnValid me-md-4">
+                        <span @click="ExportExcel" class="d-none d-md-inline">Export Excel</span> <font-awesome-icon icon="fa-solid fa-file-excel" />
+                    </a>
+                    <a type="button" :href="`/api/ExportZIP/`+ topics.id" download="Ideas.zip" class="btnValid">
+                      <span @click="ExportZIP" class="d-none d-md-inline">Export ZIP</span><font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
+                    </a>
                   </div>
                 </td>
               </tr>
@@ -96,9 +100,15 @@ export default {
                 <td class="btnWarning">{{ topics.final_closure_date }}</td>
                 <td>
                   <div>
-                    <router-link :to="'/TopicsShow/' + topics.id" class="btnWarning me-md-4"><span class="d-none d-md-inline">View Ideas</span> <font-awesome-icon icon="fa-solid fa-book" /></router-link>
-                    <a class="btnWarning me-md-4"><span class="d-none d-md-inline">Export Excel</span> <font-awesome-icon icon="fa-solid fa-file-excel" /></a>
-                    <a class="btnWarning"><span class="d-none d-md-inline">Export Zip</span> <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" /></a>
+                    <router-link :to="'/TopicsShow/' + topics.id" class="btnWarning me-md-4">
+                      <span class="d-none d-md-inline">View Topics</span> <font-awesome-icon icon="fa-solid fa-book" />
+                    </router-link>
+                    <a type="button" :href="`/api/ExportExcel/`+ topics.id" download="Ideas.xlsx" class="btnWarning me-md-4">
+                        <span @click="ExportExcel" class="d-none d-md-inline">Export Excel</span> <font-awesome-icon icon="fa-solid fa-file-excel" />
+                    </a>
+                    <a type="button" :href="`/api/ExportZIP/`+ topics.id" download="Ideas.zip" class="btnWarning">
+                      <span @click="ExportZIP" class="d-none d-md-inline">Export ZIP</span><font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
+                    </a>
                   </div>
                 </td>
               </tr>
@@ -109,10 +119,16 @@ export default {
                 <td class="btnExpired">{{ topics.final_closure_date }}</td>
                 <td>
                   <div>
-                    <router-link :to="'/TopicsShow/' + topics.id" class="btnExpired me-md-4 "><span class="d-none d-md-inline">View Ideas</span> <font-awesome-icon icon="fa-solid fa-book" /></router-link>
-                    <a class="btnExpired me-md-4" ><span class="d-none d-md-inline">Export Excel</span> <font-awesome-icon icon="fa-solid fa-file-excel" /></a>
-                    <a class="btnExpired"><span class="d-none d-md-inline">Export Zip</span> <font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" /></a>
-                  </div>
+                    <router-link :to="'/TopicsShow/' + topics.id" class="btnExpired me-md-4 ">
+                      <span class="d-none d-md-inline">View Topics</span> <font-awesome-icon icon="fa-solid fa-book" />
+                    </router-link>
+                    <a type="button" :href="`/api/ExportExcel/`+ topics.id" download="Ideas.xlsx" class="btnExpired me-md-4">
+                        <span @click="ExportExcel" class="d-none d-md-inline">Export Excel</span> <font-awesome-icon icon="fa-solid fa-file-excel" />
+                    </a>
+                    <a type="button" :href="`/api/ExportZIP/`+ topics.id" download="Ideas.zip" class="btnExpired">
+                      <span @click="ExportZIP" class="d-none d-md-inline">Export ZIP</span><font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
+                    </a>
+                    </div>
                 </td>
               </tr>
             </tbody>

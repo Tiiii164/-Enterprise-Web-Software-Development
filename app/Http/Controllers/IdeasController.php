@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportExcel;
+use ZipArchive;
+use File;
+use Zip;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewIdea;
@@ -57,17 +63,28 @@ class IdeasController extends Controller
 
 
 
-    public function store(Request $request, $id)
+    public function store(Request $request, $topics_id)
     {
         $ideas = new Ideas();
         $ideas->title = $request->input('title');
         $ideas->text = $request->input('text');
         $ideas->categories_id = $request->input('categories_id');
         // Chuyển đổi mảng file_path thành chuỗi với hàm implode()
-        $ideas->file_path = implode($request->input('file_path'));
+        // $ideas->file_path = implode($request->input('file_path'));
         // $ideas->file_path = $request->input('file_path');
-        // $ideas->topics_id = DB::table('ideas')->value('topics_id');
-        $ideas->topics_id = $id;
+        
+        // Handle file upload
+        if ($request->hasFile('file_path')) {
+            $file = $request->file('file_path');
+            $destination_path = 'Ideas/' . $topics_id;
+            $file_name = $file->getClientOriginalName() . time();
+            $file->storeAs($destination_path, $file_name);
+            $file_path = $destination_path . "/" . $file_name;
+            $ideas->file_path = $file_path;
+        } else {
+            $ideas->file_path = $request->input('file_path');
+        }
+        $ideas->topics_id = $topics_id;
         $ideas->user_id = Auth::user()->id;
         $ideas->departments_id = DB::table('departments_user')
             ->where('user_id', Auth::user()->id)
@@ -147,6 +164,35 @@ class IdeasController extends Controller
         $ideas->delete();
         return response()->json(['message' => 'Idea deleted']);
     }
+    
+    public function exportExcel($id)
+    {
+        return Excel::download(new ExportExcel($id), 'Ideas.xlsx'); 
+    }
+
+    public function exportZIP($id)
+    {
+        $zip = new ZipArchive($id);
+        
+        $fileName = 'Ideas' . $id . '.zip';
+
+        $zipDir = 'storage/Ideas/' . $id;
+
+        if ($zip->open(storage_path('/app/public/Ideas/' . $fileName), ZipArchive::CREATE) === TRUE)
+        {
+            $files = File::files(public_path($zipDir));
+
+            foreach ($files as $key => $value) {
+                $file = basename($value);
+                $zip->addFile($value, $file);
+            }
+             
+            $zip->close();
+        }
+
+        return response()->download(storage_path('/app/public/Ideas/' . $fileName));
+    }
+
     // public function storeLike(Request $request)
     // {
     //     $user_id = Auth::id();
