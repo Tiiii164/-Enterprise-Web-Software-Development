@@ -34,10 +34,19 @@ export default {
     localStorage.setItem('Idea_token', result.data.token);
     await router.push('/signin');
     // show success message
-    const alertDiv = document.createElement('div');
-    alertDiv.classList.add('alert', 'success');
-    alertDiv.textContent = 'Sign up successful! You can now access all features of our platform.';
-    document.querySelector('form').insertAdjacentElement('beforebegin', alertDiv);
+    const customAlert = document.createElement('div');
+        customAlert.classList.add('custom-alert');
+        customAlert.innerHTML = `
+          <div class="custom-alert-content">
+            <h3>Sign Up successfully!</h3>
+            <button class="custom-alert-button">OK</button>
+          </div>
+        `;
+        document.body.appendChild(customAlert);
+        const customAlertButton = customAlert.querySelector('.custom-alert-button');
+        customAlertButton.addEventListener('click', () => {
+          customAlert.remove();
+        });
     // hide success message after 3 seconds
     setTimeout(() => {
       alertDiv.style.display = 'none';

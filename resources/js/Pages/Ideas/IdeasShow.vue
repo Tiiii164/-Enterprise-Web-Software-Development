@@ -28,7 +28,7 @@ export default {
             topics: [],
             comments: [],
             categories: [],
-            currentTime: new Date(),
+            // currentTime: new Date(),
         }
     },
 
