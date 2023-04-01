@@ -18,13 +18,27 @@ export default {
     return {
       topics: [],
       pagination:{},
+      currentUser: {},
       roles: new Set(),
     }
   },
   created() {
     this.getTopics();
+    this.getCurrentUser();
   },
   methods: {
+    getCurrentUser() {
+      axios.get('/getCurrentUser')
+        .then(response => { 
+          this.currentUser = response.data
+          this.currentUser.roles.forEach(r => {
+            this.roles.add(r.name);
+          })
+        }
+      )
+      .catch(error => { console.log(error) }
+      )
+  },
     getTopics: function(page_url){
       let vm = this;
       page_url = page_url || '/api/topics/TopicsIndex';
