@@ -10,17 +10,17 @@ export default {
         NavBar,
         TheFooter
     },
-    computed: {
-        isDeadlinePassed() {
-            if (this.topics.length > 0) {
-                return this.topics.some(topic => {
-                    const deadline = new Date(topic.final_closure_date);
-                    return deadline < this.currentTime;
-                });
-            }
-            return false;
-        },
-    },
+    // computed: {
+    //     isDeadlinePassed() {
+    //         if (this.topics.length > 0) {
+    //             return this.topics.some(topic => {
+    //                 const deadline = new Date(topic.final_closure_date);
+    //                 return deadline < this.currentTime;
+    //             });
+    //         }
+    //         return false;
+    //     },
+    // },
 
     data() {
         return {
@@ -83,35 +83,6 @@ export default {
                 }
             }
         },
-        // async getTopics() {
-        //     try 
-        //     {
-        //     const res = await axios.get("/api/topics/TopicsSelect")
-        //     // const {id, final_closure_date} = res.data;
-        //     // this.topics.id = id;
-        //     // this.topics.final_closure_date = final_closure_date;
-        //     // this.topics = res.data;
-        //     console.log(res.data);
-        //     } catch (error) {
-        //         console.log(error)
-        //     }
-        //     // .then(response => {
-        //     //     // if (response.data) {
-        //     //     //     this.topics = response.data;
-        //     //     //     this.topics.id = response.data;
-        //     //     //     console.log(response.data);
-
-        //     //     //     const currentTime = new Date();
-        //     //     //     this.topics.forEach(topic => {
-        //     //     //         const deadline = new Date(topic.final_closure_date);
-        //     //     //         console.log('Deadline:', deadline);
-        //     //     //         console.log('Current time:', currentTime);
-        //     //     //     });
-        //     //     // } else {
-        //     //     //     console.error('No topics found');
-        //     //     // }
-        //     // });
-        // },
         getCategory() {
             axios.get('/api/categories/CategoriesIndex').then(response => {
                 this.categories = response.data;                
@@ -180,7 +151,7 @@ export default {
                         </div>
                         <div class="d-grid d-md-flex justify-content-md-between">
                             <div class="justify-content-md-start pb-3">
-                                <div class="text-danger" v-if="isDeadlinePassed">
+                                <div class="text-danger" v-if="Date.now() > new Date(this.topics.final_closure_date)">
                                     <h5>The deadline has passed</h5>
                                 </div>
                                 <div v-else>
