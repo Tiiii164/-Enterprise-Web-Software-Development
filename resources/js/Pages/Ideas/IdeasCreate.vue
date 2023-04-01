@@ -62,7 +62,9 @@ export default {
         }
         const response = await axios.post(`/api/ideas/IdeasCreate/Topic/${route.params.id}`, form, config);
         //const response = await axios.post(`/api/ideas/IdeasCreate/`, form);
-        router.push(`/TopicsShow/${route.params.topics_id}`);
+        
+        router.push(`/TopicsShow/${route.params.id}`);
+
         const customAlert = document.createElement('div');
         customAlert.classList.add('custom-alert');
         customAlert.innerHTML = `
@@ -77,7 +79,7 @@ export default {
           customAlert.remove();
         });
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
     return {
@@ -99,7 +101,8 @@ export default {
     async getTopics() {
       try {
         const response = await axios.get(`/api/ideas/IdeasCreate/Topic/${this.$route.params.id}`)
-        const {closure_date} = response.data;
+        const {id, closure_date} = response.data;
+        this.topics.id = id;
         this.topics.closure_date = closure_date;
         console.log(response.data);
       } catch (error) {
@@ -132,7 +135,7 @@ export default {
                 <h3>Create new Ideas</h3>
               </div>
               <div class="justify-content-md-end">
-                <router-link to="/TopicsIndex" class="btn btn-primary catebutton">Back to list</router-link>
+                <router-link :to="`/TopicsShow/${this.topics.id}`"  class="btn btn-primary catebutton">Back to list</router-link>
               </div>
             </div>
         </div>

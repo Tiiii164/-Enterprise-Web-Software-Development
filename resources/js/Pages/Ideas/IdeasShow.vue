@@ -83,24 +83,35 @@ export default {
                 }
             }
         },
-        getTopics() {
-            axios.get('/api/topics/TopicsSelect')
-            .then(response => {
-                if (response.data) {
-                    this.topics = response.data;
-                    console.log(response.data);
+        // async getTopics() {
+        //     try 
+        //     {
+        //     const res = await axios.get("/api/topics/TopicsSelect")
+        //     // const {id, final_closure_date} = res.data;
+        //     // this.topics.id = id;
+        //     // this.topics.final_closure_date = final_closure_date;
+        //     // this.topics = res.data;
+        //     console.log(res.data);
+        //     } catch (error) {
+        //         console.log(error)
+        //     }
+        //     // .then(response => {
+        //     //     // if (response.data) {
+        //     //     //     this.topics = response.data;
+        //     //     //     this.topics.id = response.data;
+        //     //     //     console.log(response.data);
 
-                    const currentTime = new Date();
-                    this.topics.forEach(topic => {
-                        const deadline = new Date(topic.final_closure_date);
-                        console.log('Deadline:', deadline);
-                        console.log('Current time:', currentTime);
-                    });
-                } else {
-                    console.error('No topics found');
-                }
-            });
-        },
+        //     //     //     const currentTime = new Date();
+        //     //     //     this.topics.forEach(topic => {
+        //     //     //         const deadline = new Date(topic.final_closure_date);
+        //     //     //         console.log('Deadline:', deadline);
+        //     //     //         console.log('Current time:', currentTime);
+        //     //     //     });
+        //     //     // } else {
+        //     //     //     console.error('No topics found');
+        //     //     // }
+        //     // });
+        // },
         getCategory() {
             axios.get('/api/categories/CategoriesIndex').then(response => {
                 this.categories = response.data;                
@@ -115,7 +126,7 @@ export default {
     },
     created() {
         this.getIdeas();
-        this.getTopics();
+        // this.getTopics();
         this.getCategory();
     }
 }
@@ -179,8 +190,8 @@ export default {
                                 </div>
                             </div>
                             <div class="justify-content-md-end pb-3">
-                                <router-link to="/TopicsIndex" class="btn btn-primary">Back to
-                                    list</router-link>
+                                <router-link :to="`/TopicsShow/${this.topics.id}`" class="btn btn-primary">
+                                    Back to list</router-link>
                             </div>
                         </div>
                     </form>
