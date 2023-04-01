@@ -18,6 +18,7 @@ export default {
     return {
       topics: [],
       pagination:{},
+      roles: new Set(),
     }
   },
   created() {
@@ -34,7 +35,6 @@ export default {
         console.log(res.data)
         vm.makePagination(res.meta, res.links);
        console.log([res.meta, res.links])
-       
       })
     },
     makePagination:function(meta,links){
@@ -84,10 +84,10 @@ export default {
                     <router-link :to="'/TopicsShow/' + topics.id" class="btnValid me-md-4 ">
                         <span class="d-none d-md-inline">View Topics</span> <font-awesome-icon icon="fa-solid fa-book" />
                     </router-link>
-                    <a type="button" :href="`/api/ExportExcel/`+ topics.id" download="Ideas.xlsx" class="btnValid me-md-4">
+                    <a type="button" :href="`/api/ExportExcel/`+ topics.id" download="Ideas.xlsx" class="btnValid me-md-4" v-if="roles.has('Admin') || roles.has('Manager')">
                         <span @click="ExportExcel" class="d-none d-md-inline">Export Excel</span> <font-awesome-icon icon="fa-solid fa-file-excel" />
                     </a>
-                    <a type="button" :href="`/api/ExportZIP/`+ topics.id" download="Ideas.zip" class="btnValid">
+                    <a type="button" :href="`/api/ExportZIP/`+ topics.id" download="Ideas.zip" class="btnValid" v-if="roles.has('Admin') || roles.has('Manager')">
                       <span @click="ExportZIP" class="d-none d-md-inline">Export ZIP</span><font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
                     </a>
                   </div>
@@ -103,10 +103,10 @@ export default {
                     <router-link :to="'/TopicsShow/' + topics.id" class="btnWarning me-md-4">
                       <span class="d-none d-md-inline">View Topics</span> <font-awesome-icon icon="fa-solid fa-book" />
                     </router-link>
-                    <a type="button" :href="`/api/ExportExcel/`+ topics.id" download="Ideas.xlsx" class="btnWarning me-md-4">
+                    <a type="button" :href="`/api/ExportExcel/`+ topics.id" download="Ideas.xlsx" class="btnWarning me-md-4" v-if="roles.has('Admin') || roles.has('Manager')">
                         <span @click="ExportExcel" class="d-none d-md-inline">Export Excel</span> <font-awesome-icon icon="fa-solid fa-file-excel" />
                     </a>
-                    <a type="button" :href="`/api/ExportZIP/`+ topics.id" download="Ideas.zip" class="btnWarning">
+                    <a type="button" :href="`/api/ExportZIP/`+ topics.id" download="Ideas.zip" class="btnWarning" v-if="roles.has('Admin') || roles.has('Manager')">
                       <span @click="ExportZIP" class="d-none d-md-inline">Export ZIP</span><font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
                     </a>
                   </div>
@@ -122,10 +122,10 @@ export default {
                     <router-link :to="'/TopicsShow/' + topics.id" class="btnExpired me-md-4 ">
                       <span class="d-none d-md-inline">View Topics</span> <font-awesome-icon icon="fa-solid fa-book" />
                     </router-link>
-                    <a type="button" :href="`/api/ExportExcel/`+ topics.id" download="Ideas.xlsx" class="btnExpired me-md-4">
+                    <a type="button" :href="`/api/ExportExcel/`+ topics.id" download="Ideas.xlsx" class="btnExpired me-md-4" v-if="roles.has('Admin') || roles.has('Manager')">
                         <span @click="ExportExcel" class="d-none d-md-inline">Export Excel</span> <font-awesome-icon icon="fa-solid fa-file-excel" />
                     </a>
-                    <a type="button" :href="`/api/ExportZIP/`+ topics.id" download="Ideas.zip" class="btnExpired">
+                    <a type="button" :href="`/api/ExportZIP/`+ topics.id" download="Ideas.zip" class="btnExpired" v-if="roles.has('Admin') || roles.has('Manager')">
                       <span @click="ExportZIP" class="d-none d-md-inline">Export ZIP</span><font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />
                     </a>
                     </div>

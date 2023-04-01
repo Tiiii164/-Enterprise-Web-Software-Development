@@ -57,7 +57,7 @@ Route::get('/CategoriesCreate', [CategoriesController::class, 'showCategoriesCre
 Route::get('/CategoriesUpdate/{id}', [CategoriesController::class, 'showCategoriesUpdate']);
 
 //Topics
-Route::get('/StaffSubmission', [TopicsController::class, 'showTopics']);
+// Route::get('/StaffSubmission', [TopicsController::class, 'showTopics']);
 Route::get('/TopicsIndex', [TopicsController::class, 'showTopics']);
 Route::get('/TopicsCreate', [TopicsController::class, 'showTopicsCreate']);
 Route::get('/TopicsUpdate/{id}', [TopicsController::class, 'showTopicsUpdate']);
