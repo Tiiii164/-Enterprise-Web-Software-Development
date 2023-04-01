@@ -76,12 +76,12 @@ class IdeasController extends Controller
         // Handle file upload
         if ($request->hasFile('file_path')) {
             $file = $request->file('file_path');
-            $destination_path = 'public/' . $topics_id;
+            $destination_path = 'Ideas/' . $topics_id;
             $file_name = $file->getClientOriginalName() . time();
             $file->storeAs($destination_path, $file_name);
             $file_path = $destination_path . "/" . $file_name;
             $ideas->file_path = $file_path;
-        }else {
+        } else {
             $ideas->file_path = $request->input('file_path');
         }
         $ideas->topics_id = $topics_id;
@@ -178,12 +178,14 @@ class IdeasController extends Controller
     public function exportZIP($id)
     {
         $zip = new ZipArchive($id);
+        
+        $fileName = 'Ideas' . $id . '.zip';
 
-        $fileName = 'Ideas.zip';
+        $zipDir = 'storage/Ideas/' . $id;
 
-        if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
+        if ($zip->open(storage_path('/app/public/Ideas/' . $fileName), ZipArchive::CREATE) === TRUE)
         {
-            $files = File::files(public_path('Zip_Ideas'));
+            $files = File::files(public_path($zipDir));
 
             foreach ($files as $key => $value) {
                 $file = basename($value);
@@ -193,7 +195,7 @@ class IdeasController extends Controller
             $zip->close();
         }
 
-        return response()->download(public_path($fileName));
+        return response()->download(storage_path('/app/public/Ideas/' . $fileName));
     }
 
     // public function storeLike(Request $request)

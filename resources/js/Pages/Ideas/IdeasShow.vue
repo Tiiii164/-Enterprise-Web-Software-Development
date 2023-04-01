@@ -52,7 +52,7 @@ export default {
             } catch (error) {
                 console.error(error);
             }
-            location.reload(true);
+            location.reload();
         }
         return {
             form,
