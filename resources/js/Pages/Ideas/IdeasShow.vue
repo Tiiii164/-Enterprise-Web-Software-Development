@@ -83,16 +83,6 @@ export default {
                 }
             }
         },
-        async getTopics() {
-      try {
-        const {final_closure_date} = response.data;
-        this.topics.final_closure_date = final_closure_date;
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-        
         getCategory() {
             axios.get('/api/categories/CategoriesIndex').then(response => {
                 this.categories = response.data;                
@@ -107,7 +97,7 @@ export default {
     },
     created() {
         this.getIdeas();
-        this.getTopics();
+        // this.getTopics();
         this.getCategory();
     }
 }
@@ -171,8 +161,8 @@ export default {
                                 </div>
                             </div>
                             <div class="justify-content-md-end pb-3">
-                                <router-link to="/TopicsIndex" class="btn btn-primary">Back to
-                                    list</router-link>
+                                <router-link :to="`/TopicsShow/${this.topics.id}`" class="btn btn-primary">
+                                    Back to list</router-link>
                             </div>
                         </div>
                     </form>
