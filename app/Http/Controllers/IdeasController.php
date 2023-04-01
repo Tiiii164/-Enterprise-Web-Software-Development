@@ -148,9 +148,14 @@ class IdeasController extends Controller
         $topics = $ideas->topics;
         $categories = $ideas->categories;
         $views = $ideas->views;
+        
+        
         // return response()->json(['ideas' => $ideas, 'views' => $views, 'comments' => $comments]);
 
         return response()->json(['ideas' => $ideas, 'topics' => $topics, 'categories' => $categories, 'views' => $views, 'comments' => $comments]);
+        
+        
+    
     }
     /**
      * Remove the specified resource from storage.
