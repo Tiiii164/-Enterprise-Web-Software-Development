@@ -89,7 +89,6 @@ class TopicsController extends Controller
 
     public function showTopicsShow(Request $request)
     {
-        $request->user()->authorizeRoles(['Manager', 'Admin']);
         return Inertia::render('TopicsShow');
     }
 
