@@ -114,7 +114,7 @@ export default {
                                 <tr>
                                     <td>Title</td>
                                     <td>Content</td>
-                                    <td>File Path</td>
+                                    <!-- <td>File Path</td> -->
                                     <td>View</td>
                                     <td>Topic</td>
                                     <td>Category</td>
@@ -124,7 +124,7 @@ export default {
                                 <tr v-for="idea in ideas">
                                     <td>{{ idea.title }}</td>
                                     <td>{{ idea.text }}</td>
-                                    <td>{{ idea.file_path }}</td>
+                                    <!-- <td>{{ idea.file_path }}</td> -->
                                     <td>{{ idea.views_count }}</td> 
                                     <td>{{ idea.topics.name }}</td>
                                     <td>{{ idea.categories.name }}</td>
@@ -150,17 +150,17 @@ export default {
                             </div>
                         </div>
                         <div class="d-grid d-md-flex justify-content-md-between">
-                            <div class="justify-content-md-start pb-3">
+                            <div class="justify-content-md-start mt-2">
                                 <div class="text-danger" v-if="Date.now() > new Date(this.topics.final_closure_date)">
                                     <h5>The deadline has passed</h5>
                                 </div>
                                 <div v-else>
-                                    <button type="submit" class="btn btn-primary mt-2"
+                                    <button type="submit" class="btn btn-primary"
                                         @click.prevent="handleCreateComments">Create
                                     </button>
                                 </div>
                             </div>
-                            <div class="justify-content-md-end pb-3">
+                            <div class="justify-content-md-end mt-2">
                                 <router-link :to="`/TopicsShow/${this.topics.id}`" class="btn btn-primary">
                                     Back to list</router-link>
                             </div>
