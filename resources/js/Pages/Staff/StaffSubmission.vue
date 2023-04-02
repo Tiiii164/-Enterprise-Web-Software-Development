@@ -94,7 +94,7 @@ export default {
                 <td class="btnValid">{{ topics.closure_date }}</td>
                 <td class="btnValid">{{ topics.final_closure_date }}</td>
                 <td>
-                  <div>
+                  <div class="d-grid d-md-flex justify-content-md-center">
                     <router-link :to="'/TopicsShow/' + topics.id" class="btnValid me-md-4 ">
                         <span class="d-none d-md-inline">View Topics</span> <font-awesome-icon icon="fa-solid fa-book" />
                     </router-link>
@@ -113,7 +113,7 @@ export default {
                 <td class="btnWarning">{{ topics.closure_date }}</td>
                 <td class="btnWarning">{{ topics.final_closure_date }}</td>
                 <td>
-                  <div>
+                  <div class="d-grid d-md-flex justify-content-md-center">
                     <router-link :to="'/TopicsShow/' + topics.id" class="btnWarning me-md-4">
                       <span class="d-none d-md-inline">View Topics</span> <font-awesome-icon icon="fa-solid fa-book" />
                     </router-link>
@@ -132,7 +132,7 @@ export default {
                 <td class="btnExpired">{{ topics.closure_date }}</td>
                 <td class="btnExpired">{{ topics.final_closure_date }}</td>
                 <td>
-                  <div>
+                  <div class="d-grid d-md-flex justify-content-md-center">
                     <router-link :to="'/TopicsShow/' + topics.id" class="btnExpired me-md-4 ">
                       <span class="d-none d-md-inline">View Topics</span> <font-awesome-icon icon="fa-solid fa-book" />
                     </router-link>
