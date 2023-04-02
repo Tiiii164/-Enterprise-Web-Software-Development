@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     
         $qaManager = new User();
         $qaManager->name = 'QA Manager';
-        $qaManager->email = 'anhkhoa431996@gmail.com';
+        $qaManager->email = 'qamanager2002@gmail.com';
         $qaManager->password = bcrypt('123');
         $qaManager->save();
         $qaManager->departments()->attach('1');

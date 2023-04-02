@@ -93,7 +93,7 @@ class IdeasController extends Controller
 
         $user = Auth::user();
 
-        Mail::to('anhkhoa431996@gmail.com')
+        Mail::to('qamanager2002@gmail.com')
             ->send(new NewIdea($user, $ideas));
         return response()->json($ideas);
     }
