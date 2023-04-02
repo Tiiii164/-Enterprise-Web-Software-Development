@@ -46,7 +46,7 @@ class NewIdea extends Mailable
      */
     public function build()
     {
-        return $this->from('pnu2410@gmail.com')
+        return $this->from('systemmanager2002@gmail.com')
             ->subject('New idea has been created')
             ->view('emails.new-idea');
     }
