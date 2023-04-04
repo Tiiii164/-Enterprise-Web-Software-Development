@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(LaratrustSeeder::class);
     
-        $qaManager = new User();
-        $qaManager->name = 'QA Manager';
-        $qaManager->email = 'qamanager2002@gmail.com';
-        $qaManager->password = bcrypt('123');
-        $qaManager->save();
-        $qaManager->departments()->attach('1');
-        $qaManager->roles()->attach(Role::where('name', 'Manager')->first());
+        // $qaManager = new User();
+        // $qaManager->name = 'QA Manager';
+        // $qaManager->email = 'qamanager2002@gmail.com';
+        // $qaManager->password = bcrypt('123');
+        // $qaManager->save();
+        // $qaManager->departments()->attach('1');
+        // $qaManager->roles()->attach(Role::where('name', 'Manager')->first());
     }
 }
