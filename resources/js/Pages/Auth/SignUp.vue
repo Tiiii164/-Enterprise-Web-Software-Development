@@ -48,9 +48,9 @@ export default {
           customAlert.remove();
         });
     // hide success message after 3 seconds
-    setTimeout(() => {
-      alertDiv.style.display = 'none';
-    }, 3000);
+    // setTimeout(() => {
+    //   alertDiv.style.display = 'none';
+    // }, 3000);
     // provide next steps
   }
 }catch(e) {
