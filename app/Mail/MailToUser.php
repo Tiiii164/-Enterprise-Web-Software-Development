@@ -6,11 +6,11 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Ideas;
+use App\Models\Comments;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
-class NewIdea extends Mailable
+class MailtoUser extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -24,19 +24,19 @@ class NewIdea extends Mailable
     /**
      * The idea instance.
      *
-     * @var Ideas
+     * @var Comments
      */
-    public $idea;
+    public $comment;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, Ideas $idea)
+    public function __construct(User $user, Comments $comment)
     {
         $this->user = $user;
-        $this->idea = $idea;
+        $this->comment = $comment;
     }
 
     /**
@@ -46,8 +46,8 @@ class NewIdea extends Mailable
      */
     public function build()
     {
-        return $this->from('koshice0310@gmail.com@gmail.com')
-            ->subject('New idea has been created')
-            ->view('emails.new-idea');
+        return $this->from('systemmanager2002@gmail.com')
+            ->subject('New comment has been created')
+            ->view('emails.notify-comment');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\Comments;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailToUser;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +21,11 @@ class CommentsController extends Controller
         $comments->user_id = Auth::user()->id;
         $comments->ideas_id = $ideas_id;
         $comments->save();
+
+        $user = Auth::user();
+
+        Mail::to($user->email)
+        ->send(new MailToUser($user, $comments));
         //$comments->ideas_id = Comments::where('users_id', Auth::user()->id)->value('ideas_id');
 
         //$comments->ideas_id = Comments::where('ideas_id');
