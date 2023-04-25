@@ -18,7 +18,6 @@ use Zip;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewIdea;
-use App\Mail\MailtoStaff;
 
 class IdeasController extends Controller
 {
@@ -95,10 +94,7 @@ class IdeasController extends Controller
         $user = Auth::user();
 
         Mail::to('qamanager2002@gmail.com')
-            ->send(new NewIdea($user, $ideas));
-
-        Mail::to($user->email)
-        ->send(new MailtoStaff($user, $ideas));    
+            ->send(new NewIdea($user, $ideas));    
         return response()->json($ideas);
     }
 
