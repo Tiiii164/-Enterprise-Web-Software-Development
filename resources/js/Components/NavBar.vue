@@ -62,7 +62,7 @@ export default {
             <li class="dropdown-item">
               <router-link class="nav-link active nav-item1" to="/DepartmentsIndex">Department</router-link>
             </li>
-            <li class="dropdown-item">
+            <li class="dropdown-item" v-if="roles.has('Admin')">
               <router-link class="nav-link active nav-item1" to="/RolesIndex">Role</router-link>
             </li>
             <li class="dropdown-item">

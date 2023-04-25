@@ -22,6 +22,8 @@ return [
             'category' => 'c,r,u,d',
             'departments' => 'c,r,u,d',
         ],
+        'QaManager' => [
+        ],
         'Admin' => [
             'user' => 'c,r,u,d',
             'roles' => 'c,r,u,d',
